@@ -1,0 +1,1865 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'ANTIDOTE</title>
+<style>
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: #f5f3fb; color: #1e1b2e; line-height: 1.95; }
+
+/* ── Header ── */
+.qdqq-header {
+  background: #f3eeff; border-bottom: 2px solid #ddd0f5;
+  padding: 18px 32px; display: grid;
+  grid-template-columns: auto 1fr; grid-template-rows: auto auto auto;
+  gap: 6px 20px;
+}
+.header-logo { grid-column: 1; grid-row: 1 / span 2; display:flex; align-items:center; }
+.header-logo img { height:48px; max-width:140px; object-fit:contain; }
+.header-title { grid-column: 2; grid-row: 1; font-size: 1.55rem; font-weight: bold; color: #7848b0; line-height:1.25; align-self:end; }
+.header-meta { grid-column: 2; grid-row: 2; display: flex; justify-content: space-between; font-size: 0.9rem; color: #999; margin-top:2px; }
+.header-btn { grid-column: 1 / span 2; grid-row: 3; margin-top:8px; }
+.btn-video { display:inline-block; padding:7px 18px; background:#8b5cbf; color:#fff; border-radius:4px; text-decoration:none; font-size:0.85rem; }
+.btn-video:hover { background:#7848a8; }
+
+/* ── Layout ── */
+.qdqq-layout { display: flex; align-items: flex-start; max-width: 1600px; margin: 0 auto; padding: 28px 20px 80px; gap: 24px; }
+#toc { width: 380px; flex-shrink: 0; position: sticky; top: 20px; max-height: calc(100vh - 40px); overflow-y: auto; }
+#toc-inner { background: #fff; border: 1px solid #e8e0f5; border-radius: 8px; padding: 14px 14px; box-shadow: 0 2px 8px rgba(124,58,237,.06); }
+#toc h4 { font-size: 0.78rem; font-weight: 700; color: #7848b0; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #ede9fe; }
+#toc-list a { display: block; font-size: 0.83rem; color: #5b21b6; text-decoration: none; padding: 5px 8px; border-radius: 4px; margin-bottom: 2px; line-height: 1.38; transition: background .15s, color .15s; }
+#toc-list a:hover { background: #f5f3ff; color: #4c1d95; }
+#toc-list a.active { background: #7c3aed; color: #fff; font-weight: 600; }
+#toc-list a.toc-intro-link { color: #15803d; font-style: italic; margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid #e8e0f5; }
+#toc-list a.toc-intro-link:hover { background: #f0fdf4; color: #052e16; }
+#toc-list a.toc-intro-link.active { background: #16a34a; color: #fff; }
+#toc-list a.toc-retenir-link { color: #b45309; font-weight: 600; font-style: italic; margin-top: 6px; padding-top: 6px; border-top: 1px solid #fde68a; }
+#toc-list a.toc-retenir-link:hover { background: #fff7ed; color: #78350f; }
+#toc-list a.toc-retenir-link.active { background: #d97706; color: #fff; font-style: italic; }
+.qdqq-body { flex: 1; min-width: 0; padding-bottom: 40px; }
+
+/* ── Intro / Résumé exécutif ── */
+.intro {
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+  border-left: 5px solid #43a047;
+  border-radius: 8px; padding: 22px 28px; margin-bottom: 32px;
+  box-shadow: 0 2px 8px rgba(67,160,71,.1);
+}
+.intro p { font-size: 1.02rem; color: #1b4d20; line-height: 2.0; margin-bottom: 20px; }
+.intro ul { padding-left: 0; list-style: none; margin-top: 10px; }
+.intro ul li { font-size: 0.96rem; color: #2e7d32; padding: 4px 0 4px 8px; border-left: 3px solid #81c784; margin-bottom: 4px; }
+
+/* ── Chapitres ── */
+.chapitre {
+  background: #fff; border: 1px solid #e8e0f5;
+  border-top: 4px solid #7c3aed;
+  border-radius: 8px; padding: 26px 32px; margin-bottom: 28px;
+  box-shadow: 0 2px 10px rgba(124,58,237,.06);
+}
+.chapitre h2 {
+  font-size: 1.18rem; font-weight: 800; color: #5b21b6;
+  margin-bottom: 20px; padding-bottom: 12px;
+  border-bottom: 1px solid #ede9fe;
+  letter-spacing: -0.01em;
+}
+.chapitre h3 {
+  font-size: 0.97rem; font-weight: 700; color: #7c3aed;
+  margin: 28px 0 14px; padding: 6px 12px;
+  background: #f5f3ff; border-radius: 4px;
+  border-left: 3px solid #a78bfa;
+}
+.chapitre p { font-size: 0.96rem; line-height: 2.0; margin-bottom: 20px; color: #2d2040; }
+.chapitre p br, .intro p br { display: block; margin-bottom: 10px; content: ''; }
+.chapitre ul { padding-left: 0; list-style: none; margin: 10px 0 20px; }
+.chapitre ul li {
+  font-size: 0.94rem; color: #3b2e5a; padding: 7px 8px 7px 24px;
+  position: relative; margin-bottom: 8px;
+  border-radius: 4px; transition: background .15s;
+}
+.chapitre ul li::before {
+  content: "▸"; position: absolute; left: 8px; color: #8b5cf6; font-size: 0.8rem; top: 6px;
+}
+.chapitre ul li:hover { background: #f5f3ff; }
+.chapitre ol { padding-left: 22px; margin: 8px 0 14px; }
+.chapitre ol li { font-size: 0.94rem; color: #3b2e5a; margin-bottom: 6px; padding-left: 4px; }
+.chapitre ol li::marker { color: #7c3aed; font-weight: 700; }
+
+/* ── Inline ── */
+strong { color: #4c1d95; font-weight: 700; }
+em { color: #6d28d9; font-style: italic; }
+mark {
+  background: linear-gradient(120deg, #fde68a 0%, #fbbf24 100%);
+  color: #78350f; border-radius: 3px; padding: 1px 5px;
+  font-weight: 600; font-style: normal;
+}
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 4px solid #a78bfa; margin: 22px 0 22px 8px;
+  padding: 14px 20px; color: #4c1d95;
+  background: linear-gradient(90deg, #f5f3ff, #faf8ff);
+  border-radius: 0 8px 8px 0; font-style: italic;
+  box-shadow: 2px 2px 8px rgba(167,139,250,.15);
+}
+blockquote strong { color: #7c3aed; font-style: normal; }
+
+/* ── Points clés ── */
+.retenir {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+  border: 1px solid #fcd34d; border-top: 4px solid #f59e0b;
+  border-radius: 8px; padding: 22px 28px; margin-top: 32px;
+  box-shadow: 0 2px 8px rgba(245,158,11,.1);
+}
+.retenir h2 { display:inline-block; background:#d97706; color:#fff; padding:4px 18px 4px 14px; border-radius:20px; font-size:1.05rem; font-weight:800; margin-bottom:16px; }
+.retenir ul { padding-left: 0; list-style: none; }
+.retenir li {
+  font-size: 0.96rem; color: #451a03; line-height: 1.9;
+  padding: 9px 12px 9px 8px; margin-bottom: 10px;
+  background: rgba(255,255,255,.6); border-radius: 6px;
+  border-left: 3px solid #fbbf24;
+}
+.retenir li strong { color: #92400e; }
+.gen-meta {
+  font-size: 0.7rem; color: #b0b8c9; text-align: right;
+  padding: 14px 24px 8px; margin-top: 28px;
+  border-top: 1px solid #e9edf3; letter-spacing: 0.02em;
+}
+.gen-meta strong { color: #8b9ab0; font-weight: 600; }
+.theme-footer { display: flex; align-items: center; gap: 8px; padding: 8px 0 4px; margin-top: 10px; font-size: 0.75rem; color: #c8cede; }
+.theme-footer > span:first-child { font-weight: 500; }
+.theme-footer select { font-size: 0.73rem; padding: 2px 8px; border: 1px solid #e0daf0; border-radius: 10px; background: transparent; color: #aab0c0; cursor: pointer; outline: none; }
+.theme-footer select:hover { border-color: #b0b8c8; color: #6b7480; }
+#theme-status { font-size: 0.7rem; color: #22c55e; min-width: 18px; }
+
+</style>
+<style id="theme-css">
+body { background: #f5f5ff; color: #0f0e2a; }
+.qdqq-header { background: #ebebff; border-bottom-color: #c4c4f8; }
+.header-title { color: #312e81; }
+.btn-video { background: #4338ca; }
+.btn-video:hover { background: #3730a3; }
+.chapitre { border-top-color: #4f46e5; }
+.chapitre h2 { color: #1e1b4b; border-bottom-color: #c7d2fe; }
+.chapitre h3 { color: #4338ca; background: #eef2ff; border-left-color: #a5b4fc; }
+.chapitre p { color: #1e1b4b; }
+.chapitre ul li { color: #1e1b4b; }
+.chapitre ul li::before { color: #818cf8; }
+.chapitre ul li:hover { background: #eef2ff; }
+.chapitre ol li { color: #1e1b4b; }
+.chapitre ol li::marker { color: #4f46e5; }
+strong { color: #1e1b4b; }
+em { color: #4338ca; }
+mark { background: linear-gradient(120deg,#c7d2fe 0%,#a5b4fc 100%); color: #1e1b4b; }
+blockquote { border-left-color: #a5b4fc; color: #1e1b4b; background: linear-gradient(90deg,#eef2ff,#f5f5ff); }
+blockquote strong { color: #4f46e5; }
+#toc-inner { border-color: #c7d2fe; }
+#toc h4 { color: #312e81; border-bottom-color: #c7d2fe; }
+#toc-list a { color: #1e1b4b; }
+#toc-list a:hover { background: #eef2ff; color: #0f0e2a; }
+#toc-list a.active { background: #4338ca; color: #fff; }
+</style>
+<!--qdqq-responsive-->
+<style>
+/* ── Adaptation aux petits écrans ──
+   Le gabarit des synthèses est figé : .qdqq-layout est un flex à deux colonnes et #toc
+   fait 380 px sans pouvoir rétrécir (flex-shrink:0). Sur téléphone, le corps du texte
+   était donc comprimé à quelques dizaines de pixels. Ces règles sont injectées AU SERVICE :
+   les documents déjà générés en bénéficient sans être regénérés. */
+
+/* Garde-fous universels : rien ne doit provoquer de défilement horizontal.
+   PAS de `overflow-x: hidden` sur html/body : la règle transforme la page en conteneur
+   de défilement, ce qui casse scrollIntoView() — donc la navigation du moteur de
+   recherche — et neutralise `position: sticky`. On borne les éléments un par un. */
+img, svg, video { max-width: 100%; height: auto; }
+table { display: block; width: 100%; overflow-x: auto; }
+pre, code { white-space: pre-wrap; word-break: break-word; }
+a { word-break: break-word; }
+
+/* ── En-tete maintenu visible pendant la navigation ──
+   Naviguer par le sommaire ou la recherche fait defiler la page : l'en-tete sortait de
+   l'ecran des le premier chapitre, et on perdait le titre du document. Il est desormais
+   colle en haut au-dessus de 768 px. Sous ce seuil on s'en abstient : la barre de
+   recherche `.qs-mhost` y est deja collante, empiler les deux mangerait le cinquieme de
+   la hauteur utile d'un telephone.
+   `--qdqq-hh` porte la hauteur reelle de l'en-tete, mesuree en JS : elle depend de la
+   longueur du titre, qui passe sur deux lignes des qu'il est long. Sans elle, il
+   faudrait coder une valeur en dur qui serait fausse pour la moitie des synthèses. */
+@media (min-width: 769px) {
+    .qdqq-header {
+        position: sticky; top: 0; z-index: 40;
+        box-shadow: 0 2px 12px rgba(15, 23, 42, .07);
+    }
+    /* Le sommaire lateral est lui aussi colle : le decaler sous l'en-tete, sinon il
+       glisserait dessous et sa premiere entree resterait masquee. */
+    #toc {
+        top: calc(var(--qdqq-hh, 0px) + 14px) !important;
+        max-height: calc(100vh - var(--qdqq-hh, 0px) - 34px) !important;
+    }
+}
+/* Cibles de navigation : `scrollIntoView` aligne l'element sur le HAUT de la fenetre,
+   donc juste SOUS l'en-tete colle, qui le recouvrait. `scroll-margin-top` reserve la
+   place. Applique a toutes les largeurs — la barre mobile masque de la meme facon. */
+.chapitre h2, .intro, .retenir, span.qs-hit {
+    scroll-margin-top: calc(var(--qdqq-hh, 0px) + 12px);
+}
+
+@media (max-width: 980px) {
+    /* Les deux colonnes s'empilent ; le sommaire passe au-dessus du texte. */
+    .qdqq-layout { display: block !important; padding: 18px 14px 60px !important; }
+    #toc {
+        width: auto !important; position: static !important;
+        max-height: none !important; overflow: visible !important;
+        margin-bottom: 18px;
+    }
+    /* Le viewer mémorise l'état replié du sommaire et injecte dans l'iframe
+       `#toc._toc-collapsed { width:36px !important }`. Sur téléphone, cela réduisait le
+       sommaire à une bande verticale inutile. Sélecteur préfixé par `body` pour passer
+       devant cette règle, injectée après la feuille du document. */
+    body #toc._toc-collapsed {
+        width: auto !important; overflow: visible !important;
+    }
+    body #toc._toc-collapsed ._toc-label { display: inline !important; }
+    body #toc._toc-collapsed #toc-list,
+    body #toc._toc-collapsed #toc-inner { display: block !important; padding: 14px !important; }
+    body #toc._toc-collapsed #_toc_thumb { width: 40% !important; height: auto !important; }
+    /* En mode replié, le viewer réduit chaque entrée à une icône de 26 px et masque son
+       texte. Sur petit écran le sommaire devenait une colonne de carrés muets : on rend
+       aux entrées leur forme de liste lisible. */
+    body #toc._toc-collapsed #toc-list a {
+        display: block !important; width: auto !important; height: auto !important;
+        padding: 5px 7px !important; font-size: inherit !important;
+        text-align: left !important; border-radius: 4px;
+    }
+    body #toc._toc-collapsed ._toc-text { display: inline !important; }
+    body #toc._toc-collapsed ._toc-icon { display: none !important; }
+    /* En-tête : la grille à 2 colonnes devient une pile. */
+    .qdqq-header { grid-template-columns: 1fr !important; padding: 14px 16px !important; }
+    .header-logo  { grid-column: 1 !important; grid-row: auto !important; }
+    .header-title { grid-column: 1 !important; font-size: 1.2rem !important; }
+    .header-meta  {
+        grid-column: 1 !important; flex-direction: column !important;
+        align-items: flex-start !important; gap: 2px; margin-top: 6px !important;
+    }
+    .header-btn { grid-column: 1 !important; margin-top: 8px; }
+}
+
+@media (max-width: 560px) {
+    .qdqq-layout { padding: 12px 10px 48px !important; }
+    .qdqq-header { padding: 12px 12px !important; }
+    .header-title { font-size: 1.05rem !important; }
+    body { font-size: 0.95rem; }
+    h2 { font-size: 1.1rem !important; line-height: 1.3; }
+    h3 { font-size: 1rem !important; }
+    blockquote { margin-left: 0 !important; margin-right: 0 !important; }
+    /* Le sommaire sans JS repasse sur une seule colonne (déjà prévu, on renforce). */
+    .qdqq-nojs-toc ol { column-count: 1 !important; }
+}
+
+/* ── Repli des résultats de recherche sur petit écran ──
+   En dessous de 768 px, le module de recherche se déplace en haut de page et sa liste
+   de résultats occupe jusqu'à 40 % de la hauteur : le sommaire, affiché en dessous, se
+   retrouve hors écran. Ce bouton permet de replier les résultats pour y accéder. */
+.qdqq-res-toggle { display: none; }
+@media (max-width: 768px) {
+    /* Le module masque l'onglet « Sommaire » en mode mobile
+       (`.qs-wrap.qs-m .qs-tab-toc { display:none }`), ne laissant que « Recherche » en
+       pleine largeur. On le rétablit pour garder les deux boutons SUR LA MÊME LIGNE.
+       Préfixe `body` : la feuille du module est injectée en fin de document, donc après
+       celle-ci — à spécificité égale, elle l'emporterait. */
+    body .qs-wrap.qs-m .qs-tabs { display: flex !important; flex-direction: row !important; }
+    body .qs-wrap.qs-m .qs-tab-toc { display: inline-flex !important; }
+    /* Sous 768 px le sommaire a rejoint la barre du haut : le <nav> d'origine ne
+       contient plus qu'un titre « Sommaire » orphelin. La visionneuse masque deja
+       ce <nav> ; on fait de meme pour le fichier telecharge, qui n'a pas de parent. */
+    body #toc { display: none !important; }
+    body .qs-wrap.qs-m .qs-tab { flex: 1 1 0; justify-content: center; }
+    body .qs-wrap.qs-m .qs-tab-lbl { display: inline !important; }
+    /* Zone de recherche ramenee sur UNE ligne : champ + navigation + repli. Le module
+       empile ces blocs en colonne (`.qs-pane{flex-direction:column}`), ce qui coutait
+       quatre lignes de hauteur sur telephone. `flex-wrap` + `flex:1 0 100%` renvoie la
+       seule liste des resultats a la ligne suivante. */
+    body .qs-wrap.qs-m .qs-pane {
+        flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 7px;
+    }
+    body .qs-wrap.qs-m .qs-field { flex: 1 1 120px; min-width: 0; }
+    /* Ligne d'indice : redondante avec le compteur, elle prenait une ligne pleine. */
+    body .qs-wrap.qs-m .qs-row { display: none; }
+    body .qs-wrap.qs-m .qs-navrow { flex: 0 0 auto; gap: 4px; min-height: 0; }
+    /* « 5 passages · 6 occurrences » : ~140 px, soit plus que le champ de saisie lui-meme.
+       L'information reste lisible en format colonne et dans la liste numerotee. */
+    body .qs-wrap.qs-m .qs-count { display: none; }
+    body .qs-wrap.qs-m .qs-results { flex: 1 0 100%; margin: 2px 0 0; }
+    body .qs-wrap.qs-m .qdqq-res-toggle {
+        flex: 0 0 auto; width: auto; margin: 0; padding: 6px 9px; gap: 5px;
+    }
+    /* Ne garder que « afficher / masquer » : le mot « Resultats » est deja porte par
+       l'onglet actif et par la liste elle-meme. */
+    body .qs-wrap.qs-m .qdqq-res-toggle > span:first-child { display: none; }
+    /* Replie : il ne reste que les deux onglets. On revient par « Recherche », qui
+       reclique ce bouton reste dans le DOM — `.click()` fonctionne sur un element
+       masque, inutile de lui menager une poignee visible. */
+    body .qs-wrap.qs-m.qs-replie .qs-field,
+    body .qs-wrap.qs-m.qs-replie .qs-navrow,
+    body .qs-wrap.qs-m.qs-replie .qdqq-res-toggle { display: none; }
+    body .qs-wrap.qs-m.qs-replie .qs-pane { margin-top: 0; gap: 0; }
+    .qdqq-res-toggle {
+        display: flex; align-items: center; justify-content: space-between; gap: 10px;
+        width: 100%; margin: 6px 0 0; padding: 7px 11px; cursor: pointer;
+        font-size: .74rem; font-weight: 600; font-family: inherit; color: inherit;
+        border: 1px solid rgba(128,128,128,.3); border-radius: 8px;
+        background: rgba(128,128,128,.08);
+    }
+    .qs-results.qdqq-plie { display: none !important; }
+
+    /* ── Densite de lecture sur telephone ──
+       Le gabarit est calibre pour un grand ecran : `.chapitre` reserve 32 px de marge
+       laterale de chaque cote et `.chapitre p` un interligne de 2,0. Sur 393 px cela
+       laissait ~307 px de texte et une quarantaine de caracteres par ligne. On ramene
+       les marges a 12 px et l'interligne a 1,62 : ~359 px utiles, soit un tiers de
+       caracteres en plus par ligne. Les couleurs, bordures et titres sont conserves —
+       c'est la meme mise en page, resserree, pas une autre. */
+    .qdqq-layout { padding: 10px 4px 40px !important; }
+    .chapitre { padding: 16px 12px !important; margin-bottom: 16px !important; }
+    .intro, .retenir { padding: 14px 12px !important; margin-bottom: 18px !important; }
+    .chapitre p, .intro p {
+        font-size: 0.88rem !important; line-height: 1.62 !important;
+        margin-bottom: 12px !important;
+    }
+    .chapitre ul, .intro ul { margin: 8px 0 12px !important; }
+    .chapitre ul li, .intro ul li { font-size: 0.86rem !important; line-height: 1.55 !important; }
+    .chapitre h2 {
+        font-size: 1rem !important; margin-bottom: 12px !important;
+        padding-bottom: 8px !important; line-height: 1.3 !important;
+    }
+    .chapitre h3 {
+        font-size: 0.9rem !important; margin: 16px 0 10px !important;
+        padding: 5px 9px !important;
+    }
+}
+</style>
+<script>
+/* Ajoute le bouton de repli sans toucher au module de recherche lui-même : celui-ci
+   reconstruit son DOM à chaque frappe, d'où la pose répétée pendant quelques secondes.
+   Ce script est retiré des exports SANS JAVASCRIPT (build_nojs_html supprime les
+   <script> APRÈS cette injection). */
+(function () {
+    /* Le viewer réapplique `_toc-collapsed` à l'iframe à chaque chargement, et ce mode
+       réduit les entrées du sommaire à des icônes de 26 px sans texte. Sur petit écran
+       le sommaire en devenait illisible. Retirer la classe est déterministe, là où une
+       surcharge CSS se heurtait à une bataille de spécificité avec la feuille injectée
+       par le parent APRÈS celle du document. */
+    function deplierSommaire() {
+        try {
+            if (!window.matchMedia('(max-width: 980px)').matches) return;
+            var t = document.getElementById('toc');
+            if (t && t.classList.contains('_toc-collapsed')) t.classList.remove('_toc-collapsed');
+        } catch (e) {}
+    }
+
+    /* Hauteur reelle de l'en-tete -> `--qdqq-hh`. Mesuree plutot que codee en dur : un
+       titre long passe sur deux lignes et la fait varier du simple au double. Remesuree
+       au redimensionnement, ou le titre se rejustifie. Sous 769 px l'en-tete n'est pas
+       colle : la variable est remise a zero, sinon `scroll-margin-top` reserverait une
+       place que rien n'occupe. */
+    function mesurerEntete() {
+        try {
+            var h = document.querySelector('.qdqq-header');
+            var colle = window.matchMedia('(min-width: 769px)').matches;
+            var px = (h && colle) ? Math.round(h.getBoundingClientRect().height) : 0;
+            document.documentElement.style.setProperty('--qdqq-hh', px + 'px');
+        } catch (e) {}
+    }
+
+    function poser() {
+        deplierSommaire();
+        mesurerEntete();
+        var wrap = document.querySelector('.qs-wrap');
+        if (!wrap) return;
+        var res = wrap.querySelector('.qs-results');
+        if (!res || wrap.querySelector('.qdqq-res-toggle')) return;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'qdqq-res-toggle';
+        function maj() {
+            var plie = res.classList.contains('qdqq-plie');
+            b.innerHTML = '<span>&#128269; R&eacute;sultats</span><span>'
+                        + (plie ? '&#9662; afficher' : '&#9652; masquer') + '</span>';
+            b.setAttribute('aria-expanded', plie ? 'false' : 'true');
+        }
+        /* La classe est posee AUSSI sur `.qs-wrap` : replier doit escamoter toute la
+           zone (champ + navigation + bouton), or aucun selecteur CSS ne remonte du
+           `.qs-results` vers ses freres. Marquer le conteneur evite `:has()`. */
+        b.addEventListener('click', function () {
+            res.classList.toggle('qdqq-plie');
+            wrap.classList.toggle('qs-replie', res.classList.contains('qdqq-plie'));
+            maj();
+        });
+        maj();
+        /* Le module de recherche a besoin de replier la SEULE liste (clic sur un
+           resultat) sans declencher le repli total du bouton : on lui expose la mise a
+           jour du libelle, sinon celui-ci resterait desynchronise de l'etat reel. */
+        wrap._qdqqMaj = maj;
+        res.parentNode.insertBefore(b, res);
+    }
+    function demarrer() {
+        poser();
+        var n = 0, t = setInterval(function () { poser(); if (++n > 24) clearInterval(t); }, 500);
+        window.addEventListener('resize', deplierSommaire);
+        window.addEventListener('resize', mesurerEntete);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', demarrer);
+    else demarrer();
+})();
+</script>
+<style>
+@media print {
+  @page { margin: 0; }
+  html, body { background:#fff !important; }
+  body { padding: 1.1cm 0.9cm !important; font-size: 10.5pt !important; line-height: 1.5 !important; }
+  .qdqq-body, #toc, #toc-list a, .qdqq-print-header { font-size: inherit; }
+  * { background:transparent !important; box-shadow:none !important; text-shadow:none !important; color:#000 !important; }
+  .qdqq-header, .theme-footer, .btn-video, .header-btn, #theme-select, .gen-meta { display:none !important; }
+  .qdqq-print-header { display:flex !important; }
+  .qdqq-layout { display:block !important; }
+  #toc, nav#toc { position:static !important; width:auto !important; max-width:none !important; height:auto !important;
+                  border:1px solid #999 !important; border-radius:8px; padding:12px 16px !important; margin:0 0 22px !important;
+                  page-break-inside:avoid; page-break-after:auto; }
+  #toc-inner { position:static !important; max-height:none !important; overflow:visible !important; }
+  .qdqq-body { width:auto !important; max-width:none !important; padding:0 !important; }
+  a { color:#000 !important; text-decoration:none !important; }
+  mark { background:transparent !important; font-weight:700; }
+}
+.qdqq-print-header { display:none; }
+</style><!--qdqq-toc-top-->
+<style>
+/* ── Sommaire EN HAUT, sur deux colonnes — ÉCRANS ÉTROITS SEULEMENT ──
+   Sur grand écran, le fichier téléchargé garde la colonne latérale collante du
+   gabarit, qui suit la lecture : c'est la présentation attendue et la place ne
+   manque pas. En dessous de 980 px cette colonne de 380 px étrangle le texte ; le
+   sommaire passe alors en bandeau pleine largeur, plus lisible de haut en bas.
+   Même seuil que la feuille responsive, qui y bascule déjà `.qdqq-layout` en bloc —
+   les deux feuilles doivent changer d'avis au même endroit, sinon on obtient une
+   largeur intermédiaire où le sommaire est latéral ET pleine largeur.
+   Le moteur de recherche vit DANS #toc : il suit le sommaire dans les deux cas. */
+@media (max-width: 980px) {
+    .qdqq-layout { display: block !important; }
+    #toc {
+        width: auto !important; position: static !important;
+        max-height: none !important; overflow: visible !important;
+        margin: 0 0 22px !important;
+    }
+    /* Deux colonnes pour la LISTE DES CHAPITRES uniquement — surtout pas pour les
+       résultats de recherche (.qs-wrap), qui doivent rester en pleine largeur. */
+    #toc-list { column-count: 2; column-gap: 30px; }
+    #toc-list > a { break-inside: avoid; display: block; }
+    .qs-wrap, .qs-wrap * { column-count: 1 !important; }
+}
+/* Media queries non imbriquables en CSS classique : ce palier reste au premier niveau. */
+@media (max-width: 700px) { #toc-list { column-count: 1; } }
+</style>
+</head>
+<body><div class="qdqq-print-header" style="align-items:center;gap:20px;border-bottom:3px solid #000;padding-bottom:14px;margin-bottom:22px;"><div><div style="font-size:1.8rem;font-weight:800;line-height:1.15;">L'ANTIDOTE</div><div style="font-size:1rem;margin-top:6px;">30/08/2026 · Radio Québec</div></div></div>
+<header class="qdqq-header">
+  <div class="header-logo"><img src="/thumbnails/logoRQC.jpg" alt="Radio-Québec" style="height:48px;max-width:140px;object-fit:contain;"></div>
+  <div class="header-title">L'ANTIDOTE</div>
+  <div class="header-meta">
+    <span class="header-date">30/08/2026</span>
+    <span class="header-words" title="Mots transcrits = tous les mots prononcés ; mots-clés indexés = hors mots-vides (le, de, the…)">🗣 16 372 mots transcrits · 🔍 5 223 indexés</span>
+    <span class="header-auteur">RadioQuebec</span>
+  </div>
+  <div class="header-btn"><a href="https://rumble.com/v7ev4gc-lantidote.html?e9s=src_v1_cbl%2Csrc_v1_upp_a" target="_blank" class="btn-video">&#9654; Voir la vidéo originale</a></div>
+</header>
+<div class="qdqq-layout">
+<nav id="toc" aria-label="Sommaire">
+  <div id="toc-inner">
+    <h4>Sommaire</h4>
+    <div id="toc-list"></div>
+  </div>
+</nav>
+<main class="qdqq-body">
+<div class="intro">
+<p>Alexis présente l'édition du 30 août 2026 du Webjournal de Radio-Québec comme un résumé accessible et pédagogique destiné à contrer les caricatures médiatiques de Donald Trump. L'objectif élargi consiste à replacer la politique américaine dans un contexte historique de plus d'un siècle d'érosion de la souveraineté au profit des forces mondialistes. Il s'agit d'expliquer de manière rationnelle et prévisible les actions de Trump sans recourir à des interprétations bibliques ou apocalyptiques. L'émission s'inscrit dans un effort continu d'éducation du public sur les mécanismes de captation du pouvoir depuis l'indépendance des États-Unis.</p>
+<p>Les sujets abordés couvrent l'historique de la Réserve fédérale et la résistance d'Andrew Jackson, l'avertissement d'Eisenhower sur le complexe militaro-industriel, les connexions de Trump via Roy Cohn et la commission McCarthy, les mises en garde de JFK et de la John Birch Society, l'érosion de la souveraineté jusqu'à Obama, les sept points de la prise de contrôle mondialiste, la guerre psychologique gramscienne, la fraude électorale via les machines Smartmatic, les réformes monétaires et commerciales de Trump, le nettoyage des agences sécuritaires, l'attaque contre les médias et les services de renseignement, les efforts de paix au Moyen-Orient, la lutte contre la charia et l'islamisme, la stratégie éducative envers le peuple américain ainsi que les implications pour le Canada et l'Occident.</p>
+<p>Alexis défend la thèse selon laquelle Trump agit comme un antidote systématique aux poisons mondialistes en renversant un à un les leviers de contrôle établis depuis plus d'un siècle. Il avance que les crises sont délibérément générées pour accroître le pouvoir des institutions infiltrées et que la longue marche gramscienne a pourri le tissu social via l'école, la famille et la culture. Les arguments majeurs reposent sur des parallèles historiques concrets entre la création de la Fed, les avertissements d'Eisenhower, les déstabilisations d'Obama et les mécanismes de fraude électorale. Il souligne que Trump reste prévisible dans sa volonté de redonner le pouvoir au peuple et de maximiser le potentiel américain dans un monde multipolaire.</p>
+<p>En conclusion, l'émission affirme que Trump poursuit une trajectoire balistique claire depuis son discours d'inauguration de 2017 et que son action annonce une ère multipolaire libérée du nouvel ordre mondial. Les implications pour le Canada, le Québec et l'Occident résident dans la nécessité de déchirer les traités néfastes et de résister à l'immigration de masse ainsi qu'à la charia. <mark>La renaissance chrétienne officielle aux États-Unis</mark> est présentée comme un antidote à la démoralisation. <em>Le rejet des thèses du troisième temple permet de recentrer l'analyse sur des enjeux strictement politiques et géopolitiques.</em></p>
+<ul>
+<li>Introduction du Webjournal et critique des représentations médiatiques de Trump : rejet des caricatures irrationnelles au profit d'une explication rationnelle et prévisible.</li>
+<li>Objectifs déclarés de Trump lors de son discours d'inauguration de 2017 : retour du pouvoir au peuple contre la technocratie mondialiste.</li>
+<li>Historique de la création de la Réserve fédérale et résistance d'Andrew Jackson : opposition historique à la captation monétaire par les puissances d'argent.</li>
+<li>Avertissement d'Eisenhower sur le complexe militaro-industriel : utilisation des crises pour accroître le contrôle institutionnel.</li>
+<li>Connexions politiques de Trump via Roy Cohn et la commission McCarthy : ancrage dans la lutte anticommuniste et la défense de la souveraineté.</li>
+<li>Mises en garde de JFK et de la John Birch Society contre le gouvernement mondial : infiltration des sociétés secrètes et érosion progressive de la souveraineté.</li>
+<li>Érosion progressive de la souveraineté américaine jusqu'à Obama : point culminant de cinquante années d'infiltration communiste et de trahisons.</li>
+<li>Les sept points de la prise de contrôle mondialiste des institutions : création monétaire, traités, appareil sécuritaire, médias, chantage, casus belli et guerre psychologique.</li>
+<li>Guerre psychologique et longue marche gramscienne à travers les institutions : pourrissement du tissu social via l'école de Francfort et les stratégies de Biderman.</li>
+<li>Mécanismes de fraude électorale généralisée : machines Smartmatic et achat de votes par l'immigration et l'aide sociale.</li>
+<li>Actions de Trump pour renverser le contrôle monétaire et les traités mondialistes : nomination de Kevin Warsh, autorisation du Bitcoin et retrait de 66 traités.</li>
+<li>Nettoyage de l'appareil sécuritaire et militaire par Trump : audit du Pentagone et nomination de patriotes comme Flynn et Mattis.</li>
+<li>Attaque contre les médias et les agences de renseignement : qualification de fake news et création de plateformes alternatives.</li>
+<li>Efforts de paix et renversement des stratégies de déstabilisation : accords d'Abraham et refonte du Moyen-Orient via Ben Salman.</li>
+<li>Lutte contre la charia, l'islamisme et la guerre de cinquième génération : interdiction de la charia et focus sur les zones d'infiltration comme Dearborn.</li>
+<li>Stratégie éducative et pédagogique de Trump envers le peuple américain : utilisation du précipice pour révéler la corruption et promouvoir la fierté nationale.</li>
+<li>Implications pour le Canada, le Québec et l'Occident : appauvrissement volontaire et nécessité d'une renaissance chrétienne comme antidote.</li>
+<li>Conclusion sur la trajectoire prévisible de Trump et l'ère multipolaire : Trump comme antidote aux poisons mondialistes dans un monde redevenu multipolaire.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>🗞️ Chapitre 1 — Introduction du Webjournal et critique des représentations médiatiques de Trump</h2>
+
+<h3>Contexte</h3>
+<p>Alexis ouvre l’édition du <strong>30 août 2026</strong> du Webjournal de Radio-Québec en précisant que celle-ci est volontairement plus courte afin de répondre aux besoins liés aux négociations Canada-États-Unis. Il souligne que les propos tenus dans les médias et par les politiciens québécois à l’égard de Trump sont scandaleux et présentent le président comme une figure diabolique et irrationnelle. Il rappelle que Trump demeure le politicien le plus mal compris de son époque malgré les efforts déployés pour le décrire autrement.</p>
+<p>Il explique que l’objectif de cette émission est de fournir un résumé accessible en moins d’une heure, permettant de transmettre à des proches une compréhension précise de Donald Trump, de sa politique et de la trajectoire qu’il suit. Alexis insiste sur le fait que, au-delà des caricatures le désignant comme l’antéchrist ou comme un être irrationnel, Trump est prévisible, rationnel et animé par le désir du bien de son peuple. Il évoque la citation entendue sur d’autres podcasts selon laquelle « Trump se bat contre l’État profond, mais c’est comme une espèce de Godzilla » et la formule « Trump n’est pas l’ami de l’humanité » pour illustrer le niveau de distorsion médiatique.</p>
+<p>Il rappelle que Trump a exposé ses intentions dès son adresse inaugurale du <strong>21 janvier 2017</strong>, en déclarant vouloir « retourner le pouvoir au peuple ». Alexis note que, depuis un siècle, ce pouvoir s’est progressivement éloigné des citoyens au profit d’une technocratie mondialiste, et que Trump entend inverser ce mouvement. Il mentionne également le rejet explicite des lectures bibliques ou apocalyptiques, notamment celles associant Trump au troisième temple de Pierre-Hilard, qualifiées de balivernes et de charlataneries.</p>
+<p>Il précise que, depuis <strong>2015-2016</strong>, soit dix ans de présence sur la scène politique, la trajectoire de Trump est aussi prévisible qu’un missile balistique, et que son discours à l’ONU en <strong>2018</strong> (« l’ère du mondialisme est terminée ») annonce clairement l’entrée dans une ère multipolaire. Alexis ajoute que ce webjournal vise à clarifier ces éléments sans recourir à des interprétations ésotériques.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente l’édition du <strong>30 août 2026</strong> comme un outil de vulgarisation destiné à rendre compréhensible la politique de Trump sans recourir aux stéréotypes habituels. Il souligne que les représentations médiatiques qui le dépeignent comme un diable irrationnel ou comme l’antéchrist constituent des obstacles majeurs à une compréhension réelle de ses objectifs. Il insiste sur la nécessité de revenir aux déclarations publiques du président, notamment son discours d’investiture de <strong>2017</strong>, pour saisir la cohérence de sa démarche.</p>
+<p>Il explique que Trump ne cherche pas à détruire les institutions mais à les réorienter afin de rendre le pouvoir aux citoyens et de maximiser le potentiel économique, militaire, culturel et technologique des États-Unis. Alexis note que cette ambition s’inscrit dans une continuité historique de résistance aux forces mondialistes, illustrée par la référence à Andrew Jackson et à la création de la Réserve fédérale le <strong>25 janvier</strong> lors d’une session discrète du Congrès. Il rejette toute lecture apocalyptique et privilégie une grille d’analyse strictement politique et géopolitique.</p>
+<p>Il rappelle enfin que Trump a déclaré à l’ONU en <strong>2018</strong> la fin de l’ère du mondialisme et que, huit ans plus tard, cette affirmation se concrétise par le retour des frontières et l’émergence d’un ordre multipolaire. Alexis souligne que cette trajectoire reste prévisible et rationnelle, même lorsque des stratégies de négociation complexes sont employées pour déstabiliser les acteurs mondialistes.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Rejet des caricatures médiatiques</strong> : Alexis dénonce les représentations de Trump comme diable irrationnel ou antéchrist car elles empêchent toute analyse sérieuse de ses objectifs politiques et géopolitiques précis.</li>
+<li><strong>Objectif de synthèse accessible</strong> : L’édition du <strong>30 août 2026</strong> est conçue comme un résumé d’une heure maximum permettant de transmettre aux auditeurs et à leur entourage une compréhension claire de la politique de Trump et de sa trajectoire prévisible.</li>
+<li><strong>Retour aux déclarations fondatrices</strong> : Alexis rappelle que Trump a exposé dès le <strong>21 janvier 2017</strong> son intention de rendre le pouvoir au peuple, confirmant ainsi la cohérence et la prévisibilité de son action sur dix ans.</li>
+<li><strong>Refus des lectures bibliques</strong> : Toute interprétation apocalyptique ou liée au troisième temple est explicitement écartée au profit d’une explication strictement politique et historique de la lutte contre le mondialisme.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Trump se bat contre l’État profond, mais c’est comme une espèce de Godzilla, et Godzilla n’est pas… »</blockquote>
+<blockquote>« Trump n’est pas l’ami de l’humanité. Trump n’est pas l’ami de l’humanité. Il ne faut vraiment rien avoir compris pour sortir des âneries comme ça. »</blockquote>
+<blockquote>« L’ère du mondialisme est terminée. »</blockquote>
+
+</div>
+<div class="chapitre">
+<h2>📜 Chapitre 2 — Objectifs déclarés de Trump lors de son discours d'inauguration de 2017</h2>
+
+<h3>Contexte</h3>
+<p>Alexis explique que Donald Trump a exposé ses objectifs de manière explicite lors de son adresse inaugurale du <strong>21 janvier 2017</strong>. Il y affirme vouloir rendre le pouvoir au peuple américain, après un siècle d’éloignement progressif de la population au profit d’un système devenu très technocratique. L’intervenant souligne que cette prise de parole, longue d’une trentaine de secondes, constitue le fil conducteur de toute l’action politique de Trump depuis dix ans.</p>
+<p>Il rappelle que Trump entend lutter contre la captation du pouvoir par les mondialistes, qui a débuté avec la création de la <strong>Réserve fédérale</strong> le <strong>25 janvier</strong> lors d’une session secrète du Congrès. Alexis mentionne également les avertissements d’Eisenhower sur le complexe militaro-industriel et ceux de JFK sur les sociétés secrètes, éléments que Trump renverse en cherchant à restaurer la souveraineté américaine.</p>
+<p>L’éducation du peuple sur la corruption institutionnelle forme un axe central. L’administration Trump, avec des figures comme <strong>Mike Flynn</strong>, <strong>Steve Bannon</strong>, <strong>RFK</strong> et <strong>Tulsi Gabbard</strong>, s’emploie à montrer comment les institutions ont été infiltrées et comment le rêve américain a été volé. Alexis précise que Trump veut permettre à chacun de retrouver une chance dans ce rêve.</p>
+<p>Enfin, le président souhaite maximiser le potentiel économique, militaire, culturel et technologique des États-Unis afin de les projeter dans un <strong>21e siècle multipolaire</strong>. Il s’oppose ainsi à l’ère du mondialisme, déclarée close lors de son discours à l’ONU en <strong>2018</strong>, pour favoriser un retour aux nations souveraines.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente le discours d’inauguration comme la matrice rationnelle et prévisible de la politique de Trump. En affirmant vouloir rendre le pouvoir au peuple, Trump se positionne explicitement contre la technocratie mondialiste qui a érodé la souveraineté américaine depuis la création de la Réserve fédérale. Cette déclaration initiale guide l’ensemble des actions ultérieures, de la nomination de juges constitutionnalistes au démantèlement des traités internationaux.</p>
+<p>L’éducation du peuple sur la corruption institutionnelle est décrite comme une entreprise systématique. En exposant les mécanismes de contrôle exercés par les agences de renseignement, les médias et les élites financières, Trump et son entourage cherchent à restaurer la capacité d’action collective des citoyens. Alexis insiste sur le fait que cette pédagogie vise à inverser un siècle de captation du pouvoir.</p>
+<p>La maximisation des capacités nationales s’inscrit dans une vision multipolaire du monde. Trump entend renforcer simultanément l’économie, l’armée, la culture et la technologie des États-Unis pour les adapter aux réalités du <strong>21e siècle</strong>. Cette ambition s’oppose frontalement aux logiques de désindustrialisation et de dépendance aux traités mondialistes.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Retour du pouvoir au peuple</strong> : Trump a déclaré dès le <strong>21 janvier 2017</strong> vouloir inverser un siècle d’éloignement du pouvoir de la population vers une technocratie mondialiste, en s’appuyant sur l’exemple historique d’Andrew Jackson.</li>
+<li><strong>Éducation sur la corruption</strong> : L’administration Trump, via des figures comme <strong>Mike Flynn</strong> et <strong>Tulsi Gabbard</strong>, entreprend de révéler les infiltrations institutionnelles et la perte du rêve américain afin de redonner aux citoyens leur souveraineté.</li>
+<li><strong>Maximisation des potentiels nationaux</strong> : Trump vise à décupler les capacités économiques, militaires, culturelles et technologiques des États-Unis, en rupture avec les traités qui ont conduit à la désindustrialisation.</li>
+<li><strong>Projection dans un monde multipolaire</strong> : En déclarant à l’ONU en <strong>2018</strong> que l’ère du mondialisme est terminée, Trump s’inscrit dans une vision où chaque nation, du Timor-Oriental à la Russie, défend fermement ses intérêts dans le <strong>21e siècle</strong>.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>🏛️ Chapitre 3 — Historique de la création de la Réserve fédérale et résistance d'Andrew Jackson</h2>
+
+<h3>Contexte</h3>
+<p>Alexis rappelle qu’après l’indépendance des États-Unis, l’Angleterre et les puissances mondialistes ont tenté à plusieurs reprises, par l’intermédiaire de leurs proxies et mercenaires, d’instaurer un système de banque centrale afin de contrôler le pays par la force économique. Ces tentatives se sont répétées tout au long du XIXe siècle, avec des agents au Congrès qui cherchaient régulièrement à créer une telle institution. Jackson s’est opposé fermement à ces projets et est resté dans l’histoire comme « l’homme qui a tué la banque ».</p>
+<p>Il souligne que Donald Trump conserve une photo d’Andrew Jackson dans le Bureau ovale, car Jackson symbolise l’indépendance face aux forces mondialistes et aux puissances d’argent qui cherchent à contrôler les nations. La création de la Réserve fédérale, votée le 25 janvier durant la pause de Noël du Congrès, a marqué le retour en force des mondialistes sur les États-Unis. Une poignée de congressistes a adopté la loi alors que la plupart des élus étaient en vacances.</p>
+<p>Il mentionne le livre <strong>The Creature from Jekyll Island</strong> qui détaille les circonstances de cette création. À partir de ce moment, le gouvernement américain a commencé à emprunter à la Réserve fédérale avec intérêts, s’engageant dans une spirale d’endettement qui a progressivement érodé une partie de la souveraineté américaine. Alexis note que cette érosion lente constitue le fil conducteur que Trump cherche à inverser depuis son arrivée au pouvoir.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente la résistance d’Andrew Jackson comme un moment clé dans l’histoire américaine, où un président a réussi à bloquer l’implantation d’une banque centrale contrôlée par des intérêts privés et étrangers. Cette opposition a retardé de plusieurs décennies la prise de contrôle monétaire par les puissances mondialistes. La citation attribuée à Meyer Rothschild, « Laissez-moi contrôler la monnaie, je me fous de qui fait les lois », illustre selon lui la logique qui a guidé ces tentatives répétées depuis l’indépendance.</p>
+<p>Il explique que la création de la Réserve fédérale en 1913, votée dans des conditions opaques pendant les vacances de Noël, a représenté la victoire définitive des forces qui cherchaient à placer la création monétaire sous contrôle privé. Cette date marque le début d’une captation progressive du pouvoir économique américain, que Trump s’efforce de renverser en nommant des réformateurs à la tête des institutions monétaires.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Opposition persistante des puissances mondialistes</strong> : Depuis l’indépendance, l’Angleterre et ses alliés ont multiplié les tentatives pour imposer une banque centrale aux États-Unis via des proxies au Congrès, chaque essai visant à placer la création monétaire sous contrôle extérieur.</li>
+<li><strong>Jackson comme figure de résistance</strong> : Andrew Jackson a bloqué ces projets et est resté célèbre pour avoir « tué la banque », un exploit symbolisé aujourd’hui par la photo qu’il conserve dans le Bureau ovale.</li>
+<li><strong>Vote opportuniste de la loi de 1913</strong> : La Réserve fédérale a été créée le <mark>25 janvier</mark> pendant la pause de Noël, par une poignée de congressistes, illustrant les conditions discrètes de cette prise de contrôle.</li>
+<li><strong>Conséquence directe sur la souveraineté</strong> : L’emprunt à intérêts auprès de la Réserve fédérale a lancé une spirale d’endettement qui a entamé durablement l’indépendance économique des États-Unis.</li>
+<li><strong>Documentation historique</strong> : Le livre <strong>The Creature from Jekyll Island</strong> expose les mécanismes précis ayant permis cette création, confirmant la thèse d’une capture monétaire planifiée.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>⚠️ Chapitre 4 — Avertissement d'Eisenhower sur le complexe militaro-industriel</h2>
+
+<h3>Contexte</h3>
+<p>Alexis rappelle qu’après la Deuxième Guerre mondiale, le président Eisenhower a prononcé un discours d’adieu dans les années 1960 pour mettre en garde les Américains contre le complexe militaro-industriel. Il souligne que cet avertissement visait à prévenir une prise de contrôle progressive des institutions par des intérêts qui pourraient exploiter les crises pour accroître leur pouvoir. L’intervenant précise qu’Eisenhower voyait déjà dans les années 60 le risque que ce complexe génère des situations de crise afin d’imposer ensuite des solutions accompagnées de contrôles renforcés.</p>
+<p>Il établit un parallèle direct avec les événements du 11 septembre, où le même mécanisme aurait été mis en œuvre pour justifier des mesures de surveillance et des guerres sans fin. Alexis note également que la période de la COVID a illustré exactement ce schéma : le complexe militaro-industriel aurait créé une crise, puis proposé des solutions entraînant un accroissement des contrôles sur la population. Ces exemples sont présentés comme la concrétisation tardive de l’avertissement lancé par Eisenhower plusieurs décennies plus tôt.</p>
+<p>L’émission insiste sur le fait que l’avertissement d’Eisenhower concernait une érosion lente de la souveraineté américaine par des acteurs qui utilisent les crises comme levier. Il mentionne que cette dynamique s’inscrit dans une histoire plus large de captation du pouvoir par des forces mondialistes, dont le complexe militaro-industriel constitue un pilier essentiel. Les formulations soulignent que ce processus de génération de crises suivies de solutions restrictives reste cohérent depuis les années 1960 jusqu’aux événements contemporains.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente le discours d’adieu d’Eisenhower comme une mise en garde prémonitoire contre l’utilisation systématique des crises par le complexe militaro-industriel. Il explique que ce mécanisme permet d’accroître le pouvoir de structures qui échappent au contrôle démocratique en générant des urgences puis en imposant des réponses qui renforcent les contrôles. L’émission relie explicitement cet avertissement aux événements du 11 septembre et à la gestion de la COVID, considérés comme des illustrations concrètes du même processus.</p>
+<p>Il souligne que la stratégie consiste à créer une crise, à proposer ensuite des solutions institutionnelles et à en tirer un renforcement des pouvoirs de surveillance et de contrôle. Ces observations sont ancrées dans le propos tenu sur la manière dont le complexe militaro-industriel opère depuis les années 1960. L’analyse insiste sur la continuité entre l’avertissement d’Eisenhower et les pratiques observées lors des crises récentes.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Discours d’adieu d’Eisenhower</strong> : Alexis rappelle que le président américain a explicitement averti, dans les années 1960, contre le risque que le complexe militaro-industriel utilise des crises pour obtenir davantage de pouvoir et éroder la souveraineté nationale.</li>
+<li><strong>Utilisation des crises comme levier</strong> : L’émission décrit un schéma récurrent où une crise est générée, suivie de solutions imposées qui entraînent un accroissement des contrôles, un mécanisme déjà identifié par Eisenhower.</li>
+<li><strong>Parallèle avec le 11 septembre</strong> : Il établit que les événements de 2001 ont suivi exactement ce modèle, avec la création d’une menace permanente justifiant des mesures de surveillance et des guerres sans fin.</li>
+<li><strong>Parallèle avec la COVID</strong> : Alexis affirme que la gestion de la pandémie a reproduit le même processus, le complexe militaro-industriel arrivant avec des solutions qui renforcent les contrôles sur la population.</li>
+</ul>
+
+</div>
+<div class="chapitre">
+<h2>🏛️ Chapitre 5 — Connexions politiques de Trump via Roy Cohn et la commission McCarthy</h2>
+<h3>Contexte</h3>
+<p>Alexis rappelle que le sénateur <strong>McCarthy</strong> a conduit la chasse aux communistes et à l’infiltration des institutions américaines dans les années 1950. À ses côtés figurait <strong>Roy Cohn</strong>, qui deviendra plus tard l’avocat et l’ami proche de <strong>Donald Trump</strong>. Cette connexion directe place Trump dans un réseau politique ancien et structuré, bien au-delà de son image de simple promoteur immobilier à Manhattan.</p>
+<p>Il souligne que Trump entretenait des liens étroits avec des figures clés de la politique américaine, notamment par l’intermédiaire de <strong>Roger Stone</strong>. Stone connaissait à la fois <strong>Richard Nixon</strong> et <strong>Ronald Reagan</strong>, et a servi de conseiller à Trump. Ces relations s’inscrivent dans une continuité qui remonte à la victoire stratégique de Reagan contre le communisme, tout en révélant une érosion interne persistante des institutions.</p>
+<p>Trump a observé, dès les années 1960 jusqu’aux années 1990, la perte progressive de souveraineté des États-Unis. Dans des entretiens des années 90, y compris avec <strong>Oprah</strong>, il dénonçait les traités économiques qui désindustrialisaient le pays et vendaient son avenir. Il décrivait un pays dont le potentiel du rêve américain, visible dans les années 1950-1960, était capté par des forces extérieures.</p>
+<p>Cette trajectoire personnelle explique pourquoi Trump s’est présenté comme l’antidote aux prises de contrôle mondialistes. Il a vu les institutions phagocytées malgré la défaite stratégique du communisme sous Reagan, et a constaté l’influence continue d’organisations comme le <strong>Council on Foreign Relations</strong> mentionnées par le congressiste <strong>Larry McDonald</strong> de la <strong>John Birch Society</strong>.</p>
+<h3>Analyse principale</h3>
+<p>Alexis présente Roy Cohn comme le pivot qui relie Trump à la commission McCarthy et à la tradition anticommuniste américaine. Cette filiation politique positionne Trump non pas comme un outsider isolé, mais comme l’héritier d’un combat de longue haleine contre l’infiltration des institutions par le mouvement révolutionnaire mondial.</p>
+<p>Il explique que les connexions de Trump via Cohn, Stone, Reagan et Nixon lui ont permis de comprendre les mécanismes d’érosion de la souveraineté depuis la création de la Réserve fédérale jusqu’aux traités commerciaux des années 1990. Trump a donc agi en connaissance de cause lorsqu’il a entrepris de renverser ces dynamiques une fois parvenu à la présidence.</p>
+<p>La vision trumpienne s’ancre dans l’observation directe d’un pays dont les institutions ont été progressivement détournées, malgré les avertissements d’Eisenhower sur le complexe militaro-industriel et de JFK sur les sociétés secrètes. Cette conscience historique guide l’action de Trump pour redonner le pouvoir au peuple et restaurer la puissance américaine.</p>
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Connexion directe Roy Cohn-McCarthy-Trump</strong> : Roy Cohn, avocat et ami de Trump, a accompagné le sénateur McCarthy dans sa campagne anticommuniste, plaçant Trump au cœur d’un réseau politique structuré depuis les années 1950.</li>
+<li><strong>Réseau élargi via Roger Stone</strong> : Stone a servi de pont entre Trump, Nixon et Reagan, assurant une continuité stratégique dans la résistance à l’érosion de la souveraineté américaine.</li>
+<li><strong>Observation de l’érosion depuis les années 1960</strong> : Trump a assisté en direct à la captation du pouvoir par les mondialistes, des années 1960 aux années 1990, et l’a publiquement dénoncée dans des entretiens comme celui accordé à Oprah.</li>
+<li><strong>Continuité avec la John Birch Society et Larry McDonald</strong> : Les analyses de McDonald sur les organisations cherchant à fusionner les États-Unis dans un gouvernement mondial rejoignent la lecture trumpienne de l’infiltration institutionnelle.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>⚠️ Chapitre 6 — Mises en garde de JFK et de la John Birch Society contre le gouvernement mondial</h2>
+
+<h3>Contexte</h3>
+<p>Alexis rappelle que le discours de <strong>JFK</strong> met en garde contre l’infiltration du gouvernement américain par des sociétés secrètes et le mouvement révolutionnaire mondial. Il décrit comment le président américain avait identifié une menace structurelle visant à éroder la souveraineté nationale au profit d’un pouvoir supranational. Le propos souligne que cette prise de conscience a coïncidé avec l’assassinat de <strong>JFK</strong> en 1963. Il note ensuite que la <strong>John Birch Society</strong> a poursuivi cette ligne d’analyse à travers le sénateur <strong>Larry McDonald</strong>.</p>
+<p>Il expose les affirmations de <strong>Larry McDonald</strong> sur CBS, selon lesquelles des organisations comme le <strong>Council on Foreign Relations</strong> œuvraient activement à affaiblir la souveraineté américaine pour la fondre dans un gouvernement mondial. Le sénateur nomme explicitement d’anciens responsables tels que l’ancien directeur de la <strong>CIA William Casey</strong> et <strong>Thomas Haig</strong>, qui auraient publiquement défendu l’idée d’un tel gouvernement. Il rappelle que la <strong>John Birch Society</strong> dénonçait déjà l’établissement progressif d’un gouvernement mondial par des éléments internes aux institutions américaines.</p>
+<p>Il aborde le financement de la révolution bolchevique par des intérêts de <strong>Wall Street</strong>, en citant le livre d’<strong>Anthony Sutton</strong> intitulé <em>Wall Street and the Bolshevik Revolution</em>. Il précise que <strong>Trotsky</strong> se trouvait à New York en 1917 et y aurait obtenu des fonds de banquiers pour constituer l’Armée rouge. Cette aide financière illustre selon lui que l’infiltration ne se limitait pas au communisme ordinaire mais relevait d’un mouvement révolutionnaire mondial plus large.</p>
+<p>Il relie directement ces mises en garde à l’assassinat de <strong>JFK</strong> et à la tentative d’assassinat contre <strong>Reagan</strong>, présentées comme des réponses violentes à la résistance opposée au projet de gouvernement mondial. Il mentionne que l’assassin de Reagan entretenait des liens avec la famille <strong>Bush</strong>, ce qui renforce le caractère suspect de l’événement. Ces faits sont présentés comme des jalons historiques confirmant la persistance d’une lutte intérieure contre les forces mondialistes.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que les avertissements de <strong>JFK</strong> et de la <strong>John Birch Society</strong> forment un continuum historique reliant les sociétés secrètes, le financement de révolutions et les tentatives d’assassinat politique. Il souligne que ces mises en garde visaient à alerter l’opinion sur une captation progressive du pouvoir par des réseaux transnationaux. Il explique que le financement de la révolution bolchevique par des banques de <strong>Wall Street</strong> révèle une stratégie de long terme dépassant les clivages idéologiques apparents. Il observe que ces éléments convergent vers la volonté d’instaurer un gouvernement mondial unique.</p>
+<p>Il met en évidence le rôle du <strong>Council on Foreign Relations</strong> comme structure centrale dans l’érosion de la souveraineté américaine, selon les déclarations de <strong>Larry McDonald</strong>. Il note que ces analyses ont été reprises plus tard par des figures comme <strong>Mike Flynn</strong>. Il rappelle que l’assassinat de <strong>JFK</strong> et la tentative contre <strong>Reagan</strong> interviennent précisément au moment où ces responsables prenaient conscience de l’ampleur du phénomène. Il insiste sur le fait que ces événements ne sont pas isolés mais s’inscrivent dans une logique de neutralisation des opposants au projet mondialiste.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Le discours de JFK identifie explicitement les sociétés secrètes et le mouvement révolutionnaire mondial comme menaces directes à la souveraineté américaine.</strong> Il décrit une infiltration systématique des institutions fédérales par des réseaux opérant au-delà des frontières nationales. Cette mise en garde survient peu avant son assassinat, ce qui confère à l’événement une dimension politique supplémentaire.</li>
+<li><strong>Larry McDonald et la John Birch Society désignent le Council on Foreign Relations comme acteur central de la fusion vers un gouvernement mondial.</strong> Le sénateur nomme des responsables de la CIA et d’autres institutions ayant publiquement soutenu cette perspective. Ces déclarations établissent une continuité entre les avertissements des années 1960 et les analyses ultérieures.</li>
+<li><strong>Le financement de la révolution bolchevique par Wall Street, documenté par Anthony Sutton, illustre le rôle des intérêts financiers dans la promotion du communisme.</strong> Trotsky reçoit des fonds à New York en 1917 pour créer l’Armée rouge. Ce soutien révèle une stratégie de contrôle révolutionnaire dépassant les frontières idéologiques traditionnelles.</li>
+<li><strong>L’assassinat de JFK et la tentative contre Reagan sont présentés comme des réponses violentes à la résistance opposée au projet de gouvernement mondial.</strong> Les liens entre l’assaillant de Reagan et la famille Bush renforcent le caractère suspect de ces événements. Ils marquent des points de rupture dans l’histoire de la lutte contre l’érosion de la souveraineté américaine.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>🏛️ Chapitre 7 — Érosion progressive de la souveraineté américaine jusqu'à Obama</h2>
+
+<h3>Contexte</h3>
+<p>Alexis retrace l’érosion de la souveraineté américaine sur plus de cinquante ans, depuis la création de la Réserve fédérale le 25 janvier 1913 jusqu’à l’arrivée de Barack Obama. Il rappelle que la victoire stratégique de Ronald Reagan contre le communisme n’a pas empêché l’infiltration continue des institutions par des éléments révolutionnaires mondiaux. Des figures comme le sénateur Joseph McCarthy, le sénateur Larry McDonald de la John Birch Society et le président John F. Kennedy ont alerté sur ces réseaux, notamment le Council on Foreign Relations, qui visaient à affaiblir la souveraineté nationale au profit d’un gouvernement mondial.</p>
+<p>Il souligne qu’après Reagan, George Bush senior annonce le nouvel ordre mondial, suivi par son fils qui concrétise cette vision par les guerres en Irak et le Patriot Act. Obama représente le point culminant de cette longue infiltration communiste au sein de l’appareil d’État. Alexis explique que le pivot géostratégique d’Obama vers l’Ukraine et la Syrie visait à déstabiliser ces régions, avec une fausse attaque au gaz en Syrie montée alors que les inspecteurs internationaux se trouvaient à Damas.</p>
+<p>Le général Dempsey, Chief of Staff, refuse d’appuyer Obama pour éviter une troisième guerre mondiale impliquant la Russie et l’Iran. Obama et John McCain créent l’État islamique à partir du front al-Nusra en Syrie. Hillary Clinton tente de transférer des armes de Libye vers les rebelles syriens, ce qui conduit à l’affaire Benghazi où l’ambassadeur Stevens est tué après que Clinton ait ordonné « Laissez-les mourir » malgré des avions disponibles à Aviano.</p>
+<p>Les liens entre Hillary Clinton, Joe Biden et la vente de secrets d’État sur serveurs non sécurisés sont évoqués, tout comme les activités de Hunter Biden via Rosemont Seneca. Alexis présente ces événements comme la trahison de haut niveau qui achève cinquante ans de perte de souveraineté, avant l’arrivée de Trump pour inverser le processus.</p>
+
+<h3>Analyse principale</h3>
+<p>Obama incarne l’aboutissement d’un processus commencé dès la création de la Réserve fédérale et accéléré après la Seconde Guerre mondiale par le complexe militaro-industriel dénoncé par Eisenhower. La tentative d’assassinat contre Reagan, liée à la famille Bush, illustre la résistance interne à toute remise en cause de cette trajectoire. Alexis note que le communisme, bien que vaincu militairement, a continué à phagocyter les institutions par la longue marche gramscienne à travers l’éducation et les médias.</p>
+<p>Les déstabilisations en Ukraine et en Syrie, la création de l’État islamique et l’affaire Benghazi constituent les manifestations concrètes de cette érosion sous Obama. Ces opérations visaient à générer des foyers de tension permanents permettant d’obtenir une carte blanche pour un nouvel ordre mondial. Les trahisons au plus haut niveau, impliquant Hillary Clinton et Joe Biden, révèlent que l’exécutif lui-même était devenu un vecteur de perte de souveraineté.</p>
+<p>La connexion entre ces événements et les avertissements antérieurs de JFK sur les sociétés secrètes ou de Larry McDonald sur la fusion vers un gouvernement mondial montre une continuité idéologique. Obama divise la société américaine sur la race et le sexe, achevant le pourrissement du tissu social décrit par Yuri Bezmenov. Cette phase marque le moment critique où la souveraineté américaine semble irrécupérable sans une intervention décisive.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Obama comme point culminant de cinquante ans d’infiltration</strong> : Alexis établit une ligne directe entre la création de la Réserve fédérale en 1913, les alertes de McCarthy, JFK et Larry McDonald, et l’administration Obama qui parachève le contrôle des institutions par des éléments révolutionnaires mondiaux.</li>
+<li><strong>Déstabilisations en Ukraine et en Syrie orchestrées depuis la Maison-Blanche</strong> : Le pivot géostratégique d’Obama, la fausse attaque au gaz et le refus du général Dempsey de s’engager montrent une volonté délibérée de créer des conflits susceptibles d’entraîner la Russie et l’Iran.</li>
+<li><strong>Création de l’État islamique et trahison de Benghazi</strong> : Obama et McCain transforment le front al-Nusra en ISIS tandis que Clinton refuse tout renfort aérien pendant treize heures, ordonnant explicitement de laisser mourir l’ambassadeur Stevens et les contractants.</li>
+<li><strong>Liens directs entre Obama, Clinton et Biden dans la haute trahison</strong> : La vente de secrets sur serveurs privés, les rétro-commissions chinoises via Hunter Biden et le financement de rebelles syriens depuis la Libye illustrent une continuité de compromission de la souveraineté américaine.</li>
+</ul>
+
+</div>
+<div class="chapitre">
+<h2>🏛️ Chapitre 8 — Les sept points de la prise de contrôle mondialiste des institutions</h2>
+
+<h3>Contexte</h3>
+<p>Alexis expose en détail la captation progressive du pouvoir américain par les mondialistes à travers sept points précis. Le premier point concerne la création monétaire avec la Réserve fédérale, fondée le 25 janvier 1913 lors d’une session secrète au Congrès pendant les vacances de Noël. Andrew Jackson s’était opposé à la banque centrale au XIXe siècle et Trump conserve sa photo dans le Bureau ovale, tandis que le livre <strong>The Creature from Jekyll Island</strong> décrit comment une poignée de banquiers ont mis en place une institution privée à laquelle le gouvernement emprunte à intérêt.</p>
+<p>Le deuxième point porte sur le contrôle des traités commerciaux qui ont accéléré la désindustrialisation des États-Unis, avec des industries délocalisées vers la Chine et le Mexique. Le troisième point vise la prise de contrôle de l’appareil sécuritaire et militaire, déjà dénoncée par Eisenhower dans son discours d’adieu des années 1960 contre le complexe militaro-industriel. Le quatrième point concerne le contrôle des médias et des agences de renseignement, illustré par l’opération Mockingbird de la CIA et l’unanimité observée durant la crise sanitaire.</p>
+<p>Le cinquième point décrit le contrôle des politiciens via des sociétés secrètes comme Skull and Bones et l’affaire Epstein, présentée comme un mécanisme de chantage impliquant la CIA et le Mossad. Le sixième point explique la création de casus belli et de foyers de tension, avec des exemples allant de la fourniture de technologie nucléaire à la Corée du Nord par Bill Clinton jusqu’aux opérations en Syrie et en Ukraine sous Obama. Enfin, le septième point porte sur la guerre psychologique et la fraude électorale généralisée, avec des machines Smartmatic et l’exploitation de l’immigration pour des votes.</p>
+<p>Il rappelle que ces sept points ont été mis en place sur plus d’un siècle, culminant avec l’administration Obama, avant que Trump ne s’attaque à leur renversement depuis 2017.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente ces sept points comme le cadre structurant de la souveraineté américaine érodée depuis la création de la Fed. Chaque étape est reliée à des figures historiques précises, de Jackson à Eisenhower, en passant par JFK et Reagan, jusqu’à l’arrivée de Trump qui inverse méthodiquement le processus.</p>
+<p>Il souligne que la prise de contrôle s’est opérée à la fois par des mécanismes économiques, institutionnels et psychologiques, avec des acteurs comme Roy Cohn, Roger Stone et Mike Flynn apparaissant comme des fils conducteurs dans la résistance à cette captation.</p>
+<p>La description met en lumière comment ces points ont permis aux mondialistes de neutraliser les contrepouvoirs tout en maintenant une apparence démocratique, jusqu’à ce que Trump entreprenne de les démanteler un à un.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Création monétaire via la Fed</strong> : Alexis rappelle que la Réserve fédérale, instituée en 1913, a permis aux mondialistes de contrôler la monnaie et d’endetter le gouvernement fédéral, citant Meyer Rothschild sur le pouvoir de la monnaie et le livre <strong>The Creature from Jekyll Island</strong> comme sources détaillant cette mainmise progressive.</li>
+<li><strong>Contrôle des traités commerciaux et désindustrialisation</strong> : Il explique que les accords internationaux ont forcé le transfert d’industries vers la Chine et le Mexique, ruinant des régions entières et érodant la base économique du rêve américain, un processus que Trump combat en retirant les États-Unis de ces traités.</li>
+<li><strong>Prise de contrôle de l’appareil sécuritaire et militaire</strong> : Alexis évoque l’avertissement d’Eisenhower sur le complexe militaro-industriel et la façon dont des crises comme le 11 septembre ont été utilisées pour accroître le pouvoir de cet appareil, avant que Trump ne nomme des généraux patriotes pour le nettoyer.</li>
+<li><strong>Contrôle des médias et agences de renseignement</strong> : Il décrit l’opération Mockingbird et l’uniformité médiatique durant la COVID, ainsi que le rôle des agences dans la création de narratifs comme la collusion russe, que Trump et ses alliés s’efforcent de démanteler.</li>
+<li><strong>Contrôle des politiciens via sociétés secrètes et Epstein</strong> : Alexis présente Epstein comme un outil de chantage impliquant la CIA et le Mossad, permettant de tenir exécutif, législatif et judiciaire, un système que Trump cherche à exposer et à briser.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Laissez-moi contrôler la monnaie, je me fous de qui fait les lois. » — Meyer Rothschild</blockquote>
+<blockquote>« L’ère du mondialisme est terminée. » — Donald Trump à l’ONU en 2018</blockquote>
+<blockquote>« Pentagon vows audit, clean audit after years of failure. » — Titre cité par Alexis sur l’audit du Pentagone</blockquote>
+
+</div>
+<div class="chapitre">
+<h2>🧠 Chapitre 9 — Guerre psychologique et longue marche gramscienne à travers les institutions</h2>
+
+<h3>Contexte</h3>
+<p>Après la Première Guerre mondiale, <strong>Antonio Gramsci</strong> observe que le prolétariat ne s’est pas uni contre la bourgeoisie mais s’est rangé sous le parapluie national. Les nations se sont affrontées au lieu d’une guerre de classes. Alexis explique que les communistes ont alors compris que tant que la religion, la famille et l’école resteraient solides, le communisme ne pourrait pas s’imposer. Il faut donc opérer une <strong>longue marche à travers les institutions</strong> pour pourrir le tissu social de l’intérieur.</p>
+<p>Avec l’école de Francfort et sa <strong>théorie critique</strong>, cette stratégie s’est concrétisée. <strong>Yuri Bezmenov</strong> détaille comment briser psychologiquement une population par la démoralisation. On voit aujourd’hui les fruits de ce travail dans les médias : trois papas avec un enfant par fécondation in vitro, couples ouverts, drag queens dans les écoles. Alexis souligne que tout cela constitue une « fucking dégénérescence » planifiée pour triompher de la société capitaliste.</p>
+<p>Le pourrissement du tissu social passe par l’école, la famille et la culture. La pornographie, les paroles de chansons de Beyoncé ou de Keisha, la culture lascive et la destruction de la famille font partie du même plan. <strong>Barack Obama</strong> a amplifié cette division en opposant les Américains sur la race et le sexe, notamment via <strong>Black Lives Matter</strong> alors que les chiffres montrent une violence disproportionnée de la communauté noire.</p>
+<p>Durant la COVID, cette guerre psychologique s’est appliquée en direct. Alexis rappelle les huit ou neuf points de <strong>torture psychologique de Biderman</strong>, utilisés à Guantanamo et repris par McKenzie dans les mesures sanitaires mondiales. Masques obligatoires debout mais autorisés assis, humiliations diverses : tout visait à briser la psyché de la population selon les mêmes méthodes que celles employées par l’armée américaine.</p>
+
+<h3>Analyse principale</h3>
+<p>La stratégie gramscienne repose sur l’infiltration plutôt que sur la confrontation directe. Après avoir constaté l’échec du soulèvement prolétarien, les théoriciens ont identifié les institutions bourgeoises comme cibles prioritaires. La religion, la famille et l’école devaient être affaiblies de l’intérieur pour rendre la société vulnérable à l’idéologie communiste.</p>
+<p>L’école de Francfort a fourni l’outil intellectuel avec la théorie critique, tandis que <strong>Yuri Bezmenov</strong> a exposé les mécanismes concrets de la démoralisation. Ces éléments convergent vers une guerre psychologique systématique contre les populations occidentales, menée par les mondialistes eux-mêmes plutôt que contre des ennemis extérieurs.</p>
+<p>L’application des points de Biderman pendant la COVID illustre la continuité de cette méthode. Les humiliations sanitaires, présentées comme des mesures de santé publique, reprennent exactement les techniques de torture psychologique utilisées dans les centres de détention. Cette guerre vise à affaiblir la résistance intérieure avant toute prise de contrôle finale.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>La longue marche gramscienne cible les institutions sociales</strong> : après 1918, les communistes constatent que le prolétariat reste attaché à la nation ; ils décident donc de pourrir religion, famille et école de l’intérieur afin de rendre toute résistance impossible.</li>
+<li><strong>La théorie critique et Bezmenov expliquent la démoralisation planifiée</strong> : l’école de Francfort fournit le cadre idéologique tandis que Bezmenov décrit les étapes concrètes de la destruction psychologique, visibles aujourd’hui dans la promotion de la dégénérescence culturelle.</li>
+<li><strong>Le pourrissement du tissu social passe par l’école, la famille et la culture</strong> : drag queens dans les écoles, pornographie généralisée, destruction de la famille et division raciale via Black Lives Matter constituent des outils délibérés pour affaiblir la cohésion nationale.</li>
+<li><strong>Les points de Biderman ont été appliqués durant la COVID</strong> : les mesures sanitaires reprennent les techniques de torture psychologique utilisées à Guantanamo, confirmant que la guerre psychologique contre les populations occidentales constitue une stratégie continue et assumée.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Tant que la religion va être forte, tant que les familles vont être fortes, tant que l’école va être forte, etc., tant que les institutions de la société bourgeoise seront solides, le communisme ne pourra pas prendre. »</blockquote>
+<blockquote>« Ce qu’ils nous font subir en termes d’humiliation avec l’immigration, avec les drag queens, avec toutes les petites affaires de lubies de gauche, c’est une guerre psychologique. »</blockquote>
+<blockquote>« Regardez les points de la torture psychologique de Biderman, puis ce qu’ils ont appliqué, ce que McKenzie a proposé d’appliquer partout dans le monde durant la COVID, c’est exactement la même chose. »</blockquote>
+
+</div>
+<div class="chapitre">
+<h2>🗳️ Chapitre 10 — Mécanismes de fraude électorale généralisée</h2>
+
+<h3>Contexte</h3>
+<p>Alexis explique que la fraude électorale généralisée constitue le septième et dernier levier permettant aux mondialistes de conserver le contrôle des institutions américaines. Il décrit un système organisé autour des machines Smartmatic importées du Venezuela, qui permet de sélectionner à l’avance les candidats qui accèdent au pouvoir, indépendamment de leur étiquette républicaine ou démocrate.</p>
+<p>Dans la vidéo, il précise que tout candidat doté d’intégrité et refusant de suivre la ligne mondialiste est systématiquement écarté, tandis que celui qui accepte de voter pour des traités de libre-échange destructeurs pour l’industrie nationale est favorisé par le dispositif. Ce mécanisme garantit que le Congrès reste aligné sur les intérêts des promoteurs de la désindustrialisation.</p>
+<p>Il ajoute que la fraude s’appuie également sur une politique d’immigration massive : les nouveaux arrivants sont placés sur l’aide sociale et autorisés à frauder en échange de leur vote. Alexis mentionne explicitement l’exemple du Michigan, où ce schéma a été observé, et affirme qu’il s’applique de la même manière dans l’ensemble des États-Unis.</p>
+<p>Ce système rend impossible l’accès au pouvoir pour tout candidat intègre, car la machine électorale neutralise toute source de lucidité populaire avant même le scrutin. La vidéo présente ces pratiques comme le dernier rempart des mondialistes une fois les six autres leviers de contrôle (monnaie, traités, armée, médias, agences, casus belli) mis en place.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis présente la fraude électorale comme l’aboutissement logique d’un processus de captation du pouvoir entamé depuis plus d’un siècle. Les machines Smartmatic constituent l’outil technique permettant d’inverser ou de moduler les résultats sans laisser de traces détectables par les observateurs traditionnels.</p>
+<p>Il souligne que l’immigration n’est pas seulement un phénomène démographique mais un levier politique : en stationnant les nouveaux venus sur l’aide sociale et en tolérant certaines fraudes, on crée une clientèle électorale captive qui compense la perte de soutien populaire auprès des citoyens de souche.</p>
+<p>La vidéo insiste sur le fait que ce double mécanisme (machines + immigration) rend toute alternance réelle impossible tant que le système reste intact. Seul un candidat préalablement validé par les opérateurs de la fraude peut espérer siéger au Congrès ou à la présidence.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Machines Smartmatic d’origine vénézuélienne :</strong> Alexis rappelle que ces équipements permettent de programmer à l’avance l’issue du scrutin. Il souligne que leur déploiement aux États-Unis garantit l’élimination de tout candidat réfractaire aux directives mondialistes, qu’il soit républicain ou démocrate.</li>
+<li><strong>Fraude à l’immigration et achat de votes :</strong> La vidéo décrit l’installation d’immigrants sur l’aide sociale comme une stratégie délibérée. Alexis indique que ces populations sont incitées à frauder en échange de leur soutien électoral, créant ainsi une réserve de voix contrôlable.</li>
+<li><strong>Exclusion des candidats intègres :</strong> Il explique que le système est conçu pour écarter toute personnalité refusant de voter des traités destructeurs pour l’économie nationale. Seuls les élus complaisants accèdent aux fonctions, assurant la continuité de la désindustrialisation.</li>
+<li><strong>Généralisation à l’ensemble du pays :</strong> Alexis cite l’exemple du Michigan comme illustration locale d’un phénomène national. Il affirme que ce modèle de fraude électorale s’applique uniformément sur tout le territoire américain.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« S’il y a un sourceau de lucidité dans la population, bien, tu as tout prévu parce que tu as un système de fraude électorale qui vient des machines Smartmatics issues du Venezuela. »</blockquote>
+<blockquote>« Tu fais rentrer des immigrants, tu les stationnes sur l’aide sociale, tu les laisses frauder en échange de vote. On a vu ça au Michigan, mais c’est comme ça partout aux États-Unis. »</blockquote>
+<blockquote>« S’il y a un candidat qui a dit non, qui a de l’intégrité, il ne rentrera pas. »</blockquote>
+
+</div>
+<div class="chapitre">
+<h2>💰 Chapitre 11 — Actions de Trump pour renverser le contrôle monétaire et les traités mondialistes</h2>
+
+<h3>Contexte</h3>
+<p>Alexis explique que Donald Trump entreprend une reprise de contrôle directe sur la création monétaire en nommant <strong>Kevin Warsh</strong> à la tête de la Réserve fédérale. Warsh est présenté comme un réformateur aligné sur la ligne de Trump, visant non pas la destruction de l’institution mais sa redirection vers les intérêts nationaux américains. Cette nomination s’inscrit dans la volonté de mettre fin à la spirale d’endettement initiée depuis la création de la Fed le 25 janvier 1913.</p>
+<p>Il détaille ensuite l’autorisation du Bitcoin et la levée de toutes les restrictions bancaires sur les cryptomonnaies, mesure qui redonne du pouvoir à l’individu face aux banques centrales. En parallèle, Trump interdit formellement la création d’une monnaie digitale de banque centrale, la <strong>Central Bank Digital Currency</strong>. Sous l’impulsion américaine, ce projet recule dans le monde entier, y compris en Europe où Christine Lagarde avait initialement annoncé un euro digital pour 2026, puis 2027, avant que le calendrier ne soit repoussé indéfiniment.</p>
+<p>Sur le plan des traités, Alexis rappelle le retrait des États-Unis de <mark>66 traités et organisations mondialistes</mark>, parmi lesquels l’accord de Paris, le traité transpacifique (TPP) et le traité transatlantique. Ces accords, signés sans le consentement populaire, sont décrits comme des instruments de réduction de la souveraineté américaine au profit d’un gouvernement mondial. Trump déchire ces engagements pour restaurer la capacité d’action nationale.</p>
+<p>Enfin, il souligne les pressions exercées par l’administration Trump sur l’Europe afin que celle-ci adopte des politiques similaires en matière migratoire et monétaire. Ces actions visent à renverser les sept points de la prise de contrôle mondialiste identifiés précédemment, en commençant par la création monétaire et le contrôle des traités commerciaux.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que ces mesures forment un ensemble cohérent destiné à restaurer la souveraineté monétaire et diplomatique des États-Unis. La nomination de Warsh et l’ouverture au Bitcoin visent à desserrer l’étau des institutions financières mondialistes tout en offrant aux citoyens un outil de liberté économique. L’interdiction des CBDC empêche la mise en place d’un système de contrôle total sur les transactions individuelles.</p>
+<p>Le retrait massif des traités permet aux États-Unis de recouvrer leur marge de manœuvre dans les négociations commerciales et environnementales. Alexis insiste sur le fait que ces accords avaient été conclus dans le dos des peuples et servaient une logique de désindustrialisation et d’endettement. En exerçant une pression sur l’Europe, Trump incite d’autres nations à suivre le même chemin de reprise de contrôle.</p>
+<p>Ces actions s’inscrivent dans la continuité de la stratégie trumpienne de retour du pouvoir au peuple, annoncée dès le discours d’investiture du 21 janvier 2017. Elles visent à maximiser le potentiel économique et technologique du pays tout en déconstruisant les mécanismes de captation mis en place depuis plus d’un siècle.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Reprise du contrôle monétaire via Warsh</strong> : La nomination de Kevin Warsh permet d’orienter la politique de la Fed vers les intérêts nationaux plutôt que vers les objectifs mondialistes, rompant avec la spirale d’endettement initiée en 1913.</li>
+<li><strong>Libération par le Bitcoin et rejet des CBDC</strong> : L’autorisation des cryptomonnaies et l’interdiction des monnaies digitales de banque centrale redonnent du pouvoir aux individus et bloquent la mise en place d’un système de surveillance totale des transactions.</li>
+<li><strong>Déchirement des traités sans consentement populaire</strong> : Le retrait de 66 accords, dont l’accord de Paris et le TPP, restaure la souveraineté américaine et dénonce des engagements signés dans le dos des citoyens pour servir un projet de gouvernement mondial.</li>
+<li><strong>Exportation du modèle vers l’Europe</strong> : Les pressions exercées sur les politiques migratoires et monétaires européennes démontrent que Trump agit comme un catalyseur pour inciter d’autres nations à rejeter les contraintes mondialistes.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Trump qui permet le bitcoin. Le bitcoin qui lève toutes les restrictions bancaires sur la crypto. Qu’est-ce que ça fait, ça ? Ça donne de la puissance à l’individu. Trump qui interdit la création d’une monnaie digitale centrale. »</blockquote>
+<blockquote>« Les États-Unis qui se retirent de 66 traités, des traités mondialistes et des organisations mondialistes, tu sais, des traités comme le traité transpacifique, l’accord de Paris, le traité transatlantique, etc., ils déchirent tous les traités mondialistes. »</blockquote>
+<blockquote>« Ces traités ont été signés dans le dos de la population sans le consentement des peuples et sont néfastes pour le développement du pays. »</blockquote>
+</div>
+<div class="chapitre">
+<h2>🛡️ Chapitre 12 — Nettoyage de l'appareil sécuritaire et militaire par Trump</h2>
+
+<h3>Contexte</h3>
+<p>Alexis rappelle que la prise de contrôle de l’appareil sécuritaire et militaire constitue l’un des sept points majeurs par lesquels les mondialistes ont capté le pouvoir aux États-Unis. Il souligne qu’Exxon a réalisé un audit du Pentagone pour la première fois depuis des décennies, avec la promesse affichée d’un « clean audit after years of failure ». Il explique que cette démarche marque le début d’un vaste effort de remise en ordre après des années d’opacité et de dérives.</p>
+<p>Il précise que Trump s’est entouré dès son premier mandat de généraux ayant publiquement critiqué Obama, parmi lesquels Mike Flynn et des officiers de Marines qualifiés de « durs à cuire ». Il note que John Kelly figurait également parmi ces nominations, tandis que le cas de McMaster est présenté comme celui d’un traître dont le rôle doit être réexaminé. Alexis ajoute que la première présidence Trump a été une présidence militaire dont la priorité absolue était le nettoyage interne des forces armées.</p>
+<p>Il évoque ensuite les lancements de missiles non autorisés qui ont révélé l’ampleur de la dérive et ont rendu indispensable ce ménage préalable. Il mentionne que Trump s’est ensuite tourné vers des généraux issus de l’intelligence militaire, marquant le lancement de « The storm » avec la formule « The calm before… It’s the calm before the storm ». Il rappelle que ces nominations visaient à placer des patriotes capables d’effectuer le ménage à l’intérieur même de l’armée.</p>
+<p>Il aborde enfin la refondation des agences de renseignement. Il indique que Tulsi Gabbard a fait émerger un lanceur d’alerte au sein de la CIA accusant l’agence d’espionner le Congrès et le DNI. Il souligne que Kash Patel et le FBI procèdent à des arrestations et à des mises à la retraite ciblées, tandis que Mike Flynn répète que ces agences doivent être entièrement refondées car elles représentent une menace pour la sécurité nationale.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que le nettoyage de l’appareil sécuritaire et militaire s’inscrit dans une stratégie globale de reprise de contrôle des institutions. Il explique que Trump a d’abord concentré ses efforts sur l’audit du Pentagone et la nomination de généraux critiques d’Obama afin de restaurer une chaîne de commandement loyale. Il précise que cette phase a précédé toute action extérieure, car le ménage interne était indispensable après les incidents de lancements non autorisés.</p>
+<p>Il détaille ensuite le rôle de Tulsi Gabbard et de Kash Patel dans la refondation des agences de renseignement. Il indique que ces nominations visent à exposer les infiltrations et à rétablir la crédibilité des services après des décennies de réseaux d’amis des amis. Il souligne que le processus reste lent et méthodique, comparable à une pêche patiente des éléments corrompus.</p>
+<p>Il observe que cette refondation s’accompagne d’une volonté de recentrer les agences sur leur mission première de protection nationale plutôt que sur des agendas mondialistes. Il note que Mike Flynn insiste sur la nécessité de reconstruire ces structures pour éviter qu’elles ne constituent une menace intérieure permanente.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Audit du Pentagone par Exxon</strong> : Alexis indique que cet audit constitue la première tentative sérieuse de transparence depuis des décennies et vise à corriger des années d’échecs répétés dans la gestion financière du département de la Défense.</li>
+<li><strong>Nomination de généraux critiques d’Obama</strong> : Il rappelle que Trump a choisi des officiers comme Flynn et Mattis, connus pour leur opposition aux politiques d’Obama, afin d’installer une direction militaire fidèle aux intérêts américains.</li>
+<li><strong>Priorité au ménage interne</strong> : Il souligne que les lancements de missiles non autorisés ont rendu urgent le nettoyage des forces armées avant toute autre opération stratégique.</li>
+<li><strong>Refondation des agences de renseignement</strong> : Il précise que Tulsi Gabbard et Kash Patel ont été chargés d’exposer les mensonges et les infiltrations au sein de la CIA et du FBI, avec l’objectif de reconstruire ces institutions sur des bases patriotiques.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Pentagon vows audit, clean audit after years of failure »</blockquote>
+<blockquote>« The calm before… It’s the calm before the storm »</blockquote>
+</div>
+<div class="chapitre">
+<h2>📰 Chapitre 13 — Attaque contre les médias et les agences de renseignement</h2>
+
+<h3>Contexte</h3>
+<p>Alexis expose la prise de contrôle des médias et des agences de renseignement comme l’un des sept points majeurs de la captation du pouvoir par les mondialistes aux États-Unis. Il rappelle l’opération Mockingbird de la CIA qui a permis d’aligner les médias sur une ligne unique, illustrée par l’unanimité observée durant la COVID-19 et les bannissements liés aux vaccins. Avant l’arrivée de Donald Trump sur la scène politique, le terme fake news n’existait pas ; depuis une décennie, la crédibilité des médias traditionnels s’est effondrée sous l’effet de ses attaques directes contre cet appareil de contrôle mental.</p>
+<p>Les plateformes YouTube et Facebook, contrôlées par les mondialistes, ont censuré les discours patriotes et les analyses alternatives pendant la pandémie. Sous l’impulsion de Trump, des alternatives comme Rumble et Getter ont émergé, offrant une profondeur nouvelle au champ de bataille informationnel et permettant à des voix comme Radio-Québec de survivre. Alexis précise que Trump a convoqué Mark Zuckerberg à Mar-a-Lago pour exiger la restauration de la liberté d’expression après les compromissions de la dernière élection, ce qui a permis la récupération de nombreux comptes bloqués.</p>
+<p>Concernant les agences de renseignement, Alexis détaille le ménage entrepris par l’administration Trump. Tulsi Gabbard a introduit un lanceur d’alerte au sein de la CIA accusant l’agence d’espionner le Congrès et le DNI. La CIA a menti sur Anthony Fauci et sur l’origine de la COVID, tandis que les patriotes ont exposé la fausse histoire de collusion avec la Russie, qualifiée de haute trahison. La cible principale reste la crédibilité de ces agences infiltrées depuis trente ou quarante ans par des réseaux d’amis des amis.</p>
+<p>Même avec John Ratcliffe à la tête de la CIA, le nettoyage interne s’effectue lentement, agent par agent. Kash Patel et le FBI procèdent à des arrestations et à des mises à la retraite forcées. Mike Flynn répète que les agences de renseignement doivent être refondées car elles constituent une menace à la sécurité nationale. Epstein est présenté comme un agent du Mossad et de la CIA, utilisé pour discréditer l’agence elle-même.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que l’attaque contre les médias et les agences de renseignement constitue un pilier central de la stratégie de Trump pour inverser un siècle de captation mondialiste. En qualifiant les médias de fake news, Trump a brisé le monopole narratif qui empêchait toute remise en question des institutions. Cette offensive a ouvert la voie à la création d’espaces alternatifs qui ont durablement transformé le paysage informationnel américain.</p>
+<p>Sur le front du renseignement, le nettoyage progressif vise à restaurer la loyauté des agences envers la Constitution plutôt qu’envers des réseaux transnationaux. Les révélations sur les mensonges de la CIA concernant Fauci et l’origine du virus illustrent l’ampleur de la désinformation institutionnelle accumulée. Les arrestations et les mises à la retraite visent à éroder les réseaux d’influence mis en place depuis des décennies.</p>
+<p>Il souligne que ces actions s’inscrivent dans une logique plus large de restitution du pouvoir au peuple, en exposant les mécanismes de contrôle qui avaient permis aux mondialistes de dominer l’exécutif, le législatif et le judiciaire. La refondation des agences de renseignement apparaît comme une condition indispensable pour empêcher de nouvelles opérations de déstabilisation intérieure ou extérieure.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Qualification des médias de fake news et perte de crédibilité</strong> : Alexis explique que Trump a introduit le terme fake news qui n’existait pas auparavant, sapant ainsi la crédibilité des médias traditionnels alignés sur la ligne mondialiste et permettant une prise de conscience collective sur la manipulation informationnelle durant la COVID-19.</li>
+<li><strong>Création de plateformes alternatives comme Rumble et Getter</strong> : Sous l’impulsion de Trump, ces plateformes ont émergé pour contrer la censure exercée par YouTube et Facebook, offrant un espace où les voix patriotes et alternatives ont pu se développer et survivre, comme ce fut le cas pour Radio-Québec.</li>
+<li><strong>Convocation de Zuckerberg pour restaurer la liberté d’expression</strong> : Trump a personnellement convoqué Mark Zuckerberg à Mar-a-Lago après les compromissions électorales, exigeant la restitution de la liberté d’expression, ce qui a permis la récupération de nombreux comptes précédemment bannis sur Facebook et YouTube.</li>
+<li><strong>Exposition des mensonges de la CIA sur Fauci et la COVID</strong> : Tulsi Gabbard a introduit un lanceur d’alerte révélant que la CIA avait menti sur Anthony Fauci et l’origine du virus, discréditant ainsi l’agence et confirmant l’infiltration mondialiste au sein des services de renseignement depuis plusieurs décennies.</li>
+<li><strong>Arrestations et mises à la retraite d’agents</strong> : Kash Patel et le FBI ont engagé des arrestations et des mises à la retraite ciblées, tandis que Mike Flynn appelle à une refondation complète des agences de renseignement jugées dangereuses pour la sécurité nationale américaine.</li>
+</ul>
+
+</div>
+<div class="chapitre">
+<h2>🌍 Chapitre 14 — Efforts de paix et renversement des stratégies de déstabilisation</h2>
+
+<h3>Contexte</h3>
+<p>Alexis expose comment Donald Trump a inversé la stratégie de création de foyers de tension mise en place sous Obama. Il rappelle que l’ancien président avait cherché à déstabiliser la Syrie et l’Iran, favorisant l’émergence de l’État islamique à partir du front al-Nusra et via des livraisons d’armes depuis la Libye. Trump, au contraire, a engagé des démarches directes de désescalade.</p>
+<p>Il détaille la rencontre historique avec Kim Jong-un, qui a permis d’apaiser les tensions nucléaires avec la Corée du Nord. Parallèlement, Trump a modifié la relation avec l’Arabie saoudite en cessant les pressions sur le financement du djihadisme et en effectuant la danse du sabre avec le prince puis le roi Salmane. Cette proximité a permis de placer au pouvoir le fils du roi, septième dans la lignée et présenté comme réformateur.</p>
+<p>La refonte du Moyen-Orient s’est concrétisée par les accords d’Abraham, qui ont mis fin aux déstabilisations orchestrées auparavant. Alexis souligne que ces accords ont constitué un antidote aux guerres sans fin promises par la lutte contre le terrorisme et les menaces inventées autour de la Russie ou de l’Iran.</p>
+<p>L’administration Trump a également inversé les politiques de pourrissement du tissu social héritées d’Obama. Les écoles ont reçu l’avertissement que qualifier un enfant de « prisonnier dans le mauvais corps » constituait un abus sur enfants lié au genre. Une renaissance chrétienne officielle a été mise en place, avec les sites du département d’État et du département du travail sous Marco Rubio affirmant que les États-Unis sont « une nation chrétienne ».</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que ces initiatives de paix ne relèvent pas d’un simple pragmatisme diplomatique mais d’un renversement systématique des leviers de pouvoir mondialiste. En pacifiant la Corée du Nord et en restructurant le Moyen-Orient via Ben Salman, Trump a supprimé les casus belli que les administrations précédentes entretenaient pour justifier des interventions permanentes.</p>
+<p>Il insiste sur le fait que la rechristianisation officielle et les avertissements contre les abus de genre visent à restaurer une boussole morale nationale. Ces mesures s’inscrivent dans une stratégie plus large de restauration de la souveraineté américaine face à l’érosion progressive opérée depuis la création de la Réserve fédérale.</p>
+<p>Enfin, Alexis explique que ces actions ont permis de redonner de la fierté nationale tout en stoppant la guerre psychologique menée contre la population. La renaissance chrétienne, avec ses hausses mesurables de ventes de Bibles et de téléchargements d’applications religieuses, illustre concrètement ce retour à une identité culturelle forte.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Rencontre avec Kim Jong-un et accords d’Abraham</strong> : Alexis rappelle que ces initiatives ont directement mis fin aux foyers de tension créés sous Obama en Corée du Nord et au Moyen-Orient, évitant l’escalade vers un conflit majeur impliquant la Russie et l’Iran.</li>
+<li><strong>Refonte du Moyen-Orient via Ben Salman</strong> : Il souligne que la danse du sabre et l’accession au pouvoir du fils réformateur de Salmane ont permis de stopper le financement du djihadisme et d’aboutir aux accords d’Abraham, renversant ainsi la stratégie de déstabilisation permanente.</li>
+<li><strong>Renaissance chrétienne officielle et avertissements sur le genre</strong> : Alexis note que l’administration a déclaré les États-Unis « nation chrétienne » sur les sites officiels et a qualifié l’assignation d’identité de genre aux enfants d’abus, marquant un renversement des politiques de pourrissement social initiées par Obama.</li>
+</ul>
+
+</div>
+<div class="chapitre">
+<h2>⚔️ Chapitre 15 — Lutte contre la charia, l'islamisme et la guerre de cinquième génération</h2>
+
+<h3>Contexte</h3>
+<p>Alexis évoque les déclarations récentes de Donald Trump sur l’interdiction de la charia aux États-Unis. Le 26 août dernier, sur l’émission de Glenn Beck, Trump a affirmé qu’il interdirait absolument cette affaire de charia car elle se produit un peu dans le pays et qu’il faut l’éliminer pour conserver un seul système. Au bureau Oval cette semaine, il a répété que la charia n’a pas sa place aux États-Unis.</p>
+<p>Il souligne la présence de la charia dans des endroits précis comme Dearborn dans le Michigan, Londres et Paris. Trump a également déclaré que l’Angleterre est en train de se faire ravager par l’immigration et de perdre son pays avec l’invasion islamique. Alexis note que ces propos sont présentés par CNews comme des sorties controversées contre l’Europe, alors qu’ils visent en réalité l’islamisme pour sauver la culture européenne.</p>
+<p>Alexis présente le Schwerpunkt des midterms sur l’islamisme, avec les déclarations de Trump sur la charia et la mise en avant d’Al-Sayed. Il rappelle que les radicaux du Parti démocrate, dont les islamistes et les transgenres, servent de porte-parole, ce qui constitue un plan de match efficace pour les patriotes. Il cite l’exemple de Ceuta où des migrants ont déclaré que si les parents laissent une fille de 15 ou 16 ans sortir seule, c’est normal qu’on la viole et que c’est la faute des parents.</p>
+<p>Il s’appuie sur les analyses de Gad Saad dans son livre Suicidal Empathy, paru en mai, et dans ses interventions chez Joe Rogan. Gad Saad insiste sur l’incompatibilité culturelle totale avec les bédouineries du septième siècle et sur le devoir de résistance plutôt que sur un devoir humanitaire teinté d’empathie suicidaire. Alexis mentionne aussi l’occupation de parcs entiers en Suède ou en Italie par des milliers de musulmans priant dehors malgré les mosquées.</p>
+<p>Enfin, il décrit la guerre de cinquième génération menée contre l’islamisation de l’Occident. Un nouveau rapport de l’ISGAP examine l’influence systémique de l’islamisme dans la société civile et l’enseignement supérieur canadien. Gad Saad a tweeté en 2023 que pour que l’Occident remporte cette bataille civilisationnelle, il faut défendre fièrement les valeurs occidentales sans équilibre et reconnaître que toutes les cultures ne sont pas égales.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre comment l’administration Trump place l’islamisme au centre de l’offensive patriotique pour les midterms. Les propos sur la charia et l’exemple d’Al-Sayed servent de message politique définissant l’agenda contre les systèmes de croyances séditieuses. Cette stratégie s’inscrit dans une prise de conscience après des décennies d’absence de questions sur l’incompatibilité culturelle.</p>
+<p>Il relie ces éléments à la nécessité d’une remigration des immigrants prônant des valeurs intolérables visant à détruire la civilisation occidentale. La tolérance zéro envers la charia et la criminalisation de ces systèmes constituent les points clés d’une politique d’immigration rationnelle fondée sur l’homophilie culturelle.</p>
+<p>Alexis insiste sur le fait que l’Occident se trouve dans une spirale de la mort infligée par lui-même à cause des folies progressistes parasitaires et des parasites idéologiques comme le communisme et l’islamisme. La reconnaissance que tous les immigrants ne sont pas également susceptibles de s’assimiler guide la refonte des politiques migratoires sous l’impulsion des États-Unis.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Interdiction explicite de la charia</strong> : Trump a déclaré sur l’émission de Glenn Beck le 26 août et au bureau Oval cette semaine qu’il interdirait la charia aux États-Unis car elle menace la Constitution et qu’un seul système doit prévaloir, ce qui positionne clairement l’islamisme comme cible des midterms.</li>
+<li><strong>Focus géographique sur les zones d’application</strong> : Dearborn au Michigan, Londres et Paris sont cités comme exemples concrets où la charia est déjà présente, tandis que Trump qualifie le maire de Londres de « épouvantable » et accuse l’Angleterre de perdre son pays face à l’invasion islamique.</li>
+<li><strong>Schwerpunkt des midterms et offensive patriotique</strong> : L’islamisme devient le point de gravité de la campagne avec la mise en avant d’Al-Sayed et les déclarations sur Ceuta, où des migrants justifient des viols de fillettes de 10 à 16 ans par la culture d’origine, réveillant l’opinion publique.</li>
+<li><strong>Incompatibilité culturelle selon Gad Saad</strong> : Dans Suicidal Empathy et chez Joe Rogan, Gad Saad expose que toutes les cultures ne sont pas égales, que les croyances religieuses ne sont pas toutes compatibles avec les valeurs occidentales et que les immigrants porteurs de valeurs de conquête doivent être expulsés en masse.</li>
+<li><strong>Guerre de cinquième génération et remigration</strong> : La bataille civilisationnelle exige une politique d’immigration fondée sur l’homophilie culturelle, une tolérance zéro envers la charia et la reconnaissance que l’Occident doit défendre fièrement ses valeurs sans concession face à l’islamisation.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« j’interdirais absolument cette affaire de charia. Cela se produit un peu dans le pays. Là, nous la voyons, nous l’éliminons. Nous avons un seul système. »</blockquote>
+<blockquote>« si les parents laissent une fille de 15 ou 16 ans sortir toute seule, c’est normal qu’on la viole. C’est la faute des parents »</blockquote>
+<blockquote>« Pour que l’Occident remporte cette bataille civilisationnelle… »</blockquote>
+
+</div>
+<div class="chapitre">
+<h2>📚 Chapitre 16 — Stratégie éducative et pédagogique de Trump envers le peuple américain</h2>
+
+<h3>Contexte</h3>
+<p>Alexis explique que l’administration Trump et ses proches, dont <strong>Mike Flynn</strong>, <strong>Steve Bannon</strong>, <strong>Tucker Carlson</strong>, <strong>RFK Jr.</strong> et <strong>Tulsi Gabbard</strong>, mènent depuis 2015-2016 une vaste entreprise d’éducation du peuple américain sur la corruption des institutions et la manière dont le pouvoir a été détourné par les mondialistes au cours du siècle dernier. Cette pédagogie vise à rendre visible la captation progressive de la souveraineté américaine, depuis la création de la <strong>Réserve fédérale</strong> le 25 janvier 1913 jusqu’aux fraudes électorales modernes en passant par le complexe militaro-industriel et les agences de renseignement.</p>
+<p>Il souligne que Trump refuse d’utiliser la NSA pour contrôler les machines de vote et truquer les résultats en sa faveur, même s’il en aurait eu la capacité technique. Au contraire, l’objectif est de laisser le système aller jusqu’au <em>précipice</em> afin que la population constate par elle-même l’ampleur de la corruption et des ennemis intérieurs. Cette stratégie, inspirée des analyses de <strong>Mike Flynn</strong>, consiste à montrer au peuple américain qu’il a été volé et que le rêve américain a été érodé par des décennies d’infiltration communiste et mondialiste.</p>
+<p>Trump promeut explicitement le message <strong>« fight, fight, fight »</strong> et la fierté nationale pour contrer la démoralisation orchestrée par les mondialistes. Il rappelle à la population qu’elle doit se relever du divan, militer et se battre pour son pays, comme l’illustre l’événement UFC organisé à la Maison-Blanche. Parallèlement, il met en garde contre les ennemis domestiques qui violent leur serment de protéger la Constitution contre les menaces extérieures et intérieures.</p>
+<p>Cette pédagogie prolongée produit un effet concret sur le <strong>Parti démocrate</strong> : les modérés et les personnalités centristes quittent le navire, laissant place aux radicaux tels que <strong>Sarah McBride</strong>, <strong>Al-Sayed</strong> et les membres des <strong>Democratic Socialists of America</strong>. Des figures comme <strong>RFK Jr.</strong>, <strong>Tulsi Gabbard</strong>, de nombreux électeurs noirs, le congressiste <strong>John Fetterman</strong> et même <strong>Alexandria Ocasio-Cortez</strong> qui prend ses distances avec le wokisme illustrent ce mouvement de départ massif.</p>
+
+<h3>Analyse principale</h3>
+<p>La stratégie éducative de Trump repose sur la conviction que le pouvoir doit être rendu au peuple par une prise de conscience collective plutôt que par un coup de force technologique. En refusant d’intervenir directement sur les machines électorales, Trump transforme la défaite apparente en leçon vivante qui expose la fraude et les complicités internes. Cette approche pédagogique s’inscrit dans une vision à long terme où la population américaine, une fois informée, devient capable de défendre elle-même ses institutions et sa souveraineté.</p>
+<p>En promouvant le message de combat et la fierté nationale, Trump s’attaque directement à la guerre psychologique décrite par <strong>Yuri Bezmenov</strong> et à la stratégie de pourrissement du tissu social mise en œuvre depuis des décennies. Il renverse ainsi les effets de la démoralisation en redonnant aux Américains le sentiment qu’ils peuvent encore inverser le cours des choses. L’impact sur le Parti démocrate montre l’efficacité de cette méthode : en forçant les radicaux à occuper le devant de la scène, Trump accentue la fuite des modérés et affaiblit durablement l’opposition.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Précipice pédagogique :</strong> Trump choisit de laisser le système électoral et institutionnel aller jusqu’au bord du gouffre afin que la population constate par elle-même la corruption généralisée plutôt que de masquer les faits par une intervention technologique de la NSA.</li>
+<li><strong>Refus de truquer les élections :</strong> Malgré la capacité technique d’utiliser les agences de renseignement pour inverser les résultats, Trump privilégie l’éducation du peuple sur la fraude afin de créer une prise de conscience durable et non une victoire artificielle.</li>
+<li><strong>Promotion du combat et de la fierté nationale :</strong> Le message « fight, fight, fight » et les initiatives symboliques comme l’UFC à la Maison-Blanche visent à redonner aux Américains une idéologie de combat et une cohésion nationale face à la démoralisation mondialiste.</li>
+<li><strong>Impact sur le Parti démocrate :</strong> L’éducation continue des patriotes et la mise en lumière des positions radicales ont accéléré le départ des modérés et des électeurs traditionnels, laissant le parti entre les mains de figures extrêmes qui éloignent encore davantage l’opinion publique.</li>
+</ul>
+
+</div>
+<div class="chapitre">
+<h2>🇨🇦 Chapitre 17 — Implications pour le Canada, le Québec et l'Occident</h2>
+
+<h3>Contexte</h3>
+<p>Alexis explique que la résistance canadienne aux tarifs américains provoque un appauvrissement volontaire. Plus le Canada redit sa position ferme, plus les compagnies quittent le territoire, plus l’endettement s’aggrave et plus les services publics s’effondrent. Il décrit un cercle vicieux où Montréal risque de devenir une nouvelle Détroit, avec l’apparition de bidonvilles et l’effondrement des services. Mark Carney est présenté comme l’acteur qui « joue le jeu » en rajoutant des mesures qui accélèrent cet étranglement économique volontaire.</p>
+<p>Il souligne que Trump a déclaré vouloir mettre fin à l’application de la charia aux États-Unis, notamment lors de son passage sur l’émission de Glenn Beck le 26 août et dans une déclaration au bureau Oval. Des zones comme Dearborn au Michigan, Londres ou Paris sont citées comme exemples où la charia s’installe déjà. L’immigration de masse est reliée à cette menace, avec des références à l’influence systémique de l’islamisme dans les universités canadiennes selon un rapport de l’ISGAP et aux propos de Gad Saad sur l’« empathie suicidaire ».</p>
+<p>La vidéo évoque une renaissance chrétienne aux États-Unis comme antidote à la démoralisation mondialiste. Depuis 2022, les ventes annuelles de Bibles ont augmenté de 46 %, les téléchargements d’applications religieuses de 80 % depuis 2019 et la musique chrétienne de 50 %. Alexis rappelle que Trump pousse cette rechristianisation officielle, à l’image de Poutine avec l’orthodoxie, et que les sites du département d’État et du département du travail sous Marco Rubio affirment que les États-Unis sont « une nation chrétienne ».</p>
+<p>Enfin, il insiste sur la nécessité pour le Canada, le Québec et tous les pays occidentaux de déchirer les traités internationaux néfastes signés dans le dos des peuples. Ces accords, imposés par les mondialistes, réduisent la souveraineté et favorisent la désindustrialisation. Il cite le retrait américain de 66 traités et appelle le gouvernement canadien à suivre la même voie pour retrouver sa marge de manœuvre économique et politique.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que la stratégie de résistance aux tarifs américains, loin de protéger le Canada, l’enferme dans une spirale d’appauvrissement accéléré. Mark Carney incarne cette logique d’étranglement volontaire en amplifiant les mesures qui poussent les entreprises vers les États-Unis. La combinaison de l’immigration de masse et de la progression de la charia constitue pour lui une menace directe à la Constitution et à la cohésion nationale, particulièrement visible dans certaines villes américaines et européennes.</p>
+<p>La renaissance chrétienne observée aux États-Unis est analysée comme un retour à une boussole morale capable de contrer la démoralisation provoquée par le wokisme, la pornographie et la destruction du tissu familial. En refusant d’appliquer la charia et en promouvant la fierté nationale, Trump offre un modèle que le Canada et le Québec pourraient suivre en rompant avec les traités qui les lient à un ordre mondialiste déclinant.</p>
+<p>Il souligne que ces traités, une fois déchirés, permettraient aux nations de reprendre le contrôle de leur monnaie, de leurs frontières et de leur identité culturelle. Le Canada, en persistant dans la résistance, ne fait que précipiter sa propre marginalisation économique au profit des États-Unis et des pays qui ont choisi de négocier.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Appauvrissement volontaire par la résistance aux tarifs</strong> : Plus le Canada maintient une position dure, plus les entreprises délocalisent vers les États-Unis, augmentant la dette publique et provoquant l’effondrement des services dans des villes comme Montréal, transformées en zones de délabrement économique.</li>
+<li><strong>Rôle de Mark Carney dans l’étranglement économique</strong> : Carney est décrit comme l’opérateur qui « en rajoute » dans la logique de confrontation, accélérant la fuite des capitaux et l’appauvrissement du pays au lieu de chercher un accommodement avec l’administration Trump.</li>
+<li><strong>Menace de la charia et immigration de masse</strong> : Trump a explicitement déclaré vouloir interdire la charia aux États-Unis car elle menace la Constitution ; des enclaves existent déjà à Dearborn, Londres et Paris, tandis que des rapports récents alertent sur l’influence islamiste dans les universités canadiennes.</li>
+<li><strong>Renaissance chrétienne comme antidote</strong> : Avec une hausse de 46 % des ventes de Bibles et de 80 % des applications religieuses, la rechristianisation officielle aux États-Unis redonne une identité morale collective face à la démoralisation provoquée par les idéologies progressistes.</li>
+<li><strong>Nécessité de déchirer les traités néfastes</strong> : Les accords internationaux signés sans consentement populaire, à l’instar des 66 traités retirés par les États-Unis, doivent être rompus par le Canada et le Québec pour restaurer la souveraineté économique et politique.</li>
+</ul>
+</div>
+<div class="chapitre">
+<h2>🌍 Chapitre 18 — Conclusion sur la trajectoire prévisible de Trump et l'ère multipolaire</h2>
+
+<h3>Contexte</h3>
+<p>Alexis présente Donald Trump comme l’antidote aux poisons mondialistes qui ont capté le pouvoir aux États-Unis depuis plus d’un siècle, depuis la création de la réserve fédérale le 25 janvier jusqu’à l’infiltration des institutions par le complexe militaro-industriel et les réseaux comme le Council on Foreign Relations. Il rappelle que Trump a annoncé dès son discours d’inauguration du 21 janvier 2017 son intention de retourner le pouvoir au peuple et que, depuis lors, sa trajectoire reste aussi prévisible qu’un missile balistique lancé d’Iran vers Tel Aviv. L’émission souligne que Trump n’est ni l’Antéchrist ni un personnage irrationnel, mais un acteur rationnel qui rejette explicitement les lectures bibliques et les thèses du troisième temple défendues par Pierre-Hilard.</p>
+<p>Il expose comment l’administration Trump, avec des figures comme Mike Flynn, Steve Bannon, Tucker Carlson, RFK et Tulsi Gabbard, mène une entreprise continue d’éducation du peuple américain sur la corruption des institutions et la perte du rêve américain. Cette pédagogie vise à renverser un siècle de prise de contrôle mondialiste, à restaurer la souveraineté et à maximiser le potentiel économique, militaire, culturel et technologique des États-Unis pour le projeter fermement dans le 21e siècle. Alexis rappelle également la déclaration de Trump à l’ONU en 2018 selon laquelle « l’ère du mondialisme est terminée », annonçant le passage à une ère multipolaire marquée par le retour des frontières et la fin des traités qui érodent la souveraineté.</p>
+<p>L’émission insiste sur le fait que Trump agit exactement comme il l’a annoncé, malgré l’usage de stratégies complexes comme l’effet miroir, et qu’il s’inscrit en faux contre les charlataneries qui cherchent à le cadrer dans l’Apocalypse. Depuis 2015-2016, soit dix ans de présence sur la scène politique, sa constance permet de prévoir précisément où il se dirige : redonner au peuple le contrôle des institutions tout en combattant le pourrissement social et la guerre psychologique hérités des décennies précédentes.</p>
+
+<h3>Analyse principale</h3>
+<p>Alexis montre que la prévisibilité stratégique de Trump repose sur une cohérence historique et idéologique qui contraste avec la caricature médiatique d’un politicien irrationnel. En s’attaquant successivement aux sept points de la prise de contrôle mondialiste — création monétaire, traités commerciaux, appareil sécuritaire, médias et agences de renseignement, politiciens, casus belli et fraude électorale —, il renverse méthodiquement l’érosion de la souveraineté américaine entamée depuis Andrew Jackson. Cette action s’accompagne d’une volonté explicite de réactiver la fierté nationale et de promouvoir une renaissance chrétienne, illustrée par l’augmentation de 46 % des ventes de Bibles et de 80 % des téléchargements d’applications religieuses depuis 2019.</p>
+<p>Il souligne que le rejet des thèses du troisième temple permet de recentrer l’analyse sur des termes strictement politiques et géopolitiques, évitant les lectures ésotériques qui obscurcissent la trajectoire réelle. L’éducation continue du peuple, menée par l’entourage de Trump, vise à rendre visible la captation du pouvoir par les mondialistes et à préparer la population à défendre le rêve américain dans un contexte multipolaire. Cette démarche pédagogique, combinée à la projection des États-Unis comme puissance dominante du 21e siècle, constitue le cœur de la stratégie trumpienne.</p>
+
+<h3>Arguments détaillés</h3>
+<ul>
+<li><strong>Trump comme antidote aux poisons mondialistes</strong> : il renverse la captation progressive du pouvoir par la réserve fédérale, le complexe militaro-industriel et les réseaux d’influence, en nommant des patriotes aux postes clés et en retirant les États-Unis de 66 traités mondialistes.</li>
+<li><strong>Prévisibilité stratégique malgré les apparences</strong> : depuis son discours d’inauguration de 2017 et sa déclaration à l’ONU en 2018, Trump applique un plan cohérent qui rend sa trajectoire lisible comme un missile balistique, même lorsqu’il emploie des stratégies de négociation complexes.</li>
+<li><strong>Rejet des thèses du troisième temple</strong> : l’émission s’inscrit explicitement contre les interprétations bibliques et apocalyptiques qui placent Trump dans l’Apocalypse, afin de maintenir une analyse politique et géopolitique rigoureuse.</li>
+<li><strong>Éducation continue du peuple et projection dans le 21e siècle</strong> : l’administration Trump, via Flynn, Bannon et d’autres, instruit les Américains sur la corruption institutionnelle tout en maximisant le potentiel économique, militaire et technologique du pays pour l’ancrer dans l’ère multipolaire.</li>
+</ul>
+
+<h3>Citations verbatim</h3>
+<blockquote>« Trump n’est pas l’ami de l’humanité. Trump n’est pas l’ami de l’humanité. Il ne faut vraiment rien avoir compris pour sortir des âneries comme ça. »</blockquote>
+<blockquote>« L’ère du mondialisme est terminée. »</blockquote>
+<blockquote>« Il reste deux ans à son mandat ; on a vu ce qu’il a fait depuis huit ans. »</blockquote>
+</div>
+<div class="chapitre">
+<h2>📖 Glossaire & acteurs</h2>
+<ul>
+<li><strong>Réserve fédérale</strong> : Banque centrale privée des États-Unis créée en 1913 qui contrôle la création monétaire et place le gouvernement en situation d’endettement permanent auprès d’intérêts privés.</li>
+<li><strong>Andrew Jackson</strong> : Président américain du XIXe siècle qui s’est opposé à la création d’une banque centrale et dont la photo figure dans le Bureau ovale de Trump comme symbole de résistance aux pouvoirs financiers mondiaux.</li>
+<li><strong>Complexe militaro-industriel</strong> : Réseau dénoncé par Eisenhower dans les années 1960 qui utilise les crises pour accroître son influence et son contrôle sur les institutions américaines.</li>
+<li><strong>Roy Cohn</strong> : Avocat et ami proche de Donald Trump, figure centrale de la commission McCarthy et lien direct entre l’anticommunisme des années 1950 et l’entourage politique de Trump.</li>
+<li><strong>John Birch Society</strong> : Organisation conservatrice qui, dès les années 1960, alertait sur l’infiltration des institutions américaines par des réseaux visant un gouvernement mondial.</li>
+<li><strong>Council on Foreign Relations</strong> : Think tank souvent cité comme vecteur d’érosion de la souveraineté américaine au profit d’une gouvernance mondiale.</li>
+<li><strong>Smartmatic</strong> : Système de machines de vote d’origine vénézuélienne accusé d’être au cœur des fraudes électorales généralisées aux États-Unis.</li>
+<li><strong>Kevin Warsh</strong> : Économiste nommé par Trump pour réformer la Réserve fédérale et rompre le contrôle monétaire mondialiste.</li>
+<li><strong>Tulsi Gabbard</strong> : Ancienne démocrate devenue alliée de Trump, chargée de l’épuration des agences de renseignement et de la dénonciation des mensonges sur l’origine de la COVID.</li>
+<li><strong>Kash Patel</strong> : Responsable du nettoyage interne du FBI et des arrestations d’agents infiltrés au sein des agences de renseignement.</li>
+</ul>
+</div>
+
+<div class="retenir">
+<h2>★ Points clés à retenir</h2>
+✅ Alexis présente l’édition du 30 août 2026 comme un résumé accessible de la politique de Trump. Il insiste sur le fait que cette vidéo permet de comprendre en moins d’une heure la trajectoire rationnelle du président américain plutôt que de céder aux caricatures médiatiques.  
+✅ La vidéo rejette explicitement les lectures bibliques ou apocalyptiques de Trump. Il rappelle que ces interprétations masquent la réalité politique et géopolitique d’un chef d’État prévisible qui agit selon des objectifs déclarés depuis 2017.  
+✅ Trump a annoncé dès son discours d’inauguration de 2017 vouloir rendre le pouvoir au peuple. Il poursuit cet objectif en éduquant les Américains sur la corruption institutionnelle accumulée depuis un siècle.  
+✅ La création de la Réserve fédérale en 1913 marque le début de l’érosion de la souveraineté américaine. Il souligne que cette institution a placé le pays sous le contrôle de puissances financières privées.  
+✅ Eisenhower avait déjà averti dans les années 1960 contre le complexe militaro-industriel. Il montre que ce complexe génère des crises pour justifier davantage de contrôle, comme lors du 11 septembre et de la COVID.  
+✅ Roy Cohn a constitué le lien entre la commission McCarthy et Donald Trump. Il explique que cette connexion a transmis à Trump une conscience aiguë de l’infiltration communiste et mondialiste des institutions.  
+✅ JFK et la John Birch Society avaient mis en garde contre les sociétés secrètes et le mouvement révolutionnaire mondial. Il rappelle que ces avertissements ont été suivis d’assassinats et de tentatives d’assassinat visant à préserver le statu quo.  
+✅ Obama représente le point culminant de cinquante ans d’infiltration des institutions américaines. Il décrit les déstabilisations en Ukraine et en Syrie ainsi que la création de l’État islamique comme des actions délibérées.  
+✅ Sept mécanismes permettent aux mondialistes de contrôler les institutions américaines. Il détaille successivement la création monétaire, les traités commerciaux, l’appareil sécuritaire, les médias, les politiciens, les foyers de tension et la guerre psychologique.  
+✅ La longue marche gramscienne vise à pourrir le tissu social par les institutions. Il expose comment l’école de Francfort et la théorie critique ont servi à démoraliser les populations occidentales.  
+✅ Yuri Bezmenov a décrit les étapes de la démoralisation d’une société. Il relie ces mécanismes aux politiques appliquées pendant la COVID et aux phénomènes culturels actuels.  
+✅ Les machines Smartmatic permettent une fraude électorale systématique. Il affirme que ce système empêche tout candidat intègre d’accéder au pouvoir sans accord préalable.  
+✅ Trump nomme Kevin Warsh pour réformer la Réserve fédérale. Il autorise également le Bitcoin tout en interdisant les monnaies numériques de banque centrale.  
+✅ Le retrait de soixante-six traités mondiaux, dont l’accord de Paris et le TPP, vise à restaurer la souveraineté américaine. Il souligne que ces accords ont été signés sans consentement populaire.  
+✅ L’audit du Pentagone par Exxon marque le début du nettoyage de l’appareil militaire. Il rappelle que Trump a entouré de généraux critiques d’Obama pour reprendre le contrôle des forces armées.  
+✅ La qualification de « fake news » a brisé le monopole médiatique des mondialistes. Il note que des plateformes alternatives comme Rumble et Getter ont permis de contourner la censure.  
+✅ Trump a convoqué Zuckerberg pour restaurer la liberté d’expression sur les réseaux sociaux. Il expose également les mensonges de la CIA concernant l’origine de la COVID.  
+✅ Les accords d’Abraham et la rencontre avec Kim Jong-un illustrent la stratégie de paix de Trump. Il renverse ainsi les foyers de tension créés par Obama au Moyen-Orient.  
+✅ La renaissance chrétienne officielle aux États-Unis constitue un antidote à la démoralisation. Il cite l’augmentation des ventes de Bibles et des téléchargements d’applications religieuses depuis 2022.  
+✅ Trump interdit la charia sur le territoire américain. Il identifie Dearborn, Londres et Paris comme des zones où cette loi parallèle menace la Constitution.  
+✅ Gad Saad analyse l’incompatibilité culturelle entre l’islamisme et les valeurs occidentales. Il présente cette lutte comme une guerre de cinquième génération décisive pour la survie de la civilisation.  
+✅ La stratégie éducative de Trump consiste à laisser le pays approcher du précipice pour révéler la corruption. Il refuse d’utiliser la NSA pour truquer les élections afin d’éduquer le peuple.  
+✅ Mark Carney est présenté comme l’architecte de l’étranglement économique volontaire du Canada. Il explique que plus le Canada résiste aux tarifs, plus les entreprises quittent le pays.  
+✅ Trump provoque volontairement des réactions au Canada et au Québec pour accélérer la prise de conscience. Il renomme le lac Ontario « lac Amérique » afin de susciter des débats.  
+✅ Le Parti démocrate ne compte plus aucun modéré pour les midterms. Il note que seuls des radicaux transgenres, islamistes et socialistes occupent désormais la scène médiatique.  
+✅ La vidéo insiste sur la prévisibilité stratégique de Trump malgré les apparences. Il agit comme un missile balistique dont la trajectoire est connue depuis 2017.  
+✅ Trump est décrit comme l’antidote aux poisons mondialistes accumulés depuis un siècle. Il poursuit la maximisation du potentiel économique, militaire et culturel des États-Unis.  
+✅ La projection des États-Unis dans un 21e siècle multipolaire constitue l’objectif final de Trump. Il rejette tout retour à un ordre mondial unipolaire dominé par des institutions supranationales.  
+✅ L’érosion de la souveraineté américaine a commencé avec la création de la Réserve fédérale. Il rappelle que ce processus s’est accéléré après la Seconde Guerre mondiale.  
+✅ La guerre psychologique appliquée pendant la COVID reprend les points de torture de Biderman. Il démontre que ces techniques visent à briser la résistance de la population.  
+✅ La fraude à l’immigration sert à acheter des votes via l’aide sociale. Il cite l’exemple du Michigan comme modèle généralisé à l’ensemble des États-Unis.  
+✅ Le message « fight, fight, fight » vise à redonner fierté et combativité au peuple américain. Il contraste avec la démoralisation entretenue par les mondialistes depuis des décennies.  
+✅ La refondation des agences de renseignement constitue une priorité absolue pour Trump. Il s’appuie sur Tulsi Gabbard et Kash Patel pour mener ce nettoyage interne.  
+✅ La renaissance chrétienne aux États-Unis accompagne la restauration de la souveraineté nationale. Il la présente comme une boussole morale indispensable face à l’idéologie mondialiste.  
+✅ Les traités signés sans consentement populaire doivent être déchirés. Il affirme que tous les gouvernements occidentaux devraient suivre cet exemple pour retrouver leur liberté d’action.  
+✅ Trump agit de manière rationnelle et prévisible malgré les caricatures. Il poursuit depuis dix ans une stratégie cohérente de restauration de la puissance américaine.
+</div>
+<div class="gen-meta">Analyse ultra détaillée générée par <strong>grok-3-mini</strong> le 31/08/2026 à 08:55 · thème <em>Indigo Nuit</em></div>
+<div class="theme-footer" data-current-theme="Indigo Nuit">
+  <span>Thème :</span>
+  <select id="theme-select">
+    <option value="Violet Mystique">Violet Mystique</option>
+    <option value="Bleu Océan">Bleu Océan</option>
+    <option value="Forêt Émeraude">Forêt Émeraude</option>
+    <option value="Bordeaux Velours">Bordeaux Velours</option>
+    <option value="Ardoise Contemporain">Ardoise Contemporain</option>
+    <option value="Terre Cuite">Terre Cuite</option>
+    <option value="Indigo Nuit">Indigo Nuit</option>
+    <option value="Sable Doré">Sable Doré</option>
+    <option value="Jade Impérial">Jade Impérial</option>
+    <option value="Aubergine Doux">Aubergine Doux</option>
+  </select>
+  <span id="theme-status"></span>
+</div>
+</main>
+</div>
+<script>
+(function() {
+  var tl = document.getElementById('toc-list');
+  var intro = document.querySelector('.intro');
+  var hs = Array.from(document.querySelectorAll('.chapitre h2'));
+  var retenir = document.querySelector('.retenir');
+  if (tl && (intro || hs.length || retenir)) {
+    var anchors = [], targets = [];
+    if (intro) {
+      intro.id = 'intro-section';
+      var ai = document.createElement('a');
+      ai.href = '#intro-section';
+      ai.textContent = 'Introduction';
+      ai.className = 'toc-intro-link';
+      ai.onclick = function(e) { e.preventDefault(); intro.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      tl.appendChild(ai);
+      anchors.push(ai); targets.push(intro);
+    }
+    hs.forEach(function(h, i) {
+      if (!h.id) h.id = 'chap-' + i;
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.onclick = function(e) { e.preventDefault(); h.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      tl.appendChild(a);
+      anchors.push(a); targets.push(h);
+    });
+    if (retenir) {
+      retenir.id = 'retenir-section';
+      var ar = document.createElement('a');
+      ar.href = '#retenir-section';
+      ar.textContent = 'Points clés à retenir';
+      ar.className = 'toc-retenir-link';
+      ar.onclick = function(e) { e.preventDefault(); retenir.scrollIntoView({ behavior: 'smooth', block: 'start' }); };
+      tl.appendChild(ar);
+      anchors.push(ar); targets.push(retenir);
+    }
+    function upd() {
+      var vh = window.innerHeight, cur = 0;
+      targets.forEach(function(t, i) { if (t.getBoundingClientRect().top <= vh * 0.3) cur = i; });
+      anchors.forEach(function(a) { a.classList.remove('active'); });
+      anchors[cur].classList.add('active');
+    }
+    window.addEventListener('scroll', upd, { passive: true });
+    upd();
+  }
+  var sw = document.querySelector('.theme-footer');
+  var sel = document.getElementById('theme-select');
+  if (sw && sel) {
+    sel.value = sw.dataset.currentTheme || sel.options[0].value;
+    sel.addEventListener('change', function() {
+      var name = sel.value, st = document.getElementById('theme-status');
+      st.textContent = '…';
+      fetch('/api/source/510/retheme', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ theme: name })
+      }).then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.ok) {
+            document.getElementById('theme-css').textContent = d.css;
+            var m = document.querySelector('.gen-meta em');
+            if (m) m.textContent = name;
+            sw.dataset.currentTheme = name;
+            st.textContent = '✓';
+            setTimeout(function() { st.textContent = ''; }, 2000);
+          } else { st.textContent = '×'; }
+        }).catch(function() { st.textContent = '×'; });
+    });
+  }
+})();
+</script>
+<!--_RETENIR_FIX_SNIPPET--><script>
+(function() {
+  function fix() {
+    document.querySelectorAll('.retenir').forEach(function(box) {
+      if (box.querySelector('li')) return;
+      var h2 = box.querySelector('h2');
+      var clone = box.cloneNode(true);
+      var ch2 = clone.querySelector('h2'); if (ch2) ch2.remove();
+      var html = clone.innerHTML.replace(/<\/?(p|div|br)\b[^>]*>/gi, ' ').trim();
+      if (!html) return;
+      var parts;
+      try { parts = html.split(/\s+(?=\p{Extended_Pictographic})/u); }
+      catch (e) { return; }
+      parts = parts.map(function(s) { return s.trim(); }).filter(function(s) { return s.length; });
+      if (parts.length < 2) return;
+      var ul = document.createElement('ul');
+      parts.forEach(function(pt) {
+        var li = document.createElement('li');
+        li.innerHTML = pt;
+        ul.appendChild(li);
+      });
+      Array.from(box.childNodes).forEach(function(n) { if (n !== h2) box.removeChild(n); });
+      box.appendChild(ul);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fix);
+  else fix();
+})();
+</script>
+<!--_QDQQ_SEARCH_MODULE-->
+<style>
+/* Toutes les couleurs viennent de variables calculées à l'exécution à partir des
+   éléments déjà thématisés (voir themeVars) : le module suit les 9 thèmes.
+   Les valeurs de repli ne servent que si le calcul échoue. */
+.qs-wrap { margin: 10px 0 0; font-size: 0.78rem; }
+
+/* ── Onglets : contrôle segmenté, pastille active en relief ── */
+.qs-tabs {
+  display: flex; gap: 2px; padding: 3px; border-radius: 11px;
+  background: var(--qs-ac06, rgba(120,72,176,.07));
+  border: 1px solid var(--qs-bd, #e8e0f5);
+}
+.qs-tab {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 6px 8px; font: inherit; font-size: 0.72rem; font-weight: 700;
+  letter-spacing: .015em; line-height: 1.15; cursor: pointer; white-space: nowrap;
+  border: none; border-radius: 8px; background: transparent;
+  color: var(--qs-mut, #6b7280);
+  transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.qs-tab:hover { color: var(--qs-ac, #7848b0); }
+.qs-tab.qs-on {
+  background: var(--qs-bg, #fff); color: var(--qs-ac, #7848b0);
+  box-shadow: 0 1px 2px rgba(15,23,42,.12), 0 2px 7px rgba(15,23,42,.07);
+}
+.qs-tab-ico { font-size: .9rem; line-height: 1; }
+
+/* ── Panneau ── */
+.qs-pane { display: none; margin-top: 9px; flex-direction: column; gap: 8px; }
+.qs-wrap.qs-open .qs-pane { display: flex; animation: qsSlide .24s cubic-bezier(.22,.9,.3,1); }
+@keyframes qsSlide { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: none; } }
+
+.qs-field { position: relative; display: flex; align-items: center; }
+.qs-field .qs-ico {
+  position: absolute; left: 9px; font-size: .78rem; line-height: 1;
+  opacity: .45; pointer-events: none;
+}
+.qs-field input {
+  width: 100%; box-sizing: border-box; padding: 8px 28px 8px 28px;
+  font: inherit; font-size: 0.79rem; color: var(--qs-fg, #334155);
+  background: var(--qs-bg, #fff); border: 1px solid var(--qs-bd, #cbd5e1);
+  border-radius: 9px; outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.qs-field input::placeholder { color: var(--qs-mut, #94a3b8); opacity: .8; }
+.qs-field input:focus { border-color: var(--qs-ac, #7848b0); box-shadow: 0 0 0 3px var(--qs-ac18, rgba(120,72,176,.18)); }
+.qs-x {
+  position: absolute; right: 5px; background: none; border: none; cursor: pointer;
+  padding: 3px 4px; font: inherit; font-size: 0.72rem; line-height: 1;
+  color: var(--qs-mut, #94a3b8); border-radius: 4px; transition: color .14s, background .14s;
+}
+.qs-x:hover { color: var(--qs-ac, #7848b0); background: var(--qs-ac10, rgba(120,72,176,.1)); }
+
+/* Ligne d'indication : affichée seulement quand la règle appliquée n'est pas
+   l'évidence (2 mots ou plus, ou expression entre guillemets). */
+.qs-row { display: none; align-items: center; gap: 8px; margin-top: -2px; }
+.qs-row.qs-on { display: flex; }
+.qs-hint {
+  display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 5px;
+  font-size: 0.62rem; font-weight: 800; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--qs-ac, #7848b0); background: var(--qs-ac10, rgba(120,72,176,.12));
+}
+
+/* ── Compteur + navigation entre occurrences ── */
+.qs-navrow { display: flex; align-items: center; gap: 8px; min-height: 22px; }
+.qs-count { font-size: 0.68rem; color: var(--qs-mut, #64748b); letter-spacing: .02em; }
+.qs-count b { color: var(--qs-ac, #7848b0); font-weight: 800; }
+.qs-nav { display: none; align-items: center; gap: 2px; margin-left: auto; }
+.qs-nav.qs-on { display: flex; }
+.qs-nav-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; padding: 0; cursor: pointer; font: inherit;
+  font-size: 0.95rem; font-weight: 700; line-height: 1;
+  color: var(--qs-ac, #7848b0); background: var(--qs-ac10, rgba(120,72,176,.12));
+  border: none; border-radius: 6px; transition: background .14s ease;
+}
+.qs-nav-btn:hover { background: var(--qs-ac18, rgba(120,72,176,.2)); }
+.qs-pos {
+  min-width: 48px; text-align: center; font-size: 0.66rem; font-weight: 700;
+  color: var(--qs-mut, #64748b); font-variant-numeric: tabular-nums;
+}
+
+/* ── Résultats ── */
+.qs-results {
+  display: flex; flex-direction: column; max-height: 44vh; overflow-y: auto;
+  margin: 0 -4px; padding: 0 4px; scrollbar-width: thin;
+}
+.qs-res {
+  position: relative; display: block; width: 100%; text-align: left; cursor: pointer;
+  font: inherit; padding: 7px 8px 8px 13px; margin-bottom: 2px; border: none;
+  border-radius: 8px; background: transparent; color: var(--qs-fg, #334155);
+  line-height: 1.36; transition: background .14s ease;
+}
+.qs-res::before {
+  content: ''; position: absolute; left: 3px; top: 8px; bottom: 8px; width: 3px;
+  border-radius: 3px; background: transparent; transition: background .14s ease;
+}
+.qs-res:hover { background: var(--qs-ac06, rgba(120,72,176,.07)); }
+.qs-res:hover::before { background: var(--qs-ac18, rgba(120,72,176,.18)); }
+.qs-res.qs-on { background: var(--qs-ac10, rgba(120,72,176,.1)); }
+.qs-res.qs-on::before { background: var(--qs-ac, #7848b0); }
+.qs-res-sec {
+  display: block; font-size: 0.63rem; font-weight: 800; text-transform: uppercase;
+  letter-spacing: .05em; color: var(--qs-ac, #7848b0); margin-bottom: 3px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.qs-res-n { opacity: .5; font-variant-numeric: tabular-nums; margin-right: 2px; }
+.qs-res-x {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden; font-size: 0.735rem; color: var(--qs-fg, #334155); opacity: .93;
+}
+.qs-xh { background: #ffe8a3; color: #7a4b06; border-radius: 3px; padding: 0 2px; font-weight: 700; }
+.qs-empty { padding: 8px 2px; font-size: 0.72rem; font-style: italic; color: var(--qs-mut, #94a3b8); }
+
+/* Surlignage dans le corps de l'analyse — jamais <mark> (déjà utilisé par le
+   contenu éditorial et restylé par chacun des thèmes). */
+span.qs-hit { background: #ffe8a3; color: #7a4b06; border-radius: 3px; box-shadow: inset 0 -2px 0 #f0b429; }
+span.qs-hit.qs-cur { background: #f97316; color: #fff; box-shadow: inset 0 -2px 0 #c2410c, 0 0 0 3px rgba(249,115,22,.25); }
+#toc-list.qs-hide { display: none; }
+/* Sommaire replié (36 px) : les onglets deviennent 2 icônes, le panneau disparaît. */
+#toc._toc-collapsed .qs-wrap { margin-top: 6px; }
+#toc._toc-collapsed .qs-tabs { flex-direction: column; align-items: center; gap: 2px; padding: 2px; border-radius: 9px; }
+#toc._toc-collapsed .qs-tab { width: 26px; height: 26px; flex: none; padding: 0; gap: 0; border-radius: 7px; }
+#toc._toc-collapsed .qs-tab-lbl { display: none; }
+#toc._toc-collapsed .qs-pane { display: none !important; }
+/* Barre compacte sous 768 px (le viewer parent masque #toc à cette taille). */
+.qs-mhost { display: none; }
+@media (max-width: 768px) {
+  .qs-mhost {
+    display: block; position: sticky; top: 0; z-index: 60; padding: 7px 10px;
+    background: var(--qs-bg, #fff); border-bottom: 1px solid var(--qs-bd, #e2e8f0);
+    box-shadow: 0 2px 10px rgba(15,23,42,.10);
+  }
+  .qs-wrap.qs-m { margin: 0; }
+  .qs-wrap.qs-m .qs-results { max-height: 40vh; }
+  /* Le sommaire est deplace ici par place() : il lui faut sa propre mise en forme,
+     celle de `#toc-inner` etant restee dans le <nav> masque. */
+  .qs-mhost > #toc-list {
+    display: block; max-height: 55vh; overflow-y: auto; margin-top: 7px;
+    padding-top: 7px; border-top: 1px solid var(--qs-bd, #e2e8f0);
+    -webkit-overflow-scrolling: touch;
+  }
+  .qs-mhost > #toc-list.qs-hide { display: none; }
+  .qs-mhost > #toc-list a { font-size: 0.86rem; padding: 8px 9px; margin-bottom: 3px; }
+}
+@media print { .qs-wrap, .qs-mhost { display: none !important; } span.qs-hit { background: transparent !important; box-shadow: none !important; color: inherit !important; } }
+</style>
+<script>
+(function() {
+  if (window.__qdqqSearchModule) return;
+  window.__qdqqSearchModule = 1;
+  var D = document;
+  var WORD = /[a-z0-9À-ɏ]/i;
+
+  function esc(s) {
+    return (s == null ? '' : String(s)).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  /* Repli accents + casse + espaces, à alignement 1 caractère -> 1 caractère :
+     sinon les index calculés sur la version repliée ne pointeraient plus au bon
+     endroit dans le texte d'origine. Même logique que _hlFold côté recherche. */
+  function fold(s) {
+    var out = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+      if (c === ' ' || c === '\n' || c === '\r' || c === '\t' || c === ' ') { out += ' '; continue; }
+      var f = c.normalize('NFD').replace(/[̀-ͯ]/g, '');
+      out += (f.length === 1 ? f : c);
+    }
+    return out.toLowerCase();
+  }
+  function reEsc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  /* ── Blocs indexables ────────────────────────────────────────────────────── */
+  /* Index construit UNE SEULE FOIS : le texte d'un bloc ne change jamais (le
+     marquage n'insère que des <span>, il ne modifie pas le texte). On garde donc
+     le texte et son repli ; seule la table d'offsets est reconstruite, et
+     uniquement pour les blocs qui répondent — sinon on replierait 100 000
+     caractères à chaque frappe. */
+  var _index = null;
+  function index() {
+    if (_index) return _index;
+    var sel = 'p,li,blockquote,h2,h3,td,figcaption,dd';
+    var all = [];
+    D.querySelectorAll('.intro,.chapitre,.retenir').forEach(function(r) {
+      Array.prototype.push.apply(all, r.querySelectorAll(sel));
+    });
+    if (!all.length) {   // analyse hors gabarit : repli sur le corps
+      var body = D.querySelector('main.qdqq-body') || D.body;
+      all = Array.prototype.slice.call(body.querySelectorAll(sel));
+    }
+    var set = new Set(all);
+    _index = all.filter(function(el) {
+      if (el.closest('#toc, .qs-wrap, .qs-mhost, .theme-footer, .qdqq-header, .qdqq-print-header')) return false;
+      for (var p = el.parentElement; p; p = p.parentElement) { if (set.has(p)) return false; }
+      return (el.textContent || '').trim().length > 1;
+    }).map(function(el) {
+      var t = el.textContent || '';
+      return { el: el, txt: t, f: fold(t) };
+    });
+    return _index;
+  }
+  /* Texte concaténé du bloc + table d'offsets vers les nœuds texte : c'est ce qui
+     permet de trouver une expression coupée par un <strong>/<em>. */
+  function blockText(el) {
+    var w = D.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var txt = '', map = [], n;
+    while ((n = w.nextNode())) {
+      var t = n.nodeValue;
+      if (!t) continue;
+      map.push({ node: n, start: txt.length, end: txt.length + t.length });
+      txt += t;
+    }
+    return { text: txt, map: map };
+  }
+  function sectionOf(el) {
+    var ch = el.closest('.chapitre');
+    if (ch) { var h = ch.querySelector('h2'); if (h) return (h.textContent || '').trim(); }
+    if (el.closest('.retenir')) return 'Points clés à retenir';
+    if (el.closest('.intro')) return 'Introduction';
+    return '';
+  }
+
+  /* ── Correspondances ─────────────────────────────────────────────────────── */
+  /* Plus de sélecteur de mode : sur UN SEUL document les trois modes du moteur de
+     transcriptions donnaient le même résultat dès que la requête tient en un mot,
+     et « au moins un mot » ramenait quasiment toute l'analyse dès qu'elle en tient
+     deux. La règle est donc implicite, façon Google : tous les mots sont exigés
+     dans le même passage, et des guillemets (« » ou "") demandent l'expression
+     exacte. */
+  var _QUOTED = /^\s*(?:"([^"]*)"|«\s*([^»]*?)\s*»)\s*$/;
+  function modeOf(q) {
+    var m = _QUOTED.exec(String(q || ''));
+    return (m && (m[1] || m[2] || '').trim()) ? 'phrase' : 'and';
+  }
+  function terms(q, mode) {
+    q = String(q || '').trim();
+    if (!q) return [];
+    if (mode === 'phrase') {
+      var m = _QUOTED.exec(q);
+      q = ((m && (m[1] || m[2])) || q).trim();
+    }
+    return q.split(/\s+/)
+      .map(function(t) { return t.replace(/^[+\-"«]+/, '').replace(/["*»]+$/, ''); })
+      .filter(function(t) { return t.length > 0; })
+      .map(fold);
+  }
+  /* Ancrage en DÉBUT de mot, fin libre : « ordre » trouve « ordres », mais
+     « dre » ne trouve pas « ordre ». */
+  function termHits(f, t) {
+    var out = [], from = 0, i;
+    while ((i = f.indexOf(t, from)) !== -1) {
+      if (!WORD.test(i > 0 ? f.charAt(i - 1) : '')) out.push([i, i + t.length]);
+      from = i + 1;
+    }
+    return out;
+  }
+  function phraseHits(f, ts) {
+    var re;
+    try { re = new RegExp(ts.map(reEsc).join('\\s+'), 'g'); } catch (e) { return []; }
+    var out = [], m;
+    while ((m = re.exec(f)) !== null) {
+      if (!m[0].length) { re.lastIndex++; continue; }
+      if (!WORD.test(m.index > 0 ? f.charAt(m.index - 1) : '')) out.push([m.index, m.index + m[0].length]);
+    }
+    return out;
+  }
+  function merge(hits) {
+    hits.sort(function(a, b) { return a[0] - b[0] || a[1] - b[1]; });
+    var out = [];
+    hits.forEach(function(h) {
+      var last = out[out.length - 1];
+      if (last && h[0] <= last[1]) { if (h[1] > last[1]) last[1] = h[1]; }
+      else out.push([h[0], h[1]]);
+    });
+    return out;
+  }
+
+  /* ── Marquage / démarquage ───────────────────────────────────────────────── */
+  /* Enveloppe par splitText (jamais de reconstruction innerHTML : le balisage
+     riche de l'analyse doit être préservé à l'identique). Parcours descendant
+     des occurrences ET des segments : les offsets des segments précédents
+     restent valides après découpe. */
+  function mark(map, hits) {
+    for (var k = hits.length - 1; k >= 0; k--) {
+      var s = hits[k][0], e = hits[k][1];
+      for (var i = map.length - 1; i >= 0; i--) {
+        var seg = map[i];
+        if (seg.end <= s || seg.start >= e) continue;
+        var node = seg.node;
+        var ls = Math.max(s, seg.start) - seg.start;
+        var le = Math.min(e, seg.end) - seg.start;
+        if (le < node.nodeValue.length) node.splitText(le);
+        var target = (ls > 0) ? node.splitText(ls) : node;
+        var sp = D.createElement('span');
+        sp.className = 'qs-hit';
+        target.parentNode.insertBefore(sp, target);
+        sp.appendChild(target);
+      }
+    }
+  }
+  function clearHits() {
+    var parents = new Set();
+    D.querySelectorAll('span.qs-hit').forEach(function(sp) {
+      var p = sp.parentNode;
+      if (!p) return;
+      while (sp.firstChild) p.insertBefore(sp.firstChild, sp);
+      p.removeChild(sp);
+      parents.add(p);
+    });
+    parents.forEach(function(p) { try { p.normalize(); } catch (e) {} });
+  }
+
+  /* ── Interface ───────────────────────────────────────────────────────────── */
+  var results = [];
+  /* Occurrences à plat, dans l'ordre du document, pour la navigation ‹ › :
+     hitEls[i] = le <span> surligné, hitRes[i] = l'indice du résultat qui le contient.
+     Les deux sont remplis PENDANT le marquage (les blocs sont déjà parcourus dans
+     l'ordre du document) — les reconstruire après coûterait un contains() par
+     couple occurrence × résultat. */
+  var hitEls = [], hitRes = [], cur = -1, lastRun = null;
+  var KEY = 'qdqq_qs_' + (location.pathname || 'doc');
+
+  var wrap = D.createElement('div');
+  wrap.className = 'qs-wrap';
+  wrap.innerHTML =
+      '<div class="qs-tabs">'
+    +   '<button type="button" class="qs-tab qs-tab-toc qs-on" title="Sommaire">'
+    +     '<span class="qs-tab-ico">&#128214;</span><span class="qs-tab-lbl">Sommaire</span></button>'
+    +   '<button type="button" class="qs-tab qs-tab-search" title="Rechercher dans cette analyse">'
+    +     '<span class="qs-tab-ico">&#128269;</span><span class="qs-tab-lbl">Recherche</span></button>'
+    + '</div>'
+    + '<div class="qs-pane">'
+    +   '<div class="qs-field">'
+    +     '<span class="qs-ico">&#128269;</span>'
+    +     '<input type="text" class="qs-input" spellcheck="false"'
+    +       ' placeholder="Rechercher dans l\'analyse&hellip;"'
+    +       ' title="Plusieurs mots : tous sont exig&eacute;s dans le m&ecirc;me passage.'
+    +       '&#10;Entre guillemets (&laquo;&nbsp;&raquo; ou &quot;&quot;) : expression exacte.'
+    +       '&#10;Insensible &agrave; la casse et aux accents.">'
+    +     '<button type="button" class="qs-x" title="Tout effacer : requ&ecirc;te, surlignages et r&eacute;sultats, et retour en haut">&#10005;</button>'
+    +   '</div>'
+    +   '<div class="qs-row"><span class="qs-hint"></span></div>'
+    +   '<div class="qs-navrow">'
+    +     '<span class="qs-count"></span>'
+    +     '<span class="qs-nav">'
+    +       '<button type="button" class="qs-nav-btn qs-prev" title="Occurrence pr&eacute;c&eacute;dente (Maj+Entr&eacute;e)">&#8249;</button>'
+    +       '<span class="qs-pos"></span>'
+    +       '<button type="button" class="qs-nav-btn qs-next" title="Occurrence suivante (Entr&eacute;e)">&#8250;</button>'
+    +     '</span>'
+    +   '</div>'
+    +   '<div class="qs-results"></div>'
+    + '</div>';
+
+  var tabT   = wrap.querySelector('.qs-tab-toc');
+  var tabS   = wrap.querySelector('.qs-tab-search');
+  var inp    = wrap.querySelector('.qs-input');
+  var row    = wrap.querySelector('.qs-row');
+  var hint   = wrap.querySelector('.qs-hint');
+  var cnt    = wrap.querySelector('.qs-count');
+  var nav    = wrap.querySelector('.qs-nav');
+  var pos    = wrap.querySelector('.qs-pos');
+  var list   = wrap.querySelector('.qs-results');
+
+  /* Hôte mobile : le viewer parent masque #toc sous 768 px avec !important —
+     inutile de lutter dans la cascade, on relocalise le nœud. */
+  var mhost = D.createElement('div');
+  mhost.className = 'qs-mhost';
+  var layout = D.querySelector('.qdqq-layout') || D.querySelector('main.qdqq-body');
+  if (layout && layout.parentNode) layout.parentNode.insertBefore(mhost, layout);
+  else D.body.insertBefore(mhost, D.body.firstChild);
+
+  var mq = window.matchMedia ? window.matchMedia('(max-width: 768px)')
+                             : { matches: false, addEventListener: null, addListener: null };
+  /* Sommaire referme a la demande, en mode barre uniquement : lire un chapitre sur
+     telephone n'a d'interet que si la liste des 20 entrees libere l'ecran. `place()`
+     etant rejoue a chaque bascule, l'etat doit vivre ici et non dans une classe, que
+     le prochain `place()` ecraserait. */
+  var tocMasque = false;
+
+  /* Repli des resultats. Le bouton « Resultats / masquer » est cree par la feuille
+     responsive, dans un AUTRE bloc de script : on passe donc par son clic plutot que
+     par la classe `qdqq-plie`, sinon son libelle resterait desynchronise de l'etat. */
+  function _res()   { return wrap.querySelector('.qs-results'); }
+  function _resBtn() { return wrap.querySelector('.qdqq-res-toggle'); }
+  /* Repli de la SEULE liste : le champ et la navigation « < 4/6 > » restent en place
+     pour enchainer les occurrences sans rouvrir quoi que ce soit. Le repli TOTAL, lui,
+     reste l'affaire du bouton « masquer » et de l'onglet « Recherche ». */
+  function replierResultats() {
+    var r = _res();
+    if (r && !r.classList.contains('qdqq-plie')) {
+      r.classList.add('qdqq-plie');
+      if (wrap._qdqqMaj) wrap._qdqqMaj();
+    }
+  }
+  function deplierResultats() {
+    var r = _res(), b = _resBtn();
+    if (r && b && r.classList.contains('qdqq-plie')) b.click();
+  }
+  function basculerResultats() {
+    var b = _resBtn();
+    if (b) b.click();
+  }
+
+  function place() {
+    var inner = D.getElementById('toc-inner');
+    var tl    = D.getElementById('toc-list');
+    if (mq.matches || !inner || !tl) {
+      if (wrap.parentNode !== mhost) mhost.appendChild(wrap);
+      wrap.classList.add('qs-m');
+      /* Le sommaire DOIT suivre les onglets dans la barre du haut. Sous 768 px la
+         visionneuse parente masque `#toc` : une liste laissee dans ce <nav> est
+         inatteignable, et demasquer `#toc-list` n'y change rien puisque c'est son
+         conteneur qui est masque. On la sort donc du nav, comme le bloc d'onglets. */
+      if (tl) {
+        if (tl.parentNode !== mhost) mhost.appendChild(tl);
+        tl.classList.toggle('qs-hide', wrap.classList.contains('qs-open') || tocMasque);
+      }
+    } else {
+      tocMasque = false;   /* le format colonne affiche toujours le sommaire */
+      /* Retour au format colonne : replacer la liste AVANT le bloc d'onglets, sinon
+         `insertBefore(wrap, tl)` echoue — `tl` n'est plus un enfant de `inner`. */
+      if (tl.parentNode !== inner) inner.appendChild(tl);
+      if (wrap.parentNode !== inner) inner.insertBefore(wrap, tl);
+      wrap.classList.remove('qs-m');
+      tl.classList.toggle('qs-hide', wrap.classList.contains('qs-open'));
+    }
+  }
+
+  /* Couleurs reprises des éléments DÉJÀ thématisés (#toc-inner, #toc h4, le corps
+     du texte) : le module suit automatiquement les 9 thèmes, y compris après un
+     changement de thème à chaud (#theme-css est remplacé).
+     PIÈGE ÉVITÉ : ne JAMAIS lire la couleur sur `#toc-list a` — le premier lien du
+     sommaire porte la classe `.active` (fond plein, texte blanc), ce qui rendait
+     toute la police du module blanche sur blanc. On lit le texte du corps, et une
+     garde de contraste retombe sur une valeur sûre si le résultat est illisible. */
+  function rgbOf(c) {
+    var m = /rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/.exec(c || '');
+    return m ? [+m[1], +m[2], +m[3]] : null;
+  }
+  function lumOf(c) {
+    var a = c.map(function(v) {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * a[0] + 0.7152 * a[1] + 0.0722 * a[2];
+  }
+  function contrast(a, b) {
+    var l1 = lumOf(a), l2 = lumOf(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+  function rgba(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+
+  function themeVars() {
+    var inner = D.getElementById('toc-inner');
+    var h4    = D.querySelector('#toc h4');
+    var body  = D.querySelector('.chapitre p') || D.querySelector('main.qdqq-body') || D.body;
+    var csi   = inner ? getComputedStyle(inner) : null;
+
+    var bg = (csi && rgbOf(csi.backgroundColor)) || [255, 255, 255];
+    if (csi && /rgba\([^)]*,\s*0\s*\)/.test(csi.backgroundColor)) bg = [255, 255, 255];  // fond transparent
+    var bd = (csi && rgbOf(csi.borderTopColor)) || [226, 232, 240];
+    var fg = rgbOf(getComputedStyle(body).color);
+    var ac = h4 ? rgbOf(getComputedStyle(h4).color) : null;
+    var safe = lumOf(bg) > 0.5 ? [30, 41, 59] : [241, 245, 249];
+    if (!fg || contrast(fg, bg) < 4)   fg = safe;   // texte illisible → repli sûr
+    if (!ac || contrast(ac, bg) < 2.2) ac = fg;     // accent trop pâle → texte
+
+    var r = D.documentElement.style;
+    r.setProperty('--qs-bg',   rgba(bg, 1));
+    r.setProperty('--qs-bd',   rgba(bd, 1));
+    r.setProperty('--qs-fg',   rgba(fg, 1));
+    r.setProperty('--qs-mut',  rgba(fg, 0.58));
+    r.setProperty('--qs-ac',   rgba(ac, 1));
+    r.setProperty('--qs-ac06', rgba(ac, 0.07));
+    r.setProperty('--qs-ac10', rgba(ac, 0.12));
+    r.setProperty('--qs-ac18', rgba(ac, 0.20));
+  }
+
+  function save() { try { localStorage.setItem(KEY, JSON.stringify({ q: inp.value })); } catch (e) {} }
+  function restore() {
+    try {
+      var d = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (d) inp.value = d.q || '';
+    } catch (e) {}
+  }
+  /* Rappel discret de la règle appliquée, seulement quand elle change quelque
+     chose (à partir de deux mots, ou entre guillemets). */
+  function updateHint() {
+    var q = inp.value.trim();
+    var txt = '';
+    if (q) {
+      if (modeOf(q) === 'phrase') txt = 'expression exacte';
+      else if (q.split(/\s+/).length > 1) txt = 'tous les mots';
+    }
+    hint.textContent = txt;
+    row.classList.toggle('qs-on', !!txt);
+  }
+
+  /* Extrait cadré sur la 1re occurrence, mais TOUTES celles qui tombent dans la
+     fenêtre sont mises en évidence — un passage contient souvent plusieurs
+     occurrences, n'en marquer qu'une donnait un extrait incohérent avec le corps
+     de l'analyse. Fenêtre asymétrique : un peu de contexte avant, davantage après
+     (l'extrait est tronqué à 3 lignes en CSS, autant remplir dans le sens de la
+     lecture). */
+  function extract(r) {
+    var t = r.txt, h0 = r.hits[0];
+    var s = Math.max(0, h0[0] - 70), e = Math.min(t.length, h0[1] + 150);
+    var out = (s > 0 ? '&hellip; ' : ''), p = s;
+    for (var i = 0; i < r.hits.length; i++) {
+      var a = r.hits[i][0], b = r.hits[i][1];
+      if (b <= s) continue;
+      if (a >= e) break;                       // hits triés : plus rien dans la fenêtre
+      a = Math.max(a, s); b = Math.min(b, e);
+      if (a < p) continue;
+      out += esc(t.slice(p, a)) + '<b class="qs-xh">' + esc(t.slice(a, b)) + '</b>';
+      p = b;
+    }
+    return out + esc(t.slice(p, e)) + (e < t.length ? ' &hellip;' : '');
+  }
+  function render(total) {
+    updatePos();
+    if (!results.length) {
+      cnt.textContent = '';
+      list.innerHTML = inp.value.trim()
+        ? '<div class="qs-empty">Aucun passage ne correspond.</div>' : '';
+      return;
+    }
+    cnt.innerHTML = '<b>' + results.length + '</b> passage' + (results.length > 1 ? 's' : '')
+                  + ' · <b>' + total + '</b> occurrence' + (total > 1 ? 's' : '');
+    list.innerHTML = results.map(function(r, i) {
+      return '<button type="button" class="qs-res" data-i="' + i + '">'
+        + '<span class="qs-res-sec"><span class="qs-res-n">' + (i + 1) + '.</span> '
+        + esc(r.sec || 'Analyse') + '</span>'
+        + '<span class="qs-res-x">' + extract(r) + '</span></button>';
+    }).join('');
+  }
+
+  function run() {
+    clearHits();
+    results = []; hitEls = []; hitRes = []; cur = -1;
+    lastRun = inp.value;
+    updateHint();
+    var mode = modeOf(inp.value);
+    var ts = terms(inp.value, mode);
+    if (!ts.length) { render(0); save(); return; }
+    var total = 0;
+    index().forEach(function(b) {
+      var hs = [], ok;
+      if (mode === 'phrase') {
+        hs = phraseHits(b.f, ts);
+        ok = hs.length > 0;
+      } else {
+        var per = ts.map(function(t) { return termHits(b.f, t); });
+        ok = (mode === 'and')
+          ? per.every(function(a) { return a.length > 0; })
+          : per.some(function(a) { return a.length > 0; });
+        if (ok) per.forEach(function(a) { hs = hs.concat(a); });
+      }
+      if (!ok || !hs.length) return;
+      hs = merge(hs);
+      total += hs.length;
+      mark(blockText(b.el).map, hs);
+      results.push({ el: b.el, txt: b.txt, hits: hs, sec: sectionOf(b.el) });
+      var spans = b.el.querySelectorAll('span.qs-hit');
+      for (var k = 0; k < spans.length; k++) { hitEls.push(spans[k]); hitRes.push(results.length - 1); }
+    });
+    render(total);
+    save();
+  }
+
+  /* ── Navigation entre occurrences ──────────────────────────────────────── */
+  function updatePos() {
+    nav.classList.toggle('qs-on', hitEls.length > 0);
+    pos.textContent = hitEls.length ? ((cur >= 0 ? cur + 1 : '–') + ' / ' + hitEls.length) : '';
+  }
+  function goTo(i) {
+    if (!hitEls.length) return;
+    var n = hitEls.length;
+    cur = ((i % n) + n) % n;                       // circulaire dans les deux sens
+    D.querySelectorAll('span.qs-hit.qs-cur').forEach(function(x) { x.classList.remove('qs-cur'); });
+    var h = hitEls[cur];
+    h.classList.add('qs-cur');
+    try { h.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    var ri = hitRes[cur];
+    list.querySelectorAll('.qs-res.qs-on').forEach(function(x) { x.classList.remove('qs-on'); });
+    var b = list.querySelector('.qs-res[data-i="' + ri + '"]');
+    if (b) { b.classList.add('qs-on'); try { b.scrollIntoView({ block: 'nearest' }); } catch (e) {} }
+    updatePos();
+  }
+  function step(d) { goTo(cur < 0 ? (d > 0 ? 0 : -1) : cur + d); }
+
+  function openSearch(on) {
+    if (on) {
+      var toc = D.getElementById('toc');
+      if (toc && toc.classList.contains('_toc-collapsed')) {
+        var tb = D.getElementById('_toc_toggle');
+        if (tb) tb.click();   // déplie via le bouton d'origine → état parent synchro
+      }
+    }
+    wrap.classList.toggle('qs-open', on);
+    tabS.classList.toggle('qs-on', on);
+    tabT.classList.toggle('qs-on', !on);
+    place();
+    if (on) {
+      if (wrap.classList.contains('qs-m')) deplierResultats();
+      setTimeout(function() { try { inp.focus(); } catch (e) {} }, 130);
+      if (inp.value.trim() && !results.length) run();
+    }
+  }
+
+  var timer = null;
+  inp.addEventListener('input', function() {
+    clearTimeout(timer);
+    deplierResultats();   /* retaper une requete = vouloir revoir la liste */
+    timer = setTimeout(run, 200);
+  });
+  inp.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      clearTimeout(timer);
+      /* Comme un Ctrl+F : Entrée relance si la requête a changé, sinon avance
+         d'une occurrence ; Maj+Entrée recule. */
+      if (inp.value !== lastRun) run();
+      else step(e.shiftKey ? -1 : 1);
+    } else if (e.key === 'Escape') { e.stopPropagation(); openSearch(false); }
+  });
+  wrap.querySelector('.qs-prev').addEventListener('click', function() { step(-1); });
+  wrap.querySelector('.qs-next').addEventListener('click', function() { step(1); });
+  /* Prise de focus = tout sélectionner, pour retaper une requête sans effacer.
+     `select()` seul ne tient pas à la souris : le mouseup qui suit repose le
+     caret et annule la sélection. On neutralise donc ce seul mouseup-là — les
+     clics suivants (champ déjà actif) gardent le placement normal du curseur. */
+  var _selOnUp = false;
+  inp.addEventListener('mousedown', function() { _selOnUp = (D.activeElement !== inp); });
+  inp.addEventListener('mouseup', function(e) { if (_selOnUp) { e.preventDefault(); _selOnUp = false; } });
+  inp.addEventListener('focus', function() { try { inp.select(); } catch (e) {} });
+  /* Vider la recherche ramène en haut de l'analyse : on sort d'une occurrence
+     située n'importe où dans le document, rester sur place n'a plus de sens. */
+  function backToTop() {
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    catch (e) { try { window.scrollTo(0, 0); } catch (e2) {} }
+  }
+  /* ✕ = unique commande de remise à zéro : champ, surlignages, résultats,
+     navigation, requête mémorisée — et retour en haut de l'analyse. */
+  wrap.querySelector('.qs-x').addEventListener('click', function() {
+    inp.value = ''; clearTimeout(timer);
+    clearHits();
+    results = []; hitEls = []; hitRes = []; cur = -1; lastRun = null;
+    render(0); updateHint();
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    backToTop(); inp.focus();
+  });
+  tabT.addEventListener('click', function() {
+    /* Depuis la recherche, l'onglet ramene au sommaire ; deja sur le sommaire, il le
+       replie et le redeploie. Sans cette bascule, refermer une liste ouverte par
+       megarde obligerait a cliquer une entree au hasard. */
+    if (wrap.classList.contains('qs-m') && !wrap.classList.contains('qs-open')) {
+      tocMasque = !tocMasque;
+    } else {
+      tocMasque = false;
+    }
+    openSearch(false);
+  });
+
+  /* Clic sur une entree du sommaire : on replie AVANT que le lien ne defile.
+     Phase de capture obligatoire — la liste est au-dessus du texte, la retirer du flux
+     apres le defilement decalerait la cible de sa propre hauteur. La delegation porte
+     sur le document car `place()` deplace `#toc-list` entre deux parents. */
+  D.addEventListener('click', function(e) {
+    if (!wrap.classList.contains('qs-m') || tocMasque) return;
+    var n = e.target;
+    while (n && n !== D) {
+      if (n.tagName === 'A' && n.parentNode && n.parentNode.id === 'toc-list') {
+        tocMasque = true;
+        place();
+        return;
+      }
+      n = n.parentNode;
+    }
+  }, true);
+  tabS.addEventListener('click', function() {
+    /* Deja sur la recherche en mode barre : l'onglet replie et redeploie les
+       resultats, comme « Sommaire » le fait pour sa liste. Le fermer completement
+       reste le role de l'onglet « Sommaire ». */
+    if (wrap.classList.contains('qs-m') && wrap.classList.contains('qs-open')) {
+      basculerResultats();
+      return;
+    }
+    openSearch(!wrap.classList.contains('qs-open'));
+  });
+
+  /* Ctrl+F (⌘F sur Mac) → onglet « Recherche » + focus dans le champ, à la place de
+     la recherche native du navigateur : celle-ci ignore les chapitres, la navigation
+     ‹ ›, le compteur d'occurrences et le repli du sommaire. Escape referme (déjà géré
+     sur le champ). Capture=true pour passer avant tout autre gestionnaire du document.
+     Exposé aussi en fonction : la page de synthèse est souvent affichée DANS une iframe
+     (visionneuse Almanach) et, quand le focus est resté sur le parent, seul lui reçoit
+     la frappe — il relaie alors via window._qdqqOpenSearch(). */
+  function focusSearch() {
+    if (!wrap.classList.contains('qs-open')) openSearch(true);
+    else { try { inp.focus(); inp.select(); } catch (err) {} }
+  }
+  try { window._qdqqOpenSearch = focusSearch; } catch (e) {}
+  D.addEventListener('keydown', function(e) {
+    if ((e.key !== 'f' && e.key !== 'F') || !(e.ctrlKey || e.metaKey) || e.altKey) return;
+    e.preventDefault();
+    focusSearch();
+  }, true);
+
+  /* Cliquer un résultat = se placer sur SA première occurrence : la navigation
+     ‹ › repart ensuite de là, elle n'est jamais désynchronisée de la liste. */
+  list.addEventListener('click', function(e) {
+    var b = e.target.closest('.qs-res');
+    if (!b) return;
+    /* Replier AVANT le defilement : la liste occupe jusqu'a 40 % de la hauteur et se
+       trouve au-dessus du texte ; la retirer du flux ensuite decalerait la cible
+       d'autant. L'occurrence reste surlignee, on la retrouve sans la liste. */
+    if (wrap.classList.contains('qs-m')) replierResultats();
+    var ri = +b.dataset.i;
+    var i = hitRes.indexOf(ri);
+    if (i >= 0) { goTo(i); return; }
+    var r = results[ri];
+    if (r) { try { r.el.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (err) {} }
+  });
+
+  if (mq.addEventListener) mq.addEventListener('change', place);
+  else if (mq.addListener) mq.addListener(place);
+
+  themeVars();
+  restore();
+  place();
+  var tcss = D.getElementById('theme-css');
+  if (tcss && window.MutationObserver) {
+    new MutationObserver(function() { setTimeout(themeVars, 40); })
+      .observe(tcss, { childList: true, characterData: true, subtree: true });
+  }
+  /* Le viewer parent réorganise #toc-inner au load de l'iframe (vignette sticky,
+     bouton de repli) : on repositionne après coup. */
+  window.addEventListener('load', function() { setTimeout(function() { place(); themeVars(); }, 60); });
+})();
+</script>
+</body>
+</html>
