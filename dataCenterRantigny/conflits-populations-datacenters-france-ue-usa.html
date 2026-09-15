@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conflits populations / data centers — Synthèse · France · UE · États-Unis</title>
+<style>
+  :root { --accent:#8a2b2b; --ink:#111; --mut:#555; --bg:#fbfaf7; }
+  * { box-sizing: border-box; }
+  body { font-family: Georgia, "Times New Roman", serif; margin: 0; color: var(--ink); background: var(--bg); line-height: 1.45; }
+  header.top { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #e4ded2; box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+  .top-in { max-width: 60rem; margin: 0 auto; padding: 12px 1.2rem 0; }
+  header.top h1 { font-size: 1.15rem; margin: 0 0 2px; }
+  header.top .intro { color: var(--mut); font-size: .82rem; margin: 0 0 10px; }
+  .tabs { display: flex; gap: 6px; }
+  .tab { flex: 1; text-align: left; cursor: pointer; font-family: inherit; background: #f4f1e8; border: 1px solid #e4ded2; border-bottom: none; border-radius: 9px 9px 0 0; padding: 8px 12px; transition: background .15s, color .15s; min-width: 0; }
+  .tab:hover { background: #efeadc; }
+  .tab[aria-selected="true"] { background: #fff; border-color: #d8cfbe; box-shadow: inset 0 3px 0 var(--accent); }
+  .tab-lbl { display: block; font-weight: bold; font-size: .96rem; color: var(--ink); }
+  .tab[aria-selected="true"] .tab-lbl { color: var(--accent); }
+  .tab-desc { display: block; font-size: .72rem; color: var(--mut); margin-top: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  main { max-width: 52rem; margin: 1.4rem auto; padding: 0 1.4rem 3rem; }
+  .panel-titre { font-size: 1.3rem; margin: .2rem 0 .3rem; border: none; padding: 0; }
+  .panel-sous { color: #444; margin: 0 0 1.2rem; font-size: .95rem; }
+  h2 { font-size: 1.08rem; margin-top: 1.6rem; border-bottom: 2px solid #111; padding-bottom: .25rem; }
+  h3 { font-size: 1rem; margin-top: 1.15rem; }
+  a { color: #0b57d0; word-break: break-word; }
+  ul { margin: .3rem 0 .85rem; padding-left: 1.2rem; }
+  li { margin: .3rem 0; }
+  .alerte { background: #ffe5e5; border: 2px solid #cc0000; color: #8b0000; padding: .7rem .9rem; margin: .8rem 0; border-radius: 4px; }
+  .note { background: #f4f1e8; border-left: 4px solid #8a6d2b; padding: .7rem .9rem; margin: .8rem 0; }
+  .url { font-size: .88rem; }
+  .ctab { border-collapse: collapse; width: 100%; font-size: .9rem; margin: .6rem 0 1rem; }
+  .ctab th, .ctab td { border: 1px solid #d8cfbe; padding: 6px 9px; text-align: left; vertical-align: top; }
+  .ctab th { background: #f4f1e8; }
+  .accroche { font-size: 1.08rem; line-height: 1.5; color: #2a2320; background: #fff; border: 1px solid #e4ded2; border-left: 5px solid var(--accent); border-radius: 6px; padding: .9rem 1.1rem; margin: .3rem 0 1.4rem; box-shadow: 0 1px 4px rgba(0,0,0,.05); }
+  .accroche .kick { display: block; font-size: .74rem; font-weight: bold; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: .35rem; }
+  .accroche b { color: var(--accent); }
+  [hidden] { display: none !important; }
+  @media (max-width: 680px) {
+    .tabs { gap: 3px; }
+    .tab { padding: 7px 7px; }
+    .tab-lbl { font-size: .8rem; }
+    .tab-desc { display: none; }
+    header.top .intro { font-size: .76rem; }
+    main { padding: 0 1rem 2.4rem; }
+    .ctab, .ctab thead, .ctab tbody, .ctab tr, .ctab th, .ctab td { display: block; }
+    .ctab thead { display: none; }
+    .ctab td { border: none; border-bottom: 1px solid #e4ded2; padding: 4px 0; }
+    .ctab tr { border: 1px solid #d8cfbe; border-radius: 6px; padding: 6px 9px; margin-bottom: 8px; }
+  }
+  @media (max-width: 400px) {
+    header.top h1 { font-size: 1rem; }
+    header.top .intro { font-size: .72rem; }
+    .tab-lbl { font-size: .74rem; line-height: 1.12; }
+    .accroche { font-size: 1rem; padding: .8rem .9rem; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <h1>Conflits entre populations et data centers</h1>
+    <p class="intro"><b>Synthèse</b> : l'essentiel des trois zones d'un coup d'œil. <b>France</b> : la contestation émerge. <b>Union européenne</b> : moratoires et recours déjà là. <b>États-Unis</b> : le précédent le plus avancé.</p>
+    <div class="tabs" role="tablist" aria-label="Zones géographiques">
+      <button type="button" class="tab" data-tab="syn" id="tab-syn" role="tab" aria-controls="panel-syn" aria-selected="true">
+        <span class="tab-lbl">🧭 Synthèse</span>
+        <span class="tab-desc">Le même conflit à trois stades — l'essentiel des trois zones.</span>
+      </button>
+      <button type="button" class="tab" data-tab="fr" id="tab-fr" role="tab" aria-controls="panel-fr" aria-selected="false">
+        <span class="tab-lbl">🇫🇷 France</span>
+        <span class="tab-desc">La fronde arrive : 354 data centers, plus de 30 oppositions locales.</span>
+      </button>
+      <button type="button" class="tab" data-tab="ue" id="tab-ue" role="tab" aria-controls="panel-ue" aria-selected="false">
+        <span class="tab-lbl">🇪🇺 Union européenne</span>
+        <span class="tab-desc">Moratoires et recours : Irlande, Pays-Bas, Espagne, Allemagne.</span>
+      </button>
+      <button type="button" class="tab" data-tab="us" id="tab-us" role="tab" aria-controls="panel-us" aria-selected="false">
+        <span class="tab-lbl">🇺🇸 États-Unis</span>
+        <span class="tab-desc">Le précédent : ~800 collectifs, 530 communes, procès en cours.</span>
+      </button>
+    </div>
+  </div>
+</header>
+<main>
+    <section class="tabpanel active" id="panel-syn" role="tabpanel" aria-labelledby="tab-syn">
+      <div class="accroche">
+        <span class="kick">Le document en un paragraphe</span>
+        Partout dans le monde, les mêmes villages disent non aux mêmes usines à données. Des États-Unis à l'Irlande, de l'Aragon à la vallée de la Brèche, un mouvement citoyen monte contre les data centers — <b>bruit continu, eau captée, électricité d'un département, terres bétonnées, emplois rares et dossiers opaques</b>. Ce dossier réunit trois enquêtes — France, Union européenne, États-Unis — pour éclairer une évidence : <b>ce que Rantigny redoute, d'autres le vivent déjà</b>. Les onglets ci-dessus détaillent chaque zone ; la synthèse ci-dessous les met en regard.
+      </div>
+      <h2 class="panel-titre">Le même conflit, à trois stades de maturité</h2>
+      <p class="panel-sous">Trois zones, un schéma identique — bruit, eau, électricité, terres, opacité, peu d'emplois durables — mais un degré d'avancement très différent. Les États-Unis montrent ce qui vient ; l'Europe institutionnalise déjà les freins ; la France entre dans le mouvement.</p>
+
+      <p class="alerte">Partout, les habitants dénoncent les mêmes atteintes, et partout les recours et moratoires arrivent <b>après</b> l'autorisation d'urbanisme — une fois le site allumé, quand les nuisances sont là. C'est précisément le calendrier en jeu dans une enquête comme celle de Rantigny.</p>
+
+      <h2>1. Un schéma commun aux trois zones</h2>
+      <ul>
+        <li><b>Bruit 24 h/24</b> — sifflement des ventilateurs et groupes électrogènes ; le seuil en dB(A) ne décrit pas la gêne réelle dans les chambres.</li>
+        <li><b>Eau</b> — nappes, sécheresse, concurrence avec l'agriculture et l'eau potable.</li>
+        <li><b>Électricité</b> — consommation d'une ville ou d'un département, réseau à renforcer, facture des ménages, priorité d'usage en tension.</li>
+        <li><b>Terres</b> artificialisées et <b>cadre de vie</b> dégradé (chaleur, lumières permanentes).</li>
+        <li><b>Peu d'emplois</b> durables au mètre carré une fois le site en service.</li>
+        <li><b>Opacité</b> des dossiers, exploitant final souvent inconnu, « campus » qui habille une usine.</li>
+      </ul>
+
+      <h2>2. Où en est chaque zone</h2>
+      <table class="ctab">
+        <thead><tr><th>Zone</th><th>Degré d'avancement</th><th>Chiffres marquants</th></tr></thead>
+        <tbody>
+          <tr><td><b>🇺🇸 États-Unis</b></td><td>Le précédent le plus avancé — la contestation est massive et structurée.</td><td>~800 collectifs dans 49 États ; &gt;530 communes avec arrêt, moratoire ou règles restrictives ; 75 projets bloqués ou retardés au T1 2026 (~130 Md$) ; ~70 % d'opposition à un centre près de chez soi.</td></tr>
+          <tr><td><b>🇪🇺 Union européenne</b></td><td>Les freins sont déjà institutionnels (moratoires, quotas, recours).</td><td>&gt;70 projets rejetés ou restreints début 2026 ; Irlande : 22 % de l'électricité nationale, moratoire sur Dublin ; Pays-Bas : interdiction des hyperscales &gt;70 MW / 10 ha ; Espagne (Aragon) : front de l'eau, 87 % d'inquiets.</td></tr>
+          <tr><td><b>🇫🇷 France</b></td><td>La fronde émerge — collectifs, enquêtes publiques, premiers recours.</td><td>354 data centers déjà là, 97 en déploiement ; plus de 30 oppositions locales ; ~10 GW de raccordements demandés ; le ministre de l'Économie reconnaît que la fronde « pourrait aussi arriver en France ».</td></tr>
+        </tbody>
+      </table>
+
+      <h2>3. Ce que cela dit d'un projet comme Rantigny</h2>
+      <p class="note">Les nuisances documentées aux États-Unis et en Europe ne sont pas des hypothèses : ce sont celles qu'annonce le dossier local (bruit, nappe vulnérable, eau, faible emploi, exploitant non nommé). Le message commun des trois synthèses est le même : trancher <b>avant</b> de modifier le PLU, car une fois le zonage ouvert et le site construit, les habitants subissent d'abord et n'obtiennent réparation qu'ensuite, au prix de longues procédures.</p>
+      <p class="url">Chaque onglet développe une zone, avec ses chiffres, ses lieux et ses sources.</p>
+    </section>
+    <section class="tabpanel" id="panel-fr" role="tabpanel" aria-labelledby="tab-fr" hidden>
+      <h2 class="panel-titre">Conflits entre populations et data centers en France</h2>
+      <p class="panel-sous">Synthèse détaillée (état septembre 2026). Le schéma est le même qu’aux États-Unis, avec quelques années de retard : bruit, chaleur, eau, électricité, terres, opacité — et des villages qui se sentent sacrifiés au nom de la « souveraineté numérique ».</p>
+      <p class="alerte">La contestation n’est plus un sujet « américain ». En France aussi, des collectifs se multiplient, des enquêtes publiques se remplissent d’avis défavorables, des recours sont déposés. Début septembre 2026, le ministre de l’Économie Roland Lescure a lui-même reconnu que la fronde US « pourrait aussi arriver en France ».</p>
+
+  <h2>1. L’ampleur, en chiffres</h2>
+  <ul>
+    <li>Carte participative <em>Le nuage était sous nos pieds</em> (septembre 2026) : <strong>354</strong> data centers déjà là ; <strong>97</strong> en déploiement (64 annoncés, 23 en instruction, 10 en construction).</li>
+    <li>Plus d’une <strong>trentaine d’oppositions locales</strong> recensées par le même collectif (pétitions, associations, réunions, enquêtes publiques).</li>
+    <li>Localtis / Banque des territoires (janvier 2026) parlait déjà d’une <strong>quinzaine</strong> de projets contestés — le compte a monté depuis.</li>
+    <li>63 sites « clés en main » proposés par l’État (DGE / EDF / RTE) : beaucoup sans localisation précise rendue publique.</li>
+    <li>Demandes de raccordement électrique évoquées autour de <strong>10 GW</strong> (l’ordre de grandeur de plusieurs réacteurs).</li>
+  </ul>
+  <p class="url">
+    <a href="https://lenuageetaitsousnospieds.org/articles/2025-12-11-carte-des-data-centers-des-projets-et-des-contestations-en-france.html" target="_blank" rel="noopener noreferrer">Carte projets + contestations (Le nuage était sous nos pieds)</a><br>
+    <a href="https://www.banquedesterritoires.fr/datacenters-une-quinzaine-de-projets-font-lobjet-de-contestation" target="_blank" rel="noopener noreferrer">Banque des territoires — contestations</a><br>
+    <a href="https://multinationales.org/fr/enquetes/profits-et-pertes-derriere-le-boom-des-datacenters-en-france/dans-le-monde-entier-un-vent-de-revolte-contre-les-datacenters" target="_blank" rel="noopener noreferrer">Observatoire des multinationales — regroupement des luttes</a>
+  </p>
+
+  <h2>2. Les griefs, partout les mêmes</h2>
+  <ul>
+    <li><strong>Bruit 24 h/24</strong> — ventilateurs, groupes électrogènes de test. À Rantigny : « un radiateur qui fait du bruit ». À Wissous : 24 groupes au fioul, tests de plusieurs heures par mois, dépassement possible des seuils.</li>
+    <li><strong>Chaleur</strong> rejetée dans le voisinage (îlot de chaleur, ruches, étés déjà chauds). Fouju : FNE évoque +1 à +10 °C selon le périmètre. Étrechet : +2 à +7 °C cités par les opposants.</li>
+    <li><strong>Eau</strong> — nappes, sécheresse, agriculteurs. Fouju (nappe de Champigny), Blyes (« plus d’eau dans la rivière »), refroidissement en période de canicule.</li>
+    <li><strong>Électricité</strong> — conso d’une ville, d’un département ou d’un réacteur ; priorité d’usage en tension ; qui paie le renforcement RTE.</li>
+    <li><strong>Terres agricoles</strong> artificialisées (Fouju ~90 ha, Petit-Landau 36 ha, Le Bosquel 46 ha « la taille du village », Étrechet 195 ha).</li>
+    <li><strong>Emplois</strong> : beaucoup promis, peu durables au mètre carré une fois le site allumé.</li>
+    <li><strong>Lumières</strong> 24 h/24 alors que des communes ont éteint l’éclairage public la nuit (Neuilly-sous-Clermont).</li>
+    <li><strong>PFAS / fluides</strong> de refroidissement, gaz des groupes de secours, qualité de l’air.</li>
+    <li><strong>Opacité</strong> : « campus IA », formation sans programme, exploitant final non nommé, secret des affaires (Google / Ozans), enquêtes courtes sans réunion publique.</li>
+    <li><strong>Justice territoriale</strong> : « on n’est pas la poubelle de l’Île-de-France » (Le Bourget / 93, déjà saturé de data centers).</li>
+  </ul>
+
+  <h2>3. Les foyers de conflit, région par région</h2>
+
+  <h3>Oise — Rantigny / Neuilly-sous-Clermont (Vallée Dorée)</h3>
+  <ul>
+    <li>Deux halls IA, ~192 MW en première phase, 33 à 48 ha, ~4,5 Md€, mise en service visée 2029. Porteur SCI Alyssa / Realwave ; exploitant final non nommé.</li>
+    <li>Association « Défense des intérêts de Neuilly-sous-Clermont et des communes alentour ». Conseil municipal de Neuilly vote contre. Pétition &gt; 900 signatures. ~300 personnes à la réunion du 19 août 2026 (1 habitant sur 8).</li>
+    <li>Griefs locaux : chaleur, bruit, 120 groupes électrogènes, bâtiments ~26–30 m, lumières la nuit, apiculteur à très faible distance, dévaluation des maisons, « notre village il est mort ».</li>
+    <li>Élus divisés à la CCLVD ; discours « campus IA » / formation des jeunes.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.franceinfo.fr/societe/reportage-notre-village-il-est-mort-dans-l-oise-l-implantation-de-deux-data-centers-alarme-les-riverains_8154452.html" target="_blank" rel="noopener noreferrer">franceinfo — « Notre village, il est mort »</a><br>
+    <a href="https://www.oisehebdo.fr/2026/07/04/data-center-de-rantigny-sans-surprise-neuilly-sous-clermont-vote-contre/" target="_blank" rel="noopener noreferrer">Oise Hebdo — vote contre de Neuilly</a><br>
+    <a href="https://france3-regions.franceinfo.fr/hauts-de-france/oise/vous-allez-nous-mettre-un-radiateur-qui-fait-du-bruit-un-projet-de-data-center-divise-les-habitants-d-une-commune-de-l-oise-3404005.html" target="_blank" rel="noopener noreferrer">France 3 — « un radiateur qui fait du bruit »</a><br>
+    <a href="https://actu.fr/hauts-de-france/rantigny_60524/un-data-center-specialise-dans-l-ia-dans-l-oise-d-ici-2029-voici-ce-que-l-on-sait-du-projet_64466607.html" target="_blank" rel="noopener noreferrer">actu.fr — ce que l’on sait du projet</a><br>
+    <a href="https://www.rtl.fr/programmes/l-enquete-rtl/7900668883-dans-l-oise-a-rantigny-un-projet-de-data-center-divise-la-population" target="_blank" rel="noopener noreferrer">RTL — Rantigny divise la population</a>
+  </p>
+
+  <h3>Somme — Le Bosquel (campus SoftBank / IA, ~1 GW)</h3>
+  <ul>
+    <li>Village de 349 habitants ; 46 ha « collés au village », conso d’une ville d’un million d’habitants selon Mediacités.</li>
+    <li>Association <strong>APROB2V</strong> (Camille Ego) : « notre village sera sacrifié au nom de la souveraineté numérique ».</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.zdnet.fr/actualites/opposes-a-limplantation-de-datacenters-les-collectifs-de-riverains-sorganisent-497655.htm" target="_blank" rel="noopener noreferrer">ZDNet — collectifs (Le Bosquel / APROB2V)</a>
+  </p>
+
+  <h3>Seine-et-Marne — Fouju / Champeaux (« Campus IA », présenté comme le plus grand d’Europe)</h3>
+  <ul>
+    <li>~90 ha de terres agricoles, 11 bâtiments, 600+ groupes électrogènes, conso type réacteur, 50 Md€ évoqués (MGX, BPI, Nvidia, Mistral…).</li>
+    <li>Enquête close le 30 mai 2026 <strong>sans prolongation ni réunion publique</strong> malgré FNE. <strong>Plus d’un millier</strong> de contributions, très majoritairement défavorables. Pétition Greenvoice FNE-IdF &gt; 5 000 signatures.</li>
+    <li>Rassemblement déplacé / interdit à Fouju par arrêté municipal (mai 2026). Apiculteurs, agriculteurs, nappe de Champigny.</li>
+  </ul>
+  <p class="url">
+    <a href="https://fne-idf.fr/actualites/enquete-publique-bouclee-au-pas-de-charge-pour-le-projet-du-plus-grand-data-center-d" target="_blank" rel="noopener noreferrer">FNE IdF — enquête au pas de charge</a><br>
+    <a href="https://www.ici.fr/ile-de-france/seine-et-marne-77/seine-et-marne-plusieurs-collectifs-appellent-au-rassemblement-pour-denoncer-l-immense-projet-de-data-center-a-fouju-8218547" target="_blank" rel="noopener noreferrer">ICI — rassemblement Champeaux / Fouju</a><br>
+    <a href="https://www.radiofrance.fr/franceinter/podcasts/l-info-de-france-inter/un-impact-sur-le-partage-de-l-eau-la-construction-du-plus-grand-data-center-d-europe-inquiete-en-seine-et-marne-1794090" target="_blank" rel="noopener noreferrer">France Inter — nappe / eau à Fouju</a><br>
+    <a href="https://www.politis.fr/articles/2026/05/reportage-le-vent-se-leve-contre-les-ravages-ecologiques-des-data-centers/" target="_blank" rel="noopener noreferrer">Politis — reportage Campus IA Fouju</a>
+  </p>
+
+  <h3>Haut-Rhin — Petit-Landau / Hombourg (Microsoft)</h3>
+  <ul>
+    <li>36 ha agricoles, 3 halls, un des plus grands d’Europe. Collectif <strong>« IA pas moyen ! »</strong>. Alsace Nature, Alter Alsace énergies : « gigantisme américain », demande de moratoire.</li>
+    <li>Enquête : environ <strong>80 % d’avis défavorables</strong>. Commissaire enquêteur <strong>favorable</strong> quand même (août 2026). Rassemblement sous-préfecture Mulhouse, diffusion du bruit d’un data center au haut-parleur.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.ouest-france.fr/high-tech/tout-un-projet-de-societe-que-lon-conteste-a-mulhouse-des-habitants-mobilises-contre-un-projet-de-data-center-3269e704-a300-11f1-94d9-ff4da0548a19" target="_blank" rel="noopener noreferrer">Ouest-France — mobilisation Mulhouse</a><br>
+    <a href="https://france3-regions.franceinfo.fr/grand-est/haut-rhin/mulhouse/malgre-l-opposition-un-rapport-favorable-emis-pour-le-projet-de-data-center-de-microsoft-seuls-les-pouvoirs-economiques-vont-etre-entendus-3406295.html" target="_blank" rel="noopener noreferrer">France 3 — avis favorable malgré 80 %</a><br>
+    <a href="https://www.lalsace.fr/environnement/2026/06/07/projet-de-centre-de-donnees-l-enquete-publique-a-debute-les-opposants-s-organisent" target="_blank" rel="noopener noreferrer">L’Alsace — enquête publique / IA pas moyen</a>
+  </p>
+
+  <h3>Seine-Saint-Denis — Le Bourget (Segro) et Dugny (Digital Realty)</h3>
+  <ul>
+    <li>Le Bourget : 25 300 m² sur friche H&amp;M, ~526 GWh/an (plus de 2 fois la conso de la commune). Collectif + MNLE 93. Pétition 14 000 puis ~18 000 signatures. ~300 contributions à l’enquête. « On n’est pas la poubelle de l’Île-de-France » (déjà une trentaine de data centers dans le 93).</li>
+    <li>Juin 2026 : le nouveau maire Mehdi Nezzar <strong>invalide le permis</strong> Segro et demande l’abandon du projet dans sa forme actuelle.</li>
+    <li>Dugny : Digital Realty, 2 Md€, 200 MW, 108 groupes, réunion publique houleuse (juin 2025).</li>
+  </ul>
+  <p class="url">
+    <a href="https://actu.fr/ile-de-france/le-bourget_93013/un-mepris-pour-la-seine-saint-denis-la-resistance-au-projet-de-data-center-au-bourget-gagne-du-terrain_63435239.html" target="_blank" rel="noopener noreferrer">Actu — résistance au Bourget</a><br>
+    <a href="https://www.leparisien.fr/seine-saint-denis-93/nuisances-emploi-a-dugny-la-fronde-contre-larrivee-dun-data-center-geant-gagne-du-terrain-12-06-2025-I3D55XDRVBHZFB74RWCWLVPH3I.php" target="_blank" rel="noopener noreferrer">Le Parisien — Dugny / Digital Realty</a><br>
+    <a href="https://www.senat.fr/basile/visio.do?id=qSEQ251106837" target="_blank" rel="noopener noreferrer">Sénat — question écrite Le Bourget</a>
+  </p>
+
+  <h3>Essonne — Wissous (CyrusOne / Amazon) ; Nozay (DATA4 PAR3)</h3>
+  <ul>
+    <li>Wissous : nuisances déjà là sur une partie du site ; chaleur l’été ; recours d’associations devant la cour administrative d’appel de Versailles (audience citée mars 2026). Cagnotte pour le cabinet de Corinne Lepage.</li>
+    <li>Nozay : campus DATA4 PAR3, enquête publique déc. 2025 – janv. 2026.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.radiofrance.fr/franceinter/podcasts/l-info-de-france-inter/si-ca-rajoute-de-la-chaleur-ca-va-etre-complique-pres-de-paris-des-riverains-contre-les-nuisances-d-un-data-center-1431217" target="_blank" rel="noopener noreferrer">France Inter — Wissous / chaleur</a><br>
+    <a href="https://www.capital.fr/economie-politique/ils-font-du-bruit-gaspillent-l-energie-ces-francais-qui-disent-non-aux-data-centers-1511458" target="_blank" rel="noopener noreferrer">Capital — Wissous, groupes électrogènes</a><br>
+    <a href="https://www.registre-numerique.fr/pref91-data4-par3-nozay" target="_blank" rel="noopener noreferrer">Registre — enquête DATA4 PAR3 Nozay</a>
+  </p>
+
+  <h3>Indre — Ozans / Étrechet (Google)</h3>
+  <ul>
+    <li>195 ha, raccordement électrique voté par Châteauroux Métropole (juin 2026) malgré ~200 manifestants (« Google, ton data on en veut pas »).</li>
+    <li>Collectif <strong>Ozans dire non</strong>. Concertation CNDP en préparation (secret des affaires dénoncé). Autre site évoqué à Argenton-sur-Creuse.</li>
+  </ul>
+  <p class="url">
+    <a href="https://france3-regions.franceinfo.fr/centre-val-de-loire/non-au-technofascisme-google-ton-data-on-en-veut-pas-200-personnes-se-mobilisent-contre-un-projet-de-data-center-3379165.html" target="_blank" rel="noopener noreferrer">France 3 — Étrechet / Google</a><br>
+    <a href="https://multinationales.org/fr/enquetes/profits-et-pertes-derriere-le-boom-des-datacenters-en-france/datacenter-de-google-a-chateauroux-vers-une-enquete-publique-sur-fond-de-secret" target="_blank" rel="noopener noreferrer">Observatoire des multinationales — Ozans / secret des affaires</a>
+  </p>
+
+  <h3>Autres foyers</h3>
+  <ul>
+    <li><strong>Blyes (Ain)</strong> — 40 000 m², 195 MW, Pipa / H&amp;DC. Eau et sécheresse au premier plan. Réunion publique 29 sept. 2026.<br>
+      <span class="url"><a href="https://www.20minutes.fr/societe/4242804-20260908-ain-deja-plus-eau-riviere-face-projet-data-center-blyes-habitants-inquiets" target="_blank" rel="noopener noreferrer">20 Minutes — Blyes, « plus d’eau dans la rivière »</a></span></li>
+    <li><strong>Rovaltain (Drôme)</strong> — collectif AssezDC Rovaltain + Soulèvements de la Terre, Amis de la Terre, ATTAC… Recours au TA de Grenoble contre le permis (fév. 2026).<br>
+      <span class="url"><a href="https://agir.greenvoice.fr/categories/sobriete" target="_blank" rel="noopener noreferrer">GreenVoice — Non au Data Center de Rovaltain</a></span></li>
+    <li><strong>Vitry-sur-Seine</strong> — reconversion dépôt pétrolier / Brownfields, pétition GreenVoice (bruit, chaleur, électricité).<br>
+      <span class="url"><a href="https://agir.greenvoice.fr/categories/sobriete" target="_blank" rel="noopener noreferrer">GreenVoice — Non au data center à Vitry-sur-Seine</a></span></li>
+    <li><strong>Marseille</strong> — La Quadrature du Net : prise de bâtiments urbains, énergie détournée des besoins du quotidien.<br>
+      <span class="url"><a href="https://algorithmwatch.org/en/how-to-resist-data-centers-guide-local-communities-europe/" target="_blank" rel="noopener noreferrer">AlgorithmWatch — LQDN / résistances européennes</a></span></li>
+  </ul>
+
+  <h2>4. Quand ça passe par le juge ou l’élu</h2>
+  <ul>
+    <li><strong>Le Bourget</strong> — permis invalidé par le maire (juin 2026) après pétition de masse et enquête chargée. <span class="url"><a href="https://actu.fr/ile-de-france/le-bourget_93013/un-mepris-pour-la-seine-saint-denis-la-resistance-au-projet-de-data-center-au-bourget-gagne-du-terrain_63435239.html" target="_blank" rel="noopener noreferrer">lien</a></span></li>
+    <li><strong>Wissous</strong> — recours en cour administrative d’appel de Versailles. <span class="url"><a href="https://www.radiofrance.fr/franceinter/podcasts/l-info-de-france-inter/si-ca-rajoute-de-la-chaleur-ca-va-etre-complique-pres-de-paris-des-riverains-contre-les-nuisances-d-un-data-center-1431217" target="_blank" rel="noopener noreferrer">lien</a></span></li>
+    <li><strong>Rovaltain</strong> — recours au tribunal administratif de Grenoble contre le permis du 18 déc. 2025. <span class="url"><a href="https://agir.greenvoice.fr/categories/sobriete" target="_blank" rel="noopener noreferrer">lien</a></span></li>
+    <li><strong>Petit-Landau</strong> — 80 % contre à l’enquête, avis du commissaire favorable : le conflit ne s’arrête pas à la clôture du registre. <span class="url"><a href="https://france3-regions.franceinfo.fr/grand-est/haut-rhin/mulhouse/malgre-l-opposition-un-rapport-favorable-emis-pour-le-projet-de-data-center-de-microsoft-seuls-les-pouvoirs-economiques-vont-etre-entendus-3406295.html" target="_blank" rel="noopener noreferrer">lien</a></span></li>
+    <li><strong>Fouju</strong> — enquête « au pas de charge », millier d’avis, FNE annonce la suite de la mobilisation (et le contentieux possible). <span class="url"><a href="https://fne-idf.fr/actualites/enquete-publique-bouclee-au-pas-de-charge-pour-le-projet-du-plus-grand-data-center-d" target="_blank" rel="noopener noreferrer">lien</a></span></li>
+  </ul>
+
+  <h2>5. Les collectifs qui relient les luttes</h2>
+  <ul>
+    <li><strong>Le nuage était sous nos pieds</strong> — carte nationale, mise en réseau. <a href="https://lenuageetaitsousnospieds.org/" target="_blank" rel="noopener noreferrer">lenuageetaitsousnospieds.org</a></li>
+    <li><strong>France Nature Environnement</strong> (IdF, Seine-et-Marne, Indre Nature, etc.).</li>
+    <li><strong>Alsace Nature</strong>, Alter Alsace énergies, collectif IA pas moyen.</li>
+    <li>MNLE 93, Wissous notre ville, APROB2V, Ozans dire non, AssezDC Rovaltain.</li>
+    <li>La Quadrature du Net, Soulèvements de la Terre, Amis de la Terre — cadre plus large (énergie, libertés, terres).</li>
+  </ul>
+
+  <h2>6. Ce que ça change pour Rantigny</h2>
+  <ul>
+    <li>On n’est plus « le premier village de France » à se lever : Oise, Somme, 77, 93, Alsace, Indre, Ain, Drôme…</li>
+    <li>Les griefs de Neuilly et Rantigny (bruit, chaleur, ruches, lumières, groupes, hauteur, maisons à quelques centaines de mètres) sont <strong>déjà ceux de Wissous, Fouju, Petit-Landau, Le Bosquel</strong>.</li>
+    <li>Le mot « campus » circule aussi à Fouju (« Campus IA ») : même habillage éducatif / souveraineté pour un parc industriel.</li>
+    <li>Une enquête publique n’empêche pas un avis favorable du commissaire (Haut-Rhin). D’où l’intérêt de tout verser au registre <strong>et</strong> de garder la voie contentieuse / politique ouverte.</li>
+    <li>Là où les habitants ont été nombreux et tôt (Bourget), un élu a pu casser le permis. Là où l’enquête est expédiée (Fouju), la colère se décale vers le recours.</li>
+  </ul>
+
+  <p class="note"><strong>À retenir.</strong> La France n’est plus en amont du conflit : elle y est. Les chiffres US (800 collectifs) sont plus gros parce que les campus y tournent depuis plus longtemps. Les motifs, eux, sont déjà français. Rantigny s’inscrit dans cette carte — pas à côté.</p>
+    </section>
+    <section class="tabpanel" id="panel-ue" role="tabpanel" aria-labelledby="tab-ue" hidden>
+      <h2 class="panel-titre">Conflits entre populations et data centers dans l’Union européenne</h2>
+      <p class="panel-sous">Hors France. État septembre 2026. Même schéma qu’aux États-Unis et qu’en France : électricité, eau, terres, bruit, peu d’emplois, décisions prises hors des habitants. L’Irlande et les Pays-Bas sont en avance ; l’Espagne (Aragon) est le front de l’eau.</p>
+      <p class="alerte">Le <em>European Data Centre Monitor</em> recense <strong>plus de 70 projets rejetés ou restreints</strong> dès le début 2026. 2026 s’annonce comme une année record de blocages, retards et restrictions en Europe. Ce n’est plus un dossier américain.</p>
+  <p class="url"><a href="https://eudcmonitor.com/" target="_blank" rel="noopener noreferrer">https://eudcmonitor.com/</a></p>
+
+  <h2>1. Ce que les Européens disent</h2>
+  <ul>
+    <li>Sondage Savanta (oct. 2025) en Allemagne, Irlande, Espagne, Suisse, Royaume-Uni : majorité pour des règles qui limitent l’impact des nouveaux centres sur l’énergie, l’eau et les factures.</li>
+    <li>Irlande : 86 % veulent des centres uniquement si renouvelables ; 76–78 % inquiets pour l’eau et les écosystèmes.</li>
+    <li>Espagne : 87 % inquiets pour l’eau et les milieux — le plus haut des pays sondés.</li>
+    <li>Griefs communs : réseau saturé, facture d’électricité, eau en sécheresse, terres agricoles, logements / écoles qui n’ont plus de puissance, opacité, très peu d’emplois durables.</li>
+  </ul>
+  <p class="url"><a href="https://beyondfossilfuels.org/wp-content/uploads/2025/10/Summary_Data_Centre_Poll_-Europe.pdf" target="_blank" rel="noopener noreferrer">Sondage Beyond Fossil Fuels / Savanta, oct. 2025</a></p>
+
+  <h2>2. Irlande — le laboratoire européen</h2>
+  <ul>
+    <li>Plus de 80 centres. <strong>22 % de l’électricité nationale</strong> en 2024 (5 % en 2015) — plus que tous les foyers urbains réunis. Projection souvent citée : 25 à 30 % d’ici 2030.</li>
+    <li>Facture des ménages : +360 € en cumul 2015–2023 selon des analyses relayées en 2026. Emplois directs : ~0,1 % de la main-d’œuvre (~3 300 postes).</li>
+    <li>Moratoire / gel des raccordements autour de Dublin plusieurs années (jusqu’à fin 2025 pour une partie). Réouverture sous conditions : production derrière le compteur, sites non saturés, 80 % de la conso annuelle adossée à de l’investissement renouvelable dans le pays.</li>
+    <li>Collectifs : <strong>Not Here Not Anywhere (NHNA)</strong>, <strong>Friends of the Earth Ireland</strong> (Rosi Leonard), People Before Profit. Manifestation devant le Parlement à Dublin.</li>
+    <li>Ennis (Clare) : bataille juridique de cinq ans de trois scientifiques retraités contre Art Data Centres / Amazon (200 MW).</li>
+    <li>Avril 2026 : recours d’ONG contre le régulateur (règles permettant du gaz fossile pour les centres autour de Dublin).</li>
+  </ul>
+  <p class="url">
+    <a href="https://algorithmwatch.org/en/a-guide-to-data-centers/" target="_blank" rel="noopener noreferrer">AlgorithmWatch — guide + NHNA / FoE Ireland</a><br>
+    <a href="https://multinationales.org/fr/enquetes/profits-et-pertes-derriere-le-boom-des-datacenters-en-france/dans-le-monde-entier-un-vent-de-revolte-contre-les-datacenters" target="_blank" rel="noopener noreferrer">Observatoire des multinationales — Irlande</a><br>
+    <a href="https://techpolicy.press/the-case-for-a-temporary-moratorium-on-large-data-centers-in-europe" target="_blank" rel="noopener noreferrer">TechPolicy.press — moratoire Europe / chiffres Irlande</a>
+  </p>
+
+  <h2>3. Pays-Bas — moratoire national et occupations</h2>
+  <ul>
+    <li>Premier moratoire municipal Amsterdam / Haarlemmermeer dès 2019 (réseau saturé). Interdiction nationale des hyperscales &gt; 70 MW IT ou 10 ha, hors deux zones désignées (après Wieringermeer et Zeewolde).</li>
+    <li><strong>Zeewolde</strong> : Meta abandonne en 2022 sous pression populaire et politique — serait devenu le plus grand du pays.</li>
+    <li><strong>Wieringermeer / Hollands Kroon</strong> : Microsoft et Google. Collectifs <strong>Red de Wieringermeer / Save the Wieringermeer</strong>, agriculteurs (Data Non Grata), élus locaux. Grief n°1 : qui décide du sol et du réseau, pas seulement le bruit.</li>
+    <li>TenneT : plus de capacité dans une grande partie de la Hollande-Nord pour dix ans. Logements et une cinquantaine d’écoles / crèches cités comme bloqués faute de raccordement, un centre ayant pris la priorité.</li>
+    <li>Amsterdam-Sloterdijk (Microsoft / Pure Data Centers, 78 MW, trois tours pour contourner le plafond hyperscale) : occupation du chantier par <strong>Geef Tegengas</strong> (juin 2026), chaînes, grues. Lettre Bits of Freedom, critical infrastructure lab, PILP, etc.</li>
+    <li>Amsterdam-Zuidoost (Equinix) : campagne &gt; 500 personnes, « zéro bénéfice pour le quartier », conso annuelle proche de tous les foyers d’Amsterdam.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.nrc.nl/nieuws/2026/06/12/actiegroep-frustreert-bouw-datacentrum-voor-microsoft-in-amsterdam-a4929976" target="_blank" rel="noopener noreferrer">NRC — occupation Sloterdijk</a><br>
+    <a href="https://www.dutchnews.nl/2026/08/campaigners-call-for-amsterdam-to-pull-plug-on-giant-data-centre/" target="_blank" rel="noopener noreferrer">DutchNews — Zuidoost / Equinix</a><br>
+    <a href="https://algorithmwatch.org/en/a-guide-to-data-centers/" target="_blank" rel="noopener noreferrer">Save the Wieringermeer</a>
+  </p>
+
+  <h2>4. Espagne — l’eau, l’Aragon, le juge</h2>
+  <ul>
+    <li>Aragon : hub AWS + Microsoft + Vantage + fonds. Amazon : investissement annoncé de l’ordre de 15 à 33 Md€ selon les sources / phases. Un hub à plein régime consommerait plus d’électricité que toute la communauté autonome. Eau : ~750 000 m³/an cités pour un ensemble (centaines de piscines olympiques / ville de 20 000 hab.) en zone de sécheresse récurrente.</li>
+    <li>Collectifs : <strong>Tu Nube Seca Mi Río</strong> (Aurora Gómez), <strong>No es sequía, es saqueo</strong>, Ecologistas en Acción, Ansar, SEO/BirdLife… Première manif nationale contre les centres à Saragosse (sept. 2025).</li>
+    <li>Villanueva de Gállego (&lt; 5 000 hab.) : mairie ouvre un front judiciaire contre un projet ~84 ha.</li>
+    <li>Janvier 2026 : premier contentieux collectif devant le <strong>TSJA</strong> contre le plan d’intérêt général (PIGA) qui accélère AWS. Crowdfunding de 7 300 € atteint en 6 jours.</li>
+    <li>Clauses d’accès prioritaire à l’eau dénoncées ; alertes ONU relayées sur la sécheresse.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.publico.es/politica/video-fiebre-ia-llega-aragon-asi-amenaza-macrocomplejos-amazon-microsoft.html" target="_blank" rel="noopener noreferrer">Público — fièvre IA en Aragon</a><br>
+    <a href="https://elpais.com/tecnologia/2025-01-22/los-ecologistas-denuncian-el-gran-impacto-medioambiental-de-los-centros-de-datos-de-amazon-en-aragon.html" target="_blank" rel="noopener noreferrer">El País — allégations Amazon</a><br>
+    <a href="https://arainfo.org/amazon-a-juicio-precedente-frenar-abuso-piga-centros-de-datos-aragon/" target="_blank" rel="noopener noreferrer">AraInfo — procès PIGA / AWS</a><br>
+    <a href="https://www.elsaltodiario.com/inteligencia-artificial/resistencia-centros-datos-vecinos-ayuntamientos-plantan-cara-multinacionales" target="_blank" rel="noopener noreferrer">El Salto — villages vs multinationales</a>
+  </p>
+
+  <h2>5. Allemagne</h2>
+  <ul>
+    <li>Francfort / Hesse et Rhénanie (près de Cologne) : sections locales du <strong>BUND</strong> contre des projets.</li>
+    <li><strong>Babenhausen</strong> : Stack Infrastructure se retire après que le conseil municipal a exigé plus de transparence, du renouvelable et une baisse du bruit.</li>
+    <li>Sondage / étude : préférence nette pour un exploitant allemand ou européen plutôt qu’américain ou chinois (effet comparable à une hausse de 20 % du prix de l’électricité).</li>
+  </ul>
+  <p class="url">
+    <a href="https://algorithmwatch.org/en/a-guide-to-data-centers/" target="_blank" rel="noopener noreferrer">AlgorithmWatch — BUND</a><br>
+    <a href="https://cybernews.com/tech/europe-data-centers/" target="_blank" rel="noopener noreferrer">Cybernews — Babenhausen retiré</a>
+  </p>
+
+  <h2>6. Ailleurs dans l’Union (moins médiatisé, déjà sous tension)</h2>
+  <ul>
+    <li><strong>Belgique, Portugal, Italie, Nordiques</strong> : l’industrie s’y reporte parce que Francfort–Londres–Amsterdam–Paris–Dublin n’ont plus de puissance (files d’attente jusqu’à 10 ans à Amsterdam).</li>
+    <li>Finlande : campus Nebius ~310 MW à Lappeenranta. Suède : Meta Luleå, EcoDataCenter Borlänge. Danemark : Meta Odense. La contestation y est plus faible dans la presse francophone, le récit « hydro / froid » tient encore — comme aux Pays-Bas il y a dix ans.</li>
+    <li>Guide européen des résistances : AlgorithmWatch (zonage, documents, élus, mises en réseau).</li>
+  </ul>
+  <p class="url">
+    <a href="https://thenextweb.com/news/europe-data-centres-leaving-flap-d-grid-queues-land" target="_blank" rel="noopener noreferrer">The Next Web — fuite hors des 5 grandes places</a><br>
+    <a href="https://algorithmwatch.org/en/how-to-resist-data-centers-guide-local-communities-europe/" target="_blank" rel="noopener noreferrer">How to resist data centers (Europe)</a>
+  </p>
+
+  <h2>7. Collectifs à retenir (hors France)</h2>
+  <ul>
+    <li>Irlande : Not Here Not Anywhere, Friends of the Earth Ireland.</li>
+    <li>Pays-Bas : Save the Wieringermeer / Red de Wieringermeer, Data Non Grata, Geef Tegengas, Stop Datacenter Zuidoost, Bits of Freedom.</li>
+    <li>Espagne : Tu Nube Seca Mi Río, No es sequía es saqueo, Ecologistas en Acción, No Centros de Datos Aragón.</li>
+    <li>Allemagne : BUND (Hesse, Rhénanie).</li>
+    <li>Veille : <a href="https://eudcmonitor.com/" target="_blank" rel="noopener noreferrer">European Data Centre Monitor</a>.</li>
+  </ul>
+
+  <h2>8. Ce que ça dit pour Rantigny</h2>
+  <ul>
+    <li>L’UE a déjà des <strong>moratoires</strong> (Dublin, Amsterdam, hyperscales néerlandais). Ce n’est pas une idée farfelue.</li>
+    <li>Là où l’eau manque (Aragon), le conflit est aussi violent que le bruit au Wisconsin.</li>
+    <li>Là où le réseau est saturé (Pays-Bas, Irlande), le data center <strong>prend la place</strong> des logements et des écoles.</li>
+    <li>Les recours existent : Ennis, TSJA Aragon, High Court irlandaise, occupations de chantier à Amsterdam.</li>
+    <li>Le mot « souveraineté » circule partout. Les villages, eux, parlent d’eau, de facture, de terres et de qui décide.</li>
+  </ul>
+
+  <p class="note"><strong>À retenir.</strong> France, Irlande, Pays-Bas, Espagne, Allemagne : ce n’est plus une exception nationale. C’est le même équipement, les mêmes griefs, le même décalage entre le discours (emplois, campus, IA) et le terrain. Rantigny n’est pas isolé en Europe non plus.</p>
+    </section>
+    <section class="tabpanel" id="panel-us" role="tabpanel" aria-labelledby="tab-us" hidden>
+      <h2 class="panel-titre">Conflits entre populations et data centers</h2>
+      <p class="panel-sous">Points relevés dans le travail sur Rantigny (enquête PLU, septembre 2026). Les États-Unis sont pris en exemple parce qu’ils sont très en avance sur la France en matière de data centers de cette taille.</p>
+      <p class="alerte"><strong>Ce n’est pas « quelques mécontents ».</strong> Les griefs sont toujours les mêmes, et ce sont ceux qui attendent Rantigny : sifflement jour et nuit, sommeil cassé, jardin inutilisable, eau, lumières, facture d’électricité, terres perdues, dossiers opaques. Le Wisconsin (Mount Pleasant, Sturtevant, Kenosha, Port Washington) le vit en ce moment.</p>
+
+  <h2>1. L’ampleur du conflit aux États-Unis</h2>
+  <ul>
+    <li>Quelques centaines de très gros projets ; environ <strong>800 chantiers</strong> ; plusieurs milliers d’annonces (une partie n’ira pas au bout).</li>
+    <li>Environ <strong>800 collectifs</strong> dans <strong>49 États</strong>.</li>
+    <li>Plus de <strong>500 000</strong> personnes dans des groupes locaux.</li>
+    <li>Plus de <strong>530</strong> communes ou comtés : arrêt, moratoire ou règles très restrictives.</li>
+    <li><strong>75 projets</strong> bloqués ou retardés au seul premier trimestre 2026 (environ <strong>130 milliards de dollars</strong>).</li>
+    <li>Environ <strong>70 %</strong> des Américains refusent un data center près de chez eux.</li>
+  </ul>
+  <p class="url">
+    <a href="https://www.aterio.io/insights/us-data-centers" target="_blank" rel="noopener noreferrer">https://www.aterio.io/insights/us-data-centers</a><br>
+    <a href="https://www.cnn.com/2026/08/06/business/ai-data-center-construction" target="_blank" rel="noopener noreferrer">https://www.cnn.com/2026/08/06/business/ai-data-center-construction</a><br>
+    <a href="https://thenextweb.com/news/data-center-opposition-75-projects-blocked-q1-2026" target="_blank" rel="noopener noreferrer">https://thenextweb.com/news/data-center-opposition-75-projects-blocked-q1-2026</a><br>
+    <a href="https://www.newsweek.com/map-shows-huge-surge-in-data-center-opposition-groups-across-40-states-12176693" target="_blank" rel="noopener noreferrer">https://www.newsweek.com/map-shows-huge-surge-in-data-center-opposition-groups-across-40-states-12176693</a><br>
+    <a href="https://heatmap.news/politics/data-center-local-laws-bans-total" target="_blank" rel="noopener noreferrer">https://heatmap.news/politics/data-center-local-laws-bans-total</a>
+  </p>
+
+  <h2>2. Les griefs qui reviennent partout</h2>
+  <ul>
+    <li><strong>Bruit 24 h/24</strong> : sifflement / ronronnement des ventilateurs (décrit comme un train de marchandises, un acouphène qu’on n’arrive plus à chasser).</li>
+    <li>Le seuil en <strong>dB(A)</strong> ne décrit pas ce sifflement : moyenne officielle possible, nuisance réelle dans les chambres.</li>
+    <li><strong>Sommeil</strong> cassé, nuits sans relâche.</li>
+    <li><strong>Jardin</strong> devenu inutilisable.</li>
+    <li><strong>Lumières</strong> permanentes.</li>
+    <li><strong>Eau</strong> : pression sur la ressource, nappe, refroidissement.</li>
+    <li><strong>Électricité</strong> : renforcement de réseau, factures des ménages (contexte US ; en France le financement RTE n’est pas le même).</li>
+    <li><strong>Terres</strong> perdues, artificialisation.</li>
+    <li><strong>Dossiers opaques</strong>, secret, formation / « campus » qui habille une usine.</li>
+    <li><strong>Emplois</strong> : très peu au mètre carré une fois le site allumé, face aux nuisances du quartier (point documenté par le <em>Wall Street Journal</em>).</li>
+    <li>Perte de <strong>cadre de vie</strong>.</li>
+  </ul>
+
+  <h2>3. Lieux et collectifs cités</h2>
+  <h3>Wisconsin (le plus proche du cas Rantigny)</h3>
+  <ul>
+    <li><strong>Fairwater / Mount Pleasant – Sturtevant</strong> : campus Microsoft, riverains et élus (Sturtevant, président Mike Rosenbaum) sur le sifflement.</li>
+    <li><strong>Kenosha</strong> : Kenosha Unite Against Microsoft Data Center (autre projet ~13 km plus au sud) ; contact presse cité : Sage Holloway.</li>
+    <li><strong>Caledonia</strong> : groupe Facebook « Caledonia Residents against rezoning on Botting Road » — Microsoft reculé en 2025 ; des habitants aident d’autres communes.</li>
+    <li><strong>Port Washington</strong> : Vantage / OpenAI, relais via Great Lakes Neighbors United.</li>
+    <li><strong>Beaver Dam</strong> : témoignage d’une riveraine d’un data center Meta devant le Sénat de l’État.</li>
+  </ul>
+  <h3>Réseaux et ressources</h3>
+  <ul>
+    <li><strong>Great Lakes Neighbors United</strong> — réponse reçue : être en salle, faire consigner les points, venir nombreux ; Signal ; mises en relation. <a href="https://www.glnu.org/" target="_blank" rel="noopener noreferrer">https://www.glnu.org/</a></li>
+    <li>Campagne Stand.earth : <a href="https://act.stand.earth/page/96103/action/1" target="_blank" rel="noopener noreferrer">https://act.stand.earth/page/96103/action/1</a></li>
+    <li>Réunion Kenosha (experts) : <a href="https://www.youtube.com/live/jpzqfae9o-k" target="_blank" rel="noopener noreferrer">https://www.youtube.com/live/jpzqfae9o-k</a></li>
+    <li>Chaîne YouTube GLNU : <a href="https://youtube.com/@greatlakesneighborsunited" target="_blank" rel="noopener noreferrer">https://youtube.com/@greatlakesneighborsunited</a></li>
+    <li>Aspects financiers (Prescott Balch) : <a href="https://www.widatacenterfacts.org/" target="_blank" rel="noopener noreferrer">https://www.widatacenterfacts.org/</a></li>
+    <li>Clean Wisconsin (eau / électricité) : cleanwisconsin.org</li>
+    <li>Power Wisconsin Forward (tarifs / qui paie les lignes).</li>
+    <li>Presse locale : Racine County Eye, WPR, Milwaukee Journal Sentinel.</li>
+  </ul>
+
+  <h2>4. Quand le conflit arrive au tribunal</h2>
+  <ul>
+    <li><strong>Fairwater / Microsoft</strong> — <em>Ostergaard v. Microsoft</em>, 2:26-cv-01169, assignation le <strong>1er juillet 2026</strong> pour le bruit ; encore <strong>en cours</strong> en août 2026.
+      <br><span class="url"><a href="https://www.courtlistener.com/docket/73566375/1/ostergaard-v-microsoft-corporation/" target="_blank" rel="noopener noreferrer">https://www.courtlistener.com/docket/73566375/1/ostergaard-v-microsoft-corporation/</a></span>
+      <br><span class="url"><a href="https://www.pcmag.com/news/wisconsin-residents-sue-microsoft-over-noisy-nightmare-data-center" target="_blank" rel="noopener noreferrer">https://www.pcmag.com/news/wisconsin-residents-sue-microsoft-over-noisy-nightmare-data-center</a></span>
+    </li>
+    <li>Autres actions « bruit » : <strong>Michigan</strong>, <strong>Mississippi</strong>.</li>
+    <li><strong>Virginie — Digital Gateway</strong> : zonage annulé par la justice ; promoteur abandonne en juillet 2026.
+      <br><span class="url"><a href="https://wtop.com/prince-william-county/2026/07/digital-gateway-data-center-project-dies-after-final-developer-withdraws-appeal/" target="_blank" rel="noopener noreferrer">https://wtop.com/prince-william-county/2026/07/digital-gateway-data-center-project-dies-after-final-developer-withdraws-appeal/</a></span>
+    </li>
+    <li>Schéma récurrent : le procès arrive <strong>quand le site tourne déjà</strong>. Le voisinage subit d’abord, il attaque ensuite — trop tard pour le zonage.</li>
+  </ul>
+
+  <h2>5. Ce que ça dit politiquement</h2>
+  <ul>
+    <li>Des centaines de collectifs ne sont pas un détail : ça dénote un problème grave de riverains, d’écologie et de bruit.</li>
+    <li>Des mouvements se créent, des actions se multiplient, la justice est très sollicitée pour trancher les litiges riverains / promoteurs.</li>
+    <li>Contact direct avec un collectif US : les populations sont vent debout face à cette industrie.</li>
+    <li>Conseil GLNU : assister à toutes les réunions, prendre la parole, faire écrire le compte rendu, venir nombreux. Une salle comble change le comportement des élus. Bloquer un projet, c’est se mobiliser tôt.</li>
+    <li>Sans consultation avant le changement de règles du sol (PLU / zonage), le mécontentement ne fait que croître une fois les nuisances là.</li>
+  </ul>
+
+  <h2>6. Le parallèle avec Rantigny</h2>
+  <ul>
+    <li>Même type d’équipement : parc de centres de données, marche 24 h/24, puissance de l’ordre de 100 à 300 MW.</li>
+    <li>Nappe à <strong>vulnérabilité forte</strong> (écrit par le porteur).</li>
+    <li>Maisons à <strong>plusieurs centaines de mètres</strong> ; apiculteur à moins de quelques centaines de mètres.</li>
+    <li>Groupes de secours, glycols, biocides : risque nappe.</li>
+    <li>Chaleur fatale / serres : annoncé, pas contractualisé.</li>
+    <li>Mot « campus numérique » sur l’affiche jaune : oriente vers une école, alors que l’objet est industriel.</li>
+    <li>Deux enquêtes liées (PLU + déclassement voie communale n°6), même commissaire, même clôture.</li>
+    <li>Logique locale : changer le zonage d’abord, découvrir les nuisances ensuite — comme aux États-Unis.</li>
+  </ul>
+
+  <p class="note"><strong>À retenir.</strong> Les États-Unis montrent déjà beaucoup de nuisances et des procès concernant l’implantation de data centers sur leur territoire. Le dossier local de Rantigny annonce les mêmes effets. Nous allons immanquablement suivre la même direction si le PLU est modifié sans garanties et sans que la population se soit prononcée.</p>
+    </section>
+</main>
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  var ids = tabs.map(function (t) { return t.getAttribute('data-tab'); });
+  function show(id) {
+    tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-tab') === id ? 'true' : 'false'); });
+    document.querySelectorAll('.tabpanel').forEach(function (p) {
+      var on = p.id === 'panel-' + id; p.classList.toggle('active', on); p.hidden = !on;
+    });
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    try { window.scrollTo(0, 0); } catch (e) {}
+  }
+  tabs.forEach(function (t) {
+    t.addEventListener('click', function () { show(t.getAttribute('data-tab')); });
+    t.addEventListener('keydown', function (e) {
+      var i = ids.indexOf(t.getAttribute('data-tab'));
+      if (e.key === 'ArrowRight') { e.preventDefault(); tabs[(i + 1) % tabs.length].focus(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); tabs[(i - 1 + tabs.length) % tabs.length].focus(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(t.getAttribute('data-tab')); }
+    });
+  });
+  var h = (location.hash || '').replace('#', '');
+  if (ids.indexOf(h) >= 0) show(h);
+})();
+</script>
+</body>
+</html>
