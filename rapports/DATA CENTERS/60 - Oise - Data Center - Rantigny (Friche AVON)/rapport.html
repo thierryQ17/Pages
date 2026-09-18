@@ -209,6 +209,14 @@
        margin-right:7px;border-radius:50%;background:#e8edf9;color:var(--c1);font-size:11px;font-weight:800}
   .doctab.on .dt-num{background:var(--c1);color:#fff}
   .doc{display:none}
+  /* 4e onglet : document du dossier fichiers/, affiché tel quel dans un cadre */
+  .doc-embed{display:flex;flex-direction:column;padding:14px 16px}
+  .doc-embed .embed-note{margin:0 0 12px;font-size:13px;color:var(--muted,#6b7280)}
+  .doc-embed iframe{width:100%;height:calc(100vh - 260px);min-height:520px;
+                    border:1px solid var(--line);border-radius:8px;background:#fff}
+  .navnote{margin:6px 12px 10px;font-size:12px;line-height:1.5;color:var(--muted,#6b7280)}
+  a.navlink.navnote-link{margin-top:6px;border-top:1px solid var(--line);font-size:12.5px;
+       font-weight:700;color:var(--c1)}
   .doc.on{display:block}
   .navgroup{display:none}
   .navgroup.on{display:block}
@@ -602,6 +610,7 @@
   <button type="button" class="doctab on" data-doc="1" role="tab"><span class="dt-num">1</span>Mustapha KHERIEF</button>
   <button type="button" class="doctab" data-doc="2" role="tab"><span class="dt-num">2</span>Analyse loi 2026-403</button>
   <button type="button" class="doctab" data-doc="3" role="tab"><span class="dt-num">3</span>Memphis — Colossus</button>
+  <button type="button" class="doctab" data-doc="4" role="tab"><span class="dt-num">4</span>Contributions à l'enquête</button>
 </nav>
 <div class="layout">
   <aside class="sidebar">
@@ -694,31 +703,45 @@
       <div class="navgroup" data-doc="2">
         <div class="navtitle">Sommaire</div>
         <div class="navhead">Loi n° 2026-403 du 26 mai 2026</div>
-      <a class="navlink" href="#loi-essentiel">L'essentiel</a>
-      <a class="navlink" href="#loi-texte">Le texte analysé</a>
-      <a class="navlink" href="#loi-art35">Article 35 : les data centers</a>
-      <a class="navlink navsub-link" href="#loi-pinm">Qualification PINM</a>
-      <a class="navlink navsub-link" href="#loi-riipm">Espèces protégées</a>
-      <a class="navlink navsub-link" href="#loi-eau">L'eau</a>
-      <a class="navlink navsub-link" href="#loi-reseau">Le réseau électrique</a>
-      <a class="navlink navsub-link" href="#loi-censure">Ce qui a été censuré</a>
-      <a class="navlink" href="#loi-art36-42">Articles 36 et 42</a>
-      <a class="navlink" href="#loi-projets">Face aux 98 projets</a>
-      <a class="navlink" href="#loi-rantigny">Et à Rantigny ?</a>
-      <a class="navlink" href="#loi-sources">Sources et méthode</a>
+      <p class="navnote">Document intégré : chaque entrée amène le cadre ci-contre au bon
+      endroit. La recherche du rapport ne le parcourt pas.</p>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#essentiel" target="_blank" rel="noopener noreferrer">L'essentiel</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#texte" target="_blank" rel="noopener noreferrer">Le texte analysé</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#art35" target="_blank" rel="noopener noreferrer">Article 35 : les data centers</a>
+      <a class="navlink navsub-link" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#pinm" target="_blank" rel="noopener noreferrer">Qualification PINM</a>
+      <a class="navlink navsub-link" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#riipm" target="_blank" rel="noopener noreferrer">Espèces protégées</a>
+      <a class="navlink navsub-link" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#eau" target="_blank" rel="noopener noreferrer">L'eau</a>
+      <a class="navlink navsub-link" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#reseau" target="_blank" rel="noopener noreferrer">Le réseau électrique</a>
+      <a class="navlink navsub-link" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#censure" target="_blank" rel="noopener noreferrer">Ce qui a été censuré</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#art36-42" target="_blank" rel="noopener noreferrer">Articles 36 et 42</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#projets" target="_blank" rel="noopener noreferrer">Face aux 98 projets</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#rantigny" target="_blank" rel="noopener noreferrer">Et à Rantigny ?</a>
+      <a class="navlink" data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#sources" target="_blank" rel="noopener noreferrer">Sources et méthode</a>
+      <a class="navlink navnote-link" href="fichiers/analyse-loi-2026-403-data-centers.html" target="_blank" rel="noopener noreferrer">Ouvrir en pleine page &#8599;</a>
       </div>
       <div class="navgroup" data-doc="3">
       <div class="navtitle">Sommaire</div>
 
       <div class="navhead">Memphis — Colossus (xAI)</div>
-      <a class="navlink" href="#col-contexte">Contexte et sites</a>
-      <a class="navlink" href="#col-nuisances">Nuisances déclarées</a>
-      <a class="navlink navsub-link" href="#col-eau">Eau : 4,5 millions de litres/jour</a>
-      <a class="navlink" href="#col-temoins">Témoignages</a>
-      <a class="navlink" href="#col-droit">Permis, procès, réponses</a>
-      <a class="navlink" href="#col-chiffres">Repères chiffrés</a>
-      <a class="navlink" href="#col-sources">Articles et liens</a>
-      <a class="navlink" href="#col-limites">Limites de ce rapport</a>
+      <p class="navnote">Document intégré : chaque entrée amène le cadre ci-contre au bon
+      endroit. La recherche du rapport ne le parcourt pas.</p>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#contexte" target="_blank" rel="noopener noreferrer">Contexte et sites</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#nuisances" target="_blank" rel="noopener noreferrer">Nuisances déclarées</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#temoins" target="_blank" rel="noopener noreferrer">Témoignages</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#droit" target="_blank" rel="noopener noreferrer">Permis, procès, réponses</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#chiffres" target="_blank" rel="noopener noreferrer">Repères chiffrés</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#sources" target="_blank" rel="noopener noreferrer">Articles et liens</a>
+      <a class="navlink" data-embed="3" href="fichiers/rapport-nuisances-colossus.html#limites" target="_blank" rel="noopener noreferrer">Limites de ce rapport</a>
+      <a class="navlink navnote-link" href="fichiers/rapport-nuisances-colossus.html" target="_blank" rel="noopener noreferrer">Ouvrir en pleine page &#8599;</a>
+      </div>
+      <div class="navgroup" data-doc="4">
+      <div class="navtitle">Sommaire</div>
+
+      <div class="navhead">Enquête publique — PLU de Rantigny</div>
+      <p class="navnote">Document intégré : son propre sommaire se trouve dans la page
+      ci-contre. La recherche du rapport ne le parcourt pas.</p>
+      <a class="navlink navnote-link" href="fichiers/synthese-contributions-enquete-publique-plu-rantigny.html" target="_blank"
+         rel="noopener noreferrer">Ouvrir en pleine page &#8599;</a>
       </div>
     </nav>
   </aside>
@@ -750,7 +773,7 @@
             <li><b>La déclaration :</b> Léa Guedj, « PFAS, “chaleur fatale”… Un projet de data centers destinés à l'IA révolte des riverains », <b>Reporterre</b>, 21 août 2026 (mis à jour le 25 août) — <a href="https://reporterre.net/Dans-l-Oise-l-opposition-grandit-contre-un-projet-de-data-centers-On-a-investi-dans-une" target="_blank" rel="noopener">lire l'article</a>. C'est dans cet article que M. DIETRICH est interrogé sur le statut d'intérêt national majeur et répond « c'est en cours de discussion avec les services de l'État ». Le même article indique que le projet a été retenu comme « projet d'envergure régionale ».</li>
             <li><b>Le texte de loi :</b> <b>LOI n° 2026-403 du 26 mai 2026</b> de simplification de la vie économique, JORF n° 0122 du 27 mai 2026, <b>Titre VII, article 35</b> — <a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054131304" target="_blank" rel="noopener">texte intégral sur Légifrance</a>.</li>
             <li><b>Les articles applicables :</b> <b>article L.300-6-2 du code de l'urbanisme</b> (procédure « projet d'intérêt national majeur ») et <b>article L.411-2, I, 4°, c du code de l'environnement</b> (raison impérative d'intérêt public majeur, condition de la dérogation « espèces protégées »).</li>
-            <li><b>Analyse détaillée du texte :</b> <a href="#loi-essentiel">« Loi 2026-403 et data centers » — lecture commentée du Titre VII</a> : c'est le <b>second onglet de ce document</b>.</li>
+            <li><b>Analyse détaillée du texte :</b> <a data-embed="2" href="fichiers/analyse-loi-2026-403-data-centers.html#essentiel" target="_blank" rel="noopener noreferrer">« Loi 2026-403 et data centers » — lecture commentée du Titre VII</a> : c'est le <b>second onglet de ce document</b>.</li>
             <li><b>Position publique de l'élu :</b> « Long plaidoyer de Christophe Dietrich » sur le data center de Rantigny, <b>Oise Hebdo</b>, 27 août 2026 — <a href="https://www.oisehebdo.fr/2026/08/27/long-plaidoyer-christophe-dietrich-data-center-rantigny/" target="_blank" rel="noopener">lire l'article</a> (publication initiale sur ses réseaux sociaux le 26 août 2026).</li>
             <li><b>Dossier officiel du projet :</b> <a href="https://www.oise.gouv.fr/Actions-de-l-Etat/Environnement/Les-installations-classees/Par-enquete-publique/SCI-Alyssa-commune-de-Rantigny" target="_blank" rel="noopener">« SCI Alyssa, commune de Rantigny » — préfecture de l'Oise</a> (28 pièces téléchargeables).</li>
           </ul>
@@ -1303,7 +1326,7 @@
         <b>Ce que cette comparaison permet — et ne permet pas — de dire.</b><br>
         Elle <b>ne prouve rien</b> sur Rantigny : les deux installations ne refroidissent pas de la même façon, le climat et la puissance installée diffèrent, et le chiffre de Memphis vient de la presse, non d'un document d'exploitant. <b>Écrire « Rantigny consommera comme Memphis » serait faux et immédiatement retourné.</b><br>
         Ce qu'elle montre, en revanche, est utile : <b>le choix du mode de refroidissement se traduit par un écart de deux ordres de grandeur</b> sur la ressource en eau. C'est précisément pourquoi la formulation du dossier — « élimine le recours à l'eau pour le process » — ne peut pas rester une intention : elle doit devenir un <b>volume plafond, inscrit comme prescription dans l'arrêté</b>, avec le point de prélèvement et la conduite à tenir en période de sécheresse.
-        <a href="#col-eau">Le dossier de Memphis, en détail, au 3ᵉ onglet</a>.
+        <a data-embed="3" href="fichiers/rapport-nuisances-colossus.html#nuisances" target="_blank" rel="noopener noreferrer">Le dossier de Memphis, en détail, au 3ᵉ onglet</a>.
       </div>
     </section>
 
@@ -2259,307 +2282,37 @@
     </div>
 
     <div class="doc" id="doc2" data-doc="2">
-
-    <section id="loi-essentiel">
-      <div class="essentiel">
-        <div class="eyebrow">L'essentiel</div>
-        <ol>
-          <li>Un data center peut désormais être qualifié <strong>« projet d'intérêt national majeur » (PINM)</strong> par décret, sans aucun seuil chiffré. L'État peut alors adapter lui-même le PLU au projet. <button type="button" class="tag t-ok tag-src" data-v="1" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></li>
-          <li>Le <strong>refus pour manque d'eau</strong> reste une simple faculté (« peut refuser »), sans définition ni critère. <button type="button" class="tag t-ok tag-src" data-v="2" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></li>
-          <li>La <strong>compensation biodiversité est assouplie</strong> pour tous les projets : l'« obligation de résultats » disparaît et des pertes temporaires sont admises. <button type="button" class="tag t-ok tag-src" data-v="3" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></li>
-          <li>Le raccourci « espèces protégées » du décret PINM ne vise, à la lettre, que les projets industriels et d'infrastructure, <strong>pas les data centers</strong>. Ce point reste juridiquement discutable. <span class="tag t-open">Question ouverte</span></li>
-          <li>À Rantigny, la procédure en cours est une <strong>déclaration de projet communale</strong>, pas un PINM. L'« envergure nationale » invoquée par le dossier ne repose donc sur aucun décret. <button type="button" class="tag t-ok tag-src" data-v="4" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></li>
-        </ol>
-      </div>
-      <ul class="legend" aria-label="Légende des niveaux de certitude">
-        <li><span class="tag t-ok">Vérifié</span>lu dans le texte officiel — <b>cliquez sur l'étiquette pour voir la source</b></li>
-        <li><span class="tag t-sec">Source secondaire</span>article d'avocat ou de presse</li>
-        <li><span class="tag t-hyp">Hypothèse</span>interprétation à confirmer</li>
-        <li><span class="tag t-open">Question ouverte</span>non tranchée en droit</li>
-      </ul>
-    </section>
-
-    <section id="loi-texte">
-      <div class="eyebrow">1</div>
-      <h2>Le texte analysé</h2>
-      <p>Le lien Légifrance <code>LEGISCTA000054133112</code> ne renvoie pas à un article isolé mais au <strong>Titre VII</strong> de la loi n° 2026-403 du 26 mai 2026 de simplification de la vie économique, soit les articles 35 à 42. Seul l'article 35 porte expressément sur les centres de données. Les articles 36 et 42 les concernent indirectement, et les articles 38 à 41 traitent d'éolien en mer, d'antennes mobiles et de fibre.</p>
-      <p>Le Conseil constitutionnel (décision n° 2026-903 DC du 21 mai 2026) a censuré le <span class="art">IV de l'art. 35</span> et l'<span class="art">art. 37</span>, comme environ un tiers du texte, au motif qu'il s'agissait de « cavaliers législatifs » sans lien suffisant avec le projet de loi initial. <button type="button" class="tag t-ok tag-src" data-v="5" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></p>
-    </section>
-
-    <section id="loi-art35">
-      <div class="eyebrow">2</div>
-      <h2>Article 35 : ce qui touche directement les data centers</h2>
-
-      <h3 id="loi-pinm">Un data center peut devenir « projet d'intérêt national majeur » <button type="button" class="tag t-ok tag-src" data-v="6" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <blockquote class="law">
-        <cite>Code de l'urbanisme, art. L. 300-6-2, I bis (créé par l'art. 35)</cite>
-        <p>« Un centre de données qui revêt, eu égard à son objet et à son envergure, notamment en termes d'investissement, de puissance installée ou de soutien à l'émergence d'écosystèmes domestiques compétitifs, une importance particulière pour la <mark>transition numérique</mark>, la transition écologique ou la souveraineté nationale peut également être qualifié par décret de projet d'intérêt national majeur. »</p>
-      </blockquote>
-      <ul>
-        <li><strong>Aucun seuil</strong> de puissance, de surface ou d'investissement : l'appréciation revient entièrement au gouvernement.</li>
-        <li><strong>L'emploi n'est pas un critère.</strong> Pour les projets industriels (le I du même article), la loi mentionne « l'investissement et l'emploi ». Pour les data centers, elle cite l'investissement, la puissance installée et les « écosystèmes domestiques ».</li>
-        <li>La loi ajoute la « transition numérique » aux motifs possibles, alors que le I ne vise que la transition écologique et la souveraineté nationale.</li>
-      </ul>
-
-      <p>Ce que permet le statut PINM, d'après le reste de l'article L. 300-6-2 dans sa version en vigueur :</p>
-      <ul class="effects">
-        <li><span class="k">Urbanisme</span><span>L'État engage lui-même la mise en compatibilité du SRADDET, du SCoT ou du PLU, et l'adopte <strong>par décret</strong> (V à X). <button type="button" class="tag t-ok tag-src" data-v="7" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></span></li>
-        <li><span class="k">Accord des élus</span><span>Il faut l'accord du maire (ou du président de l'intercommunalité) et de la région. Il est <strong>réputé donné au bout d'un mois sans réponse</strong>. En cas de désaccord, l'avis de la commune prime sur celui de la région (II). <button type="button" class="tag t-ok tag-src" data-v="8" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></span></li>
-        <li><span class="k">Public</span><span>Participation du public selon l'<span class="art">art. L. 123-19</span> du code de l'environnement (VIII). Il s'agirait d'une procédure par voie électronique plutôt que d'une enquête publique classique. <span class="tag t-hyp">À confirmer</span></span></li>
-        <li><span class="k">Hauteur</span><span>Dérogation possible aux règles de hauteur du PLU (nouvel <span class="art">art. L. 152-5-3</span>), dans des limites qu'un décret en Conseil d'État doit encore fixer. <button type="button" class="tag t-ok tag-src" data-v="9" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></span></li>
-        <li><span class="k">Permis</span><span>Le préfet deviendrait l'autorité compétente pour délivrer le permis de construire. <span class="tag t-sec">Source secondaire</span></span></li>
-      </ul>
-
-      <h3 id="loi-riipm">Espèces protégées : les data centers semblent exclus du raccourci <span class="tag t-open">Question ouverte</span></h3>
-      <p>Le décret PINM peut reconnaître au projet une <strong>« raison impérative d'intérêt public majeur »</strong> (RIIPM). C'est l'une des conditions pour obtenir une dérogation à l'interdiction de détruire des espèces protégées. Une fois reconnue dans le décret, elle ne peut plus être contestée lors d'un recours contre la dérogation elle-même.</p>
-      <blockquote class="law">
-        <cite>Code de l'environnement, art. L. 411-2-1, dernier alinéa (version en vigueur)</cite>
-        <p>« Le décret, prévu <mark>au I</mark> de l'article L. 300-6-2 du code de l'urbanisme, qualifiant un projet de projet d'intérêt national majeur […] peut lui reconnaître le caractère de projet répondant à une raison impérative d'intérêt public majeur […]. »</p>
-      </blockquote>
-      <p>Les data centers sont qualifiés au titre du <strong>I bis</strong>, pas du I. À la lettre, ils ne bénéficient donc pas de ce raccourci. Le cabinet Gossement fait la même lecture. <span class="tag t-sec">Source secondaire</span></p>
-      <p>Il reste une brèche possible. Le I vise désormais aussi les projets « d'infrastructure », et la loi définit elle-même un data center comme « une infrastructure ou un groupe d'infrastructures ». Un porteur de projet pourrait donc tenter de passer par le I. Aucune jurisprudence ne tranche ce point à ce jour. Le nouveau XIII renvoie en outre à un décret en Conseil d'État pour préciser les conditions de reconnaissance de la RIIPM.</p>
-
-      <h3 id="loi-eau">L'eau : un refus possible, jamais obligatoire <button type="button" class="tag t-ok tag-src" data-v="10" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <blockquote class="law">
-        <cite>Code de l'urbanisme, art. L. 300-6-2, I bis, al. 2</cite>
-        <p>« L'autorité administrative <mark>peut</mark> refuser l'octroi du permis de construire d'un centre de données implanté sur un territoire connaissant des tensions structurelles sur la ressource en eau. »</p>
-      </blockquote>
-      <p>Il s'agit d'une faculté, pas d'une obligation. La loi ne définit pas les « tensions structurelles » et ne fixe ni seuil ni indicateur. La portée pratique paraît faible, mais c'est un <strong>argument désormais écrit dans la loi</strong>, que les opposants peuvent invoquer. <span class="tag t-hyp">Hypothèse</span></p>
-
-      <h3 id="loi-reseau">Le réseau électrique : des capacités réservées à l'avance <button type="button" class="tag t-ok tag-src" data-v="11" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <p>Le V de l'article 35 permet au ministre chargé de l'énergie de demander à RTE de <strong>réserver une capacité de raccordement</strong> pour les « projets d'infrastructures industrielles et numériques fortement consommatrices en électricité ». Le demandeur peut payer une contribution supplémentaire pour pouvoir consommer « sans limitation de puissance ». La Commission de régulation de l'énergie (CRE) doit approuver les principes de calcul de cette contribution.</p>
-      <p>Pour situer l'enjeu, RTE avait déjà réservé <strong>près de 18 GW</strong> pour <strong>environ 80 projets</strong> en mai 2026, contre environ 5 GW pour une quarantaine de projets fin 2024.</p>
-
-      <h3 id="loi-censure">Ce qui a été censuré <button type="button" class="tag t-ok tag-src" data-v="12" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <p>Le <span class="art">IV de l'art. 35</span> ne figure pas dans la loi promulguée. D'après les commentaires publiés, il assouplissait l'objectif de <strong>« zéro artificialisation nette » (ZAN)</strong>. <span class="tag t-sec">Source secondaire</span> Une censure pour cavalier législatif ne juge pas le fond : la même mesure peut revenir dans un autre texte.</p>
-    </section>
-
-    <section id="loi-art36-42">
-      <div class="eyebrow">3</div>
-      <h2>Articles 36 et 42 : les effets indirects</h2>
-
-      <h3>Article 42 : la compensation biodiversité est assouplie <button type="button" class="tag t-ok tag-src" data-v="13" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <p>Comparaison des deux versions du second alinéa du I de l'article L. 163-1 du code de l'environnement :</p>
-      <div class="table-wrap">
-        <table class="diff">
-          <thead><tr><th>Avant le 28 mai 2026</th><th>Depuis le 28 mai 2026</th></tr></thead>
-          <tbody>
-            <tr>
-              <td>« Les mesures de compensation […] visent un objectif d'absence de perte nette, voire de gain de biodiversité. <del>Elles doivent se traduire par une obligation de résultats et être effectives pendant toute la durée des atteintes.</del> »</td>
-              <td>« Elles visent à éviter les pertes nettes de biodiversité pendant toute la durée des atteintes ou, <ins>à défaut</ins>, lorsque la complexité ou les délais […] ne le permettent pas, <ins>à compenser les éventuelles pertes nettes intermédiaires dans un délai raisonnable</ins> […], en visant, à l'expiration de ce délai le cas échéant, une absence de perte nette, voire un gain de biodiversité. »</td>
-            </tr>
-            <tr>
-              <td colspan="2">Phrase maintenue dans les deux versions : « Si les atteintes liées au projet ne peuvent être ni évitées, ni réduites, ni compensées de façon satisfaisante, celui-ci <strong>n'est pas autorisé en l'état</strong>. »</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Cet assouplissement vaut pour <strong>tous les projets</strong>, data centers compris, et s'applique en particulier aux sites qui touchent des zones humides ou des milieux naturels.</p>
-
-      <h3>Article 36 : la RIIPM reconnue dès la déclaration de projet <button type="button" class="tag t-ok tag-src" data-v="14" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></h3>
-      <p>Lorsqu'une déclaration de projet ou une déclaration d'utilité publique est <strong>prononcée par l'État</strong>, elle peut désormais reconnaître la raison impérative d'intérêt public majeur à tout projet, et plus seulement aux projets industriels. Cette reconnaissance ne peut ensuite être contestée que par un recours contre cet acte.</p>
-      <p>Pour un data center privé dont la déclaration de projet est portée par la commune, l'effet devrait être limité. <span class="tag t-hyp">Hypothèse</span></p>
-    </section>
-
-    <section id="loi-projets">
-      <div class="eyebrow">4</div>
-      <h2>Face aux 98 projets recensés en France</h2>
-      <div class="table-wrap">
-        <table>
-          <thead><tr><th>Carte « Le nuage était sous nos pieds », mise à jour le 14/09/2026</th><th class="num">Points</th></tr></thead>
-          <tbody>
-            <tr><td>Projets annoncés (presse, communiqués)</td><td class="num">65</td></tr>
-            <tr><td>Projets validés, en phase d'instruction</td><td class="num">23</td></tr>
-            <tr><td>Data centers en construction</td><td class="num">10</td></tr>
-            <tr class="total"><td>Total des projets</td><td class="num">98</td></tr>
-            <tr><td>Recours juridiques recensés</td><td class="num">4</td></tr>
-            <tr><td>Oppositions locales</td><td class="num">31</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p>Un point sur la carte ne correspond pas toujours à un projet : ÆTHER à Strasbourg occupe 2 points, et SoftBank annonce 3 data centers sur 2 points.</p>
-      <ul>
-        <li><strong>Une loi d'accélération.</strong> Procédure PINM pilotée par l'État, réservation de capacité électrique, compensation biodiversité assouplie : la loi va dans le sens des porteurs de projet. Les contrepoids restent faibles (refus pour l'eau facultatif), et c'est le Conseil constitutionnel, pas le législateur, qui a écarté l'assouplissement du ZAN.</li>
-        <li><strong>Aucun décret PINM connu pour un data center.</strong> Nos recherches n'en ont trouvé aucun à la date de cette analyse. <span class="tag t-hyp">À vérifier</span> Sesterce (Drôme) a demandé ce statut après la suspension de son permis de construire par le tribunal administratif de Grenoble le 10 juillet 2026. C'est le premier cas connu où le PINM est invoqué pour contourner un recours.</li>
-        <li><strong>Un déplacement du contentieux.</strong> Pour un projet PINM, la mise en compatibilité du PLU passe par un décret. Un recours viserait alors un décret, en principe devant le Conseil d'État, et non plus une délibération communale. <span class="tag t-hyp">Hypothèse</span></li>
-      </ul>
-    </section>
-
-    <section id="loi-rantigny">
-      <div class="eyebrow">5</div>
-      <h2>Et à Rantigny ?</h2>
-      <div class="site">
-        <div class="eyebrow">Data center de la friche Avon</div>
-        <dl>
-          <div><dt>Puissance</dt><dd>300 MW</dd></div>
-          <div><dt>Emprise</dt><dd>70 ha</dd></div>
-          <div><dt>Statut</dt><dd>En instruction</dd></div>
-          <div><dt>Mise en service visée</dt><dd>2029</dd></div>
-        </dl>
-      </div>
-      <p>La procédure en cours est une <strong>déclaration de projet emportant mise en compatibilité du PLU de Rantigny</strong>. L'enquête publique a été ouverte le 10 août 2026 et close le 10 septembre 2026 à 17 h. <button type="button" class="tag t-ok tag-src" data-v="15" title="Voir la source de cette vérification"><span class="ts-lbl">Vérifié</span><svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button></p>
-      <ol class="points">
-        <li><strong>L'« envergure nationale » sans décret.</strong> Le dossier invoque un « caractère d'envergure nationale » pour justifier la dérogation au PLU. Une contribution à l'enquête publique demande : « Où est ce décret ? ». La loi confirme que l'outil juridique de l'intérêt national pour un data center est le <strong>décret PINM</strong>, et la procédure suivie ici n'en est pas une.
-        <br>À nuancer : l'absence de décret ne rend pas le projet illégal pour autant. Une déclaration de projet communale repose sur l'<em>intérêt général</em>, qu'il faut démontrer. L'argument est donc de montrer que cette démonstration ne tient pas, plutôt que d'exiger un décret. <span class="tag t-hyp">Hypothèse</span></li>
-        <li><strong>Si le projet devenait PINM.</strong> L'État reprendrait la main sur la mise en compatibilité du PLU. L'accord du maire serait <strong>réputé acquis après un mois de silence</strong> : une réponse explicite de la commune compterait alors.</li>
-        <li><strong>La zone humide (secteur Nh).</strong> L'article 42 permet d'étaler la compensation dans le temps. Les arguments de fond restent l'ordre « éviter, réduire, compenser » et la règle maintenue selon laquelle un projet dont les atteintes ne peuvent être compensées de façon satisfaisante « n'est pas autorisé en l'état ».</li>
-        <li><strong>L'eau.</strong> Le nouvel alinéa sur les « tensions structurelles » peut être invoqué. Il faut d'abord établir la situation du secteur (Oise, Brêche) : classement en zone de répartition des eaux, arrêtés sécheresse répétés, état des nappes. <span class="tag t-hyp">À vérifier</span></li>
-        <li><strong>Le raccordement.</strong> Avec 300 MW, le projet entre dans la catégorie des projets « fortement consommateurs » pour lesquels le ministre peut faire réserver de la capacité chez RTE. <span class="tag t-hyp">Hypothèse</span></li>
-      </ol>
-      <p class="note">Ce document est une lecture des textes, pas un avis d'avocat. Avant tout usage contentieux ou public, les points marqués « Hypothèse » et « Question ouverte » doivent être validés par un juriste.</p>
-    </section>
-
-    <section id="loi-sources">
-      <div class="eyebrow">6</div>
-      <h2>Sources et méthode</h2>
-      <p>Légifrance bloque les accès automatisés. Le texte a donc été extrait des <strong>archives open data officielles de la DILA</strong>, qui alimentent Légifrance : texte publié au Journal officiel du 27 mai 2026 et versions successives des articles de code modifiés.</p>
-      <ol class="sources">
-        <li><a href="https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000054131304" rel="noopener noreferrer" target="_blank">Loi n° 2026-403 du 26 mai 2026 de simplification de la vie économique</a><span class="ref">JORFTEXT000054131304 · Titre VII : LEGISCTA000054133112</span></li>
-        <li><a href="https://echanges.dila.gouv.fr/OPENDATA/" rel="noopener noreferrer" target="_blank">Open data DILA, bases LEGI et JORF</a><span class="ref">archives JORF_20260527, LEGI_20260527 et LEGI_20260819</span></li>
-        <li><a href="https://www.conseil-constitutionnel.fr/decision/2026/2026903DC.htm" rel="noopener noreferrer" target="_blank">Conseil constitutionnel, décision n° 2026-903 DC du 21 mai 2026</a></li>
-        <li><a href="https://www.gossement-avocats.com/blog/centres-de-donnees-data-centers-ce-que-change-la-loi-de-simplification-de-la-vie-economique/" rel="noopener noreferrer" target="_blank">Cabinet Gossement : ce que change la loi pour les centres de données</a></li>
-        <li><a href="https://cabinet-coudray.fr/que-reste-til-de-la-loi-de-simplification-de-la-vie-economique/" rel="noopener noreferrer" target="_blank">Cabinet Coudray : que reste-t-il de la loi de simplification ?</a></li>
-        <li><a href="https://www.rte-france.com/bases-electricite/consommation-electricite/essor-data-centers-france" rel="noopener noreferrer" target="_blank">RTE : les data centers en chiffres clés</a></li>
-        <li><a href="https://umap.openstreetmap.fr/fr/map/carte-des-data-centers-des-projets-et-des-contesta_1289485" rel="noopener noreferrer" target="_blank">Carte uMap des data centers, des projets et des contestations en France</a><span class="ref">données extraites le 15/09/2026, dernière modification le 14/09/2026</span></li>
-        <li><a href="https://www.registre-numerique.fr/datacenter-rantigny/voir-les-avis" rel="noopener noreferrer" target="_blank">Registre de l'enquête publique de Rantigny</a></li>
-      </ol>
-    </section>
-  
+      <section class="card doc-embed">
+        <p class="embed-note">Lecture commentée du Titre VII de la <b>loi n° 2026-403 du 26 mai 2026</b> — ce que le texte
+        change, et ne change pas, pour les data centers. Document tenu dans <code>fichiers/</code>, à côté du rapport —
+        <a href="fichiers/analyse-loi-2026-403-data-centers.html" target="_blank" rel="noopener noreferrer">l'ouvrir en pleine page &#8599;</a></p>
+        <iframe src="fichiers/analyse-loi-2026-403-data-centers.html"
+                title="Loi 2026-403 et data centers — lecture commentée du Titre VII"
+                loading="lazy"></iframe>
+      </section>
     </div>
     <div class="doc" id="doc3" data-doc="3">
-
-    <section id="col-contexte" class="card">
-      <h2>Contexte et sites</h2>
-      <p class="sub">Synthèse de presse et de contentieux — Memphis (Tennessee) et Southaven (Mississippi), 2024 à septembre 2026. <b>Aucune source primaire américaine n'a été consultée : tout provient d'articles cités et liés.</b></p>
-      <p>Colossus est le nom donné aux supercalculateurs d'intelligence artificielle d'xAI, entreprise fondée par Elon Musk, désormais souvent présentée dans la presse 2026 sous le nom SpaceXAI. Le premier campus, <b>Colossus 1</b>, a été installé dans une ancienne usine Electrolux du sud-ouest de Memphis, près du quartier historique de Boxtown. Un second ensemble, <b>Colossus 2</b>, s'est développé côté Tennessee (Whitehaven), alimenté en grande partie par une centrale de turbines à gaz située à <b>Southaven</b>, juste de l'autre côté de la frontière du Mississippi.</p>
-      <p>La presse insiste sur la vitesse du déploiement : Colossus 1 a été présenté comme mis en service en environ <b>122 jours</b> après le début des travaux, fin 2024. Pour ne pas attendre le renforcement du réseau électrique, l'entreprise a installé des <b>turbines à gaz souvent qualifiées de temporaires</b> (nombreuses unités montées sur remorques). Ce choix est au cœur des nuisances et des contentieux.</p>
-      <div class="box">
-        <b>Colossus 1 — Memphis (Tennessee)</b><br>
-        Campus de calcul près de Boxtown / Pidgeon Industrial Park. Turbines sur site, consommation d'eau de nappe pour le refroidissement, circulation de camions.
-      </div>
-      <div class="box">
-        <b>Colossus 2 + centrale de Southaven (Mississippi)</b><br>
-        Puissance de calcul côté Tennessee ; électricité produite au Mississippi. C'est surtout ici que le bruit 24 h/24 est documenté.
-      </div>
-    </section>
-
-    <section id="col-nuisances" class="card">
-      <h2>Nuisances déclarées</h2>
-
-      <h3>Bruit et vibrations</h3>
-      <p>C'est le grief le plus concret et le plus partagé, y compris par des riverains qui se disent ni anti-IA ni anti-Musk. Les turbines fonctionnent en continu. Les descriptions récurrentes dans CNBC, CBS, Yahoo et Clubic : bruit d'avion qui décolle sans partir, souffleur de feuilles permanent, aspirateur dans la maison, rugissement et sifflement aigus combinés à un grondement basse fréquence.</p>
-      <p>Le son basse fréquence traverse les murs. Des mesures citoyennes et journalistiques font état d'environ <b>50 à 60 dB la nuit à l'extérieur</b> (CBS / Clubic) et, selon certains articles, jusqu'à environ <b>70 dB à l'intérieur</b> chez Jason Haley. Un rapport d'acousticiens (Roland, Woolworth &amp; Associates, mars, cité par Yahoo) estime que le bruit basse fréquence peut être <b>4 à 16 fois</b> plus fort que le fond d'un quartier résidentiel calme, selon la distance. <b>L'OMS recommande de ne pas dépasser 40 dB la nuit.</b></p>
-      <p>Une enceinte antibruit de plusieurs millions de dollars a été construite. Les riverains interrogés estiment que le soulagement reste insuffisant. Construction permanente, alarmes de recul des engins et circulation lourde s'ajoutent aux turbines.</p>
-
-      <h3>Air, odeurs et santé ressentie</h3>
-      <p>Boxtown et le sud de Memphis étaient déjà des zones industrielles à fort fardeau sanitaire (asthme, risque de cancer supérieur à la moyenne nationale selon plusieurs reportages). Les associations (SELC, Earthjustice, NAACP, Memphis Community Against Pollution) accusent les turbines de relâcher des oxydes d'azote (NOx, précurseurs de smog), des particules fines PM2.5 et du formaldéhyde, parfois sans les permis Clean Air Act adaptés au départ.</p>
-      <p>Des riverains parlent d'odeur de gaz ou de « chou pourri » et disent ne plus ouvrir les fenêtres (<i>People</i>, <i>Time</i> repris). Taylor Logsdon a installé des capteurs citoyens : une analyse préliminaire sur quatre mois, citée par Yahoo, indiquait des dépassements du seuil journalier EPA de PM2.5 environ un tiers du temps — <b>sans pouvoir attribuer toute la pollution à la centrale</b>.</p>
-      <p class="note"><b>Les données ne sont pas unanimes, et c'est important.</b> Une étude satellite de l'Université de Memphis présentée en septembre 2026 au conseil municipal n'a pas trouvé de détérioration significative de la qualité de l'air ni de la température de surface autour de Colossus 1, tout en soulignant les limites de la méthode. SpaceXAI affirme que les turbines sont filtrées et que la qualité de l'air reste dans les normes. À l'inverse, une analyse satellite commentée par <i>New Scientist</i> (septembre 2026) suggère un pic marqué de NOx au-dessus du site de Southaven.</p>
-
-      <h3>Poussière, camions, voirie</h3>
-      <p>À Boxtown, les habitants décrivent des camions de terrassement, de la poussière sur l'herbe et les maisons, des chaussées abîmées et un bruit de chantier. En septembre 2026, Memphis a suspendu un projet d'extension de la Paul R. Lowry Road après ces plaintes (Hoodline, Action News 5).</p>
-
-      <h3 id="col-eau">Eau</h3>
-      <p>Plusieurs articles francophones (20 Minutes, La Presse) reprennent le chiffre de <b>4,5 millions de litres par jour</b> prélevés dans la nappe qui alimente Memphis pour refroidir Colossus 1. L'association <i>Protect Our Aquifer</i> s'inquiète pour la ressource potable. Une usine de recyclage d'eau promise a pris du retard ou a été suspendue selon ces reportages.</p>
-      <div class="box warn">
-        <b>Ce que ce chiffre permet — et ne permet pas — de dire à Rantigny.</b><br>
-        4,5 millions de litres par jour font <b>4 500 m³/jour</b>, soit environ <b>1 640 000 m³/an</b> : <b>143 fois</b> les 11 466 m³/an annoncés pour Rantigny. Mais les deux installations ne refroidissent pas de la même façon — Memphis emploie un refroidissement fortement consommateur d'eau, Rantigny annonce du <i>free-cooling</i> en boucle fermée — et ni la puissance installée ni le climat ne sont comparables. <b>Ce chiffre n'est donc pas une projection pour Rantigny.</b> Il sert à une seule chose, et elle suffit : montrer que l'écart entre les modes de refroidissement se compte en ordres de grandeur, et qu'un engagement chiffré et opposable sur le volume prélevé est la seule garantie qui vaille.
-        <a href="#eau">Voir la contradiction relevée sur le dossier de Rantigny</a>.
-      </div>
-
-      <h3>Cadre de vie et patrimoine</h3>
-      <p>Insomnie, maux de tête, anxiété, dépréciation immobilière, sentiment de n'avoir pas été consultés : ces thèmes reviennent dans les class actions et les interviews. Certains propriétaires disent ne pas pouvoir vendre. Le maire de Southaven a reconnu un problème de bruit ; des e-mails cités par CNBC et CBS lui attribuaient le conseil d'« envisager de vendre », phrase qu'il a ensuite niée.</p>
-    </section>
-
-    <section id="col-temoins" class="card">
-      <h2>Témoignages repris par la presse</h2>
-      <p class="sub">Cités tels que publiés. Ce sont des déclarations de riverains, pas des constats d'expertise.</p>
-      <div class="col-cit">« Le bruit de Colossus II et de ses turbines à gaz, c'est une forme de torture. »<span class="col-qui">Jason Haley, Southaven — CNBC, juillet 2026</span></div>
-      <div class="col-cit">« Le bruit est présent 24 heures sur 24, sept jours sur sept […] Si vous restez ici trop longtemps, les vibrations vous donnent la nausée. »<span class="col-qui">Krystal Polk — 20 Minutes / AFP, août 2026</span></div>
-      <div class="col-cit">« C'est l'air que Dieu nous a donné, et l'homme ne devrait pas nous l'enlever. »<span class="col-qui">Easter Knox, 76 ans, Boxtown — People / Time</span></div>
-      <div class="col-cit">« Nous sommes la colonie extraite et exploitée de ce qui va devenir l'une des entités les plus valorisées au monde. […] Des gens vont mourir à cause de cette pollution. »<span class="col-qui">Justin Pearson, représentant de Memphis au parlement du Tennessee — Wired, juin 2026</span></div>
-    </section>
-
-    <section id="col-droit" class="card">
-      <h2>Permis, procès et réponses officielles</h2>
-      <p>Le schéma décrit par SELC, Reuters et Wired est le suivant : <b>turbines installées et mises en route d'abord, permis ensuite</b>. À Colossus 1, des survols ont montré davantage de turbines que le permis de 15 unités accordé en juillet 2025 par le Shelby County Health Department. À Southaven, le Mississippi Department of Environmental Quality a d'abord autorisé un fonctionnement temporaire (retrait sous 12 mois) ; le parc a ensuite gonflé jusqu'à environ 60 à 69 unités selon la presse de l'été 2026, avant un permis pour des turbines permanentes.</p>
-      <ul class="points">
-        <li><b>Avril 2026</b> — plainte NAACP / Earthjustice sur le Clean Air Act.</li>
-        <li><b>Juin 2026</b> — class action de riverains de Southaven (Haley, Logsdon, Herrington et al.) pour nuisance publique liée au bruit et aux vibrations, au nom d'un groupe potentiel de <b>plus de 10 000 personnes</b>.</li>
-        <li>Le Département de la Justice américain est intervenu pour demander le rejet d'une partie de l'action NAACP, en invoquant notamment des enjeux de <b>sécurité nationale</b>.</li>
-        <li>SpaceXAI présente les turbines actuelles comme transitoires et s'est engagée à les remplacer par une centrale permanente mieux contrôlée (horizon souvent cité : 2027).</li>
-        <li>Les élus locaux mettent en avant recettes fiscales et emplois, tout en multipliant les réunions publiques.</li>
-      </ul>
-    </section>
-
-    <section id="col-chiffres" class="card">
-      <h2>Repères chiffrés, tels que publiés</h2>
-      <p class="sub">Les chiffres varient selon la date, le site et la source. Tableau de synthèse, non exhaustif.</p>
-      <table>
-        <thead><tr><th style="width:230px">Sujet</th><th>Ordre de grandeur cité</th><th style="width:210px">Source</th></tr></thead>
-        <tbody>
-          <tr><td><b>Mise en service Colossus 1</b></td><td>2 septembre 2024, ~122 jours de chantier</td><td>CNBC, Washington Post</td></tr>
-          <tr><td><b>Turbines Colossus 1</b></td><td>Jusqu'à ~35 observées ; <b>permis pour 15</b> (juillet 2025)</td><td>SELC, Wired, Data Center Dynamics</td></tr>
-          <tr><td><b>Turbines Southaven / Colossus 2</b></td><td>De ~27 fin 2025 à ~57–69 mi-2026</td><td>Reuters, Yahoo, New Scientist</td></tr>
-          <tr><td><b>Bruit</b></td><td>50–60 dB la nuit ; ~70 dB à l'intérieur selon certains articles</td><td>CBS, Clubic, Gadget Review</td></tr>
-          <tr><td><b>Eau, Colossus 1</b></td><td><b>~4,5 millions de litres / jour</b> prélevés dans la nappe</td><td>20 Minutes, La Presse / AFP</td></tr>
-          <tr><td><b>NOx satellite, Southaven</b></td><td>~730 kg/h en moyenne, pic ~1 180 kg/h (fév.–août 2026)</td><td>New Scientist</td></tr>
-          <tr><td><b>Santé</b> (hypothèse du procès NAACP)</td><td>Jusqu'à 44 M$/an de dommages sanitaires si 41 turbines en continu</td><td>Wired</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="col-sources" class="card">
-      <h2>Articles et liens</h2>
-      <p class="sub">Liens directs vers les reportages utilisés. Tous s'ouvrent dans un nouvel onglet.</p>
-
-      <h3>Presse francophone</h3>
-      <ul class="col-src">
-        <li><span class="tag t-grey">FR</span> <span class="src">20 Minutes · 11 août 2026 · AFP</span><br><a href="https://www.20minutes.fr/monde/etats-unis/4238663-20260811-etats-unis-pollution-consommation-eau-bruit-data-centers-musk-font-peur-habitants-memphis" target="_blank" rel="noopener noreferrer">Pollution, consommation d'eau et bruit… Les data centers de Musk font peur aux habitants de Memphis</a></li>
-        <li><span class="tag t-grey">FR</span> <span class="src">Clubic · 15 septembre 2026 · d'après CBS</span><br><a href="https://www.clubic.com/actualite-629704-voila-ce-que-subissent-les-riverains-de-colossus-le-gigantesque-data-center-d-elon-musk.html" target="_blank" rel="noopener noreferrer">Voilà ce que subissent les riverains de Colossus</a></li>
-        <li><span class="tag t-grey">FR</span> <span class="src">La Presse · 10–11 août 2026 · AFP</span><br><a href="https://www.lapresse.ca/international/etats-unis/2026-08-10/memphis/les-quartiers-noirs-s-insurgent-contre-les-centres-de-donnees-d-elon-musk.php" target="_blank" rel="noopener noreferrer">Les quartiers noirs s'insurgent contre les centres de données d'Elon Musk</a></li>
-        <li><span class="tag t-grey">FR</span> <span class="src">Nouvelles du Monde · 26 février 2026</span><br><a href="https://www.nouvelles-du-monde.com/xai-riverains-sinquietent-des-nuisances-sonores-et-de-la-pollution/" target="_blank" rel="noopener noreferrer">xAI : riverains s'inquiètent des nuisances sonores et de la pollution</a></li>
-      </ul>
-
-      <h3>Enquêtes et médias nationaux américains</h3>
-      <ul class="col-src">
-        <li><span class="tag t-grey">EN</span> <span class="src">CNBC · 16–17 juillet 2026</span><br><a href="https://www.cnbc.com/2026/07/16/elon-musk-memphis-ai-colossus-data-center.html" target="_blank" rel="noopener noreferrer">Musk's Memphis AI empire is the epicenter of the data center backlash</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">CBS News · 16 juillet 2026</span><br><a href="https://www.cbsnews.com/news/mississippi-elon-musk-xai-data-center-power-plant-noise/" target="_blank" rel="noopener noreferrer">Mississippi homeowners blame a noisy data center plant for sleepless nights</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Wired · 11 juin 2026</span><br><a href="https://www.wired.com/story/spacex-ipo-how-people-living-near-xai-data-centers-feel/" target="_blank" rel="noopener noreferrer">People Living Near xAI's Dirty Data Centers Are Furious About the SpaceX IPO</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Yahoo News · 9 septembre 2026</span><br><a href="https://www.yahoo.com/news/us/articles/spacexai-colossus-data-center-fueling-100000107.html" target="_blank" rel="noopener noreferrer">SpaceXAI's Colossus data center is fueling a massive backlash</a></li>
-          <li><span class="tag t-grey">EN</span> <span class="src">Reuters · 14 juillet 2026</span><br><a href="https://www.reuters.com/world/americas/pollution-musks-unpermitted-xai-power-project-hits-hardest-black-communities-2026-07-14/" target="_blank" rel="noopener noreferrer">Pollution from Musk's unpermitted xAI power project hits hardest in Black communities</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">New Scientist · 11 septembre 2026</span><br><a href="https://www.newscientist.com/article/2588786-spacexai-data-centre-may-have-led-to-mississippi-air-pollution-spike/" target="_blank" rel="noopener noreferrer">SpaceXAI data centre may have led to Mississippi air pollution spike</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">People · 16 décembre 2025</span><br><a href="https://people.com/resident-living-near-elon-musk-data-center-says-cant-open-windows-rotten-smell-11869646" target="_blank" rel="noopener noreferrer">Resident says she can't open windows because of a « rotten » smell</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Inside Climate News · 17 juillet 2025</span><br><a href="https://insideclimatenews.org/news/17072025/elon-musk-xai-data-center-gas-turbines-memphis/" target="_blank" rel="noopener noreferrer">Colossus operated gas turbines without appropriate permits, residents claim</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Washington Post (archive) · 2025</span><br><a href="https://archive.li/2025.06.06-110005/https://www.washingtonpost.com/nation/2025/05/30/memphis-elon-musk-xai-supercomputer-backlash-ai/" target="_blank" rel="noopener noreferrer">Memphis made a big deal with Elon Musk's xAI. Many residents don't want it.</a></li>
-      </ul>
-
-      <h3>Presse locale, actions en justice, études</h3>
-      <ul class="col-src">
-        <li><span class="tag t-grey">EN</span> <span class="src">Action News 5 · 3 septembre 2026</span><br><a href="https://www.actionnews5.com/2026/09/03/boxtown-residents-fight-against-more-pollution-their-neighborhood-they-put-money-before-lives-thats-wrong/" target="_blank" rel="noopener noreferrer">Boxtown residents fight against more pollution</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Hoodline · 9 septembre 2026</span><br><a href="https://hoodline.com/2026/09/memphis-pauses-road-extension-after-boxtown-cries-foul-over-xai-dust-trucks/" target="_blank" rel="noopener noreferrer">Memphis pauses Paul R. Lowry Road extension near xAI site</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">WREG · 15 septembre 2026</span><br><a href="https://wreg.com/news/local/study-finds-no-major-pollution-increase-around-colossus-1/" target="_blank" rel="noopener noreferrer">Study finds no major pollution increase around Colossus 1</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Mississippi Free Press · 10–11 juin 2026</span><br><a href="https://www.mississippifreepress.org/southaven-residents-sue-xai-alleging-near-constant-noise-from-gas-turbines-is-causing-harm/" target="_blank" rel="noopener noreferrer">Southaven residents sue xAI over noise</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">ClassAction.org · 29 juin 2026</span><br><a href="https://www.classaction.org/news/xai-spacex-hit-with-class-action-lawsuit-over-data-center-power-plant-noise-in-southaven-mississippi" target="_blank" rel="noopener noreferrer">Class action over Southaven power plant noise</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Data Center Dynamics · 11 avril 2025</span><br><a href="https://www.datacenterdynamics.com/en/news/xai-doubles-number-of-onsite-gas-turbines-at-memphis-data-center-in-violation-of-permit-limits/" target="_blank" rel="noopener noreferrer">xAI doubles number of onsite gas turbines, SELC says</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Wired · 2 juillet 2025</span><br><a href="https://www.wired.com/story/xai-data-center-air-pollution-permit/" target="_blank" rel="noopener noreferrer">Despite protests, Elon Musk secures air permit for xAI</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">ProPublica · 22 août 2025</span><br><a href="https://www.propublica.org/article/memphis-xai-colossus-elon-musk-chamber-messaging" target="_blank" rel="noopener noreferrer">Inside the Memphis Chamber of Commerce's push for xAI</a></li>
-        <li><span class="tag t-grey">EN</span> <span class="src">Global Energy Monitor</span><br><a href="https://www.gem.wiki/Colossus_1_power_station" target="_blank" rel="noopener noreferrer">Fiche technique Colossus 1 power station</a></li>
-      </ul>
-    </section>
-
-    <section id="col-limites" class="card">
-      <h2>Limites de ce rapport</h2>
-      <p class="note">
-        Ce document est une <b>synthèse journalistique</b>, pas une expertise acoustique ni un audit environnemental. Les chiffres de turbines, d'émissions et de décibels évoluent d'un mois à l'autre et sont contestés. Les études satellites (NOx en hausse contre « pas de détérioration locale significative » autour de Colossus 1) ne mesurent pas la même chose, au même endroit, avec la même résolution. Les procès sont en cours. La position de l'entreprise — turbines temporaires, filtres, remplacement par une centrale permanente, recettes fiscales — doit être lue en regard des témoignages de voisinage, qui portent d'abord sur un bruit vécu comme ininterrompu.
-      </p>
-      <p class="note">
-        <b>Ce qu'il ne faut pas en faire à Rantigny.</b> Memphis n'est pas un précédent juridique et ne démontre rien sur le projet de l'Oise : technologie de refroidissement différente, production électrique par turbines à gaz absente du projet français, cadre réglementaire sans rapport. Utiliser ce dossier comme preuve de ce qui arrivera à Rantigny serait exactement le genre d'amalgame qui décrédibilise une opposition. Il vaut comme <b>illustration de ce qui se joue quand les engagements ne sont pas chiffrés ni opposables</b> — et c'est déjà beaucoup.
-      </p>
-    </section>
-
+      <section class="card doc-embed">
+        <p class="embed-note">Synthèse de presse et de contentieux sur <b>Colossus (xAI)</b>, à Memphis et Southaven —
+        ce que déclarent les riverains d'un data center géant. <b>Sources journalistiques, pas d'expertise.</b> Document tenu dans <code>fichiers/</code>, à côté du rapport —
+        <a href="fichiers/rapport-nuisances-colossus.html" target="_blank" rel="noopener noreferrer">l'ouvrir en pleine page &#8599;</a></p>
+        <iframe src="fichiers/rapport-nuisances-colossus.html"
+                title="Colossus à Memphis — nuisances déclarées par les riverains"
+                loading="lazy"></iframe>
+      </section>
     </div>
 
+    <div class="doc" id="doc4" data-doc="4">
+      <section class="card doc-embed">
+        <p class="embed-note">Synthèse thématique des <b>73 contributions</b> déposées au
+        registre numérique de l'enquête publique sur la révision du PLU de Rantigny,
+        close le <b>26 août 2026</b>. Document tenu dans <code>fichiers/</code>, à côté du rapport —
+        <a href="fichiers/synthese-contributions-enquete-publique-plu-rantigny.html" target="_blank" rel="noopener noreferrer">l'ouvrir en pleine page &#8599;</a></p>
+        <iframe src="fichiers/synthese-contributions-enquete-publique-plu-rantigny.html"
+                title="Synthèse des contributions à l'enquête publique — PLU de Rantigny"
+                loading="lazy"></iframe>
+      </section>
+    </div>
   </main>
 </div>
 
@@ -2995,6 +2748,33 @@ document.getElementById('navItems').addEventListener('click',function(e){
 })();
 </script>
 <script>
+/* ══ Documents intégrés (onglets 2, 3 et 4) ══
+   Les trois documents vivent dans fichiers/ et sont affichés tels quels dans un cadre.
+   Un lien porteur de data-embed="N" désigne une ancre à l'intérieur du document N :
+   on bascule sur l'onglet, puis on amène le cadre à cette ancre. Sans JavaScript — ou
+   si le cadre a disparu — le lien garde son comportement normal et ouvre le fichier. */
+(function () {
+  var D = document;
+  D.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-embed]');
+    if (!a) return;
+    /* Ctrl/Cmd/Maj-clic et clic du milieu : le lecteur veut un vrai nouvel onglet. */
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+    var n = a.dataset.embed;
+    var cadre = D.querySelector('#doc' + n + ' iframe');
+    var url = a.getAttribute('href');
+    if (!cadre || url.indexOf('#') < 0) return;
+    e.preventDefault();
+    if (window.docShow) window.docShow(n, true);
+    if (cadre.getAttribute('src') === url) {
+      /* Déjà à cette adresse : réécrire src ne provoquerait aucune navigation. */
+      try { cadre.contentWindow.location.hash = url.slice(url.indexOf('#')); return; } catch (err) {}
+    }
+    cadre.setAttribute('src', url);
+  });
+})();
+</script>
+<script>
 /* ══ Bascule entre les deux documents ══
    Un seul .doc et un seul .navgroup sont visibles à la fois. Le titre de l'en-tête suit,
    l'index de recherche est recalculé, et l'onglet actif est retenu d'une visite à l'autre. */
@@ -3011,7 +2791,9 @@ document.getElementById('navItems').addEventListener('click',function(e){
     '2': ['Loi n° 2026-403 du 26 mai 2026 — ce qui change pour les data centers',
           'Lecture commentée du Titre VII « Faciliter l\'essor de projets industriels et d\'infrastructures » · JORF n° 0122 du 27 mai 2026'],
     '3': ['Colossus, à Memphis — ce que vivent les riverains d\'un data center géant',
-          'Synthèse de presse et de contentieux · Memphis (Tennessee) et Southaven (Mississippi) · 2024 — septembre 2026 · <b>sources journalistiques, pas d\'expertise</b>']
+          'Synthèse de presse et de contentieux · Memphis (Tennessee) et Southaven (Mississippi) · 2024 — septembre 2026 · <b>sources journalistiques, pas d\'expertise</b>'],
+    '4': ['Enquête publique — ce que disent les 73 contributions',
+          'Synthèse thématique du registre numérique · révision du PLU de Rantigny · enquête close le 26 août 2026']
   };
   function show(n, scroll, depuisRecherche) {
     tabs.forEach(function (t) { t.classList.toggle('on', t.dataset.doc === n); });
@@ -3926,6 +3708,10 @@ document.getElementById('navItems').addEventListener('click',function(e){
   window.__versionPapier = function () {
     var src = D.querySelector('.doc.on') || D.querySelector('main.content') || D.querySelector('main');
     if (!src) { window.print(); return; }
+    /* Onglet intégré : le contenu est dans un cadre, que la mise au propre retire.
+       C'est le fichier lui-même qu'il faut ouvrir pour l'imprimer. */
+    var cadre = src.querySelector('.doc-embed iframe');
+    if (cadre) { window.open(cadre.getAttribute('src'), '_blank', 'noopener'); return; }
     var corps = nettoie(src.cloneNode(true));
     corps.classList.add('pv-doc');
     corps.removeAttribute('data-zone');

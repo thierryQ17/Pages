@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rapport — Nuisances des riverains de Colossus (xAI / SpaceXAI)</title>
+  <style>
+    :root {
+      --ink: #12141a;
+      --muted: #5b6170;
+      --line: #e4e6eb;
+      --paper: #f7f5f0;
+      --card: #ffffff;
+      --accent: #8b1e1e;
+      --accent-soft: #f4e8e6;
+      --teal: #1e4d4a;
+      --gold: #b0892d;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 32px 22px 80px; }
+    header.hero {
+      background: linear-gradient(165deg, #1a1d24 0%, #2c1818 70%, #1e4d4a 140%);
+      color: #f4efe6;
+      padding: 48px 28px 36px;
+      border-radius: 6px;
+      margin-bottom: 28px;
+    }
+    header.hero .kicker {
+      font-family: system-ui, -apple-system, sans-serif;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #d4b36a;
+      margin: 0 0 12px;
+    }
+    header.hero h1 {
+      font-size: clamp(1.6rem, 3.4vw, 2.35rem);
+      line-height: 1.15;
+      margin: 0 0 14px;
+      font-weight: 600;
+    }
+    header.hero p.lead {
+      margin: 0;
+      max-width: 62ch;
+      color: #e8e0d4;
+      font-size: 1.05rem;
+    }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 10px 18px;
+      margin-top: 22px;
+      font-family: system-ui, sans-serif;
+      font-size: 12.5px;
+      color: #c9c2b6;
+    }
+    nav.toc {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 18px 22px;
+      margin-bottom: 28px;
+    }
+    nav.toc h2 { margin: 0 0 10px; font-size: 1rem; }
+    nav.toc ol { margin: 0; padding-left: 20px; }
+    nav.toc a { color: var(--teal); text-decoration: none; }
+    nav.toc a:hover { text-decoration: underline; }
+    h2 {
+      font-size: 1.45rem;
+      margin: 2.1em 0 .6em;
+      padding-bottom: .35em;
+      border-bottom: 2px solid var(--accent);
+    }
+    h3 { font-size: 1.15rem; margin: 1.4em 0 .4em; color: var(--teal); }
+    p { margin: .7em 0; }
+    .note {
+      background: var(--accent-soft);
+      border-left: 4px solid var(--accent);
+      padding: 12px 16px;
+      font-size: .95rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin: 16px 0 8px;
+    }
+    @media (max-width: 680px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      padding: 14px 16px;
+    }
+    .card h4 { margin: 0 0 6px; font-size: 1rem; }
+    .card p { margin: 0; font-size: .95rem; color: var(--muted); }
+    blockquote {
+      margin: 16px 0;
+      padding: 14px 18px;
+      background: #fff;
+      border-left: 4px solid var(--gold);
+      color: #2a2d34;
+      font-style: italic;
+    }
+    blockquote cite {
+      display: block;
+      margin-top: 8px;
+      font-style: normal;
+      font-size: .85rem;
+      color: var(--muted);
+      font-family: system-ui, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: .93rem;
+      margin: 14px 0 8px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 9px 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: #eeeae3; font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: .03em; }
+    a { color: #164e63; }
+    a:hover { color: var(--accent); }
+    ul.sources { list-style: none; padding: 0; }
+    ul.sources li {
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 12px 14px;
+      margin-bottom: 8px;
+    }
+    ul.sources .src-meta {
+      font-family: system-ui, sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+    ul.sources a { font-weight: 600; text-decoration: none; }
+    ul.sources a:hover { text-decoration: underline; }
+    footer {
+      margin-top: 40px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      font-family: system-ui, sans-serif;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .tag {
+      display: inline-block;
+      font-family: system-ui, sans-serif;
+      font-size: 11px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      background: #eeeae3;
+      padding: 2px 7px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <p class="kicker">Rapport de synthèse — presse et contentieux</p>
+      <h1>Nuisances des riverains de Colossus, le data center d’Elon Musk à Memphis</h1>
+      <p class="lead">Bruit des turbines à gaz, émissions atmosphériques, chantier, eau et procédures judiciaires autour des campus Colossus 1 et Colossus 2 (xAI / SpaceXAI), d’après la presse américaine et francophone.</p>
+      <div class="meta">
+        <span>Zone : Memphis (Tennessee) et Southaven (Mississippi)</span>
+        <span>Période couverte : 2024 — septembre 2026</span>
+        <span>Document établi le 16 septembre 2026</span>
+      </div>
+    </header>
+
+    <nav class="toc">
+      <h2>Sommaire</h2>
+      <ol>
+        <li><a href="#contexte">Contexte et sites</a></li>
+        <li><a href="#nuisances">Nuisances déclarées</a></li>
+        <li><a href="#temoins">Témoignages repris par la presse</a></li>
+        <li><a href="#droit">Permis, procès et réponses officielles</a></li>
+        <li><a href="#chiffres">Repères chiffrés</a></li>
+        <li><a href="#sources">Articles et liens</a></li>
+        <li><a href="#limites">Limites de ce rapport</a></li>
+      </ol>
+    </nav>
+
+    <section id="contexte">
+      <h2>1. Contexte et sites</h2>
+      <p>Colossus est le nom donné aux supercalculateurs d’intelligence artificielle d’xAI, entreprise fondée par Elon Musk, désormais souvent présentée dans la presse 2026 sous le nom SpaceXAI. Le premier campus, <strong>Colossus 1</strong>, a été installé dans une ancienne usine Electrolux du sud-ouest de Memphis, près du quartier historique de Boxtown. Un second ensemble, <strong>Colossus 2</strong>, s’est développé côté Tennessee (Whitehaven), alimenté en grande partie par une centrale de turbines à gaz située à <strong>Southaven</strong>, juste de l’autre côté de la frontière du Mississippi.</p>
+      <p>La presse insiste sur la vitesse du déploiement : Colossus 1 a été présenté comme mis en service en environ 122 jours après le début des travaux, fin 2024. Pour ne pas attendre le renforcement du réseau électrique, l’entreprise a installé des <strong>turbines à gaz souvent qualifiées de temporaires</strong> (nombreuses unités montées sur remorques). Ce choix est au cœur des nuisances et des contentieux.</p>
+      <div class="grid">
+        <div class="card">
+          <h4>Colossus 1 — Memphis, TN</h4>
+          <p>Campus de calcul près de Boxtown / Pidgeon Industrial Park. Turbines sur site, consommation d’eau de nappe pour le refroidissement, circulation de camions.</p>
+        </div>
+        <div class="card">
+          <h4>Colossus 2 + centrale Southaven, MS</h4>
+          <p>Puissance de calcul côté Tennessee ; électricité produite au Mississippi. C’est surtout ici que le bruit 24 h/24 est documenté.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="nuisances">
+      <h2>2. Nuisances déclarées</h2>
+
+      <h3>2.1 Bruit et vibrations</h3>
+      <p>C’est le grief le plus concret et le plus partagé, y compris par des riverains qui se disent ni anti-IA ni anti-Musk. Les turbines fonctionnent en continu. Les descriptions récurrentes dans CNBC, CBS, Yahoo et Clubic : bruit d’avion qui décolle sans partir, souffleur de feuilles permanent, aspirateur dans la maison, rugissement et sifflement aigus combinés à un grondement basse fréquence.</p>
+      <p>Le son basse fréquence traverse les murs. Des mesures citoyennes et journalistiques font état d’environ <strong>50 à 60 dB la nuit à l’extérieur</strong> (CBS / Clubic) et, selon certains articles, jusqu’à environ <strong>70 dB à l’intérieur</strong> chez Jason Haley. Un rapport d’acousticiens (Roland, Woolworth &amp; Associates, mars, cité par Yahoo) estime que le bruit basse fréquence peut être <strong>4 à 16 fois</strong> plus fort que le fond d’un quartier résidentiel calme, selon la distance. L’OMS recommande de ne pas dépasser 40 dB la nuit.</p>
+      <p>Une enceinte antibruit de plusieurs millions de dollars a été construite. Les riverains interrogés estiment que le soulagement reste insuffisant. Construction permanente, alarmes de recul des engins et circulation lourde s’ajoutent aux turbines.</p>
+
+      <h3>2.2 Air, odeurs et santé ressentie</h3>
+      <p>Boxtown et le sud de Memphis étaient déjà des zones industrielles à fort fardeau sanitaire (asthme, risque de cancer supérieur à la moyenne nationale selon plusieurs reportages). Les associations (SELC, Earthjustice, NAACP, Memphis Community Against Pollution) accusent les turbines de relâcher des oxydes d’azote (NOx, précurseurs de smog), des particules fines PM2.5 et du formaldéhyde, parfois sans les permis Clean Air Act adaptés au départ.</p>
+      <p>Des riverains parlent d’odeur de gaz ou de « chou pourri » et disent ne plus ouvrir les fenêtres (<em>People</em>, <em>Time</em> repris). Taylor Logsdon a installé des capteurs citoyens : une analyse préliminaire sur quatre mois, citée par Yahoo, indiquait des dépassements du seuil journalier EPA de PM2.5 environ un tiers du temps — sans pouvoir attribuer toute la pollution à la centrale.</p>
+      <p class="note">Les données ne sont pas unanimes. Une étude satellite de l’Université de Memphis présentée en septembre 2026 au conseil municipal n’a pas trouvé de détérioration significative de la qualité de l’air ni de la température de surface autour de Colossus 1, tout en soulignant les limites de la méthode. SpaceXAI affirme que les turbines sont filtrées et que la qualité de l’air reste dans les normes. À l’inverse, une analyse satellite commentée par <em>New Scientist</em> (septembre 2026) suggère un pic marqué de NOx au-dessus du site de Southaven.</p>
+
+      <h3>2.3 Poussière, camions, voirie</h3>
+      <p>À Boxtown, les habitants décrivent des camions de terrassement, de la poussière sur l’herbe et les maisons, des chaussées abîmées et un bruit de chantier. En septembre 2026, Memphis a suspendu un projet d’extension de la Paul R. Lowry Road après ces plaintes (Hoodline, Action News 5).</p>
+
+      <h3>2.4 Eau</h3>
+      <p>Plusieurs articles francophones (20 Minutes, La Presse) reprennent le chiffre de <strong>4,5 millions de litres par jour</strong> prélevés dans la nappe qui alimente Memphis pour refroidir Colossus 1. L’association Protect Our Aquifer s’inquiète pour la ressource potable. Une usine de recyclage d’eau promise a pris du retard ou a été suspendue selon ces reportages.</p>
+
+      <h3>2.5 Cadre de vie et patrimoine</h3>
+      <p>Insomnie, maux de tête, anxiété, dépréciation immobilière, sentiment de n’avoir pas été consultés : ces thèmes reviennent dans les class actions et les interviews. Certains propriétaires disent ne pas pouvoir vendre. Le maire de Southaven a reconnu un problème de bruit ; des e-mails cités par CNBC et CBS lui attribuaient le conseil de « envisager de vendre », phrase qu’il a ensuite niée.</p>
+    </section>
+
+    <section id="temoins">
+      <h2>3. Témoignages repris par la presse</h2>
+      <blockquote>
+        « Le bruit de Colossus II et de ses turbines à gaz, c’est une forme de torture. »
+        <cite>— Jason Haley, Southaven, cité par CNBC, juillet 2026</cite>
+      </blockquote>
+      <blockquote>
+        « Le bruit est présent 24 heures sur 24, sept jours sur sept […] Si vous restez ici trop longtemps, les vibrations vous donnent la nausée. »
+        <cite>— Krystal Polk, citée par 20 Minutes / AFP, août 2026</cite>
+      </blockquote>
+      <blockquote>
+        « C’est l’air que Dieu nous a donné, et l’homme ne devrait pas nous l’enlever. »
+        <cite>— Easter Knox, 76 ans, Boxtown, citée par People / Time</cite>
+      </blockquote>
+      <blockquote>
+        « Nous sommes la colonie extraite et exploitée de ce qui va devenir l’une des entités les plus valorisées au monde. […] Des gens vont mourir à cause de cette pollution. »
+        <cite>— Justin Pearson, représentant de Memphis au parlement du Tennessee, Wired, juin 2026</cite>
+      </blockquote>
+    </section>
+
+    <section id="droit">
+      <h2>4. Permis, procès et réponses officielles</h2>
+      <p>Le schéma décrit par SELC, Reuters et Wired est le suivant : turbines installées et mises en route d’abord, permis ensuite. À Colossus 1, des survols ont montré davantage de turbines que le permis de 15 unités accordé en juillet 2025 par le Shelby County Health Department. À Southaven, le Mississippi Department of Environmental Quality a d’abord autorisé un fonctionnement temporaire (retrait sous 12 mois) ; le parc a ensuite gonflé jusqu’à environ 60–69 unités selon la presse de l’été 2026, avant un permis pour des turbines permanentes.</p>
+      <ul>
+        <li><strong>Avril 2026</strong> — plainte NAACP / Earthjustice sur le Clean Air Act.</li>
+        <li><strong>Juin 2026</strong> — class action de riverains de Southaven (Haley, Logsdon, Herrington et al.) pour nuisance publique liée au bruit et aux vibrations, au nom d’un groupe potentiel de plus de 10 000 personnes.</li>
+        <li>Le Département de la Justice américain est intervenu pour demander le rejet d’une partie de l’action NAACP, en invoquant notamment des enjeux de sécurité nationale.</li>
+        <li>SpaceXAI présente les turbines actuelles comme transitoires et s’est engagée à les remplacer par une centrale permanente mieux contrôlée (horizon souvent cité : 2027).</li>
+        <li>Les élus locaux mettent en avant recettes fiscales (plusieurs millions à dizaines de millions de dollars selon les années) et emplois, tout en multipliant les réunions publiques.</li>
+      </ul>
+    </section>
+
+    <section id="chiffres">
+      <h2>5. Repères chiffrés (tels que publiés)</h2>
+      <p>Les chiffres varient selon la date, le site et la source. Tableau de synthèse, non exhaustif :</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Sujet</th>
+            <th>Ordre de grandeur cité</th>
+            <th>Source type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Mise en service Colossus 1</td>
+            <td>2 septembre 2024, ~122 jours de chantier</td>
+            <td>CNBC, Washington Post</td>
+          </tr>
+          <tr>
+            <td>Turbines Colossus 1</td>
+            <td>Jusqu’à ~35 observées ; permis pour 15 (juillet 2025)</td>
+            <td>SELC, Wired, Data Center Dynamics</td>
+          </tr>
+          <tr>
+            <td>Turbines Southaven / Colossus 2</td>
+            <td>De ~27 fin 2025 à ~57–69 mi-2026</td>
+            <td>Reuters, Yahoo, New Scientist</td>
+          </tr>
+          <tr>
+            <td>Bruit</td>
+            <td>50–60 dB nuit (CBS) ; ~70 dB intérieur selon certains articles</td>
+            <td>CBS, Clubic, Gadget Review</td>
+          </tr>
+          <tr>
+            <td>Eau Colossus 1</td>
+            <td>~4,5 millions de litres / jour (nappe)</td>
+            <td>20 Minutes, La Presse / AFP</td>
+          </tr>
+          <tr>
+            <td>NOx satellite Southaven</td>
+            <td>~730 kg/h en moyenne, pic ~1 180 kg/h (fév.–août 2026)</td>
+            <td>New Scientist</td>
+          </tr>
+          <tr>
+            <td>Santé (hypothèse procès NAACP)</td>
+            <td>Jusqu’à 44 M$ / an de dommages sanitaires si 41 turbines en continu</td>
+            <td>Wired</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="sources">
+      <h2>6. Articles et liens</h2>
+      <p>Liens directs vers les reportages utilisés pour ce rapport. Tous s’ouvrent dans un nouvel onglet.</p>
+
+      <h3>Presse francophone</h3>
+      <ul class="sources">
+        <li>
+          <div class="src-meta"><span class="tag">FR</span> 20 Minutes · 11 août 2026 · AFP</div>
+          <a href="https://www.20minutes.fr/monde/etats-unis/4238663-20260811-etats-unis-pollution-consommation-eau-bruit-data-centers-musk-font-peur-habitants-memphis" target="_blank" rel="noopener">Pollution, consommation d’eau et bruit… Les data centers de Musk font peur aux habitants de Memphis</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">FR</span> Clubic · 15 septembre 2026 · d’après CBS</div>
+          <a href="https://www.clubic.com/actualite-629704-voila-ce-que-subissent-les-riverains-de-colossus-le-gigantesque-data-center-d-elon-musk.html" target="_blank" rel="noopener">Voilà ce que subissent les riverains de Colossus</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">FR</span> La Presse · 10–11 août 2026 · AFP</div>
+          <a href="https://www.lapresse.ca/international/etats-unis/2026-08-10/memphis/les-quartiers-noirs-s-insurgent-contre-les-centres-de-donnees-d-elon-musk.php" target="_blank" rel="noopener">Les quartiers noirs s’insurgent contre les centres de données d’Elon Musk</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">FR</span> Nouvelles du Monde · 26 février 2026</div>
+          <a href="https://www.nouvelles-du-monde.com/xai-riverains-sinquietent-des-nuisances-sonores-et-de-la-pollution/" target="_blank" rel="noopener">xAI : riverains s’inquiètent des nuisances sonores et de la pollution</a>
+        </li>
+      </ul>
+
+      <h3>Enquêtes et médias nationaux US</h3>
+      <ul class="sources">
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> CNBC · 16–17 juillet 2026</div>
+          <a href="https://www.cnbc.com/2026/07/16/elon-musk-memphis-ai-colossus-data-center.html" target="_blank" rel="noopener">Musk’s Memphis AI empire is the epicenter of the data center backlash</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> CBS News · 16 juillet 2026</div>
+          <a href="https://www.cbsnews.com/news/mississippi-elon-musk-xai-data-center-power-plant-noise/" target="_blank" rel="noopener">Mississippi homeowners blame a noisy data center plant for sleepless nights</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Wired · 11 juin 2026</div>
+          <a href="https://www.wired.com/story/spacex-ipo-how-people-living-near-xai-data-centers-feel/" target="_blank" rel="noopener">People Living Near xAI’s Dirty Data Centers Are Furious About the SpaceX IPO</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Yahoo News · 9 septembre 2026</div>
+          <a href="https://www.yahoo.com/news/us/articles/spacexai-colossus-data-center-fueling-100000107.html" target="_blank" rel="noopener">SpaceXAI’s Colossus data center is fueling a massive backlash</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Reuters · 14 juillet 2026</div>
+          <a href="https://www.reuters.com/world/americas/pollution-musks-unpermitted-xai-power-project-hits-hardest-black-communities-2026-07-14/" target="_blank" rel="noopener">Pollution from Musk’s unpermitted xAI power project hits hardest in Black communities</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> New Scientist · 11 septembre 2026</div>
+          <a href="https://www.newscientist.com/article/2588786-spacexai-data-centre-may-have-led-to-mississippi-air-pollution-spike/" target="_blank" rel="noopener">SpaceXAI data centre may have led to Mississippi air pollution spike</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> People · 16 décembre 2025</div>
+          <a href="https://people.com/resident-living-near-elon-musk-data-center-says-cant-open-windows-rotten-smell-11869646" target="_blank" rel="noopener">Resident says she can’t open windows because of a « rotten » smell</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Inside Climate News · 17 juillet 2025</div>
+          <a href="https://insideclimatenews.org/news/17072025/elon-musk-xai-data-center-gas-turbines-memphis/" target="_blank" rel="noopener">Colossus operated gas turbines without appropriate permits, residents claim</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Washington Post (archive) · 2025</div>
+          <a href="https://archive.li/2025.06.06-110005/https://www.washingtonpost.com/nation/2025/05/30/memphis-elon-musk-xai-supercomputer-backlash-ai/" target="_blank" rel="noopener">Memphis made a big deal with Elon Musk’s xAI. Many residents don’t want it.</a>
+        </li>
+      </ul>
+
+      <h3>Presse locale, actions en justice, études</h3>
+      <ul class="sources">
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Action News 5 · 3 septembre 2026</div>
+          <a href="https://www.actionnews5.com/2026/09/03/boxtown-residents-fight-against-more-pollution-their-neighborhood-they-put-money-before-lives-thats-wrong/" target="_blank" rel="noopener">Boxtown residents fight against more pollution</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Hoodline · 9 septembre 2026</div>
+          <a href="https://hoodline.com/2026/09/memphis-pauses-road-extension-after-boxtown-cries-foul-over-xai-dust-trucks/" target="_blank" rel="noopener">Memphis pauses Paul R. Lowry Road extension near xAI site</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> WREG · 15 septembre 2026</div>
+          <a href="https://wreg.com/news/local/study-finds-no-major-pollution-increase-around-colossus-1/" target="_blank" rel="noopener">Study finds no major pollution increase around Colossus 1</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Mississippi Free Press · 10–11 juin 2026</div>
+          <a href="https://www.mississippifreepress.org/southaven-residents-sue-xai-alleging-near-constant-noise-from-gas-turbines-is-causing-harm/" target="_blank" rel="noopener">Southaven residents sue xAI over noise</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> ClassAction.org · 29 juin 2026</div>
+          <a href="https://www.classaction.org/news/xai-spacex-hit-with-class-action-lawsuit-over-data-center-power-plant-noise-in-southaven-mississippi" target="_blank" rel="noopener">Class action over Southaven power plant noise</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Data Center Dynamics · 11 avril 2025</div>
+          <a href="https://www.datacenterdynamics.com/en/news/xai-doubles-number-of-onsite-gas-turbines-at-memphis-data-center-in-violation-of-permit-limits/" target="_blank" rel="noopener">xAI doubles number of onsite gas turbines, SELC says</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Wired · 2 juillet 2025</div>
+          <a href="https://www.wired.com/story/xai-data-center-air-pollution-permit/" target="_blank" rel="noopener">Despite protests, Elon Musk secures air permit for xAI</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> ProPublica · 22 août 2025</div>
+          <a href="https://www.propublica.org/article/memphis-xai-colossus-elon-musk-chamber-messaging" target="_blank" rel="noopener">Inside the Memphis Chamber of Commerce’s push for xAI</a>
+        </li>
+        <li>
+          <div class="src-meta"><span class="tag">EN</span> Global Energy Monitor</div>
+          <a href="https://www.gem.wiki/Colossus_1_power_station" target="_blank" rel="noopener">Fiche technique Colossus 1 power station</a>
+        </li>
+      </ul>
+    </section>
+
+    <section id="limites">
+      <h2>7. Limites de ce rapport</h2>
+      <p>Ce document est une synthèse journalistique, pas une expertise acoustique ni un audit environnemental. Les chiffres de turbines, d’émissions et de décibels évoluent d’un mois à l’autre et sont contestés. Les études satellites (NOx en hausse vs « pas de détérioration locale significative » autour de Colossus 1) ne mesurent pas la même chose, au même endroit, avec la même résolution. Les procès sont en cours. La position de l’entreprise — turbines temporaires, filtres, remplacement par une centrale permanente, recettes fiscales — doit être lue en regard des témoignages de voisinage, qui portent d’abord sur un bruit vécu comme ininterrompu.</p>
+    </section>
+
+    <footer>
+      Rapport HTML de synthèse à partir d’articles de presse cités ci-dessus. Dernière actualisation des sources : 16 septembre 2026. Les liens externes appartiennent à leurs éditeurs.
+    </footer>
+  </div>
+</body>
+</html>
