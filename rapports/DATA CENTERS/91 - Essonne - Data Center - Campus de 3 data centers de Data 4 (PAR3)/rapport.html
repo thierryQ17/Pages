@@ -1,0 +1,2119 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<!-- page produite par _outils/03_rapports.py — toute retouche ici sera perdue -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>91 · Essonne — Data Center - Campus de 3 data centers de Data 4 (PAR3)</title>
+<style>
+  :root{
+    --c1:#1d4ed8; --c2:#3b82f6; --accent:#1d4ed8;
+    --bg:#f6f7fb; --card:#ffffff; --ink:#1f2937; --muted:#6b7280;
+    --line:#e5e7eb; --ok:#047857; --warn:#b45309; --alert:#b91c1c;
+    --okbg:#ecfdf5; --warnbg:#fffbeb; --alertbg:#fef2f2; --infobg:#eff6ff;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{height:100vh;overflow:hidden;display:flex;flex-direction:column;
+       font:14px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+       background:var(--bg);color:var(--ink)}
+  header.main-header{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;
+       padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+       box-shadow:0 2px 10px rgba(0,0,0,.12);z-index:5}
+  header.main-header h1{margin:0;font-size:18px;letter-spacing:.2px}
+  header.main-header .meta{font-size:12px;opacity:.9;margin-top:2px}
+  [data-zone="header-right"]{font-size:12px;text-align:right;line-height:1.5;opacity:.95}
+  .headtools{display:flex;align-items:center;gap:14px}
+  .hdr-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;
+       padding:0;cursor:pointer;color:#fff;background:rgba(255,255,255,.14);
+       border:1px solid rgba(255,255,255,.45);border-radius:8px;
+       transition:background .15s ease,transform .08s ease}
+  .hdr-btn:hover{background:rgba(255,255,255,.3)}
+  .hdr-btn:active{transform:scale(.94)}
+  .hdr-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+  .hdr-btn svg{width:18px;height:18px;display:block;pointer-events:none}
+  @media print{ .hdr-btn{display:none !important} }
+  .layout{flex:1;display:flex;min-height:0}
+  .sidebar{width:300px;flex:none;background:#fff;border-right:1px solid var(--line);overflow-y:auto}
+  /* ══════════════════════════════════════════════════════════════════════════
+     MOTEUR DE RECHERCHE PLEIN TEXTE
+     Repris du module « qs- » de analyse-contributions.html (même logique de repli
+     des accents, de marquage par splitText et de navigation entre occurrences).
+     Ici la palette est celle de ce rapport (bleu) et l'index porte sur .content.
+     ══════════════════════════════════════════════════════════════════════════ */
+  :root { --qs-ac:#1d4ed8; --qs-ac06:rgba(29,78,216,.06); --qs-ac10:rgba(29,78,216,.11);
+          --qs-ac18:rgba(29,78,216,.20); --qs-fg:#334155; --qs-mut:#64748b; --qs-bd:#e2e8f0; }
+  .searchbox { position:sticky; top:0; z-index:5; background:#fff; padding:10px 10px 8px; border-bottom:1px solid var(--line); }
+  .qs-tabs { display:flex; gap:2px; padding:3px; border-radius:11px; background:var(--qs-ac06); border:1px solid var(--qs-bd); margin-bottom:8px; }
+  .qs-tab { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; padding:6px 8px; font:inherit; font-size:11.5px; font-weight:700; cursor:pointer; white-space:nowrap; border:none; border-radius:8px; background:transparent; color:var(--qs-mut); transition:background .18s ease, color .18s ease; }
+  .qs-tab:hover { color:var(--qs-ac); }
+  .qs-tab.qs-on { background:#fff; color:var(--qs-ac); box-shadow:0 1px 2px rgba(15,23,42,.12),0 2px 7px rgba(15,23,42,.07); }
+  .qs-tab-ico { font-size:12px; line-height:1; }
+  .qs-pane { display:none; flex-direction:column; gap:8px; }
+  .qs-wrap.qs-open .qs-pane { display:flex; animation:qsSlide .24s cubic-bezier(.22,.9,.3,1); }
+  @keyframes qsSlide { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
+  .qs-field { position:relative; display:flex; align-items:center; }
+  .qs-field .qs-ico { position:absolute; left:9px; font-size:11px; line-height:1; opacity:.45; pointer-events:none; }
+  .qs-field input { width:100%; box-sizing:border-box; padding:8px 28px; font:inherit; font-size:12px; color:var(--qs-fg); background:#fff; border:1px solid #cbd5e1; border-radius:9px; outline:none; transition:border-color .15s ease, box-shadow .15s ease; }
+  .qs-field input:focus { border-color:var(--qs-ac); box-shadow:0 0 0 3px var(--qs-ac18); }
+  .qs-x { position:absolute; right:5px; background:none; border:none; cursor:pointer; padding:3px 4px; font:inherit; font-size:12px; line-height:1; color:#94a3b8; border-radius:4px; transition:color .14s, background .14s; }
+  .qs-x:hover { color:#ef4444; background:var(--qs-ac10); }
+  .qs-row { display:none; align-items:center; gap:8px; margin-top:-2px; }
+  .qs-row.qs-on { display:flex; }
+  .qs-hint { display:inline-flex; align-items:center; padding:2px 7px; border-radius:5px; font-size:9.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--qs-ac); background:var(--qs-ac10); }
+  .qs-navrow { display:flex; align-items:center; gap:8px; min-height:22px; }
+  .qs-count { font-size:10.5px; color:var(--qs-mut); }
+  .qs-count b { color:var(--qs-ac); font-weight:800; }
+  .qs-nav { display:none; align-items:center; gap:2px; margin-left:auto; }
+  .qs-nav.qs-on { display:flex; }
+  .qs-nav-btn { display:flex; align-items:center; justify-content:center; width:22px; height:22px; padding:0; cursor:pointer; font:inherit; font-size:15px; font-weight:700; line-height:1; color:var(--qs-ac); background:var(--qs-ac10); border:none; border-radius:6px; transition:background .14s ease; }
+  .qs-nav-btn:hover { background:var(--qs-ac18); }
+  .qs-pos { min-width:48px; text-align:center; font-size:10px; font-weight:700; color:var(--qs-mut); font-variant-numeric:tabular-nums; }
+  .qs-results { display:none; flex-direction:column; margin:8px 6px 0; }
+  .qs-results.qs-on { display:flex; }
+  .qs-res { position:relative; display:block; width:100%; text-align:left; cursor:pointer; font:inherit; padding:7px 8px 8px 13px; margin-bottom:2px; border:none; border-radius:8px; background:transparent; color:var(--qs-fg); line-height:1.36; transition:background .14s ease; }
+  .qs-res::before { content:''; position:absolute; left:3px; top:8px; bottom:8px; width:3px; border-radius:3px; background:transparent; transition:background .14s ease; }
+  .qs-res:hover { background:var(--qs-ac06); }
+  .qs-res:hover::before { background:var(--qs-ac18); }
+  .qs-res.qs-on { background:var(--qs-ac10); }
+  .qs-res.qs-on::before { background:var(--qs-ac); }
+  .qs-res-sec { display:block; font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.05em; color:var(--qs-ac); margin-bottom:3px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .qs-res-n { opacity:.5; font-variant-numeric:tabular-nums; margin-right:2px; }
+  .qs-res-x { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; font-size:11px; color:var(--qs-fg); opacity:.93; }
+  .qs-xh { background:#ffe8a3; color:#7a4b06; border-radius:3px; padding:0 2px; font-weight:700; }
+  .qs-empty { padding:8px 2px; font-size:11px; font-style:italic; color:#94a3b8; }
+  /* En-tête de groupe : les résultats sont classés par onglet, l'onglet affiché en tête. */
+  .qs-grp{margin:0 0 4px}
+  .qs-group{display:flex;align-items:center;gap:7px;width:100%;margin:10px 0 5px;padding:6px 8px;
+       border:0;border-radius:7px;background:#f1f5f9;font:inherit;font-size:10.5px;font-weight:800;
+       letter-spacing:.04em;text-transform:uppercase;color:#64748b;cursor:pointer;text-align:left;
+       transition:background .14s,color .14s}
+  .qs-group:hover{background:#e2e8f0}
+  .qs-group-on:hover{background:var(--qs-ac18)}
+  .qs-grp:first-child .qs-group{margin-top:2px}
+  .qs-g-chev{flex:none;width:0;height:0;border-left:4.5px solid currentColor;
+       border-top:3.5px solid transparent;border-bottom:3.5px solid transparent;
+       transform:rotate(90deg);transition:transform .16s ease;opacity:.75}
+  .qs-grp-closed .qs-g-chev{transform:rotate(0deg)}
+  .qs-grp-closed .qs-grp-body{display:none}
+  .qs-grp-closed .qs-group{opacity:.82}
+  .qs-group-on{background:var(--qs-ac10);color:var(--qs-ac)}
+  .qs-g-num{flex:none;display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;
+       border-radius:50%;background:#cbd5e1;color:#fff;font-size:9.5px;font-weight:800}
+  .qs-group-on .qs-g-num{background:var(--qs-ac)}
+  .qs-g-nom{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .qs-g-ici{flex:none;font-size:8.5px;font-weight:700;letter-spacing:.03em;text-transform:none;
+       padding:1px 6px;border-radius:10px;background:#fff;color:var(--qs-ac);border:1px solid var(--qs-ac18)}
+  .qs-g-n{flex:none;margin-left:auto;font-variant-numeric:tabular-nums;font-size:10px;
+       padding:1px 6px;border-radius:9px;background:#fff;color:inherit;border:1px solid var(--qs-bd)}
+  span.qs-hit { background:#ffe8a3; color:#7a4b06; border-radius:3px; box-shadow:inset 0 -2px 0 #f0b429; }
+  span.qs-hit.qs-cur { background:#f97316; color:#fff; box-shadow:inset 0 -2px 0 #c2410c, 0 0 0 3px rgba(249,115,22,.25); scroll-margin-top:24px; }
+  #navItems.qs-hide { display:none; }
+  .card { scroll-margin-top:16px; }
+  @media print { .qs-tabs, .qs-pane, .qs-results { display:none !important; } span.qs-hit { background:transparent !important; box-shadow:none !important; color:inherit !important; } }
+  #navItems{padding:8px 0 24px}
+  .navtitle{font-size:11px;font-weight:700;letter-spacing:.9px;text-transform:uppercase;
+       color:var(--muted);padding:10px 14px 4px}
+  .navhead{font-size:11px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;
+       color:var(--c1);background:#f1f5ff;padding:6px 14px;margin-top:8px;border-top:1px solid var(--line)}
+  a.navlink{display:block;padding:7px 14px 7px 20px;color:var(--ink);text-decoration:none;font-size:13px;border-left:3px solid transparent}
+  a.navlink:hover{background:#f3f6ff;border-left-color:var(--c2);color:var(--c1)}
+  /* Entrée courante : posée au clic dans le contenu, pour ne pas perdre le fil.
+     Ambre volontairement hors charte — le bleu se confondrait avec le survol et
+     avec le reste du document, le vert dit « vérifié » et le rouge « alerte ». */
+  a.navlink.nav-cur{background:#fef3c7;border-left-color:#d97706;border-left-width:4px;
+       padding-left:19px;color:#78350f;font-weight:700;
+       box-shadow:inset -3px 0 0 rgba(217,119,6,.18)}
+  a.navlink.nav-cur:hover{background:#fde68a;border-left-color:#b45309;color:#78350f}
+  .content{flex:1;overflow-y:auto;padding:22px 26px 60px;scroll-behavior:smooth}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+        margin:0 0 18px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .card h2{margin:0 0 4px;font-size:17px;color:var(--c1)}
+  .card h3{margin:18px 0 6px;font-size:14px;color:#111827}
+  .card .sub{color:var(--muted);font-size:12px;margin:0 0 14px}
+  p{margin:8px 0}
+  table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+  th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  th{background:#f8fafc;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.3px;color:#475569}
+  tbody tr:nth-child(even){background:#fcfcfd}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;white-space:nowrap}
+  .t-ok{background:var(--okbg);color:var(--ok)}
+  .t-warn{background:var(--warnbg);color:var(--warn)}
+  .t-alert{background:var(--alertbg);color:var(--alert)}
+  .t-info{background:var(--infobg);color:var(--c1)}
+  .t-grey{background:#f1f5f9;color:#475569}
+  .box{border-left:4px solid var(--c2);background:var(--infobg);padding:11px 14px;border-radius:0 8px 8px 0;margin:12px 0}
+  .box.ok{border-color:var(--ok);background:var(--okbg)}
+  .box.warn{border-color:var(--warn);background:var(--warnbg)}
+  .box.alert{border-color:var(--alert);background:var(--alertbg)}
+  /* Encadré d'alerte majeure : le point qui doit être vu en premier. */
+  .alert-major{border:2px solid var(--alert);border-left-width:7px;background:#fff5f5;
+       border-radius:10px;padding:16px 20px 18px;margin:16px 0 20px;
+       box-shadow:0 2px 10px rgba(185,28,28,.10)}
+  .alert-major .am-flag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.09em;
+       text-transform:uppercase;color:#fff;background:var(--alert);padding:3px 10px;border-radius:20px;margin-bottom:10px}
+  .alert-major h3{margin:0 0 8px;font-size:16.5px;color:var(--alert);line-height:1.35}
+  .alert-major p{margin:8px 0;font-size:14px}
+  .alert-major ul{margin:10px 0 10px 20px}
+  .alert-major li{margin:5px 0}
+  .alert-major .am-src{font-size:12px;color:#7f1d1d;margin-top:12px;padding-top:10px;border-top:1px solid #fecaca}
+  .alert-major a{color:var(--alert);font-weight:700}
+  .am-sources{margin-top:12px;padding-top:11px;border-top:1px solid #fecaca;font-size:12.5px;line-height:1.75}
+  .am-sources b{color:#7f1d1d}
+  .am-sources ul{margin:6px 0 0 18px}
+  .am-sources li{margin:3px 0}
+  .am-sources a{color:#b91c1c;text-decoration:underline}
+  /* Phrase mise en exergue : la conséquence à retenir. */
+  .exergue{position:relative;margin:18px 0 6px;padding:16px 20px 16px 52px;background:#fff;
+       border:1px solid #fecaca;border-left:7px solid var(--alert);border-radius:8px;
+       font-size:17px;line-height:1.48;font-weight:700;color:#7f1d1d;
+       box-shadow:0 1px 4px rgba(185,28,28,.08)}
+  .exergue::before{content:'!';position:absolute;left:17px;top:50%;transform:translateY(-50%);
+       display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;
+       background:var(--alert);color:#fff;font-size:15px;font-weight:800;line-height:1}
+  .exergue .ex-note{display:block;margin-top:6px;font-size:13px;font-weight:600;color:#9f1239;opacity:.95}
+  @media (max-width:820px){ .exergue{font-size:15.5px;padding:14px 16px 14px 46px} }
+  .box b{display:block;margin-bottom:3px}
+  .kpis{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}
+  .kpi{flex:1 1 150px;background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:11px 13px}
+  .kpi .v{font-size:19px;font-weight:700;color:var(--c1);font-variant-numeric:tabular-nums}
+  .kpi .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
+  .bar{height:9px;background:#e8edf7;border-radius:5px;overflow:hidden;min-width:70px}
+  .bar span{display:block;height:100%;background:linear-gradient(90deg,var(--c2),var(--c1))}
+  ul{margin:8px 0 8px 18px;padding:0}
+  li{margin:4px 0}
+  code{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px}
+  .tree{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;line-height:1.75;
+        background:#f8fafc;border:1px solid var(--line);border-radius:9px;padding:14px 16px;overflow-x:auto;white-space:pre}
+  .src{font-size:12px;color:var(--muted)}
+  footer.main-footer{background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;
+        padding:8px 22px;font-size:12px;display:flex;justify-content:space-between;gap:12px}
+  .flash{animation:flash 2.6s ease-out}
+  @keyframes flash{0%{box-shadow:0 0 0 4px rgba(245,158,11,.55)}100%{box-shadow:0 1px 2px rgba(16,24,40,.04)}}
+  @media (max-width:820px){
+    body{height:auto;overflow:auto}
+    .layout{flex-direction:column}
+    .sidebar{width:100%;max-height:220px;border-right:0;border-bottom:1px solid var(--line)}
+    .content{padding:16px}
+  }
+
+  /* ══ Onglets de documents ══ */
+  .doctabs{display:flex;gap:2px;background:#fff;border-bottom:1px solid var(--line);padding:0 18px;flex:none;z-index:4}
+  .doctab{position:relative;border:0;background:transparent;font:inherit;font-size:13.5px;font-weight:700;
+       color:var(--muted);padding:12px 18px 11px;cursor:pointer;border-bottom:3px solid transparent;
+       transition:color .16s ease,border-color .16s ease,background .16s ease;white-space:nowrap}
+  .doctab:hover{color:var(--c1);background:#f6f8ff}
+  .doctab.on{color:var(--c1);border-bottom-color:var(--c1)}
+  .doctab .dt-num{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;
+       margin-right:7px;border-radius:50%;background:#e8edf9;color:var(--c1);font-size:11px;font-weight:800}
+  .doctab.on .dt-num{background:var(--c1);color:#fff}
+  .doc{display:none}
+  .doc.on{display:block}
+  .navgroup{display:none}
+  .navgroup.on{display:block}
+  a.navlink.navsub-link{padding-left:34px;font-size:12.5px;color:#475569}
+  @media (max-width:820px){ .doctabs{padding:0 8px} .doctab{padding:10px 11px;font-size:12.5px} }
+  @media print{ .doctabs{display:none} .doc{display:block !important} }
+
+  /* ══════════════════════════════════════════════════════════════════════════
+     DOCUMENT 2 — même charte que le document 1
+     Les classes d'origine de l'analyse de la loi (.eyebrow, .essentiel, .law,
+     .effects, .diff, .site…) sont conservées dans le HTML, mais habillées ici
+     avec la palette, les cartes, les tableaux et les étiquettes du rapport.
+     ══════════════════════════════════════════════════════════════════════════ */
+  #doc2, #doc2 *, #doc2 *::before, #doc2 *::after { box-sizing:border-box; }
+  #doc2 { color:var(--ink); font-size:14px; line-height:1.6; }
+
+  /* — Cartes — */
+  #doc2 section{background:var(--card);border:1px solid var(--line);border-radius:10px;
+       padding:18px 20px;margin:0 0 18px;box-shadow:0 1px 2px rgba(16,24,40,.04);
+       scroll-margin-top:16px}
+  #doc2 .eyebrow{font-size:11px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;
+       color:var(--c2);margin:0 0 4px}
+  #doc2 h2{margin:0 0 10px;font-size:17px;color:var(--c1)}
+  #doc2 h3{margin:18px 0 6px;font-size:14px;color:#111827}
+  #doc2 p{margin:8px 0}
+  #doc2 ul,#doc2 ol{margin:8px 0 8px 18px;padding:0}
+  #doc2 li{margin:4px 0}
+  #doc2 a{color:var(--c1);font-weight:600;text-decoration:underline;text-underline-offset:2px}
+  #doc2 a:hover{color:var(--c2)}
+  #doc2 strong{font-weight:700}
+  #doc2 del{color:var(--alert);text-decoration:line-through;opacity:.85}
+  #doc2 ins{color:var(--ok);text-decoration:none;background:var(--okbg);padding:0 2px;border-radius:3px}
+
+  /* — Étiquettes, alignées sur celles du document 1 — */
+  #doc2 .tag{display:inline-block;font-size:11px;font-weight:600;padding:2px 7px;border-radius:20px;
+       white-space:nowrap;margin-left:4px}
+  #doc2 .t-ok{background:var(--okbg);color:var(--ok)}
+  #doc2 .t-hyp{background:var(--warnbg);color:var(--warn)}
+  #doc2 .t-open{background:var(--infobg);color:var(--c1)}
+  #doc2 .t-sec{background:#f1f5f9;color:#475569}
+  #doc2 .t-cut{background:var(--alertbg);color:var(--alert)}
+  #doc2 ul.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:12px 0 0;padding:10px 0 0;
+       list-style:none;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+  #doc2 ul.legend li{margin:0;display:flex;align-items:center;gap:6px}
+  #doc2 ul.legend .tag{margin-left:0}
+
+  /* — L'essentiel : encadré d'ouverture — */
+  #doc2 .essentiel{border-left:4px solid var(--c2);background:var(--infobg);
+       padding:14px 18px 16px;border-radius:0 8px 8px 0;margin:4px 0 12px}
+  #doc2 .essentiel .eyebrow{color:var(--c1)}
+  #doc2 .essentiel ol{margin:6px 0 0 18px}
+  #doc2 .essentiel li{margin:7px 0}
+
+  /* — Citation de texte de loi — */
+  #doc2 blockquote.law{margin:12px 0;padding:13px 16px;background:#f8fafc;
+       border:1px solid var(--line);border-left:4px solid var(--c1);border-radius:0 8px 8px 0}
+  #doc2 blockquote.law cite{display:block;font-style:normal;font-size:11px;font-weight:800;
+       letter-spacing:.4px;text-transform:uppercase;color:var(--c1);margin-bottom:7px}
+  #doc2 blockquote.law p{margin:6px 0;font-size:13.5px;line-height:1.62;color:#1f2937}
+  #doc2 .art{background:#f1f5f9;padding:1px 5px;border-radius:4px;font-size:12px;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#334155;white-space:nowrap}
+
+  /* — Effets : liste à étiquettes — */
+  #doc2 ul.effects{list-style:none;margin:10px 0;padding:0}
+  #doc2 ul.effects li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;
+       border-bottom:1px solid var(--line)}
+  #doc2 ul.effects li:last-child{border-bottom:0}
+  #doc2 .k{flex:none;width:140px;font-size:11px;font-weight:800;letter-spacing:.4px;
+       text-transform:uppercase;color:var(--c1);padding-top:2px}
+  @media (max-width:640px){ #doc2 ul.effects li{flex-direction:column;gap:3px} #doc2 .k{width:auto} }
+
+  /* — Tableaux — */
+  #doc2 .table-wrap{overflow-x:auto;margin:10px 0}
+  #doc2 table{border-collapse:collapse;width:100%;font-size:13px;margin:10px 0}
+  #doc2 th,#doc2 td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+  #doc2 th{background:#f8fafc;font-weight:600;font-size:12px;text-transform:uppercase;
+       letter-spacing:.3px;color:#475569}
+  #doc2 tbody tr:nth-child(even){background:#fcfcfd}
+  #doc2 td.num,#doc2 th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  #doc2 tr.total td{font-weight:700;background:#f1f5ff;color:var(--c1);border-top:2px solid var(--c2)}
+  #doc2 table.diff th{width:50%}
+  #doc2 table.diff td{font-size:12.5px;line-height:1.55}
+
+  /* — Fiche de site — */
+  #doc2 .site{background:#f8fafc;border:1px solid var(--line);border-radius:9px;
+       padding:13px 16px;margin:12px 0}
+  #doc2 .site dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+       gap:10px 16px;margin:8px 0 0}
+  #doc2 .site dl > div{border-left:3px solid var(--c2);padding-left:10px}
+  #doc2 .site dt{font-size:11px;text-transform:uppercase;letter-spacing:.4px;color:var(--muted)}
+  #doc2 .site dd{margin:2px 0 0;font-size:15px;font-weight:700;color:var(--c1);
+       font-variant-numeric:tabular-nums}
+
+  /* — Avertissement et sources — */
+  #doc2 p.note{border-left:4px solid var(--warn);background:var(--warnbg);
+       padding:11px 14px;border-radius:0 8px 8px 0;margin:14px 0 0;font-size:13.5px}
+  #doc2 ol.sources{margin:10px 0 0 18px}
+  #doc2 ol.sources li{margin:8px 0}
+  #doc2 .ref{display:block;font-size:11.5px;color:var(--muted);
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin-top:2px}
+  #doc2 .points li{margin:6px 0}
+
+  /* — Étiquette « Vérifié » cliquable : ouvre la source — */
+  /* Bouton « Vérifié » : doit se lire d'emblée comme un lien cliquable —
+     bordure pleine, libellé souligné, loupe à droite, réaction au survol.
+     Le sélecteur est doublé : sans cela « #doc2 .tag », plus spécifique, le
+     réécraserait dans le second onglet. */
+  button.tag-src,#doc2 button.tag-src{display:inline-flex;align-items:center;gap:5px;font-family:inherit;font-size:11px;
+       font-weight:700;line-height:1.5;color:var(--ok);background:var(--okbg);text-align:left;
+       border:1.5px solid rgba(4,120,87,.45);border-radius:20px;padding:2px 8px 2px 9px;cursor:pointer;
+       vertical-align:baseline;white-space:normal;
+       transition:background .15s,border-color .15s,box-shadow .15s,transform .1s}
+  button.tag-src .ts-lbl,#doc2 button.tag-src .ts-lbl{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2.5px}
+  button.tag-src .ts-ico,#doc2 button.tag-src .ts-ico{flex:none;width:11px;height:11px;opacity:.8}
+  button.tag-src:hover,#doc2 button.tag-src:hover{background:#c9f5e0;border-color:var(--ok);
+       box-shadow:0 2px 7px rgba(4,120,87,.25);transform:translateY(-1px)}
+  button.tag-src:hover .ts-lbl{text-decoration-style:solid}
+  button.tag-src:hover .ts-ico{opacity:1}
+  button.tag-src:active{transform:translateY(0)}
+  button.tag-src:focus-visible{outline:2px solid var(--ok);outline-offset:2px}
+  /* Une pastille rattachée garde sa couleur : une réserve reste ambre, une alerte rouge. */
+  button.tag-src.t-warn,#doc2 button.tag-src.t-warn{color:var(--warn);background:var(--warnbg);
+       border-color:rgba(180,83,9,.45)}
+  button.tag-src.t-warn:hover,#doc2 button.tag-src.t-warn:hover{background:#fde68a;
+       border-color:var(--warn);box-shadow:0 2px 7px rgba(180,83,9,.25)}
+  button.tag-src.t-info,#doc2 button.tag-src.t-info{color:var(--c1);background:var(--infobg);
+       border-color:rgba(29,78,216,.4)}
+  button.tag-src.t-info:hover,#doc2 button.tag-src.t-info:hover{background:#dbeafe;
+       border-color:var(--c1);box-shadow:0 2px 7px rgba(29,78,216,.22)}
+  button.tag-src.t-alert,#doc2 button.tag-src.t-alert{color:var(--alert);background:var(--alertbg);
+       border-color:rgba(185,28,28,.4)}
+  button.tag-src.t-alert:hover,#doc2 button.tag-src.t-alert:hover{background:#fecaca;
+       border-color:var(--alert);box-shadow:0 2px 7px rgba(185,28,28,.22)}
+  button.tag-src.t-grey,#doc2 button.tag-src.t-grey{color:#475569;background:#f1f5f9;
+       border-color:#cbd5e1}
+  button.tag-src.t-grey:hover,#doc2 button.tag-src.t-grey:hover{background:#e2e8f0;
+       border-color:#94a3b8;box-shadow:0 2px 7px rgba(71,85,105,.18)}
+  /* Passage du rapport rappelé dans la modale : la pastille d'origine y est
+     remplacée par un repère, pour montrer exactement ce qui est vérifié. */
+  mark.sm-mark{background:#a7f3d0;color:#065f46;font-weight:800;font-size:10.5px;letter-spacing:.05em;
+       text-transform:uppercase;padding:1px 7px;border-radius:12px;white-space:nowrap}
+
+  /* — Modale de source : redimensionnable par le coin inférieur droit — */
+  .srcmodal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:24px}
+  .srcmodal[hidden]{display:none !important}
+  .srcmodal-bg{position:absolute;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(2px)}
+  .srcmodal-panel{position:relative;z-index:1;display:flex;flex-direction:column;
+       width:min(760px,96vw);height:min(620px,86vh);
+       min-width:300px;min-height:200px;max-width:96vw;max-height:92vh;
+       resize:both;overflow:hidden;
+       background:#fff;border-radius:14px;box-shadow:0 18px 60px rgba(15,23,42,.35);
+       animation:srcIn .2s cubic-bezier(.22,.9,.3,1)}
+  .srcmodal-panel::-webkit-resizer{background:transparent}
+  .srcmodal-scroll{flex:1 1 auto;min-height:0;overflow:auto;padding:24px 28px 26px}
+  /* Poignée dessinée : le redimensionneur natif est trop discret pour être vu. */
+  .srcmodal-grip{position:absolute;right:3px;bottom:3px;width:16px;height:16px;pointer-events:none;
+       opacity:.5;color:#64748b}
+  .srcmodal-grip::before,.srcmodal-grip::after{content:'';position:absolute;right:2px;
+       border-bottom:2px solid currentColor;transform:rotate(-45deg);transform-origin:100% 100%}
+  .srcmodal-grip::before{bottom:3px;width:11px}
+  .srcmodal-grip::after{bottom:8px;width:6px}
+  @keyframes srcIn{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}
+  .srcmodal-tools{position:absolute;top:14px;right:14px;z-index:4;display:flex;gap:6px}
+  .srcmodal-tools button{width:30px;height:30px;border:0;border-radius:8px;background:#f1f5f9;
+       color:#475569;font-size:15px;line-height:1;cursor:pointer;display:flex;align-items:center;
+       justify-content:center;transition:background .14s,color .14s}
+  .srcmodal-tools button:hover{background:#e2e8f0;color:var(--c1)}
+  .srcmodal-tools svg{width:15px;height:15px}
+  .srcmodal-x:hover{background:#fee2e2;color:#b91c1c}
+  /* L'icône suit l'état : agrandir hors plein écran, réduire une fois dedans. */
+  .sm-fs-out{display:none}
+  .srcmodal.sm-full .sm-fs-in{display:none}
+  .srcmodal.sm-full .sm-fs-out{display:block}
+  .srcmodal .sm-flag{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:.08em;
+       text-transform:uppercase;color:var(--ok);background:var(--okbg);padding:3px 10px;border-radius:20px}
+  .srcmodal h3{margin:11px 0 4px;font-size:16px;color:var(--c1);line-height:1.4;padding-right:30px}
+  .srcmodal .sm-claim{font-size:13.5px;color:#334155;margin:0 0 14px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+  .srcmodal .sm-claim:empty{display:none}
+  .srcmodal .sm-lbl{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;
+       color:var(--muted);margin:14px 0 4px}
+  .srcmodal .sm-ref{font-size:13.5px;line-height:1.6;color:var(--ink)}
+  .srcmodal .sm-cite{margin:6px 0 0;padding:11px 14px;background:#f8fafc;border:1px solid var(--line);
+       border-left:4px solid var(--c1);border-radius:0 8px 8px 0;font-size:13px;line-height:1.6;color:#1f2937}
+  /* Le passage repris mot pour mot du rapport. */
+  .srcmodal .sm-passage{margin:6px 0 0;padding:12px 15px;background:#f6fbf8;border:1px solid #cbe9da;
+       border-left:4px solid var(--ok);border-radius:0 8px 8px 0;font-size:13.5px;line-height:1.7;color:#1f2937}
+  .srcmodal .sm-passage > *:first-child{margin-top:0}
+  .srcmodal .sm-passage > *:last-child{margin-bottom:0}
+  .srcmodal .sm-passage .tag{font-size:10.5px}
+  .srcmodal .sm-kv{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+  .srcmodal .sm-kv dt{font-size:10.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+       color:var(--muted);padding-top:2px}
+  .srcmodal .sm-kv dd{margin:0}
+  .srcmodal .sm-links{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:13px}
+  .srcmodal .sm-links a{color:var(--c1);font-weight:600}
+  .srcmodal .sm-note{margin-top:12px;font-size:12px;color:var(--muted);font-style:italic}
+  .srcmodal .sm-goto{margin-top:16px;display:inline-flex;align-items:center;gap:7px;font-family:inherit;
+       font-size:12.5px;font-weight:700;color:#fff;background:var(--c1);border:0;border-radius:8px;
+       padding:8px 14px;cursor:pointer;transition:filter .14s,transform .1s}
+  .srcmodal .sm-goto:hover{filter:brightness(1.15);transform:translateY(-1px)}
+  /* — Onglet 3 : citations de presse et liste d'articles — */
+  #doc3 .col-cit{margin:10px 0;padding:12px 16px;background:#f8fafc;border-left:4px solid var(--c2);
+       border-radius:0 8px 8px 0;font-size:14.5px;line-height:1.65;color:#1f2937;font-style:italic}
+  #doc3 .col-qui{display:block;margin-top:7px;font-style:normal;font-size:12px;font-weight:700;
+       color:var(--muted);letter-spacing:.2px}
+  #doc3 ul.col-src{list-style:none;margin:10px 0 0;padding:0}
+  #doc3 ul.col-src li{margin:0 0 11px;padding-left:12px;border-left:2px solid var(--line)}
+  #doc3 ul.col-src .src{display:inline;margin-left:6px}
+  #doc3 ul.col-src a{font-size:13.5px;font-weight:600;color:var(--c1)}
+  #doc3 .box + .box{margin-top:10px}
+
+  /* — Lien vers une fiche rédigée (voies de recours) — */
+  .doc-link{display:inline-flex;align-items:center;gap:9px;margin-top:12px;font-family:inherit;
+       font-size:13.5px;font-weight:700;color:#fff;background:var(--alert);border:0;border-radius:9px;
+       padding:10px 15px;cursor:pointer;text-align:left;
+       box-shadow:0 2px 8px rgba(185,28,28,.25);transition:filter .14s,transform .1s,box-shadow .14s}
+  .doc-link:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 4px 12px rgba(185,28,28,.3)}
+  .doc-link:active{transform:translateY(0)}
+  .doc-link:focus-visible{outline:2px solid var(--alert);outline-offset:3px}
+  .doc-link .dl-ico{flex:none;width:17px;height:17px}
+  .doc-link .dl-fl{flex:none;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+       background:rgba(255,255,255,.22);border-radius:20px;padding:3px 9px}
+
+  /* — Fiche rédigée : avertissement, tableau, point clé — */
+  .srcmodal .rec-avert{font-size:13px;line-height:1.65;color:#7f1d1d;background:var(--alertbg);
+       border-left:4px solid var(--alert);border-radius:0 8px 8px 0;padding:11px 14px;margin-bottom:4px}
+  .srcmodal .rec-tab{width:100%;border-collapse:collapse;margin-top:6px;font-size:12.5px}
+  .srcmodal .rec-tab th{background:#f1f5f9;color:#475569;font-size:10.5px;text-transform:uppercase;
+       letter-spacing:.4px;text-align:left;padding:7px 10px;border:1px solid var(--line)}
+  .srcmodal .rec-tab td{padding:8px 10px;border:1px solid var(--line);vertical-align:top;line-height:1.55}
+  .srcmodal .rec-tab tr:nth-child(even) td{background:#fcfcfd}
+  .srcmodal .rec-min{font-size:11px;color:var(--muted)}
+  .srcmodal .rec-cle{margin-top:10px;font-size:12.5px;line-height:1.65;color:#7f1d1d;
+       background:var(--alertbg);border:1px solid #fecaca;border-radius:8px;padding:11px 13px}
+  .srcmodal .rec-cle .tag,.srcmodal .rec-avert .tag{vertical-align:baseline}
+  .srcmodal .sm-passage p{margin:0 0 9px}
+  .srcmodal .sm-passage p:last-child{margin-bottom:0}
+
+  /* — Sources de vérification listées dans la fiche — */
+  .srcmodal .sm-srcs{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .srcmodal .sm-src{display:flex;align-items:flex-start;gap:11px;padding:11px 13px;
+       background:#fbfdff;border:1px solid var(--line);border-radius:9px}
+  .srcmodal .sm-src-k{flex:none;margin-top:1px}
+  .srcmodal .sm-src-txt{flex:1 1 auto;min-width:0}
+  .srcmodal .sm-src-t{font-size:13px;font-weight:700;color:var(--c1);line-height:1.45}
+  .srcmodal .sm-src-s{font-size:11.5px;color:var(--muted);line-height:1.55;margin-top:2px}
+  .srcmodal .sm-src-n{font-size:11.5px;color:#92400e;line-height:1.55;margin-top:4px}
+  .srcmodal .sm-src-n a{color:var(--c1);font-weight:600}
+  .srcmodal .sm-src-go{flex:none;align-self:center;font-family:inherit;font-size:12px;font-weight:700;
+       color:#fff;background:var(--c1);border:0;border-radius:8px;padding:8px 12px;cursor:pointer;
+       text-decoration:none;white-space:nowrap;transition:filter .14s,transform .1s}
+  .srcmodal .sm-src-go:hover{filter:brightness(1.15);transform:translateY(-1px)}
+  .srcmodal .sm-src-out{background:#475569}
+  .srcmodal .sm-src-avert{margin-top:8px;font-size:11.5px;line-height:1.6;color:#92400e;
+       background:var(--warnbg);border-left:3px solid var(--warn);border-radius:0 6px 6px 0;padding:8px 11px}
+  @media (max-width:640px){ .srcmodal .sm-src{flex-wrap:wrap} .srcmodal .sm-src-go{width:100%;text-align:center} }
+
+  /* — Plein écran : la modale occupe tout le viewport — */
+  .srcmodal.sm-full{padding:0}
+  /* !important : la taille mémorisée est posée en style inline sur le panneau. */
+  .srcmodal.sm-full .srcmodal-panel{width:100% !important;height:100% !important;
+       max-width:none !important;max-height:none !important;border-radius:0;resize:none}
+  .srcmodal.sm-full .srcmodal-grip{display:none}
+
+  /* — Vue web : un lien de la fiche s'ouvre dans la modale, sans quitter le rapport — */
+  .srcmodal-web{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;
+       background:#fff;border-radius:inherit;overflow:hidden}
+  .srcmodal-web[hidden]{display:none !important}
+  .smw-bar{flex:none;display:flex;align-items:center;gap:10px;padding:10px 78px 10px 12px;
+       border-bottom:1px solid var(--line);background:#f8fafc}
+  .smw-back{flex:none;display:inline-flex;align-items:center;gap:6px;font-family:inherit;
+       font-size:12.5px;font-weight:700;color:var(--c1);background:#fff;border:1px solid var(--line);
+       border-radius:8px;padding:6px 11px;cursor:pointer;transition:background .14s,border-color .14s}
+  .smw-back:hover{background:#eef2ff;border-color:var(--c2)}
+  .smw-url{flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+       font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;color:var(--muted)}
+  .smw-out{flex:none;font-size:12.5px;font-weight:700;color:var(--c1);white-space:nowrap}
+  .smw-note{flex:none;font-size:11.5px;color:#92400e;background:var(--warnbg);
+       border-bottom:1px solid #fde68a;padding:7px 12px}
+  .smw-note[hidden]{display:none !important}
+  .smw-frame{flex:1 1 auto;width:100%;border:0;background:#fff}
+  .smw-frame[hidden]{display:none !important}
+  /* Repli pour les sites qui interdisent l'affichage dans une page tierce. */
+  .smw-stop{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+       gap:14px;padding:30px;text-align:center;background:#f8fafc}
+  .smw-stop[hidden]{display:none !important}
+  .smw-stop p{margin:0;max-width:540px;font-size:13.5px;line-height:1.7;color:#334155}
+  .smw-stop code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+       background:#eef2ff;padding:1px 6px;border-radius:5px}
+  .smw-stop .smw-go{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;
+       color:#fff;background:var(--c1);border-radius:8px;padding:10px 16px;text-decoration:none}
+  .smw-stop .smw-go:hover{filter:brightness(1.15)}
+
+  @media (max-width:640px){ .srcmodal{padding:10px} .srcmodal-scroll{padding:20px 18px 22px}
+       .srcmodal-panel{width:100%;height:88vh} }
+
+  .nd{color:var(--muted);font-style:italic}
+  .alerte{color:var(--alert)}
+  .t-ok-inline{color:var(--ok);font-weight:600}
+  .t-alert-inline{color:var(--alert);font-weight:600}
+  ul.fp{margin:10px 0 10px 20px}
+  ul.fp li{margin:8px 0}
+  dl.glo{margin:10px 0}
+  dl.glo dt{font-weight:700;color:var(--c1);margin-top:12px}
+  dl.glo dd{margin:3px 0 0 0;padding-left:0}
+  .statut-pill{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11.5px;
+       font-weight:700;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.5)}
+  /* Sous 820 px : seuls les tableaux peuvent dépasser, et chacun dans son propre
+     conteneur défilant — le corps de page, lui, ne défile jamais horizontalement. */
+  @media (max-width:820px){
+    .content table{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+    .content table thead,.content table tbody{width:max-content;min-width:100%}
+    header.main-header{flex-wrap:wrap;gap:10px}
+    header.main-header h1{font-size:16.5px}
+    footer.main-footer{flex-direction:column;gap:2px}
+  }
+  @media (max-width:640px){
+    [data-zone="header-right"]{display:none}
+  }
+/* ---- Bouton carte, dans l'en-tête coloré du rapport ---- */
+.geo-btn{flex:none;display:inline-flex;align-items:center;gap:8px;color:#fff;
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);border-radius:9px;
+  font:600 13px/1.2 inherit;padding:8px 14px;cursor:pointer;white-space:nowrap}
+.geo-btn:hover{background:rgba(255,255,255,.3)}
+.geo-btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.geo-btn .pin{font-size:16px}
+.hdr-actions{flex:none;display:flex;align-items:center;gap:8px}
+.hdr-ico{flex:none;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;
+  color:#fff;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.55);border-radius:9px}
+.hdr-ico:hover{background:rgba(255,255,255,.3)}
+.hdr-ico:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.hdr-ico svg{width:17px;height:17px;display:block;pointer-events:none}
+@media print{.geo-btn,.hdr-ico{display:none!important}}
+@media (max-width:820px){.geo-btn{white-space:normal;text-align:left}}
+.geo-coord{font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted)}
+.geo-modal[hidden]{display:none!important}
+.geo-modal{position:fixed;inset:0;z-index:90;background:rgba(15,23,42,.55);
+  display:flex;align-items:center;justify-content:center;padding:24px}
+.geo-box{background:var(--card);border-radius:14px;width:min(1200px,96vw);height:min(860px,92vh);
+  display:flex;flex-direction:column;overflow:hidden;box-shadow:0 18px 50px rgba(15,23,42,.35)}
+.geo-box header{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.geo-box header h3{margin:0;font-size:17px;color:var(--ink)}
+.geo-box header .geo-coord{margin-left:auto}
+.geo-close{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;
+  width:34px;height:34px;font-size:19px;line-height:1;cursor:pointer}
+.geo-close:hover{background:var(--line)}
+.geo-box .geo-note{margin:0;padding:8px 18px;font-size:12.5px;line-height:1.5;color:var(--muted);
+  border-bottom:1px solid var(--line);background:var(--bg)}
+.geo-box iframe{flex:1;width:100%;border:0;min-height:0;background:var(--bg)}
+.geo-box footer{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px;border-top:1px solid var(--line);
+  background:var(--bg)}
+.geo-box footer a{display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:8px;
+  background:var(--card);color:var(--c1);text-decoration:none;font-size:13px;font-weight:600}
+.geo-box footer a:hover{background:var(--infobg)}
+@media print{.geo-modal{display:none!important}}
+@media (max-width:820px){.geo-box{height:94vh;width:96vw}.geo-box header h3{font-size:15px}
+  .geo-box header .geo-coord{display:none}}
+/* ── Impression (bouton « Imprimer » de l'en-tête) ─────────────────────────────
+   À l'écran, seule la zone .content défile (body en 100vh, overflow caché) : sans ces
+   règles, le navigateur n'imprimerait que la portion visible. On rend donc tout le
+   document au flux normal, et on retire ce qui ne sert qu'à l'écran. */
+@media print{
+  @page{margin:14mm 12mm}
+  html,body{height:auto!important;overflow:visible!important;display:block!important;background:#fff!important}
+  .layout{display:block!important;height:auto!important;min-height:0!important;overflow:visible!important}
+  .content,main.content{overflow:visible!important;height:auto!important;max-height:none!important}
+  aside.sidebar,.sidebar,.hdr-btn,.fs-btn,.hdr-ico,.hdr-actions,.geo-btn,.doctabs,
+  .srcmodal,.geo-modal,.cmodal,.qs-results{display:none!important}
+  header.main-header,header.main{box-shadow:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  h2,h3{break-after:avoid}
+}
+
+</style>
+</head>
+<body>
+
+<header class="main-header">
+  <div>
+    <h1>91 · Essonne — Data Center - Campus de 3 data centers de Data 4 (PAR3)</h1>
+    <div class="meta">Nozay (91620) · 91 Essonne · Île-de-France
+      &nbsp;<span class="statut-pill">En instruction</span></div>
+  </div>
+  <div class="hdr-actions">
+  <button type="button" class="geo-btn" id="geoBtn" aria-haspopup="dialog"
+          title="Coordonnée : 48.66798, 2.23886">
+    <span class="pin" aria-hidden="true">&#128205;</span>Voir l'emplacement du projet &mdash; Nozay (91)
+  </button>
+  <a class="hdr-ico" id="ouvrirOnglet" href="rapport.html" target="_blank" rel="noopener noreferrer" style="display:none"
+     title="Ouvrir ce rapport dans un nouvel onglet" aria-label="Ouvrir ce rapport dans un nouvel onglet">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+      <polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+  </a>
+  </div>
+  <div class="headtools">
+    <div data-zone="header-right">
+      Enquête sur sources publiques — 17 septembre 2026<br>
+      INSEE·RNE · BODACC · INPI · Géorisques · API Géo<br>
+      <b>Analyse — pas un avis juridique</b><br>
+      <span style="opacity:.8">&#8984;F / Ctrl+F : recherche plein texte</span>
+    </div>
+    <button type="button" class="hdr-btn hdr-print" id="printBtn" onclick="window.__versionPapier ? window.__versionPapier() : window.print()"
+          title="Version papier : s'ouvre dans un onglet, à relire puis imprimer" aria-label="Ouvrir la version papier du rapport">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="6 9 6 2 18 2 18 9"></polyline>
+      <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+      <rect x="6" y="14" width="12" height="8"></rect>
+    </svg>
+  </button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="searchbox">
+      <div class="qs-wrap" id="qsWrap">
+        <div class="qs-tabs">
+          <button type="button" class="qs-tab qs-tab-toc qs-on" title="Sommaire du rapport"><span class="qs-tab-ico">&#128214;</span><span class="qs-tab-lbl">Sommaire</span></button>
+          <button type="button" class="qs-tab qs-tab-search" title="Rechercher dans tout le rapport"><span class="qs-tab-ico">&#128269;</span><span class="qs-tab-lbl">Recherche</span></button>
+        </div>
+        <div class="qs-pane">
+          <div class="qs-field">
+            <span class="qs-ico">&#128269;</span>
+            <input type="text" class="qs-input" spellcheck="false" placeholder="Rechercher dans le rapport&hellip;" title="Plusieurs mots : tous sont exig&eacute;s dans le m&ecirc;me passage.&#10;Entre guillemets (&laquo;&nbsp;&raquo; ou &quot;&quot;) : expression exacte.&#10;Insensible &agrave; la casse et aux accents.&#10;Entr&eacute;e : occurrence suivante &middot; Maj+Entr&eacute;e : pr&eacute;c&eacute;dente.">
+            <button type="button" class="qs-x" title="Tout effacer : requ&ecirc;te, surlignages et r&eacute;sultats">&#10005;</button>
+          </div>
+          <div class="qs-row"><span class="qs-hint"></span></div>
+          <div class="qs-navrow">
+            <span class="qs-count"></span>
+            <span class="qs-nav">
+              <button type="button" class="qs-nav-btn qs-prev" title="Occurrence pr&eacute;c&eacute;dente (Maj+Entr&eacute;e)">&#8249;</button>
+              <span class="qs-pos"></span>
+              <button type="button" class="qs-nav-btn qs-next" title="Occurrence suivante (Entr&eacute;e)">&#8250;</button>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="qs-results"></div>
+
+    <div class="qs-results"></div>
+<nav id="navItems" data-zone="menu"><div class="navtitle">Sommaire</div><div class="navhead">L&#x27;essentiel</div><a class="navlink" href="#projet">1. Le projet annoncé</a><a class="navlink" href="#porteur">2. Qui porte le projet</a><div class="navhead">Les sociétés</div><a class="navlink" href="#finances">3. Ce que disent les comptes</a><a class="navlink" href="#bodacc">4. Histoire des sociétés</a><div class="navhead">Le territoire</div><a class="navlink" href="#icpe">5. Installations classées</a><a class="navlink" href="#judiciaire">6. Ce qui n&#x27;est pas consultable</a><div class="navhead">Pour tenir en réunion</div><a class="navlink" href="#faux-positifs">7. Les faux positifs</a><a class="navlink" href="#statuts">8. Vérifié / hypothèse / à confirmer</a><a class="navlink" href="#questions">9. Questions à verser à l&#x27;enquête</a><div class="navhead">Annexes</div><a class="navlink" href="#sources">10. Sources et limites</a><a class="navlink" href="#glossaire">11. Glossaire</a></nav>
+  </aside>
+
+  <main class="content doc on" data-doc="1" data-zone="content">
+<div class="alert-major">
+  <span class="am-flag">Le point décisif</span>
+  <h3>Une piste au registre pour « Data 4 » — dans le département du projet — mais aucune pièce ne la rattache encore à ce projet</h3>
+  <p>Le porteur annoncé est « Data 4 ». Pour le nom « Data 4 », le registre fait apparaître <b>DATA 4 SERVICES (DATA IV SERVICES)</b> (SIREN <a href="https://annuaire-entreprises.data.gouv.fr/entreprise/493254643" target="_blank" rel="noopener noreferrer">493254643</a>), activité 63.11Z — traitement de données, hébergement et activités connexes, siège à PARIS — <b>dans le département du projet</b>.</p><p><b>Un nom au moins n'identifie personne :</b> « Data 4 » (222 sociétés en France, 13 dans le département). Aucune société n'est proposée pour ces noms — en désigner une sur la seule foi du nom reviendrait à fabriquer un homonyme.</p><p><b>Ce n'est pas une identification.</b> Une correspondance de nom, même exacte, ne rattache pas une société à un projet : seule une pièce le fait — dossier d'enquête, délibération, permis. Écrire « le porteur est DATA 4 SERVICES (DATA IV SERVICES) » avant d'avoir cette pièce, c'est offrir une réfutation immédiate.</p><p><b>La question à poser en priorité :</b> le demandeur produit-il ses <b>capacités techniques et financières</b> (art. R.181-13, 3° du code de l'environnement), et qui en est le garant ?</p>
+  <div class="am-src">Établi à partir des registres publics consultés le 17 septembre 2026.
+  Ce rapport ne contient <b>pas encore</b> le dossier d'enquête publique ni l'avis de la MRAe : c'est la
+  prochaine étape, et c'est elle qui transformera les pistes en faits opposables.</div>
+</div>
+<div class="kpis"><div class="kpi"><div class="v"><span class="nd">n. p.</span></div><div class="l">puissance annoncée</div></div><div class="kpi"><div class="v"><span class="nd">n. p.</span></div><div class="l">emprise annoncée</div></div><div class="kpi"><div class="v"><span class="nd">n. p.</span></div><div class="l">investissement annoncé</div></div><div class="kpi"><div class="v"><span class="nd">n. p.</span></div><div class="l">échéance annoncée</div></div></div><p class="src">« n. p. » = non publié sur la source consultée. Ces chiffres sont <b>ceux du porteur ou de la presse</b>, jamais des valeurs vérifiées.</p>
+<section id="projet" class="card">
+  <h2>1. Le projet, tel qu'il est annoncé</h2>
+  <p class="sub">Source : <a href="https://umap.openstreetmap.fr/fr/map/carte-des-data-centers-des-projets-et-des-contesta_1289485" target="_blank" rel="noopener noreferrer">carte collaborative uMap des data centers, des projets et des contestations en France</a>, relevé du 15 septembre 2026 · géocodage par <code>adresse.data.gouv.fr</code> et <code>geo.api.gouv.fr</code>.</p>
+  <table><tr><th>Statut sur la carte</th><td>En instruction</td></tr>
+<tr><th>Commune</th><td>Nozay (91620) — 91 Essonne</td></tr>
+<tr><th>Région</th><td>Île-de-France</td></tr>
+<tr><th>Code INSEE</th><td>10269</td></tr>
+<tr><th>Porteur annoncé</th><td>Data 4</td></tr>
+<tr><th>Localisation annoncée</th><td>Site de Nokia Paris Saclay</td></tr>
+<tr><th>Caractéristiques annoncées</th><td>48 282 m² 250MWW</td></tr></table>
+  
+  <div class="box warn"><b>Rapprochement automatique (à relire)</b><br>Opposition(s) située(s) à moins de 8 km : Opposition au data center de Nozay.<br>Ce rattachement est <b>géographique</b>, calculé sur la distance : il ne prouve pas que cette opposition vise ce projet précis. <span class="tag t-warn">hypothèse</span></div>
+  <p class="src">Sources citées sur la carte : <a href="https://www.mrae.developpement-durable.gouv.fr/IMG/pdf/apjif-2025-091_nozay_91___campus_de_datacenters__delibere.pdf" target="_blank" rel="noopener noreferrer">mrae.developpement-durable.gouv.fr/IMG/pdf/apjif-2025-091_no</a></p>
+  <div class="box"><b>Ce que cette fiche vaut, et ce qu'elle ne vaut pas.</b> Elle reprend une source
+  <b>collaborative</b>, non officielle. Chaque élément qui en provient est une <b>déclaration à vérifier</b>,
+  pas un fait établi <span class="tag t-info">à confirmer</span> — la vérification passe par le dossier d'enquête publique
+  et les actes de la préfecture (§&nbsp;7 de la méthode).</div>
+</section>
+<section id="porteur" class="card">
+  <h2>2. Qui porte le projet — ce que dit le registre</h2>
+  <p class="sub">Sources : <code>recherche-entreprises.api.gouv.fr</code> (INSEE + registre national des entreprises, INPI), consulté le 17 septembre 2026.</p>
+  <div class="box"><b>Porteur annoncé :</b> « Data 4 ».<br>Noms extraits pour la recherche au registre : <code>Data 4</code>.</div>
+  <h3>Pistes sérieuses</h3>
+  <p>Trois signaux, du plus fort au plus faible : une <b>société dédiée</b> dont la dénomination reprend le nom
+  de la commune ; une société trouvée <b>dans le département</b> du projet ; une correspondance de nom seule.
+  Dans tous les cas, <b>correspondance de nom ≠ identification du porteur</b> <span class="tag t-info">à confirmer</span>.</p>
+  <table><thead><tr><th>Société</th><th>SIREN</th><th>Activité (NAF)</th><th>Siège</th><th>État</th><th>Créée</th></tr></thead><tbody>
+<tr><td><b>DATA 4 SERVICES (DATA IV SERVICES)</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : Data 4</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/493254643" target="_blank" rel="noopener noreferrer">493254643</a></td><td>63.11Z — traitement de données, hébergement et activités connexes</td><td>PARIS 75008</td><td><span class="t-ok-inline">active</span></td><td>2006-12</td></tr>
+</tbody></table>
+<div class="box"><b>Direction de DATA 4 SERVICES (DATA IV SERVICES)</b> <span class="src">(registre national des entreprises, dernière mise à jour publiée)</span><ul><li>Pierre <b>BERNARD (BERNARD)</b> — Directeur général délégué <span class="src">(né·e en 1957-03)</span></li><li>Jacques <b>DURAND (DURAND)</b> — Directeur général délégué <span class="src">(né·e en 1953-09)</span></li><li>Olivier <b>MICHELI</b> — Président de SAS <span class="src">(né·e en 1973-06)</span></li><li>Nadra <b>MOUSSALEM (MOUSSALEM)</b> — Président de SAS <span class="src">(né·e en 1976-07)</span></li><li>Anne <b>PAGES (PAGES)</b> — Directeur général délégué <span class="src">(né·e en 1981-12)</span></li><li><b>ERNST &amp; YOUNG ET AUTRES</b> — Commissaire aux comptes titulaire <span class="src">personne morale, SIREN 438476913</span></li></ul></div>
+  <div class="box alert"><b>Ces noms n'identifient personne.</b><ul><li>« <b>Data 4</b> » — <b>222</b> sociétés portent ce nom en France, <b>13</b> dans le département du projet.</li></ul>La recherche a été rejouée <b>filtrée sur le département</b> : elle ne ramène rien. Aucune société n'est donc proposée pour ces noms. En citer une serait fabriquer un homonyme — exactement l'erreur qui discrédite une contribution en trente secondes <span class="tag t-alert">piège</span></div>
+  <h3>Autres résultats consultés, écartés à ce stade</h3>
+  <p class="src">Conservés pour la traçabilité : ils montrent ce qui a été regardé, et permet à un lecteur de refaire la recherche.</p>
+  <table><thead><tr><th>Société</th><th>SIREN</th><th>Activité (NAF)</th><th>Siège</th><th>État</th><th>Créée</th></tr></thead><tbody>
+<tr><td><b>DATA 4 MANAGEMENT FRANCE</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : Data 4</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/934791765" target="_blank" rel="noopener noreferrer">934791765</a></td><td>63.11Z — traitement de données, hébergement et activités connexes</td><td>PARIS 75008</td><td><span class="t-ok-inline">active</span></td><td>2024-10</td></tr>
+<tr><td><b>DATA 4 (DATA IV)</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : Data 4</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/487631210" target="_blank" rel="noopener noreferrer">487631210</a></td><td>68.20B — location de terrains et d&#x27;autres biens immobiliers</td><td>PARIS 75008</td><td><span class="t-ok-inline">active</span></td><td>2005-12</td></tr>
+<tr><td><b>DATA 4 LOGIC</b><br><span class="src">trouvée par : Data 4</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/992011510" target="_blank" rel="noopener noreferrer">992011510</a></td><td>62.02A — conseil en systèmes informatiques</td><td>PARIS 75015</td><td><span class="t-ok-inline">active</span></td><td>2025-09</td></tr>
+<tr><td><b>EOLIENNE DES GRANDES CHAPELLES</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : NAF 35.11Z dans la commune</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/498947068" target="_blank" rel="noopener noreferrer">498947068</a></td><td>35.11Z — production d&#x27;électricité</td><td>PARIS 75001</td><td><span class="t-ok-inline">active</span></td><td>2007-07</td></tr>
+<tr><td><b>EOLIENNE DE PREMIERFAIT</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : NAF 35.11Z dans la commune</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/498952118" target="_blank" rel="noopener noreferrer">498952118</a></td><td>35.11Z — production d&#x27;électricité</td><td>PARIS 75001</td><td><span class="t-ok-inline">active</span></td><td>2007-07</td></tr>
+<tr><td><b>STOC&#x27;POM ENERGY</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : NAF 35.11Z dans la commune</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/509978300" target="_blank" rel="noopener noreferrer">509978300</a></td><td>70.10Z — activités des sièges sociaux</td><td>PARIS 75006</td><td><span class="t-ok-inline">active</span></td><td>2008-12</td></tr>
+<tr><td><b>EOLIENNE DES BANLEES</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : NAF 35.11Z dans la commune</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/498946730" target="_blank" rel="noopener noreferrer">498946730</a></td><td>35.11Z — production d&#x27;électricité</td><td>PARIS 75001</td><td><span class="t-ok-inline">active</span></td><td>2007-07</td></tr>
+<tr><td><b>GENTILHOMMIERE</b> <span class="tag t-ok" title="Siege ou etablissement dans le departement du projet">dans le département</span><br><span class="src">trouvée par : NAF 35.11Z dans la commune</span></td><td><a href="https://annuaire-entreprises.data.gouv.fr/entreprise/904591583" target="_blank" rel="noopener noreferrer">904591583</a></td><td>35.11Z — production d&#x27;électricité</td><td>NOZAY 10700</td><td><span class="t-ok-inline">active</span></td><td>2021-09</td></tr>
+</tbody></table>
+  <div class="box alert"><b>Piège de l'homonyme.</b> La recherche par nom renvoie jusqu'à <b>222 sociétés</b> pour l'un des noms cherchés. Un nom identique ne prouve rien : seul le <b>SIREN</b> identifie une société, et seule une pièce du dossier d'enquête rattache une société à ce projet. Ne jamais citer une société de ce tableau comme « le porteur » sans cette pièce. <span class="tag t-alert">piège</span></div>
+  <div class="box ok"><b>Ce qui est établi ici</b> <span class="tag t-ok" data-src="ae:493254643 rne:493254643">vérifié</span> : l'existence, le SIREN, l'activité déclarée
+  et l'état administratif des sociétés listées — chaque ligne est vérifiable en un clic sur l'Annuaire des entreprises.
+  <br><b>Ce qui ne l'est pas</b> : le lien entre l'une de ces sociétés et ce projet précis.</div>
+  <div class="box"><b>Pourquoi tous les dirigeants ne sont pas nommés.</b> Les noms ne sont affichés que pour les
+  sociétés constituant une piste sérieuse. Nommer les dirigeants d'une société homonyme, sans lien démontré avec
+  le projet, exposerait des particuliers étrangers au débat — ce que la méthode interdit (règle 3).</div>
+</section>
+<section id="finances" class="card">
+  <h2>3. Ce que disent les comptes</h2>
+  <p class="sub">Source : ratios financiers INPI / Banque de France (<code>data.economie.gouv.fr</code>, jeu <code>ratios_inpi_bce</code>), consulté le 17 septembre 2026.</p>
+  <table><thead><tr><th>Société</th><th>Exercice</th><th>Chiffre d'affaires</th><th>Résultat net</th><th>EBE</th><th>Endettement</th></tr></thead>
+  <tbody><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2025</td><td class="num">190 595 831 €</td><td class="num">1 802 400 €</td><td class="num">3 471 859 €</td><td class="num">0,1 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2024</td><td class="num">174 372 692 €</td><td class="num">943 630 €</td><td class="num">4 578 164 €</td><td class="num">0,1 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2023</td><td class="num">195 222 753 €</td><td class="num">698 616 €</td><td class="num">2 821 761 €</td><td class="num">0,2 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2022</td><td class="num">133 535 526 €</td><td class="num">883 834 €</td><td class="num">2 018 673 €</td><td class="num">3,8 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2021</td><td class="num">95 270 964 €</td><td class="num">597 970 €</td><td class="num">2 161 021 €</td><td class="num">0,3 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2020</td><td class="num">77 156 556 €</td><td class="num">500 681 €</td><td class="num">1 621 059 €</td><td class="num">5,4 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2019</td><td class="num">68 021 401 €</td><td class="num">639 555 €</td><td class="num">1 403 888 €</td><td class="num">62,4 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2018</td><td class="num">58 755 932 €</td><td class="num">350 783 €</td><td class="num">762 088 €</td><td class="num">68,9 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2017</td><td class="num">51 746 022 €</td><td class="num">389 896 €</td><td class="num">959 025 €</td><td class="num">0,5 %</td></tr><tr><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>2016</td><td class="num">44 333 805 €</td><td class="num">327 154 €</td><td class="num">1 252 271 €</td><td class="num">0,4 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2025</td><td class="num">102 388 438 €</td><td class="num">-4 614 176 €</td><td class="num">90 761 520 €</td><td class="num">986,8 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2024</td><td class="num">76 478 109 €</td><td class="num">-35 447 450 €</td><td class="num">62 283 852 €</td><td class="num">-1 270,9 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2023</td><td class="num">63 003 567 €</td><td class="num">-36 018 893 €</td><td class="num">51 451 111 €</td><td class="num">-2 435,0 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2022</td><td class="num">57 890 125 €</td><td class="num">-2 624 098 €</td><td class="num">45 178 314 €</td><td class="num">-44 653,6 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2021</td><td class="num">42 882 407 €</td><td class="num">-8 030 668 €</td><td class="num">10 795 551 €</td><td class="num">23 091,5 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2020</td><td class="num">39 624 445 €</td><td class="num">507 582 €</td><td class="num">28 400 824 €</td><td class="num">2 593,6 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2019</td><td class="num">45 102 649 €</td><td class="num">-2 091 293 €</td><td class="num">27 046 667 €</td><td class="num">2 517,8 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2018</td><td class="num">37 285 257 €</td><td class="num">-106 926 €</td><td class="num">22 843 877 €</td><td class="num">1 452,3 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2017</td><td class="num">35 535 525 €</td><td class="num">-936 453 €</td><td class="num">24 001 450 €</td><td class="num">1 466,3 %</td></tr><tr><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>2016</td><td class="num">32 040 057 €</td><td class="num">881 977 €</td><td class="num">22 282 784 €</td><td class="num">1 092,8 %</td></tr></tbody></table>
+  <div class="box ok"><b>Point favorable à relever s'il se confirme</b> : des comptes déposés et consultables, sans option
+  de confidentialité, sont un signe de régularité. Un rapport qui ne dit que le négatif n'est pas cru <span class="tag t-ok" data-src="ratios:487631210 ratios:493254643">vérifié</span>.</div>
+  <div class="box alert"><b>Ce que ces chiffres ne disent pas.</b> Le <b>capital social n'est ni la valeur de la société,
+  ni la fortune de ses associés</b> : une société au capital de 1 000 € peut porter 20 M€ de biens financés par emprunt.
+  L'argument joue dans les deux sens — ne jamais l'employer seul, ni pour minimiser, ni pour majorer <span class="tag t-alert">piège</span>.</div>
+</section>
+<section id="bodacc" class="card">
+  <h2>4. Histoire des sociétés — le BODACC</h2>
+  <p class="sub">Source : Bulletin officiel des annonces civiles et commerciales, toutes annonces des SIREN retenus, consulté le 17 septembre 2026.</p>
+  <p><b>62 annonces</b> récupérées, réparties ainsi : Dépôts des comptes (37), Modifications diverses (23), Ventes et cessions (2).</p>
+  <div class="box ok"><b>Aucune procédure collective ni jugement</b> parmi les annonces publiées pour ces SIREN <span class="tag t-ok" data-src="bodacc:487631210 bodacc:493254643">vérifié</span>. Point favorable, à écrire.</div>
+  <table><thead><tr><th>Date</th><th>Société</th><th>Type d'annonce</th><th>Détail publié</th></tr></thead>
+  <tbody><tr><td>2026-08-05</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2026-08-05</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2026-03-02</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur le capital (augmentation)</td></tr><tr><td>2025-07-31</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2025-07-31</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2024-11-26</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Ventes et cessions</td><td>—</td></tr><tr><td>2024-11-26</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Ventes et cessions</td><td>—</td></tr><tr><td>2024-07-21</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2024-07-21</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2024-03-13</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur le capital (augmentation)</td></tr><tr><td>2023-08-31</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2023-08-31</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2022-05-27</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2022-05-27</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2021-07-25</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2021-07-25</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2020-08-16</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2020-08-16</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2020-01-21</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;adresse du siège et l&#x27;adresse de l&#x27;établissement</td></tr><tr><td>2020-01-12</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;adresse du siège et l&#x27;adresse de l&#x27;établissement</td></tr><tr><td>2019-07-12</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2019-07-12</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2018-08-14</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2018-08-12</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2018-08-02</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2018-08-02</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2018-07-11</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2018-07-08</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2017-09-06</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2017-08-18</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2017-08-10</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2016-09-19</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2016-09-19</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2015-08-22</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2015-08-19</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2015-08-02</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;activité de l&#x27;établissement principal et l&#x27;administration</td></tr><tr><td>2015-07-22</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2014-08-30</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2014-08-30</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2013-10-16</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2013-09-04</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2013-09-04</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2012-09-08</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2012-09-08</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2012-09-08</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2012-08-21</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2012-03-01</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2012-02-28</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2012-01-31</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2011-08-16</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2010-11-09</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2010-09-14</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2010-04-14</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2010-02-21</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur le capital (augmentation)</td></tr><tr><td>2009-09-20</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2009-08-27</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2009-08-13</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Modifications diverses</td><td>modification survenue sur l&#x27;administration</td></tr><tr><td>2008-10-22</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2008-10-22</td><td>DATA 4 SERVICES (DATA IV SERVICES)<br><span class="src">493254643</span></td><td>Dépôts des comptes</td><td>—</td></tr><tr><td>2008-08-07</td><td>DATA 4 (DATA IV)<br><span class="src">487631210</span></td><td>Modifications diverses</td><td>modification survenue sur le nom commercial</td></tr></tbody></table>
+  <p class="src">Méthode : <b>aucun filtre par type d'annonce</b> n'a été appliqué à l'API — un filtre portant sur une
+  valeur non vérifiée renvoie zéro résultat et fait conclure à tort à l'absence de procédure. Le classement est fait après coup.</p>
+</section>
+<section id="icpe" class="card">
+  <h2>5. Les installations classées de la commune</h2>
+  <p class="sub">Source : <code>georisques.gouv.fr/api/v1/installations_classees</code>, filtrée localement sur le code INSEE 10269, consultée le 17 septembre 2026.</p>
+  <p><b>1 établissements</b> recensés sur Nozay : <b>1</b> en Autorisation.
+  <b>1</b> ont au moins une inspection publiée, <b>0</b> au moins un arrêté ou document hors inspection.</p>
+  
+  <table><thead><tr><th>Établissement</th><th>Régime</th><th>Inspections publiées</th><th>Arrêtés et documents</th><th>Géorisques</th></tr></thead>
+  <tbody><tr><td><b>COMMUNE DE NOZAY</b><br><span class="src">Le village</span></td><td>Autorisation</td><td>2014-11-18</td><td>—</td><td><a href="https://www.georisques.gouv.fr/risques/installations/donnees/details/0005702398" target="_blank" rel="noopener noreferrer">fiche</a></td></tr></tbody></table>
+  <div class="box"><b>Comment lire un rapport d'inspection.</b> Aller directement au « <b>Bilan synthétique des fiches
+  de constats</b> » : il sépare les points sans suite de ceux qui appellent une suite administrative
+  (demande de justificatif → action corrective → mise en demeure → sanction).</div>
+  <div class="box alert"><b>Deux pièges à ne pas commettre ici.</b><br>
+  1. <b>Une fiche agrège l'historique d'un site</b>, y compris les actes de l'exploitant précédent :
+  toujours croiser la date de l'acte avec la date d'arrivée de l'entreprise sur le site.<br>
+  2. <b>Proposé n'est pas prononcé</b> : l'inspection <i>propose</i> une mise en demeure, seul le préfet la
+  <i>prononce</i> par arrêté. Sans arrêté trouvé, écrire « l'inspection a proposé une mise en demeure ;
+  aucun arrêté correspondant n'est publié à ce jour » <span class="tag t-alert">piège</span>.<br>
+  3. Ces établissements sont ceux de la <b>commune</b>, pas ceux du porteur : aucun n'est imputable au projet
+  tant que le lien n'est pas établi.</div>
+</section>
+<section id="judiciaire" class="card">
+  <h2>6. Ce qui n'est pas consultable — et pourquoi le dire</h2>
+  <p class="sub">Cadrage préalable, avant toute recherche : la question « a-t-il été condamné ? » n'a pas de réponse publique en France.</p>
+  <table><thead><tr><th>Type d'affaire</th><th>Consultable ?</th><th>Pourquoi</th></tr></thead><tbody>
+  <tr><td>Condamnation pénale d'une personne</td><td><span class="tag t-grey">non</span></td><td>Casier judiciaire réservé à la justice ; l'open data judiciaire (Judilibre) pseudonymise les personnes physiques</td></tr>
+  <tr><td>Plainte, mise en examen</td><td><span class="tag t-grey">non</span></td><td>Secret de l'enquête et de l'instruction (art. 11 du code de procédure pénale)</td></tr>
+  <tr><td>Classement sans suite</td><td><span class="tag t-grey">non</span></td><td>Aucun registre public n'existe</td></tr>
+  <tr><td>Prud'hommes</td><td><span class="tag t-warn">très partiel</span></td><td>Diffusion incomplète et pseudonymisée</td></tr>
+  <tr><td>Procédure collective, jugement commercial</td><td><span class="tag t-ok">oui</span></td><td>BODACC — voir la section 4</td></tr>
+  <tr><td>Sanctions environnementales</td><td><span class="tag t-ok">oui</span></td><td>Géorisques — voir la section 5</td></tr>
+  </tbody></table>
+  <div class="exergue">« Personne ne peut savoir, par une source publique, s'il a été condamné — et ce n'est pas la question.
+  Ce qui est vérifiable, c'est le comportement face aux obligations réglementaires. »</div>
+  <div class="box"><b>Vérification complémentaire faite :</b> aucune recherche sur les listes de sanctions internationales
+  n'a été lancée à ce stade pour ce dossier <span class="tag t-info">à confirmer</span> — elle est gratuite
+  (<code>api.opensanctions.org</code>) et figure dans la feuille de route du dossier (<code>notes.md</code>).</div>
+</section>
+<section id="faux-positifs" class="card">
+  <h2>7. Les faux positifs — ce qui se retournerait contre nous</h2>
+  <p class="sub">Section obligatoire de la méthode : chercher soi-même les arguments fragiles, avant que l'adversaire ne le fasse.</p>
+  <ul class="fp"><li><b>L'homonyme.</b> Jusqu'à 222 sociétés répondent à l'un des noms cherchés. Citer « la société X » sans son SIREN, c'est offrir une réfutation en trente secondes.</li><li><b>L'amalgame de site.</b> Les 1 installations classées listées section 5 sont celles de la <b>commune</b>. Les attribuer au porteur du data center est un amalgame : les actes d'un exploitant antérieur ou voisin ne le concernent pas.</li><li><b>Le rapprochement géographique.</b> Les oppositions et recours rattachés à cette fiche l'ont été par la <b>distance</b> (moins de 8 km), pas par une pièce. Un collectif voisin peut viser un tout autre projet.</li><li><b>Le chiffre mal lu.</b> Puissance, emprise et investissement affichés en tête sont des <b>annonces</b> — parfois le total d'une zone d'activité entière, parfois une tranche unique. Vérifier ce que le chiffre recouvre avant de l'opposer.</li><li><b>L'erreur juridique séduisante.</b> « Le permis a été accordé à une société qui n'existe plus » : faux dès lors qu'il s'agit d'un changement de nom ou de forme — <b>le SIREN est inchangé</b>, la personne morale est la même.</li><li><b>Le lien de parenté supposé.</b> Les registres publient des noms et des dates, <b>jamais les liens familiaux</b>. Patronymes identiques et adresses partagées forment un faisceau d'indices, à écrire « probable » — jamais « son épouse » ou « son fils » au présent de l'indicatif.</li></ul>
+  <div class="box ok"><b>L'argument qui reste debout quoi qu'il arrive :</b> les <b>effets cumulés</b> sur un même
+  territoire — réseau électrique, ressource en eau, artificialisation des sols, bruit. Il ne suppose aucun lien entre
+  les sociétés et ne dépend d'aucune identification : il est recevable tel quel <span class="tag t-ok">vérifié</span>.</div>
+</section>
+<section id="statuts" class="card">
+  <h2>8. Vérifié, hypothèse, à confirmer</h2>
+  <p class="sub">Chaque affirmation de ce rapport, classée. C'est ce tableau qu'il faut avoir sous les yeux en réunion.</p>
+  <p><b>6</b> affirmations vérifiées · <b>0</b> hypothèses ·
+     <b>5</b> points à confirmer · <b>1</b> non consultables.</p>
+  <table><thead><tr><th>Statut</th><th>Affirmation</th><th>Pièce</th></tr></thead><tbody><tr><td><span class="tag t-ok" data-src="umap">vérifié</span></td><td>Un projet de data center est répertorié à Nozay (91), au statut « En instruction » sur la carte collaborative.</td><td class="src">Carte uMap, relevé du 15/09/2026</td></tr><tr><td><span class="tag t-ok" data-src="commune:10269">vérifié</span></td><td>La commune de Nozay porte le code INSEE 10269.</td><td class="src">geo.api.gouv.fr</td></tr><tr><td><span class="tag t-ok" data-src="ae:493254643 ae:934791765 ae:487631210 ae:992011510">vérifié</span></td><td>9 sociétés ont été identifiées au registre pour les noms cherchés ; leur SIREN, activité et état administratif sont consultables.</td><td class="src">recherche-entreprises.api.gouv.fr</td></tr><tr><td><span class="tag t-info">à confirmer</span></td><td>Le rattachement d&#x27;une de ces sociétés à ce projet précis n&#x27;est pas établi par une pièce.</td><td class="src">Dossier d&#x27;enquête publique — à consulter</td></tr><tr><td><span class="tag t-ok" data-src="geo:10269">vérifié</span></td><td>1 installations classées sont recensées sur la commune, dont 1 sous régime d&#x27;autorisation.</td><td class="src">Géorisques</td></tr><tr><td><span class="tag t-ok" data-src="ratios:487631210 ratios:493254643">vérifié</span></td><td>Des comptes sont publiés pour au moins une des sociétés consultées.</td><td class="src">Ratios INPI / Banque de France</td></tr><tr><td><span class="tag t-ok" data-src="bodacc:487631210 bodacc:493254643">vérifié</span></td><td>62 annonces BODACC existent pour les SIREN consultés.</td><td class="src">BODACC</td></tr><tr><td><span class="tag t-info">à confirmer</span></td><td>Aucune valeur publiée pour la puissance électrique.</td><td class="src">Dossier d&#x27;enquête publique, délibérations</td></tr><tr><td><span class="tag t-info">à confirmer</span></td><td>Aucune valeur publiée pour l&#x27;emprise au sol.</td><td class="src">Dossier d&#x27;enquête publique, délibérations</td></tr><tr><td><span class="tag t-info">à confirmer</span></td><td>Aucune valeur publiée pour le montant d&#x27;investissement.</td><td class="src">Dossier d&#x27;enquête publique, délibérations</td></tr><tr><td><span class="tag t-info">à confirmer</span></td><td>Aucune consultation du dossier d&#x27;enquête publique, de l&#x27;avis de la MRAe, ni de la presse locale n&#x27;a encore été faite pour ce projet.</td><td class="src">Feuille de route dans notes.md</td></tr><tr><td><span class="tag t-grey">non consultable</span></td><td>Le patrimoine personnel des dirigeants, et toute affaire pénale les concernant, ne relèvent d&#x27;aucune source publique.</td><td class="src">Voir section 6</td></tr></tbody></table>
+</section>
+<section id="questions" class="card">
+  <h2>9. Questions à verser à l'enquête</h2>
+  <p class="sub">Précises, appuyées sur une pièce ou un texte, difficiles à esquiver. À reprendre telles quelles dans une contribution.</p>
+  <table><thead><tr><th>Sujet</th><th>Question</th><th>Sur quoi elle s'appuie</th></tr></thead><tbody><tr><td><b>Capacités techniques et financières</b></td><td>Quelles capacités techniques et financières le demandeur produit-il, et qui en est le garant ?</td><td class="src">Pièce obligatoire du dossier (art. R.181-13, 3° du code de l&#x27;environnement) — c&#x27;est souvent la plus révélatrice du montage.</td></tr><tr><td><b>Maîtrise foncière</b></td><td>Le demandeur produit-il la promesse de vente ou l&#x27;acte de propriété, avec ses conditions suspensives et sa date de caducité ?</td><td class="src">Un projet dont la maîtrise foncière n&#x27;est pas acquise n&#x27;a pas la même portée qu&#x27;un projet dont les actes sont signés.</td></tr><tr><td><b>Puissance et raccordement</b></td><td>Quelle puissance de raccordement a été demandée à RTE ou Enedis, et à quelle échéance la file d&#x27;attente la rend-elle disponible ?</td><td class="src">La puissance réellement raccordable conditionne la faisabilité, indépendamment des annonces.</td></tr><tr><td><b>Eau et refroidissement</b></td><td>Quel est le mode de refroidissement retenu, et quel volume d&#x27;eau annuel est prélevé, par quelle ressource ?</td><td class="src">À croiser avec les arrêtés sécheresse et le classement éventuel en zone de répartition des eaux.</td></tr><tr><td><b>Artificialisation</b></td><td>Le projet est-il classé « projet d&#x27;envergure régionale » ou qualifié de « projet d&#x27;intérêt national majeur » ?</td><td class="src">Art. L.300-6-2 du code de l&#x27;urbanisme : cette qualification déplace le pouvoir de décision de la commune vers le préfet. C&#x27;est vérifiable, datable et opposable — contrairement à une proximité supposée.</td></tr><tr><td><b>Groupes électrogènes</b></td><td>Quelle puissance de secours est installée, quel volume de fioul est stocké, et sous quelle rubrique ICPE le projet est-il classé ?</td><td class="src">Les rubriques 2910 (combustion) et 4734 (stockage de liquides inflammables) déterminent le régime applicable.</td></tr><tr><td><b>Emplois</b></td><td>Combien d&#x27;emplois en exploitation, en équivalents temps plein, et sur quel périmètre exactement ?</td><td class="src">Distinguer les emplois de chantier, les emplois du site entier et ceux du seul data center : la confusion des périmètres est la source d&#x27;écart la plus fréquente.</td></tr></tbody></table>
+</section>
+<section id="sources" class="card">
+  <h2>10. Sources consultées, et limites assumées</h2>
+  <p class="sub">Ce qui a été fait, ce qui ne l'a pas été. Un rapport qui tait ses limites se fait démonter sur ses limites.</p>
+  <h3>Sources effectivement consultées</h3>
+  <table><thead><tr><th>Source</th><th>Ce qui en a été tiré</th></tr></thead><tbody>
+  <tr><td><a href="https://recherche-entreprises.api.gouv.fr/" target="_blank" rel="noopener noreferrer">Recherche d&#x27;entreprises (INSEE + RNE/INPI)</a></td><td>Sociétés candidates, SIREN, activité, dirigeants, établissements</td></tr>
+  <tr><td><a href="https://bodacc-datadila.opendatasoft.com/" target="_blank" rel="noopener noreferrer">BODACC</a></td><td>Historique des sociétés retenues, procédures éventuelles</td></tr>
+  <tr><td><a href="https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce/" target="_blank" rel="noopener noreferrer">Ratios financiers INPI / Banque de France</a></td><td>Comptes des sociétés, quand ils sont déposés</td></tr>
+  <tr><td><a href="https://www.georisques.gouv.fr/" target="_blank" rel="noopener noreferrer">Géorisques</a></td><td>Installations classées de la commune, inspections et arrêtés publiés</td></tr>
+  <tr><td><a href="https://geo.api.gouv.fr/" target="_blank" rel="noopener noreferrer">API Géo</a></td><td>Code INSEE 10269, rattachements administratifs</td></tr>
+  </tbody></table>
+  <h3>Ce qui n'a pas été consulté — et qu'il faut consulter</h3>
+  <div class="box warn"><b>Ce rapport s'arrête aux registres.</b> Il ne contient à ce stade
+  <b>ni le dossier d'enquête publique, ni l'avis de la MRAe, ni la presse locale, ni les délibérations
+  communales</b> <span class="tag t-info">à confirmer</span>. Ce sont précisément les pièces les plus productives de la méthode :
+  tant qu'elles n'ont pas été versées, l'identification du porteur reste une piste, pas une conclusion.</div>
+  <table><thead><tr><th>Recherche à lancer</th><th>Ce qu'elle doit rapporter</th></tr></thead><tbody><tr><td><code>site:.gouv.fr &quot;installations classées&quot; &quot;Nozay&quot; data center</code></td><td>Dossier d&#x27;enquête publique en préfecture (§7)</td></tr><tr><td><code>mrae.developpement-durable.gouv.fr &quot;Nozay&quot;</code></td><td>Avis de l&#x27;autorité environnementale (§6)</td></tr><tr><td><code>&quot;Nozay&quot; data center délibération conseil municipal</code></td><td>Position officielle de la commune</td></tr><tr><td><code>&quot;Nozay&quot; data center enquête publique registre</code></td><td>Registre dématérialisé, s&#x27;il existe</td></tr></tbody></table>
+  <h3>Limites structurelles, qui ne seront pas levées</h3>
+  <ul>
+    <li>Les <b>sociétés civiles ne déposent pas de comptes</b> : aucune donnée financière n'existera jamais sur elles.</li>
+    <li>Les registres ne publient <b>ni les participations minoritaires, ni les actionnaires d'une SAS</b>, et ne remontent pas au-delà de la filiale française d'un groupe étranger.</li>
+    <li>Le <b>patrimoine personnel</b> d'un particulier n'est pas public : seul un état hypothécaire (formulaire 3233-SD, service de la publicité foncière, quelques dizaines d'euros) l'établit.</li>
+    <li>Les <b>liens de parenté</b> ne sont jamais publiés.</li>
+  </ul>
+</section>
+<section id="glossaire" class="card">
+  <h2>11. Glossaire</h2>
+  <p class="sub">La moitié des erreurs commises en réunion publique viennent d'un vocabulaire mal compris.</p>
+  <dl class="glo">
+    <dt>SIREN</dt><dd>Numéro à 9 chiffres identifiant une <b>personne morale</b>. Il ne change ni lors d'un changement de nom, ni lors d'un changement de forme juridique : c'est le seul identifiant fiable.</dd>
+    <dt>SIRET</dt><dd>SIREN + 5 chiffres, identifiant un <b>établissement</b> précis. Une société a un SIREN et autant de SIRET que d'établissements.</dd>
+    <dt>Capital social</dt><dd>Somme apportée à la constitution. <b>Ni la valeur de la société, ni la fortune des associés.</b> Une société au capital de 1 000 € peut porter 20 M€ de biens financés par emprunt.</dd>
+    <dt>SCI</dt><dd>Société civile immobilière. <b>Ne dépose pas de comptes</b> : l'absence de données financières est structurelle, pas suspecte.</dd>
+    <dt>ICPE</dt><dd>Installation classée pour la protection de l'environnement. Trois régimes, du plus léger au plus lourd : <b>déclaration</b>, <b>enregistrement</b>, <b>autorisation</b>.</dd>
+    <dt>Mise en demeure</dt><dd>Acte par lequel <b>le préfet</b> ordonne la régularisation d'un manquement. L'inspection la <i>propose</i> ; seul le préfet la <i>prononce</i>. Confondre les deux est une erreur factuelle.</dd>
+    <dt>MRAe</dt><dd>Mission régionale d'autorité environnementale. Rend un <b>avis</b> sur la qualité de l'étude d'impact — avis public, et qui ne lie pas le préfet.</dd>
+    <dt>Promesse de vente</dt><dd>Engagement de vendre, assorti de <b>conditions suspensives</b> et d'une <b>date de caducité</b>. Tant qu'elles ne sont pas levées, la maîtrise foncière n'est pas acquise.</dd>
+    <dt>Projet d'intérêt national majeur (PINM)</dt><dd>Qualification de l'art. L.300-6-2 du code de l'urbanisme : le préfet met le PLU en compatibilité <b>en lieu et place des communes</b> et délivre le permis.</dd>
+    <dt>Projet d'envergure régionale</dt><dd>Classement donnant accès à une enveloppe d'artificialisation <b>mutualisée</b> à l'échelle régionale, au lieu du quota communal.</dd>
+    <dt>BODACC</dt><dd>Bulletin officiel des annonces civiles et commerciales : créations, modifications, ventes, jugements, radiations. C'est l'histoire officielle d'une société.</dd>
+    <dt>PUE</dt><dd><i>Power Usage Effectiveness</i> : énergie totale consommée divisée par l'énergie utile aux serveurs. Un PUE de 1,2 signifie 20 % d'énergie consommée hors informatique.</dd>
+  </dl>
+</section>
+  </main>
+</div>
+
+<div class="geo-modal" id="geoModal" hidden role="dialog" aria-modal="true" aria-labelledby="geoTitre">
+  <div class="geo-box">
+    <header>
+      <h3 id="geoTitre">Data Center - Campus de 3 data centers de Data 4 (PAR3) &mdash; Nozay (91620)</h3>
+      <span class="geo-coord">48.66798, 2.23886</span>
+      <button type="button" class="geo-close" id="geoClose" aria-label="Fermer la carte">&times;</button>
+    </header>
+    <p class="geo-note">La coordonnée provient du point placé sur la carte collaborative et du géocodage de la commune :
+    elle situe <b>le secteur du projet</b>, et non le périmètre exact de l'emprise, qui n'est connu qu'au dossier d'enquête publique.</p>
+    <iframe id="geoFrame" title="Carte de l'emplacement du projet" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            data-src="https://www.google.com/maps?q=48.667982,2.238863&amp;hl=fr&amp;z=15&amp;output=embed"></iframe>
+    <footer>
+      <a href="https://www.google.com/maps/@48.66798154999999,2.2388633568993086,15z" target="_blank" rel="noopener noreferrer">Google Maps</a>
+      <a href="https://www.google.com/maps/@48.66798154999999,2.2388633568993086,1000m/data=!3m1!1e3" target="_blank" rel="noopener noreferrer">Vue satellite</a>
+      <a href="https://www.google.com/maps/@?api=1&amp;map_action=pano&amp;viewpoint=48.667982,2.238863" target="_blank" rel="noopener noreferrer">Street View</a>
+      <a href="https://www.geoportail.gouv.fr/carte?c=2.2388633568993086,48.66798154999999&amp;z=17&amp;l0=CADASTRALPARCELS.PARCELLAIRE_EXPRESS::GEOPORTAIL:OGC:WMTS(1)&amp;permalink=yes" target="_blank" rel="noopener noreferrer">Cadastre (Géoportail)</a>
+      <a href="https://www.geoportail.gouv.fr/carte?c=2.2388633568993086,48.66798154999999&amp;z=17&amp;l0=ORTHOIMAGERY.ORTHOPHOTOS::GEOPORTAIL:OGC:WMTS(1)&amp;permalink=yes" target="_blank" rel="noopener noreferrer">Photo aérienne IGN</a>
+      <a href="https://www.georisques.gouv.fr/mes-risques/connaitre-les-risques-pres-de-chez-moi/rapport?city=nozay&amp;codeInsee=10269" target="_blank" rel="noopener noreferrer">Risques (Géorisques)</a>
+    </footer>
+  </div>
+</div>
+
+<div class="srcmodal" id="srcModal" hidden role="dialog" aria-modal="true" aria-labelledby="smTitre">
+  <div class="srcmodal-bg" data-close></div>
+  <div class="srcmodal-panel">
+    <div class="srcmodal-tools">
+      <button type="button" class="srcmodal-full" data-full aria-pressed="false" title="Plein écran" aria-label="Basculer la fiche en plein écran">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <g class="sm-fs-in"><polyline points="9 3 3 3 3 9"></polyline><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><polyline points="15 21 21 21 21 15"></polyline></g>
+          <g class="sm-fs-out"><polyline points="4 10 10 10 10 4"></polyline><polyline points="20 10 14 10 14 4"></polyline><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 14 14 14 14 20"></polyline></g>
+        </svg>
+      </button>
+      <button type="button" class="srcmodal-x" data-close aria-label="Fermer">&#10005;</button>
+    </div>
+    <div class="srcmodal-scroll">
+      <span class="sm-flag">Source de la vérification</span>
+      <h3 id="smTitre"></h3>
+      <p class="sm-claim"></p>
+      <div class="sm-body"></div>
+    </div>
+    <div class="srcmodal-web" hidden>
+      <div class="smw-bar">
+        <button type="button" class="smw-back">&#8592;&nbsp; Retour à la fiche</button>
+        <span class="smw-url"></span>
+        <a class="smw-out" href="#" target="_blank" rel="noopener noreferrer">Ouvrir dans un onglet &#8599;</a>
+      </div>
+      <div class="smw-note" hidden></div>
+      <iframe class="smw-frame" title="Page consultée depuis la fiche de vérification" hidden
+              referrerpolicy="no-referrer-when-downgrade"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"></iframe>
+      <div class="smw-stop" hidden></div>
+    </div>
+    <span class="srcmodal-grip" title="Redimensionner" aria-hidden="true"></span>
+  </div>
+</div>
+
+<footer class="main-footer" data-zone="footer">
+  <span><b>91 · Essonne</b> — Data Center - Campus de 3 data centers de Data 4 (PAR3) · sources publiques au 17/09/2026</span>
+  <span>Collectif Non au Data Center de Rantigny</span>
+</footer>
+
+<script>
+document.getElementById('navItems').addEventListener('click',function(e){
+  var a=e.target.closest('a.navlink'); if(!a) return;
+  var id=a.getAttribute('href'); if(!id||id.charAt(0)!=='#') return;
+  var t=document.querySelector(id); if(!t) return;
+  t.classList.remove('flash'); void t.offsetWidth; t.classList.add('flash');
+  setTimeout(function(){t.classList.remove('flash');},2700);
+});
+</script>
+<script>
+/* Moteur de recherche plein texte — repris de analyse-contributions.html */
+(function () {
+  var D = document, WORD = /[a-z0-9À-ɏ]/i;
+  var wrap = D.getElementById('qsWrap');
+  var content = D.querySelector('.content');
+  var navItems = D.getElementById('navItems');
+  var list = D.querySelector('.qs-results');
+  if (!wrap || !content || !list) return;
+
+  var tabT = wrap.querySelector('.qs-tab-toc'),
+      tabS = wrap.querySelector('.qs-tab-search'),
+      inp  = wrap.querySelector('.qs-input'),
+      row  = wrap.querySelector('.qs-row'),
+      hint = wrap.querySelector('.qs-hint'),
+      cnt  = wrap.querySelector('.qs-count'),
+      nav  = wrap.querySelector('.qs-nav'),
+      pos  = wrap.querySelector('.qs-pos');
+
+  function esc(s) {
+    return (s == null ? '' : String(s)).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  /* Repli accents + casse, à alignement strict : sinon les index calculés sur la
+     version repliée ne pointeraient plus au bon endroit dans le texte d'origine. */
+  function fold(s) {
+    var out = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+      if (c === ' ' || c === '\n' || c === '\r' || c === '\t' || c === ' ') { out += ' '; continue; }
+      var f = c.normalize('NFD').replace(/[̀-ͯ]/g, '');
+      out += (f.length === 1 ? f : c);
+    }
+    return out.toLowerCase();
+  }
+  function reEsc(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+
+  /* ── Blocs indexables : construits une seule fois ──────────────────────── */
+  var _index = null;
+  function index() {
+    if (_index) return _index;
+    var sel = 'p,li,blockquote,td,th,dd,dt,h2,h3,.box,.kpi,.tree';
+    /* Les deux documents sont indexés : la recherche porte sur l'ensemble, et les
+       résultats sont ensuite regroupés par onglet, celui qui est affiché en premier. */
+    var scoped = sel.split(',').map(function (x) { return '.doc ' + x.trim(); }).join(',');
+    var all = Array.prototype.slice.call(content.querySelectorAll(scoped));
+    var set = new Set(all);
+    _index = all.filter(function (el) {
+      for (var p = el.parentElement; p && p !== content; p = p.parentElement) {
+        if (set.has(p)) return false;              // on ne garde que le bloc le plus fin
+      }
+      return (el.textContent || '').trim().length > 1;
+    }).map(function (el) {
+      var t = blockText(el).text, d = el.closest('.doc');
+      return { el: el, txt: t, f: fold(t), doc: (d && d.dataset.doc) || '1' };
+    }).filter(function (b) { return b.txt.trim().length > 1; });
+    return _index;
+  }
+  /* Texte concaténé + table d'offsets vers les nœuds texte : permet de trouver une
+     expression coupée par un <b> ou un <a>.
+     Les pastilles de décompte des titres (« 4 », « 15 contributions ») sont écartées :
+     ce sont des repères d'interface, pas du contenu. L'indexation ET le marquage
+     passent par cette même fonction, sinon les offsets ne coïncideraient plus. */
+  var HORS_TEXTE = '.num,.cnt,.n,.autoflag,.pjmark';
+  function blockText(el) {
+    var w = D.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode: function (n) {
+        var p = n.parentElement;
+        return (p && p.closest(HORS_TEXTE) && el.contains(p.closest(HORS_TEXTE)))
+          ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var txt = '', map = [], n;
+    while ((n = w.nextNode())) {
+      var t = n.nodeValue;
+      if (!t) continue;
+      map.push({ node: n, start: txt.length, end: txt.length + t.length });
+      txt += t;
+    }
+    return { text: txt, map: map };
+  }
+  function sectionOf(el) {
+    var s = el.closest('section');
+    if (!s) return 'Page';
+    var h = s.querySelector('h2');
+    if (!h) return 'Page';
+    var c = h.cloneNode(true);
+    c.querySelectorAll('.num,.cnt').forEach(function (x) { x.remove(); });
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  /* ── Correspondances : tous les mots exigés, guillemets = expression exacte ─ */
+  var QUOTED = /^\s*(?:"([^"]*)"|«\s*([^»]*?)\s*»)\s*$/;
+  function modeOf(q) {
+    var m = QUOTED.exec(String(q || ''));
+    return (m && (m[1] || m[2] || '').trim()) ? 'phrase' : 'and';
+  }
+  function terms(q, mode) {
+    q = String(q || '').trim();
+    if (!q) return [];
+    if (mode === 'phrase') { var m = QUOTED.exec(q); q = ((m && (m[1] || m[2])) || q).trim(); }
+    return q.split(/\s+/)
+      .map(function (t) { return t.replace(/^[+\-"«]+/, '').replace(/["*»]+$/, ''); })
+      .filter(function (t) { return t.length > 0; })
+      .map(fold);
+  }
+  /* Ancrage en début de mot, fin libre : « nappe » trouve « nappes ». */
+  function termHits(f, t) {
+    var out = [], from = 0, i;
+    while ((i = f.indexOf(t, from)) !== -1) {
+      if (!WORD.test(i > 0 ? f.charAt(i - 1) : '')) out.push([i, i + t.length]);
+      from = i + 1;
+    }
+    return out;
+  }
+  function phraseHits(f, ts) {
+    var re;
+    try { re = new RegExp(ts.map(reEsc).join('\\s+'), 'g'); } catch (e) { return []; }
+    var out = [], m;
+    while ((m = re.exec(f)) !== null) {
+      if (!m[0].length) { re.lastIndex++; continue; }
+      if (!WORD.test(m.index > 0 ? f.charAt(m.index - 1) : '')) out.push([m.index, m.index + m[0].length]);
+    }
+    return out;
+  }
+  function merge(hits) {
+    hits.sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; });
+    var out = [];
+    hits.forEach(function (h) {
+      var last = out[out.length - 1];
+      if (last && h[0] <= last[1]) { if (h[1] > last[1]) last[1] = h[1]; }
+      else out.push([h[0], h[1]]);
+    });
+    return out;
+  }
+
+  /* ── Marquage / démarquage ─────────────────────────────────────────────── */
+  function mark(map, hits) {
+    for (var k = hits.length - 1; k >= 0; k--) {
+      var s = hits[k][0], e = hits[k][1];
+      for (var i = map.length - 1; i >= 0; i--) {
+        var seg = map[i];
+        if (seg.end <= s || seg.start >= e) continue;
+        var node = seg.node;
+        var ls = Math.max(s, seg.start) - seg.start;
+        var le = Math.min(e, seg.end) - seg.start;
+        if (le < node.nodeValue.length) node.splitText(le);
+        var target = (ls > 0) ? node.splitText(ls) : node;
+        var sp = D.createElement('span');
+        sp.className = 'qs-hit';
+        target.parentNode.insertBefore(sp, target);
+        sp.appendChild(target);
+      }
+    }
+  }
+  function clearHits() {
+    var parents = new Set();
+    D.querySelectorAll('span.qs-hit').forEach(function (sp) {
+      var p = sp.parentNode;
+      if (!p) return;
+      while (sp.firstChild) p.insertBefore(sp.firstChild, sp);
+      p.removeChild(sp);
+      parents.add(p);
+    });
+    parents.forEach(function (p) { try { p.normalize(); } catch (e) {} });
+  }
+
+  /* ── Recherche et rendu ────────────────────────────────────────────────── */
+  var results = [], hitEls = [], hitRes = [], cur = -1, lastRun = null;
+  var KEY = 'kherief_qs';
+  var NOMS = { '1': 'Mustapha KHERIEF', '2': 'Analyse loi 2026-403' };
+  var replies = {};   /* { '1': true } = groupe replié ; l'état survit aux rendus */
+  function docActif() {
+    var d = D.querySelector('.doc.on');
+    return (d && d.dataset.doc) || '1';
+  }
+
+  function updateHint() {
+    var q = inp.value.trim(), txt = '';
+    if (q) {
+      if (modeOf(q) === 'phrase') txt = 'expression exacte';
+      else if (q.split(/\s+/).length > 1) txt = 'tous les mots';
+    }
+    hint.textContent = txt;
+    row.classList.toggle('qs-on', !!txt);
+  }
+  /* Extrait cadré sur la 1re occurrence, toutes celles de la fenêtre surlignées. */
+  function extract(r) {
+    var t = r.txt, h0 = r.hits[0];
+    var s = Math.max(0, h0[0] - 70), e = Math.min(t.length, h0[1] + 150);
+    var out = (s > 0 ? '&hellip; ' : ''), p = s;
+    for (var i = 0; i < r.hits.length; i++) {
+      var a = r.hits[i][0], b = r.hits[i][1];
+      if (b <= s) continue;
+      if (a >= e) break;
+      a = Math.max(a, s); b = Math.min(b, e);
+      if (a < p) continue;
+      out += esc(t.slice(p, a)) + '<b class="qs-xh">' + esc(t.slice(a, b)) + '</b>';
+      p = b;
+    }
+    return out + esc(t.slice(p, e)) + (e < t.length ? ' &hellip;' : '');
+  }
+  function updatePos() {
+    nav.classList.toggle('qs-on', hitEls.length > 0);
+    pos.textContent = hitEls.length ? ((cur >= 0 ? cur + 1 : '–') + ' / ' + hitEls.length) : '';
+  }
+  function render(total) {
+    updatePos();
+    if (!results.length) {
+      cnt.textContent = '';
+      list.innerHTML = inp.value.trim() ? '<div class="qs-empty">Aucun passage ne correspond.</div>' : '';
+      return;
+    }
+    cnt.innerHTML = '<b>' + results.length + '</b> passage' + (results.length > 1 ? 's' : '')
+                  + ' · <b>' + total + '</b> occurrence' + (total > 1 ? 's' : '');
+    var actif = docActif(), html = '', courant = null;
+    results.forEach(function (r, i) {
+      if (r.doc !== courant) {
+        if (courant !== null) html += '</div></div>';
+        courant = r.doc;
+        var n = 0;
+        results.forEach(function (x) { if (x.doc === r.doc) n++; });
+        var ferme = !!replies[r.doc];
+        html += '<div class="qs-grp' + (ferme ? ' qs-grp-closed' : '') + '" data-doc="' + esc(r.doc) + '">'
+              + '<button type="button" class="qs-group' + (r.doc === actif ? ' qs-group-on' : '') + '"'
+              + ' aria-expanded="' + (ferme ? 'false' : 'true') + '"'
+              + ' title="Replier ou déplier les résultats de cet onglet">'
+              + '<span class="qs-g-chev" aria-hidden="true"></span>'
+              + '<span class="qs-g-num">' + esc(r.doc) + '</span>'
+              + '<span class="qs-g-nom">' + esc(NOMS[r.doc] || 'Document ' + r.doc) + '</span>'
+              + (r.doc === actif ? '<span class="qs-g-ici">onglet affiché</span>' : '')
+              + '<span class="qs-g-n">' + n + '</span></button>'
+              + '<div class="qs-grp-body">';
+      }
+      html += '<button type="button" class="qs-res" data-i="' + i + '">'
+        + '<span class="qs-res-sec"><span class="qs-res-n">' + (i + 1) + '.</span> ' + esc(r.sec) + '</span>'
+        + '<span class="qs-res-x">' + extract(r) + '</span></button>';
+    });
+    if (courant !== null) html += '</div></div>';
+    list.innerHTML = html;
+  }
+  function run() {
+    clearHits();
+    results = []; hitEls = []; hitRes = []; cur = -1;
+    lastRun = inp.value;
+    updateHint();
+    var mode = modeOf(inp.value), ts = terms(inp.value, mode);
+    if (!ts.length) { render(0); save(); return; }
+    var total = 0, trouves = [];
+    index().forEach(function (b) {
+      var hs = [], ok;
+      if (mode === 'phrase') { hs = phraseHits(b.f, ts); ok = hs.length > 0; }
+      else {
+        var per = ts.map(function (t) { return termHits(b.f, t); });
+        ok = per.every(function (a) { return a.length > 0; });
+        if (ok) per.forEach(function (a) { hs = hs.concat(a); });
+      }
+      if (!ok || !hs.length) return;
+      hs = merge(hs);
+      total += hs.length;
+      mark(blockText(b.el).map, hs);
+      trouves.push({ el: b.el, txt: b.txt, hits: hs, sec: sectionOf(b.el), doc: b.doc });
+    });
+    /* Onglet affiché d'abord ; à l'intérieur d'un onglet, l'ordre du document est
+       conservé (le tri natif est stable). */
+    var actif = docActif();
+    trouves.sort(function (a, b) { return a.doc === b.doc ? 0 : (a.doc === actif ? -1 : 1); });
+    results = trouves;
+    results.forEach(function (r, i) {
+      var spans = r.el.querySelectorAll('span.qs-hit');
+      for (var k = 0; k < spans.length; k++) { hitEls.push(spans[k]); hitRes.push(i); }
+    });
+    render(total);
+    save();
+  }
+
+  function goTo(i) {
+    if (!hitEls.length) return;
+    var n = hitEls.length;
+    cur = ((i % n) + n) % n;
+    D.querySelectorAll('span.qs-hit.qs-cur').forEach(function (x) { x.classList.remove('qs-cur'); });
+    var h = hitEls[cur];
+    h.classList.add('qs-cur');
+    /* L'occurrence peut se trouver dans l'onglet qui n'est pas affiché : on bascule
+       d'abord, sans relancer la recherche, puis on fait défiler. */
+    var d = h.closest('.doc'), bascule = d && !d.classList.contains('on');
+    if (bascule && window.docShow) window.docShow(d.dataset.doc, false, true);
+    setTimeout(function () {
+      try { h.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    }, bascule ? 90 : 0);
+    if (bascule) render(hitEls.length ? results.reduce(function (a, r) { return a + r.hits.length; }, 0) : 0);
+    var ri = hitRes[cur];
+    list.querySelectorAll('.qs-res.qs-on').forEach(function (x) { x.classList.remove('qs-on'); });
+    /* Si l'occurrence appartient à un groupe replié, on le déplie pour la montrer. */
+    var rdoc = results[ri] && results[ri].doc;
+    if (rdoc && replies[rdoc]) {
+      replies[rdoc] = false;
+      var grp = list.querySelector('.qs-grp[data-doc="' + rdoc + '"]');
+      if (grp) {
+        grp.classList.remove('qs-grp-closed');
+        var hdr = grp.querySelector('.qs-group');
+        if (hdr) hdr.setAttribute('aria-expanded', 'true');
+      }
+    }
+    var b = list.querySelector('.qs-res[data-i="' + ri + '"]');
+    if (b) { b.classList.add('qs-on'); try { b.scrollIntoView({ block: 'nearest' }); } catch (e) {} }
+    updatePos();
+  }
+  function step(d) { goTo(cur < 0 ? (d > 0 ? 0 : -1) : cur + d); }
+
+  function save() { try { localStorage.setItem(KEY, inp.value); } catch (e) {} }
+  function restore() { try { inp.value = localStorage.getItem(KEY) || ''; } catch (e) {} }
+
+  function openSearch(on) {
+    wrap.classList.toggle('qs-open', on);
+    tabS.classList.toggle('qs-on', on);
+    tabT.classList.toggle('qs-on', !on);
+    navItems.classList.toggle('qs-hide', on);
+    list.classList.toggle('qs-on', on);
+    if (on) {
+      setTimeout(function () { try { inp.focus(); } catch (e) {} }, 120);
+      if (inp.value.trim() && !results.length) run();
+    }
+  }
+
+  var timer = null;
+  inp.addEventListener('input', function () { clearTimeout(timer); timer = setTimeout(run, 200); });
+  inp.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      clearTimeout(timer);
+      if (inp.value !== lastRun) run(); else step(e.shiftKey ? -1 : 1);   /* comme un Ctrl+F */
+    } else if (e.key === 'Escape') { e.stopPropagation(); openSearch(false); }
+  });
+  wrap.querySelector('.qs-prev').addEventListener('click', function () { step(-1); });
+  wrap.querySelector('.qs-next').addEventListener('click', function () { step(1); });
+  /* Prise de focus = tout sélectionner ; on neutralise le mouseup qui annulerait
+     la sélection, les clics suivants gardent le placement normal du curseur. */
+  var selOnUp = false;
+  inp.addEventListener('mousedown', function () { selOnUp = (D.activeElement !== inp); });
+  inp.addEventListener('mouseup', function (e) { if (selOnUp) { e.preventDefault(); selOnUp = false; } });
+  inp.addEventListener('focus', function () { try { inp.select(); } catch (e) {} });
+  wrap.querySelector('.qs-x').addEventListener('click', function () {
+    inp.value = ''; clearTimeout(timer);
+    clearHits();
+    results = []; hitEls = []; hitRes = []; cur = -1; lastRun = null;
+    render(0); updateHint();
+    try { localStorage.removeItem(KEY); } catch (e) {}
+    try { content.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { content.scrollTop = 0; }
+    inp.focus();
+  });
+  list.addEventListener('click', function (e) {
+    var g = e.target.closest('.qs-group');
+    if (g) {
+      var grp = g.closest('.qs-grp');
+      if (!grp) return;
+      var ferme = grp.classList.toggle('qs-grp-closed');
+      replies[grp.dataset.doc] = ferme;
+      g.setAttribute('aria-expanded', ferme ? 'false' : 'true');
+      return;
+    }
+    var b = e.target.closest('.qs-res');
+    if (!b) return;
+    var i = +b.dataset.i;
+    for (var k = 0; k < hitRes.length; k++) { if (hitRes[k] === i) { goTo(k); return; } }
+  });
+  tabT.addEventListener('click', function () { openSearch(false); });
+  tabS.addEventListener('click', function () { openSearch(true); });
+  /* Ctrl/Cmd+F ouvre la recherche de la page plutôt que celle du navigateur. */
+  D.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'f' || e.key === 'F')) {
+      e.preventDefault(); openSearch(true); inp.select();
+    }
+  });
+  /* Appelé au changement d'onglet : l'index et les surlignages sont recalculés. */
+  window.qsRefresh = function () {
+    /* L'index couvre les deux documents : inutile de le reconstruire, il suffit de
+       relancer la recherche pour replacer l'onglet affiché en tête des résultats. */
+    if (inp.value.trim() && wrap.classList.contains('qs-open')) { run(); }
+    else { clearHits(); results = []; hitEls = []; hitRes = []; cur = -1; lastRun = null; render(0); }
+  };
+  restore(); updateHint();
+})();
+</script>
+<script>
+/* Modale carte : l'iframe n'est chargée qu'à la première ouverture */
+(function () {
+  var b = document.getElementById('geoBtn'), m = document.getElementById('geoModal'),
+      f = document.getElementById('geoFrame'), c = document.getElementById('geoClose');
+  if (!b || !m) return;
+  function ouvrir() {
+    if (f && !f.src) { f.src = f.dataset.src; }
+    m.hidden = false; document.body.style.overflow = 'hidden'; c && c.focus();
+  }
+  function fermer() { m.hidden = true; document.body.style.overflow = ''; b.focus(); }
+  b.addEventListener('click', ouvrir);
+  c && c.addEventListener('click', fermer);
+  m.addEventListener('click', function (e) { if (e.target === m) fermer(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !m.hidden) { e.preventDefault(); fermer(); }
+  });
+})();
+
+/* Icône « ouvrir dans un nouvel onglet » : utile seulement quand le rapport est affiché
+   dans l'iframe de la page d'accueil ; lu seul dans un onglet, elle ferait doublon. */
+(function () {
+  var a = document.getElementById('ouvrirOnglet');
+  if (a && window.top !== window.self) a.style.display = '';
+})();
+
+</script><script>
+/* ══ Repère de lecture : le sommaire suit le paragraphe cliqué ══
+   Sur un rapport long, le lecteur perd vite de vue où il se trouve. Un clic
+   dans le contenu marque l'entrée de sommaire de la section correspondante.
+   Le marquage est aussi posé par un clic dans le sommaire et par le bouton
+   « Ouvrir ce passage dans le rapport » des fiches de vérification. */
+(function () {
+  var D = document;
+  var content = D.querySelector('.content'),
+      nav = D.getElementById('navItems'),
+      side = D.querySelector('.sidebar');
+  if (!content || !nav) return;
+
+  function lien(id) { return nav.querySelector('a.navlink[href="#' + id + '"]'); }
+
+  /* La section la plus fine qui possède une entrée de sommaire : certaines
+     sections n'en ont pas, il faut alors remonter à celle qui en a une. */
+  function sectionDe(el) {
+    if (!el || !el.closest) return null;
+    var s = el.closest('section[id]');
+    while (s) {
+      if (lien(s.id)) return s;
+      s = s.parentElement ? s.parentElement.closest('section[id]') : null;
+    }
+    return null;
+  }
+
+  /* On ne fait défiler la barre que si l'entrée est hors de vue : sinon elle
+     bouge à chaque clic, ce qui donne une impression de page instable. */
+  function amener(a) {
+    if (!side || !a.getBoundingClientRect) return;
+    var r = a.getBoundingClientRect(), s = side.getBoundingClientRect();
+    if (r.top < s.top + 4) side.scrollTop -= (s.top - r.top) + 40;
+    else if (r.bottom > s.bottom - 4) side.scrollTop += (r.bottom - s.bottom) + 40;
+  }
+
+  function marquer(a) {
+    if (!a) return;
+    Array.prototype.forEach.call(nav.querySelectorAll('a.navlink.nav-cur'),
+      function (x) { x.classList.remove('nav-cur'); });
+    a.classList.add('nav-cur');
+    amener(a);
+  }
+
+  content.addEventListener('click', function (e) {
+    var s = sectionDe(e.target);
+    if (s) marquer(lien(s.id));
+  });
+
+  nav.addEventListener('click', function (e) {
+    var a = e.target.closest('a.navlink');
+    if (a) marquer(a);
+  });
+
+  /* Changer d'onglet change de sommaire : l'entrée marquée n'a plus de sens. */
+  Array.prototype.forEach.call(D.querySelectorAll('.doctab'), function (t) {
+    t.addEventListener('click', function () {
+      Array.prototype.forEach.call(nav.querySelectorAll('a.navlink.nav-cur'),
+        function (x) { x.classList.remove('nav-cur'); });
+    });
+  });
+
+  /* Point d'entrée pour les autres modules (fiches de vérification). */
+  window.__navCur = function (el) {
+    var s = sectionDe(el);
+    if (s) marquer(lien(s.id));
+  };
+})();
+</script>
+<script>
+/* ══ Pastilles « vérifié » cliquables — tout le rapport ══
+   Toute pastille verte portant une mention de vérification devient un bouton
+   à loupe. Le contenu de la modale n'est PAS rédigé à la main : il est extrait
+   du rapport lui-même — le passage exact qui porte la pastille, le complément
+   de source inscrit dans le libellé, les réserves voisines. Rien n'est ainsi
+   affirmé au-delà de ce que le texte dit déjà.
+   Les pastilles du second onglet portent un data-v : elles ont leur propre
+   fiche rédigée et sont traitées par le module précédent. */
+(function () {
+  var D = document;
+  var modal = D.getElementById('srcModal');
+  if (!modal) return;
+  var flag   = modal.querySelector('.sm-flag'),
+      titre  = modal.querySelector('#smTitre'),
+      claim  = modal.querySelector('.sm-claim'),
+      body   = modal.querySelector('.sm-body'),
+      scroll = modal.querySelector('.srcmodal-scroll'),
+      panel  = modal.querySelector('.srcmodal-panel');
+
+  var LOUPE = '<svg class="ts-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>';
+  var VERIF = /v[ée]rifi|recherche effectu/i;
+  var HOTE  = 'li,td,th,p,h2,h3,h4,dd,blockquote';
+
+  function txt(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function esc(s) {
+    return (s == null ? '' : String(s)).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  /* ══ Référentiel des sources de vérification ══
+     Une entrée = une source réelle, dont l'URL a été testée le 17/09/2026
+     (code HTTP et en-tête X-Frame-Options relevés à la commande). Les pastilles
+     portent un data-src qui renvoie à ces clés : le rattachement vit à côté de
+     l'affirmation, dans le HTML, et non dans un tableau parallèle.
+     `k` = nature de la source, et c'est le point le plus important :
+        officiel = la pièce elle-même (dossier, avis, texte de loi)
+        registre = base publique nominative, l'information s'y lit directement
+        requete  = une recherche : le lecteur doit encore filtrer
+        presse   = source secondaire — prouve ce qui a été publié, pas le fait
+     `i` = affichable dans la modale (aucun en-tête interdisant l'iframe au contrôle). */
+  var SOC = {"493254643": "DATA 4 SERVICES (DATA IV SERVICES)", "934791765": "DATA 4 MANAGEMENT FRANCE", "487631210": "DATA 4 (DATA IV)", "992011510": "DATA 4 LOGIC", "498947068": "EOLIENNE DES GRANDES CHAPELLES", "498952118": "EOLIENNE DE PREMIERFAIT", "509978300": "STOC'POM ENERGY", "498946730": "EOLIENNE DES BANLEES", "904591583": "GENTILHOMMIERE"};
+  var SOURCES = {
+ "umap": {
+  "t": "Carte collaborative uMap « Carte des data centers, des projets et des contestations en France »",
+  "s": "recensement des projets de data centers en France · relevé du 15/09/2026",
+  "k": "requete",
+  "i": true,
+  "u": "https://umap.openstreetmap.fr/fr/map/carte-des-data-centers-des-projets-et-des-contesta_1289485",
+  "n": "Source collaborative, non officielle : ce qui en vient est une déclaration à vérifier."
+ },
+ "art1": {
+  "t": "Article cité sur la carte — mrae.developpement-durable.gouv.fr",
+  "s": "source de presse ou communication : prouve ce qui a été publié, pas le fait lui-même",
+  "k": "presse",
+  "i": false,
+  "u": "https://www.mrae.developpement-durable.gouv.fr/IMG/pdf/apjif-2025-091_nozay_91___campus_de_datacenters__delibere.pdf",
+  "n": null
+ },
+ "aiot0005702398": {
+  "t": "Fiche Géorisques — COMMUNE DE NOZAY",
+  "s": "Autorisation · Nozay",
+  "k": "registre",
+  "i": true,
+  "u": "https://www.georisques.gouv.fr/risques/installations/donnees/details/0005702398"
+ }
+};
+  /* Sources paramétrées par SIREN : une même base, une entrée par société. */
+  var PAR_SIREN = {
+    'rne': function (n) { return { t: 'Registre national des entreprises — SIREN ' + fmtSiren(n),
+      s: (SOC[n] || 'société') + ' · API Recherche d’entreprises (INSEE + RNE/INPI) · JSON', k: 'registre', i: true,
+      u: 'https://recherche-entreprises.api.gouv.fr/search?q=' + n }; },
+    'ae': function (n) { return { t: 'Fiche Annuaire des entreprises — SIREN ' + fmtSiren(n),
+      s: (SOC[n] || 'société') + ' · annuaire-entreprises.data.gouv.fr', k: 'registre', i: true,
+      u: 'https://annuaire-entreprises.data.gouv.fr/entreprise/' + n }; },
+    'bodacc': function (n) { return { t: 'BODACC — annonces du SIREN ' + fmtSiren(n),
+      s: (SOC[n] || 'société') + ' · bodacc-datadila.opendatasoft.com', k: 'requete', i: true,
+      u: 'https://bodacc-datadila.opendatasoft.com/explore/dataset/annonces-commerciales/table/?q=' + n }; },
+    'ratios': function (n) { return { t: 'Ratios financiers INPI — SIREN ' + fmtSiren(n),
+      s: (SOC[n] || 'société') + ' · data.economie.gouv.fr, jeu « ratios_inpi_bce »', k: 'registre', i: true,
+      u: 'https://data.economie.gouv.fr/explore/dataset/ratios_inpi_bce/table/?q=' + n }; },
+    /* ── Sources du territoire, paramétrées par code INSEE ou code AIOT ── */
+    'geo': function (n) { return { t: 'Installations classées de la commune — code INSEE ' + n,
+      s: 'API Géorisques · JSON — la réponse porte « results », le décompte exact', k: 'registre', i: true,
+      u: 'https://georisques.gouv.fr/api/v1/installations_classees?page=1&page_size=100&code_insee=' + n }; },
+    'geofiche': function (n) { return { t: 'Fiche Géorisques de l’établissement — AIOT ' + n,
+      s: 'georisques.gouv.fr — régime, rubriques, inspections et arrêtés publiés', k: 'registre', i: true,
+      u: 'https://www.georisques.gouv.fr/risques/installations/donnees/details/' + n }; },
+    'commune': function (n) { return { t: 'Fiche de la commune — code INSEE ' + n,
+      s: 'API Géo (geo.api.gouv.fr) · JSON — rattachements administratifs officiels', k: 'registre', i: true,
+      u: 'https://geo.api.gouv.fr/communes/' + n + '?fields=nom,code,codesPostaux,population,departement,region' }; }
+  };
+  var NATURE = {
+    officiel: { l: 'pièce officielle', c: 'ok' },
+    registre: { l: 'registre public', c: 'info' },
+    requete:  { l: 'recherche à filtrer', c: 'grey' },
+    presse:   { l: 'source de presse', c: 'warn' },
+    doctrine: { l: 'commentaire juridique', c: 'warn' }
+  };
+  function fmtSiren(n) { return String(n).replace(/(\d{3})(\d{3})(\d{3})/, '$1 $2 $3'); }
+  function sourcesDe(cle) {
+    return String(cle || '').split(/\s+/).filter(Boolean).map(function (c) {
+      var p = c.split(':');
+      if (p.length === 2 && PAR_SIREN[p[0]]) return PAR_SIREN[p[0]](p[1]);
+      return SOURCES[c] || null;
+    }).filter(Boolean);
+  }
+
+  /* ══ Fiche « Voies et délais de recours » ══
+     Même modale, même mécanique de liens que les fiches de vérification : les
+     sources s'ouvrent dans la fenêtre, ou dans un onglet quand le site refuse
+     l'affichage intégré. Le contenu est rédigé, donc daté et marqué comme le
+     reste du rapport : ce qui est vérifié, ce qui reste à confirmer. */
+  var RECOURS = {
+    flag: 'Voies et délais de recours',
+    titre: 'Quand peut-on attaquer, et dans quel délai ?',
+    fil: 'Onglet 1 · Le point décisif du dossier · état du droit au 17/09/2026',
+    src: 'rec-r18150 rec-decret2024 rec-r6117 rec-seban rec-prepa loi',
+    html:
+      '<div class="rec-avert"><b>Ce n’est pas un avis juridique.</b> Les délais ci-dessous ne se '
+    + 'rattrapent pas : sur un dossier de cette taille, un avocat en droit public de l’urbanisme '
+    + 'doit être saisi <b>avant</b> la publication des actes, pas après.</div>'
+
+    + '<div class="sm-lbl">1. Pendant l’enquête : aucun recours juridictionnel</div>'
+    + '<div class="sm-passage"><p><span class="tag t-ok">vérifié</span> Un <b>acte préparatoire</b> '
+    + 'n’est pas attaquable. L’arrêté d’ouverture d’enquête, le dossier, l’avis de '
+    + 'l’autorité environnementale, le rapport du commissaire enquêteur, la délibération qui arrête '
+    + 'un projet : le juge administratif écarte les recours dirigés contre ces actes, <b>quels que soient '
+    + 'leurs vices</b>. Ces vices ne se soulèvent qu’ensuite, à l’appui d’un recours contre la '
+    + 'décision finale.</p><p>Ce qui compte à ce stade est la <b>contribution écrite au registre</b> : elle '
+    + 'ne bloque rien, mais elle constitue la trace qui fondera les moyens du recours. Les deux '
+    + 'consultations sont closes — <b>10 septembre 2026</b> pour la mise en compatibilité du PLU, '
+    + '<b>26 août 2026</b> pour l’autorisation environnementale.</p></div>'
+
+    + '<div class="sm-lbl">2. Les actes attaquables, dans l’ordre où ils arriveront</div>'
+    + '<table class="rec-tab"><thead><tr><th>Acte</th><th style="width:92px">Délai</th><th>Point de départ</th></tr></thead><tbody>'
+    + '<tr><td><b>Délibération approuvant la déclaration de projet</b> emportant mise en compatibilité du PLU</td>'
+    + '<td>2 mois</td><td>publication / affichage — <b>c’est le verrou le plus proche</b></td></tr>'
+    + '<tr><td><b>Autorisation environnementale</b> (préfet)</td><td>2 mois<br><span class="rec-min">pour les tiers</span></td>'
+    + '<td>affichage en mairie ou publication sur le site de la préfecture, <b>à la dernière formalité accomplie</b></td></tr>'
+    + '<tr><td><b>Permis de construire</b></td><td>2 mois</td><td>affichage sur le terrain ; notification du recours au titulaire obligatoire</td></tr>'
+    + '<tr><td><b>Décret PINM</b>, s’il est pris</td><td>2 mois</td><td>publication au Journal officiel</td></tr>'
+    + '</tbody></table>'
+    + '<div class="rec-cle"><span class="tag t-alert">piège courant</span> <b>Le délai de recours des tiers '
+    + 'contre une autorisation environnementale est de deux mois, et non de quatre.</b> '
+    + '<span class="tag t-ok">vérifié</span> L’article R.181-50 du code de l’environnement, dans sa '
+    + 'version en vigueur depuis le <b>12 mai 2024</b>, dit « deux mois » ; le délai a été réduit par le décret '
+    + 'du 10 mai 2024. Beaucoup de documents encore en circulation indiquent quatre mois : s’y fier fait '
+    + 'perdre le recours.</div>'
+    + '<div class="sm-note"><span class="tag t-info">à confirmer</span> La juridiction compétente pour un décret '
+    + 'PINM (en principe le Conseil d’État en premier et dernier ressort pour un décret réglementaire), et '
+    + 'surtout <b>si la loi n° 2026-403 a modifié ces délais ou ces compétences</b> — c’est le type de '
+    + 'disposition que les lois de simplification contiennent.</div>'
+
+    + '<div class="sm-lbl">3. Le seul moyen d’agir avant que les travaux ne commencent</div>'
+    + '<div class="sm-passage"><p>Le <b>référé-suspension</b> (article L.521-1 du code de justice administrative). '
+    + 'Il ne s’exerce <b>jamais seul</b> : il est accessoire à un recours au fond déjà déposé, et suppose deux '
+    + 'conditions <b>cumulatives</b> — l’urgence, et un doute sérieux sur la légalité de l’acte. C’est '
+    + 'le seul outil qui produise un effet rapide.</p><p>Un <b>recours gracieux</b> auprès de l’auteur de '
+    + 'l’acte, dans les deux mois, proroge par ailleurs le délai de recours contentieux.</p></div>'
+
+    + '<div class="sm-lbl">4. Deux pièges de calendrier, qui décident de tout</div>'
+    + '<div class="sm-passage"><p><b>La cristallisation des moyens.</b> <span class="tag t-ok">vérifié</span> '
+    + 'En contentieux de l’urbanisme et de l’environnement, les moyens nouveaux deviennent irrecevables '
+    + '<b>deux mois après la communication du premier mémoire en défense</b> (article R.611-7-2 du code de justice '
+    + 'administrative), automatiquement. Un moyen resté imprécis à cette date est jugé irrecevable. Concrètement : '
+    + '<b>tout doit figurer dans le recours initial</b> — le travail d’analyse se fait donc maintenant.</p>'
+    + '<p><b>La RIIPM.</b> L’article 36 de la loi n° 2026-403 le prévoit : lorsqu’une déclaration de projet '
+    + 'reconnaît la raison impérative d’intérêt public majeur, « <i>cette reconnaissance ne peut ensuite être '
+    + 'contestée que par un recours contre cet acte</i> ». Si l’acte n’est pas attaqué à temps, la RIIPM est '
+    + 'acquise — et c’est la condition la plus difficile à remplir pour une dérogation « espèces protégées ». '
+    + '<span class="tag t-warn">hypothèse</span> L’effet devrait être limité ici, la déclaration de projet étant '
+    + 'portée par la commune et non par l’État — c’est ce que retient l’analyse de la loi, '
+    + 'à l’onglet 2.</p></div>'
+  };
+
+  /* ── 1. Les pastilles deviennent des boutons ────────────────────────────── */
+  var num = 0;
+  var COULEURS = ['t-ok', 't-warn', 't-info', 't-alert', 't-grey'];
+  Array.prototype.forEach.call(D.querySelectorAll('.doc span.tag'), function (sp) {
+    var lbl = txt(sp);
+    /* Deux cas : une pastille « vérifié », ou n'importe quelle pastille explicitement
+       rattachée à une source — une réserve sourcée mérite autant d'être consultée. */
+    var rattachee = !!sp.dataset.src;
+    if (!rattachee && !(sp.classList.contains('t-ok') && VERIF.test(lbl))) return;
+    if (sp.closest('p.sub, .legend')) return; /* légende explicative : la pastille n'y est qu'un exemple */
+    var coul = COULEURS.filter(function (c) { return sp.classList.contains(c); })[0] || 't-ok';
+    var b = D.createElement('button');
+    b.type = 'button';
+    b.className = 'tag ' + coul + ' tag-src';
+    b.title = 'Voir ce qui est vérifié, et sur quoi';
+    b.dataset.n = String(++num);
+    if (sp.dataset.src) b.dataset.src = sp.dataset.src;   /* rattachement aux sources */
+    b.innerHTML = '<span class="ts-lbl"></span>' + LOUPE;
+    b.firstChild.textContent = lbl;
+    sp.parentNode.replaceChild(b, sp);
+  });
+
+  /* ── 2. Reconstitution du passage, à partir du DOM ───────────────────────── */
+  function nettoie(el, n) {
+    var c = el.cloneNode(true);
+    Array.prototype.forEach.call(c.querySelectorAll('span.qs-hit'), function (h) {
+      while (h.firstChild) h.parentNode.insertBefore(h.firstChild, h);
+      h.parentNode.removeChild(h);
+    });
+    Array.prototype.forEach.call(c.querySelectorAll('button.tag-src'), function (t) {
+      var vise = t.dataset.n === n;
+      var m = D.createElement(vise ? 'mark' : 'span');
+      var c2 = COULEURS.filter(function (c) { return t.classList.contains(c); })[0] || 't-ok';
+      m.className = vise ? 'sm-mark' : ('tag ' + c2);
+      m.textContent = txt(t);
+      t.parentNode.replaceChild(m, t);
+    });
+    Array.prototype.forEach.call(c.querySelectorAll('[id]'), function (x) { x.removeAttribute('id'); });
+    return c;
+  }
+  /* Dans un tableau, la cellule seule ne veut rien dire : on rend la ligne
+     entière, chaque cellule sous son en-tête de colonne. */
+  function ligneTableau(td, n) {
+    var tr = td.closest('tr'), table = td.closest('table');
+    if (!tr || !table) return null;
+    var ths = Array.prototype.slice.call(table.querySelectorAll('thead th')).map(txt);
+    var dl = D.createElement('dl');
+    dl.className = 'sm-kv';
+    Array.prototype.forEach.call(tr.children, function (cel, i) {
+      if (!txt(cel)) return;
+      var dt = D.createElement('dt');
+      dt.textContent = ths[i] || ('Colonne ' + (i + 1));
+      var dd = D.createElement('dd');
+      dd.innerHTML = nettoie(cel, n).innerHTML;
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    return dl;
+  }
+  /* Sur un titre, la pastille porte sur ce qui suit : on joint le premier bloc. */
+  function suiteDeTitre(h, n) {
+    var frag = D.createDocumentFragment();
+    frag.appendChild(nettoie(h, n));
+    var e = h.nextElementSibling, pris = 0;
+    while (e && pris < 2 && !/^H[1-4]$/.test(e.tagName)) {
+      if (/^(P|UL|OL|TABLE|BLOCKQUOTE|DIV)$/.test(e.tagName) && txt(e)) {
+        frag.appendChild(nettoie(e, n)); pris++;
+      }
+      e = e.nextElementSibling;
+    }
+    return frag;
+  }
+  function passage(hote, n) {
+    if (/^(TD|TH)$/.test(hote.tagName)) {
+      var dl = ligneTableau(hote, n);
+      if (dl) return dl;
+    }
+    if (/^H[2-4]$/.test(hote.tagName)) return suiteDeTitre(hote, n);
+    return nettoie(hote, n);
+  }
+
+  /* ── 3. Ce qui établit la vérification, tel que le texte l'écrit ─────────── */
+  function titresDe(el) {
+    var sec = el.closest('section'), out = { section: '', sous: '' };
+    if (!sec) return out;
+    var h2 = sec.querySelector('h2');
+    if (h2) out.section = txt(h2);
+    if (/^H[2-4]$/.test(el.tagName)) { out.sous = txt(el); return out; }
+    /* Un h3 enfermé dans un encadré ne titre pas le reste de la section :
+       on ne le retient que si son propre bloc contient aussi l'élément. */
+    var h3s = Array.prototype.slice.call(sec.querySelectorAll('h3')).filter(function (h) {
+      if (!(el.compareDocumentPosition(h) & Node.DOCUMENT_POSITION_PRECEDING)) return false;
+      for (var p = h.parentElement; p && p !== sec; p = p.parentElement) {
+        if (!p.contains(el)) return false;
+      }
+      return true;
+    });
+    if (h3s.length) out.sous = txt(h3s[h3s.length - 1]);
+    return out;
+  }
+  function lbl2(s) {
+    var d = D.createElement('div');
+    d.className = 'sm-lbl';
+    d.textContent = s;
+    return d;
+  }
+
+  /* Liste de sources rendue à l'identique partout : fiches extraites et fiches rédigées. */
+  function blocSources(h, cles, titre) {
+      var srcs = sourcesDe(cles);
+      if (srcs.length) {
+        h.appendChild(lbl2(titre || 'Ce qui permet de le vérifier — sources en ligne'));
+        var box2 = D.createElement('div');
+        box2.className = 'sm-srcs';
+        box2.innerHTML = srcs.map(function (o) {
+          var nat = NATURE[o.k] || NATURE.registre;
+          var go = o.i
+            ? '<button type="button" class="sm-src-go" data-url="' + esc(o.u) + '">Consulter ici &#9656;</button>'
+            : '<a class="sm-src-go sm-src-out" href="' + esc(o.u) + '" target="_blank" rel="noopener noreferrer">Ouvrir dans un onglet &#8599;</a>';
+          return '<div class="sm-src">'
+            + '<span class="tag t-' + nat.c + ' sm-src-k">' + nat.l + '</span>'
+            + '<div class="sm-src-txt"><div class="sm-src-t">' + esc(o.t) + '</div>'
+            + '<div class="sm-src-s">' + o.s + '</div>'
+            + (o.n ? '<div class="sm-src-n">' + o.n + '</div>' : '')
+            + (o.m ? '<div class="sm-src-n">Copie miroir : <a href="' + esc(o.m) + '" target="_blank" rel="noopener noreferrer">commune de Breuil-le-Vert</a> — utile si la préfecture retire le dossier.</div>' : '')
+            + '</div>' + go + '</div>';
+        }).join('');
+        h.appendChild(box2);
+        /* L'avertissement dépend de ce que la fiche contient réellement. */
+        var second = srcs.some(function (o) { return o.k === 'presse'; })
+          ? 'Une source de presse établit <b>ce qui a été publié</b>, pas le fait lui-même : à ne pas mettre au même rang qu’une pièce du dossier.'
+          : (srcs.some(function (o) { return o.k === 'doctrine'; })
+            ? 'Un commentaire d’avocat <b>explique</b> le droit, il ne le fait pas : en cas de divergence, c’est le texte qui compte.'
+            : '');
+        if (second) {
+          var av = D.createElement('div');
+          av.className = 'sm-src-avert';
+          av.innerHTML = second;
+          h.appendChild(av);
+        }
+      }
+  }
+  /* ── 4. Ouverture ────────────────────────────────────────────────────────── */
+  var cible = null, lastFocus = null;
+  function open(b) {
+    var hote = b.closest(HOTE) || b.parentElement;
+    if (!hote) return;
+    cible = hote;
+    lastFocus = D.activeElement;
+    webSeul = false; majRetour();
+
+    var lbl = txt(b), t = titresDe(hote);
+    var doc = hote.closest('.doc');
+    var nDoc = doc ? doc.dataset.doc : '';
+
+    flag.textContent = 'Vérifié';
+    titre.textContent = t.sous || t.section || 'Élément vérifié';
+    /* « Onglet N » n'a de sens que dans un rapport à plusieurs documents ; ailleurs,
+       le fil se réduit au titre de section. */
+    var multi = D.querySelectorAll('.doc').length > 1;
+    claim.textContent = [(multi && nDoc) ? 'Onglet ' + nDoc : '', t.sous ? t.section : '']
+      .filter(Boolean).join(' · ');
+
+    body.textContent = '';
+    var h = D.createElement('div');
+
+    h.appendChild(lbl2('Ce qui est vérifié, dans le texte du rapport'));
+    var box = D.createElement('div');
+    box.className = 'sm-passage';
+    box.appendChild(passage(hote, b.dataset.n));
+    h.appendChild(box);
+
+    blocSources(h, b.dataset.src);
+
+    h.appendChild(lbl2('Ce que la pastille indique'));
+    var ref = D.createElement('div');
+    ref.className = 'sm-ref';
+    ref.innerHTML = /v[ée]rifi[^\s]*\s+\S/i.test(lbl)
+      ? 'Mention portée dans le rapport : <b>« ' + esc(lbl) + ' »</b> — la source y est précisée.'
+      : 'Mention portée dans le rapport : <b>« ' + esc(lbl) + ' »</b>, sans précision de source dans la pastille elle-même.';
+    h.appendChild(ref);
+
+    var res = Array.prototype.slice.call(hote.querySelectorAll('.tag.t-info,.tag.t-warn,.tag.t-alert,.tag.t-grey'))
+      .map(txt).filter(Boolean);
+    if (res.length) {
+      h.appendChild(lbl2('Réserves signalées dans le même passage'));
+      var r = D.createElement('div');
+      r.className = 'sm-ref';
+      r.innerHTML = res.map(function (x) { return '<span class="tag t-info">' + esc(x) + '</span>'; }).join(' ');
+      h.appendChild(r);
+    }
+
+    var liens = Array.prototype.slice.call(hote.querySelectorAll('a[href^="http"]'));
+    if (liens.length) {
+      var L = D.createElement('div');
+      L.className = 'sm-links';
+      L.innerHTML = '<b>Lien cité dans le passage :</b> ' + liens.map(function (a) {
+        return '<a href="' + esc(a.getAttribute('href')) + '" target="_blank" rel="noopener noreferrer">'
+          + esc(txt(a) || a.getAttribute('href')) + '</a>';
+      }).join(' · ');
+      h.appendChild(L);
+    }
+
+    var note = D.createElement('div');
+    note.className = 'sm-note';
+    note.innerHTML = 'Fiche reprise mot pour mot du rapport : elle n’ajoute aucune source qui n’y figure pas déjà. Voir le '
+      + '<a href="#preuves">récapitulatif vérifié / hypothèse / à confirmer</a> et la '
+      + '<a href="#sources">liste des sources</a>.';
+    h.appendChild(note);
+
+    var go = D.createElement('button');
+    go.type = 'button';
+    go.className = 'sm-goto';
+    go.innerHTML = '&#8594;&nbsp; Ouvrir ce passage dans le rapport';
+    h.appendChild(go);
+
+    body.appendChild(h);
+    if (scroll) scroll.scrollTop = 0;
+    modal.hidden = false;
+    var x = modal.querySelector('.srcmodal-x');
+    if (x) x.focus();
+  }
+  /* Fiche rédigée : même modale, même rendu de sources, même vue web. */
+  function ouvrirFiche(nom) {
+    var f = (nom === 'recours') ? RECOURS : null;
+    if (!f) return;
+    cible = D.getElementById('recours');   /* « Ouvrir la section » y conduit */
+    lastFocus = D.activeElement;
+    flag.textContent = f.flag;
+    titre.textContent = f.titre;
+    claim.textContent = f.fil;
+    body.textContent = '';
+    var h = D.createElement('div');
+    h.innerHTML = f.html;
+    blocSources(h, f.src, 'Les textes et décisions qui l’établissent');
+    var go = D.createElement('button');
+    go.type = 'button';
+    go.className = 'sm-goto';
+    go.innerHTML = '&#8594;&nbsp; Ouvrir la section complète dans le rapport';
+    h.appendChild(go);
+    body.appendChild(h);
+    if (scroll) scroll.scrollTop = 0;
+    modal.hidden = false;
+    var x = modal.querySelector('.srcmodal-x');
+    if (x) x.focus();
+  }
+
+  function close() {
+    modal.hidden = true;
+    if (lastFocus) { try { lastFocus.focus(); } catch (e) {} }
+  }
+  function rejoindre() {
+    var el = cible;
+    close();
+    if (!el) return;
+    var d = el.closest('.doc');
+    if (d && !d.classList.contains('on')) {
+      var t = D.querySelector('.doctab[data-doc="' + d.dataset.doc + '"]');
+      if (t) t.click();
+    }
+    var f = el.closest('tr') || el;
+    if (f.scrollIntoView) {
+      try { f.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) { f.scrollIntoView(); }
+    }
+    f.classList.remove('flash'); void f.offsetWidth; f.classList.add('flash');
+    setTimeout(function () { f.classList.remove('flash'); }, 2700);
+    if (window.__navCur) window.__navCur(el);      /* le sommaire suit */
+  }
+
+  D.addEventListener('click', function (e) {
+    if (e.target.closest('[data-full]')) { plein(!modal.classList.contains('sm-full'), true); return; }
+    if (e.target.closest('.smw-back')) { versFiche(); return; }
+    var go = e.target.closest('.sm-src-go[data-url]');
+    if (go) { e.preventDefault(); versWeb(go.dataset.url, ''); return; }
+    if (e.target.closest('.sm-goto')) { e.preventDefault(); rejoindre(); return; }
+    var lien = e.target.closest('.srcmodal a[href^="#"]');
+    if (lien) { close(); return; }                 /* on laisse le navigateur suivre l'ancre */
+    var ext = e.target.closest('.srcmodal-scroll a[href^="http"]');
+    if (ext) { e.preventDefault(); versWeb(ext.href, txt(ext)); return; }
+    var fic = e.target.closest('.doc-link[data-fiche]');
+    if (fic) { e.preventDefault(); versFiche(); ouvrirFiche(fic.dataset.fiche); return; }
+    var lien3 = e.target.closest('#doc3 a[href^="http"]');
+    if (lien3) { e.preventDefault(); versWebSeul(lien3.href, txt(lien3)); return; }
+    var b = e.target.closest('button.tag-src');
+    if (b) versFiche();                            /* une nouvelle fiche annule la page consultée */
+    if (b && !b.dataset.v) { e.preventDefault(); open(b); }
+  });
+
+  /* ── 5. Plein écran ──────────────────────────────────────────────────────── */
+  var KEYF = 'kherief.srcmodal.full';
+  function plein(on, memoriser) {
+    modal.classList.toggle('sm-full', !!on);
+    var btn = modal.querySelector('.srcmodal-full');
+    if (btn) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.title = on ? 'Quitter le plein écran' : 'Plein écran';
+    }
+    if (memoriser) { try { localStorage.setItem(KEYF, on ? '1' : '0'); } catch (e) {} }
+  }
+  try { if (localStorage.getItem(KEYF) === '1') plein(true, false); } catch (e) {}
+
+  /* ── 6. Vue web : un lien de la fiche s'ouvre dans la modale ─────────────── */
+  /* Vérifié le 17/09/2026 : legifrance.gouv.fr et conseil-constitutionnel.fr
+     répondent « X-Frame-Options: SAMEORIGIN » — l'iframe y resterait blanche.
+     Pour ces domaines on affiche le repli tout de suite, plutôt qu'une page vide.
+     Contrôle : curl -sSIL <url> | grep -i x-frame-options */
+  /* Domaines contrôlés le 17/09/2026 comme refusant l'affichage dans une page
+     tierce (X-Frame-Options, ou Content-Security-Policy frame-ancestors).
+     Contrôle : curl -sSIL <url> | grep -iE 'x-frame-options|frame-ancestors' */
+  var REFUS = ['legifrance.gouv.fr', 'conseil-constitutionnel.fr', 'rantigny.fr',
+    'georisques.gouv.fr', 'clubic.com', 'lapresse.ca', 'nouvelles-du-monde.com',
+    'cnbc.com', 'wired.com', 'reuters.com', 'people.com', 'hoodline.com',
+    'classaction.org', 'datacenterdynamics.com', 'propublica.org', 'rte-france.com',
+    'registre-numerique.fr', 'reporterre.net'];
+  function refuseIframe(hote) {
+    hote = String(hote || '').toLowerCase();
+    return REFUS.some(function (d) {
+      return hote === d || hote.slice(-(d.length + 1)) === '.' + d;
+    });
+  }
+  var web    = modal.querySelector('.srcmodal-web'),
+      wUrl   = modal.querySelector('.smw-url'),
+      wOut   = modal.querySelector('.smw-out'),
+      wNote  = modal.querySelector('.smw-note'),
+      wFrame = modal.querySelector('.smw-frame'),
+      wStop  = modal.querySelector('.smw-stop');
+  function versWeb(href, libelle) {
+    if (!web) return;
+    var hote = '';
+    try { hote = new URL(href, location.href).hostname; } catch (e) {}
+    wUrl.textContent = href;
+    wUrl.title = href;
+    wOut.href = href;
+    var bloque = refuseIframe(hote);
+    wFrame.hidden = bloque;
+    wStop.hidden = !bloque;
+    wNote.hidden = bloque;
+    if (bloque) {
+      wFrame.removeAttribute('src');
+      wStop.innerHTML = '<p><b>' + esc(hote) + '</b> interdit son affichage à l’intérieur d’une autre page'
+        + ' (en-tête <code>X-Frame-Options</code> ou <code>Content-Security-Policy</code>). La zone resterait blanche.</p>'
+        + '<a class="smw-go" href="' + esc(href) + '" target="_blank" rel="noopener noreferrer">Ouvrir '
+        + esc(libelle || hote) + ' dans un onglet &#8599;</a>';
+    } else {
+      wNote.textContent = 'Si la page reste blanche, le site refuse l’affichage intégré : utilisez « Ouvrir dans un onglet ».';
+      wFrame.src = href;
+    }
+    web.hidden = false;
+    var back = modal.querySelector('.smw-back');
+    if (back) back.focus();
+  }
+  /* Un lien du contenu s'ouvre dans la même fenêtre, sans fiche derrière : le
+     bouton de retour devient alors « Fermer », il n'y a rien où revenir. */
+  var webSeul = false;
+  function majRetour() {
+    var back = modal.querySelector('.smw-back');
+    if (back) back.innerHTML = webSeul ? '&#10005;&nbsp; Fermer' : '&#8592;&nbsp; Retour à la fiche';
+  }
+  function versWebSeul(href, libelle) {
+    webSeul = true;
+    if (modal.hidden) { lastFocus = D.activeElement; modal.hidden = false; }
+    versWeb(href, libelle);
+    majRetour();
+  }
+  function versFiche() {
+    if (!web || web.hidden) return;
+    web.hidden = true;
+    wFrame.removeAttribute('src');       /* on arrête le chargement en cours */
+    if (webSeul) {
+      webSeul = false;
+      majRetour();
+      if (!modal.hidden) close();        /* rien derrière : on ferme la fenêtre */
+    }
+  }
+  /* Échap ferme d'abord la page consultée, pas la fiche : en capture, sinon le
+     module du second onglet ferme la modale entière avant nous. */
+  D.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !modal.hidden && web && !web.hidden) {
+      e.preventDefault(); e.stopPropagation(); versFiche();
+    }
+  }, true);
+  /* La modale peut être fermée par l'un ou l'autre module : on suit l'attribut. */
+  if (window.MutationObserver) {
+    new MutationObserver(function () { if (modal.hidden) versFiche(); })
+      .observe(modal, { attributes: true, attributeFilter: ['hidden'] });
+  }
+
+  /* ── 7. Taille de la modale : réglée à la souris, puis mémorisée ─────────── */
+  var KEY = 'kherief.srcmodal.size';
+  try {
+    var m = (localStorage.getItem(KEY) || '').split('x');
+    if (m.length === 2 && +m[0] > 280 && +m[1] > 180) {
+      panel.style.width = Math.min(+m[0], window.innerWidth - 20) + 'px';
+      panel.style.height = Math.min(+m[1], window.innerHeight - 20) + 'px';
+    }
+  } catch (e) {}
+  if (window.ResizeObserver) {
+    var tmr = null;
+    new ResizeObserver(function () {
+      if (modal.hidden || modal.classList.contains('sm-full')) return;
+      clearTimeout(tmr);
+      tmr = setTimeout(function () {
+        try {
+          localStorage.setItem(KEY, Math.round(panel.offsetWidth) + 'x' + Math.round(panel.offsetHeight));
+        } catch (e) {}
+      }, 400);
+    }).observe(panel);
+  }
+})();
+</script>
+<script>
+/* ══ Version papier ════════════════════════════════════════════════════════
+   Modèle : la « version papier » des synthèses de QuiDitQuoiEtQuand (build_print_ready_html).
+   Imprimer la page d'écran donne un résultat médiocre — sommaire latéral, boutons, fenêtres,
+   aplats de couleur, zone défilante. Le bouton « Imprimer » ouvre donc, dans un nouvel onglet,
+   un document construit pour le papier ; on l'y relit, puis on l'imprime depuis sa barre.
+   Pas de serveur ici : le document est fabriqué dans le navigateur, à partir de la page.
+
+   - Le document affiché seulement (onglet actif d'un rapport à plusieurs documents).
+   - RETIRÉS, pas masqués : scripts, fenêtres, recherche, boutons d'écran.
+   - En-tête papier (titre, sous-titre, mentions) et colophon, une seule fois.
+   - Adresse des liens externes écrite après le lien : sur papier, un lien ne se clique pas.
+   - <title> neutre : c'est le nom de la tâche d'impression, visible dans la file et sur
+     l'écran du copieur — le rapport nomme des personnes. Le titre reste sur le papier. */
+(function () {
+  /* Balises fermantes écrites <\/…> : ce script est collé tel quel dans les pages, et les
+     outils qui insèrent du code avant la balise de fin du corps (07_rapports-lies.py) ne doivent pas
+     trouver ici une fausse occurrence. */
+  var TITRE_TACHE = 'Document';
+  var D = document;
+
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+  function nettoie(el) {
+    Array.prototype.forEach.call(el.querySelectorAll(
+      'script, noscript, iframe, .srcmodal, .geo-modal, .cmodal, .qs-results, .qs-wrap, .hdr-btn, .hdr-ico, .geo-btn'),
+      function (n) { n.remove(); });
+    Array.prototype.forEach.call(el.querySelectorAll('span.qs-hit'), function (h) {
+      h.replaceWith(D.createTextNode(h.textContent));
+    });
+    Array.prototype.forEach.call(el.querySelectorAll('details'), function (d) { d.open = true; });
+    return el;
+  }
+
+  window.__versionPapier = function () {
+    var src = D.querySelector('.doc.on') || D.querySelector('main.content') || D.querySelector('main');
+    if (!src) { window.print(); return; }
+    var corps = nettoie(src.cloneNode(true));
+    corps.classList.add('pv-doc');
+    corps.removeAttribute('data-zone');
+
+    /* liens externes : l'adresse suit le lien (pas pour les pastilles, déjà sourcées en annexe) */
+    Array.prototype.forEach.call(corps.querySelectorAll('a[href^="http"]'), function (a) {
+      var t = (a.textContent || '').trim(), u = a.getAttribute('href');
+      if (!t || t === u || u.length > 160) return;
+      var s = D.createElement('span');
+      s.className = 'pv-url';
+      s.textContent = ' ⟨' + u.replace(/^https?:\/\/(www\.)?/, '') + '⟩';
+      a.after(s);
+    });
+
+    /* en-tête papier : repris de l'en-tête coloré de l'écran */
+    var h = D.querySelector('header.main-header, header.main');
+    var h1 = h && h.querySelector('h1'), meta = h && h.querySelector('.meta');
+    var droite = h && h.querySelector('[data-zone="header-right"]');
+    if (droite) {
+      droite = nettoie(droite.cloneNode(true));
+      Array.prototype.forEach.call(droite.querySelectorAll('span[style]'), function (s) {
+        if (/Ctrl\+F/.test(s.textContent)) s.remove();          /* raccourci d'écran */
+      });
+    }
+    var tete = '<header class="pv-tete">' +
+      '<div class="pv-t">' + (h1 ? h1.innerHTML : esc(D.title)) + '<\/div>' +
+      (meta ? '<div class="pv-meta">' + nettoie(meta.cloneNode(true)).innerHTML + '<\/div>' : '') +
+      (droite ? '<div class="pv-mentions">' + droite.innerHTML.replace(/<br\s*\/?>/gi, ' · ')
+                  .replace(/(\s*·\s*)+$/, '') + '<\/div>' : '') +
+      '<\/header>';
+
+    var pied = D.querySelector('footer.main-footer');
+    var maintenant = new Date().toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+    var colophon = '<footer class="pv-pied">' + (pied ? esc(pied.textContent.replace(/\s+/g, ' ').trim()) + '<br>' : '') +
+      'Version papier produite le ' + maintenant + ' à partir du rapport en ligne.<\/footer>';
+
+    var styles = Array.prototype.map.call(D.querySelectorAll('head style, head link[rel="stylesheet"]'),
+      function (n) { return n.outerHTML; }).join('\n');
+    var barre = '<div class="pv-barre"><button type="button" onclick="window.print()">&#128424;&#65039; Imprimer<\/button>' +
+      '<button type="button" onclick="window.close()">Fermer<\/button><\/div>';
+    var html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><title>' + TITRE_TACHE + '<\/title>' +
+      styles + '<style>' + CSS_PAPIER + '<\/style><\/head><body class="pv">' + barre + tete +
+      corps.outerHTML + colophon + '<\/body><\/html>';
+
+    var w = window.open('', '_blank');
+    if (!w) { window.print(); return; }                      /* fenêtres bloquées : repli */
+    w.document.open();
+    w.document.write(html);
+    w.document.close();
+  };
+
+  var CSS_PAPIER = [
+    /* Marges @page réelles, jamais nulles : une marge nulle fait rogner la première et la
+       dernière ligne de chaque page par l'imprimante (leçon de QuiDitQuoiEtQuand, 12/08/2026).
+       10 mm est le plancher : en dessous, on entre dans la zone non imprimable. */
+    '@page{size:A4;margin:10mm 11mm}',
+    'html,body.pv{height:auto!important;overflow:visible!important;display:block!important;background:#fff!important}',
+    'body.pv{margin:0!important;padding:0!important;font:8.5pt/1.4 Georgia,"Times New Roman",serif!important;color:#14161a!important}',
+    '.pv-doc{display:block!important;overflow:visible!important;height:auto!important;max-height:none!important;padding:0!important;margin:0!important;flex:none!important}',
+    /* aucun aplat : sur papier, un fond coloré devient un pavé d\'encre */
+    '.pv-doc *{box-shadow:none!important;text-shadow:none!important}',
+    '.pv-doc .card,.pv-doc section,.pv-doc .kpi,.pv-doc .kpis,.pv-doc .tree,.pv-doc td,.pv-doc th,.pv-doc .tag,.pv-doc .exergue{background:transparent!important}',
+    '.pv-doc .card{border:0!important;border-radius:0!important;padding:0!important;margin:0 0 5mm!important}',
+    '.pv-doc h2{font-size:11pt!important;color:var(--c1,#1d4ed8)!important;border-bottom:1.5px solid var(--c1,#1d4ed8)!important;padding:0 0 2px!important;margin:0 0 .5em!important;background:none!important}',
+    '.pv-doc h3{font-size:9.5pt!important;margin:.8em 0 .25em!important}',
+    '.pv-doc p,.pv-doc li,.pv-doc dd,.pv-doc dt{font-size:8.5pt!important;line-height:1.4!important}',
+    '.pv-doc p{text-align:justify;hyphens:auto}',
+    /* le sens des encadrés passe du fond au filet : vert solide, ambre réserve, rouge alerte */
+    '.pv-doc .box{background:transparent!important;border:0!important;border-left:3px solid #1d4ed8!important;border-radius:0!important;padding:1mm 0 1mm 3.5mm!important;margin:.6em 0!important}',
+    '.pv-doc .box.ok{border-left-color:#047857!important}.pv-doc .box.warn{border-left-color:#b45309!important}.pv-doc .box.alert{border-left-color:#b91c1c!important}',
+    '.pv-doc .alert-major{background:transparent!important;border:1.5px solid #b91c1c!important;border-radius:0!important;padding:3mm 4mm!important}',
+    '.pv-doc .tag{border:1px solid currentColor!important;border-radius:3px!important;padding:0 3px!important;font-size:6.5pt!important}',
+    '.pv-doc table{border-collapse:collapse!important;width:100%!important;font:7.5pt/1.3 system-ui,-apple-system,"Segoe UI",Arial,sans-serif!important}',
+    '.pv-doc th,.pv-doc td{border:1px solid #bbb!important;padding:2px 4px!important;color:#14161a!important}',
+    '.pv-doc th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+    '.pv-doc tr{break-inside:avoid;page-break-inside:avoid}',
+    '.pv-doc thead{display:table-header-group}',
+    /* les barres de proportion gardent leur couleur : c\'est leur seule information */
+    '.pv-doc .bar,.pv-doc .bar *,.pv-doc .fill,.pv-doc .track{-webkit-print-color-adjust:exact;print-color-adjust:exact}',
+    '.pv-doc a{color:#14161a!important;text-decoration:none!important}',
+    '.pv-url{font:6.5pt/1.3 system-ui,Arial,sans-serif;color:#777;word-break:break-all}',
+    '.pv-doc h2,.pv-doc h3{break-after:avoid-page;page-break-after:avoid;break-inside:avoid}',
+    '.pv-doc p,.pv-doc li,.pv-doc blockquote,.pv-doc .box,.pv-doc .kpi{break-inside:avoid;page-break-inside:avoid;orphans:3;widows:3}',
+    '.pv-doc img,.pv-doc svg{max-width:100%!important;height:auto;break-inside:avoid}',
+    /* en-tête et colophon du document */
+    '.pv-tete{border-bottom:2.5px solid var(--c1,#1d4ed8);padding-bottom:3mm;margin-bottom:6mm;break-after:avoid}',
+    '.pv-t{font:700 17pt/1.1 Georgia,serif;color:var(--c1,#1d4ed8)}',
+    '.pv-t *{font:inherit;color:inherit}',
+    '.pv-meta{font-size:8.5pt;margin-top:2mm;color:#333}',
+    '.pv-meta .statut-pill{border:1px solid currentColor;border-radius:3px;padding:0 4px;background:transparent!important;color:inherit!important}',
+    '.pv-mentions{font:7.5pt/1.45 system-ui,Arial,sans-serif;color:#555;margin-top:2mm}',
+    '.pv-pied{margin-top:8mm;padding-top:2mm;border-top:1px solid #999;font:7pt/1.5 system-ui,Arial,sans-serif;color:#666;break-inside:avoid}',
+    /* à l\'écran : une feuille A4 centrée pour juger du rendu ; barre d\'actions flottante */
+    '@media screen{html{background:#e5e7eb!important}body.pv{width:21cm;box-sizing:border-box;margin:16px auto!important;padding:10mm 11mm!important;background:#fff!important;box-shadow:0 1px 8px rgba(0,0,0,.18)}',
+    '.pv-barre{position:fixed;top:12px;right:14px;display:flex;gap:7px;z-index:9999}',
+    '.pv-barre button{font:600 13px/1 system-ui,sans-serif;padding:9px 14px;border-radius:8px;border:1px solid #cbd5e1;background:#fff;color:#1e293b;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.12)}',
+    '.pv-barre button:first-child{background:var(--c1,#1d4ed8);color:#fff;border-color:transparent}}',
+    '@media print{.pv-barre{display:none!important}}'
+  ].join('\n');
+})();
+
+</script>
+</body>
+</html>
