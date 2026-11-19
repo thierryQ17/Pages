@@ -1,0 +1,6 @@
+# Publication GitHub Pages : seules les pages à la RACINE sont en ligne.
+# Les dossiers ci-dessous restent dans le dépôt mais ne sont pas publiés (404 sur le site).
+# (Pages sans en-tête YAML « --- » : Jekyll les copie telles quelles, sans les transformer.)
+exclude:
+  - rapports
+  - dataCenterRantigny
