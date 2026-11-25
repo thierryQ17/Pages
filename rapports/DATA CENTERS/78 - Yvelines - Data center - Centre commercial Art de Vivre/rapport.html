@@ -698,6 +698,7 @@
   <p class="src">Conservés pour la traçabilité : ils montrent ce qui a été regardé, et permet à un lecteur de refaire la recherche.</p>
   <p class="nd">Aucune société retenue à ce stade.</p>
   
+  
   <div class="box ok"><b>Ce qui est établi ici</b> <span class="tag t-ok">vérifié</span> : l'existence, le SIREN, l'activité déclarée
   et l'état administratif des sociétés listées — chaque ligne est vérifiable en un clic sur l'Annuaire des entreprises.
   <br><b>Ce qui ne l'est pas</b> : le lien entre l'une de ces sociétés et ce projet précis.</div>
@@ -708,20 +709,18 @@
 <section id="finances" class="card">
   <h2>3. Ce que disent les comptes</h2>
   <p class="sub">Source : ratios financiers INPI / Banque de France (<code>data.economie.gouv.fr</code>, jeu <code>ratios_inpi_bce</code>).</p>
-  <div class="box warn"><b>Aucune donnée financière publiée</b> pour les sociétés consultées <span class="tag t-grey">non consultable</span>.
-  Trois explications possibles, à ne pas confondre : (1) il s'agit de <b>sociétés civiles</b>, qui ne déposent jamais de comptes —
-  c'est une limite structurelle, pas un manquement ; (2) la société a <b>opté pour la confidentialité</b> de ses comptes,
-  ce que la loi autorise aux petites entreprises ; (3) la société est <b>trop récente</b> pour avoir clos un exercice.
-  <br><b>Formulation défendable :</b> « aucun compte n'est publié à ce jour ». <b>À éviter :</b> « la société cache ses comptes ».</div>
+  <div class="box warn"><b>Aucune société n'a été interrogée</b> : faute de porteur nommé, aucun SIREN
+  n'a été soumis à la base des comptes <span class="tag t-info">à confirmer</span>. Ce n'est <b>pas</b> un résultat —
+  il n'y a ici ni donnée, ni absence de donnée constatée. La recherche deviendra possible dès qu'une
+  pièce du dossier nommera le demandeur.</div>
 </section>
 <section id="bodacc" class="card">
   <h2>4. Histoire des sociétés — le BODACC</h2>
   <p class="sub">Source : Bulletin officiel des annonces civiles et commerciales (<code>bodacc-datadila.opendatasoft.com</code>).</p>
-  <div class="box"><b>Aucune annonce publiée</b> pour les SIREN consultés. Pour une société récente, c'est
-  banal ; cela signifie surtout <b>aucune procédure collective, aucun jugement, aucune radiation publiés</b>
-  à ce jour <span class="tag t-ok">vérifié</span> — un point favorable, à écrire comme tel.</div>
-  <p class="src">Méthode : toutes les annonces du SIREN ont été récupérées puis classées localement. Aucun filtre
-  sur le type d'annonce n'a été appliqué — un filtre non vérifié peut renvoyer zéro et faire conclure à tort à l'absence de procédure.</p>
+  <div class="box warn"><b>Aucun SIREN n'a été interrogé au BODACC</b> <span class="tag t-info">à confirmer</span> :
+  aucun porteur n'étant nommé, il n'y avait aucune société à interroger. <b>Ne pas lire ce vide comme
+  une absence de procédure collective</b> : une requête non lancée et une requête sans résultat se
+  ressemblent, et les confondre reviendrait à écrire un point favorable qui n'a pas été vérifié.</div>
 </section>
 <section id="icpe" class="card">
   <h2>5. Les installations classées de la commune</h2>
@@ -1801,6 +1800,9 @@ document.getElementById('navItems').addEventListener('click',function(e){
   }
 
   D.addEventListener('click', function (e) {
+    /* La croix et le fond portent data-close depuis l'origine, mais rien ne les écoutait :
+       la fenêtre s'ouvrait sans pouvoir se refermer. */
+    if (e.target.closest('[data-close]')) { close(); return; }
     if (e.target.closest('[data-full]')) { plein(!modal.classList.contains('sm-full'), true); return; }
     if (e.target.closest('.smw-back')) { versFiche(); return; }
     var go = e.target.closest('.sm-src-go[data-url]');
@@ -1905,12 +1907,13 @@ document.getElementById('navItems').addEventListener('click',function(e){
       if (!modal.hidden) close();        /* rien derrière : on ferme la fenêtre */
     }
   }
-  /* Échap ferme d'abord la page consultée, pas la fiche : en capture, sinon le
+  /* Échap ferme d'abord la page consultée, puis la fiche : en capture, sinon le
      module du second onglet ferme la modale entière avant nous. */
   D.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && !modal.hidden && web && !web.hidden) {
-      e.preventDefault(); e.stopPropagation(); versFiche();
-    }
+    if (e.key !== 'Escape' || modal.hidden) return;
+    e.preventDefault(); e.stopPropagation();
+    if (web && !web.hidden) versFiche();   /* un premier Échap revient à la fiche */
+    else close();                          /* le suivant ferme la fenêtre */
   }, true);
   /* La modale peut être fermée par l'un ou l'autre module : on suit l'attribut. */
   if (window.MutationObserver) {
